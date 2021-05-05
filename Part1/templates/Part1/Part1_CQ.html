@@ -1,0 +1,69 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+<!--------------------------------------------------------------------------->
+{% block scripts %}
+
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block styles %}
+
+<link href="{% static 'back_button_v3/css/custom.css' %}" rel="stylesheet">
+
+<style>
+  input[type=radio] {
+    transform: scale(1.5);
+    margin: 12px -10px 0px -30px;
+  }
+</style>
+
+<style>
+p    {font-size: 160%; line-height: 200%;}
+ul    {font-size: 160%; line-height: 200%;}
+</style>
+
+<style>
+  .otree-body{
+      max-width: 1400px;
+  }
+</style> 
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block content %}
+
+<p>&nbsp;</p>
+<h1 style="text-align: center;"><strong>PART 1 Comprehension Questions</strong></h1>
+<p>&nbsp;</p>
+<p> Please answer the following comprehension questions correctly. If you need to, you can click “Back” button and review the instructions again. If you are ready to submit your answers, click “Submit” button. </p>
+<p> If any of your submitted answers are incorrect, you may be excluded from the experiment and deprived of all payments aside from the minimum payment of $5 for attending.  </p>
+<p>&nbsp;</p>
+<p>1. Your task in Part 1 is to position as many of the 100 sliders in the center of representative scale as possible within 5 minutes.</p> 
+    {% formfield player.part1_cq1 label="" %}	
+<p>&nbsp;</p>
+<p>2. The number of red balls you will received at the end of Part 1 equals to the number of sliders that you correctly positioned. </p> 
+    {% formfield player.part1_cq2 label="" %}		
+<p>&nbsp;</p>
+<p>3. You will earn 1 point for every blue ball you received. </p>
+    {% formfield player.part1_cq3 label="" %}	
+  
+    
+<div class="container">
+    <div class="row" style="padding-left:95%;">
+        <div class="col-md-2">
+            <button name="btn_submit" value="True" class="btn btn-primary btn-large">
+                    <span style="font-size:12pt">Next</span>
+         </button>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+

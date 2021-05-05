@@ -1,0 +1,62 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block styles %}
+   <style>
+      input[type=radio] {
+        transform: scale(1.5);
+        margin: 12px -10px 0px -30px;
+      }
+   </style>
+{% endblock %}
+
+{% block content %}
+
+<h1> Questionnaire </h1>
+
+<div class="container p-3 my-3 border" style="font-size:16pt">
+	Please answer to the following questions
+	<br>
+	<br>
+{% formfield player.sex label="Gender" %}
+{% formfield player.age label="Age" %}
+{% formfield player.comment label="Your comment" %}
+
+Did you like the experiment?
+<br>
+<br>
+
+
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">No, not at all</span>
+    </div>
+
+    <input type="range" name="like" min="1" max="5" step="1">
+
+    <div class="input-group-append">
+        <span class="input-group-text">Yes, very much</span>
+    </div>
+</div>
+
+
+</div>
+	<div class="container">
+		<div class="row">
+			&nbsp;
+		</div>
+		<div class="row" style="padding-left:135px;">
+			<div class="col-md-10">
+
+			</div>
+			<div class="col-md-2">
+				<button name="btn_submit" value="True" class="btn btn-primary btn-large">
+						<span style="font-size:18pt">Finish</span>
+			 </button>
+			</div>
+		</div>
+	</div>
+
+{{ form.like.errors }}
+
+{% endblock %}

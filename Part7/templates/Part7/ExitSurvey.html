@@ -1,0 +1,61 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block styles %}
+<style>
+	input[type=radio] {
+		 transform: scale(1.5);
+		 margin: 12px -10px 0px -30px;
+	   }
+  </style>
+  
+  <style>
+  p    {font-size: 160%; line-height: 200%;}
+  ul    {font-size: 160%; line-height: 200%;}
+  </style>
+  
+  <style>
+	.otree-body{
+		max-width: 1400px;
+	}
+  </style> 
+{% endblock %}
+
+
+{% block content %}
+<h1 style="text-align: center;"><strong>Exit Survey</strong></h1>
+<br>
+
+<div style = "width: 1000px; margin: 0 auto;">
+<p>What sex were you assigned at birth, such as on an original birth certificate?</p>
+{% formfield player.sex label="" %}
+<br>
+
+<p>What is your age?</p>
+{% formfield player.age label="" %}
+<br>
+
+<p>Please indicate how strongly you agree or disagree with the following statement: 
+<br>"In general, the instructions were clear and easily understandable."</p>
+{% formfield player.like label="" %}
+
+<br>
+<p>Do you have any other comments that you would like to make about this experiment?</p>
+{% formfield player.comment label="" %}
+</div>
+
+<br>
+<div class="container">
+  <div class="row" style="padding-left:95%;">
+      <div class="col-md-2">
+          <button name="btn_submit" value="True" class="btn btn-primary btn-large">
+                  <span style="font-size:12pt">Finish</span>
+       </button>
+      </div>
+  </div>
+</div>
+
+
+{{ form.like.errors }}
+
+{% endblock %}

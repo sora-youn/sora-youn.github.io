@@ -1,0 +1,76 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+
+{% block content %}
+
+
+	<input type="hidden" value="{{riepilogo_guadagni|safe}}" id="riepilogo_guadagni">
+
+
+<h1> Outcome </h1>
+
+<div class="container p-3 my-3 border" style="font-size:16pt">
+		<p> <b>Row #{{row}}</b> was randomly selected for payment.</p>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col" colspan="2" style="text-align:center">A</th>
+					<th scope="col" ></th>
+					<th scope="col" colspan="2"  style="text-align:center">B</th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+		<tr>
+			<th scope="row">{{row}}</th>
+			<td>{{p_A_1}}/10 of €{{Constants.f1|safe}} </td>
+			<td> {{p_A_2}}/10 of €{{Constants.f2|safe}}</td>
+		<td></td>
+			<td>{{p_B_1}}/10 of €{{Constants.f3|safe}}</td>
+			<td>{{p_B_2}}/10 of €{{Constants.f4|safe}} </td>
+		</tr>
+		<td> </td>
+		<td> </td>
+		<td> </td>
+		<td> </td>
+		<td> </td>
+		<td> </td>
+		<td> </td>
+
+		</table>
+<!-- The lottery chosen -->
+		<p>You chose
+		{% if choice == 1 %}
+    <b>Lottery A.</b>
+		{% else %}
+    <b>Lottery B.</b>
+		{% endif %}
+</p>
+
+<p> The randomly drawn value that defines the outcome of the lottery is {{value}}.</p>
+
+<p> Thus, you earn Euro <b>{{payoff_HL|safe}}</b></p>
+
+</div>
+
+
+<div class="container">
+	<div class="row">
+		&nbsp;
+	</div>
+	<div class="row" style="padding-left:130px;">
+		<div class="col-md-10">
+
+		</div>
+		<div class="col-md-2">
+			<button class="otree-btn-next btn btn-primary">
+			  <span style="font-size:18pt">Continue</span>
+			</button>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

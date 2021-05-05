@@ -1,0 +1,516 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+<!--------------------------------------------------------------------------->
+{% block scripts %}
+<script src="{% static 'back_button_v3/js/prev_next_button.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+	$('#mine, #teammate').on('input',function() {
+
+    var mine = parseInt($('#mine').val());
+    var teammate = parseInt($('#teammate').val());
+
+	// T1
+	var r1 = mine/100
+	var r2 = teammate/100
+
+  var foc = ( (r1 * r1) / (r1 * r1 + r2 * r2) *100 ).toFixed(0) // the optimal # of balls from urn 1
+	var foc2 = 100 - foc // the optimal # of balls from urn 2
+	
+	$('#reported_mine').html(mine);
+	$('#reported_teammate').html(teammate);
+  $('#RecommendedAction1').html(foc);
+	$('#RecommendedAction2').html(foc2);
+	});
+});
+</script> 
+
+<script>
+  $(document).ready(function(){
+    $('#mine, #teammate, #RecommendedAction1, #RecommendedAction2').on('input',function() {
+    
+      var mine = parseInt($('#mine').val());
+      var teammate = parseFloat($('#teammate').val());
+  
+      var action_urn1 = parseInt($('#RecommendedAction1').html());
+      var action_urn2 = parseFloat($('#RecommendedAction2').html());
+
+    // T1
+    var r1 = mine/100
+    var r2 = teammate/100
+  
+    var ELT = ( Math.pow((r1*action_urn1 + r2*action_urn2), 0.5)*10).toFixed(0) 
+    var Prob200 = ( Math.pow((r1*action_urn1 + r2*action_urn2), 0.5) ).toFixed(1)
+    
+    $('#reported_mine').html(mine);
+	  $('#reported_teammate').html(teammate);
+    $('#ExpectedLT').html(ELT);
+    $('#Prob200').html(Prob200);
+
+    });
+  });
+</script>
+
+<script>
+  $(document).ready(function(){
+    var slider = document.getElementById("DecisionSlider2");
+    var urn1 = document.getElementById("Urn1_2");
+    var urn2 = document.getElementById("Urn2_2");
+    urn1.innerHTML = slider.value; // Display the default slider value
+    urn2.innerHTML = 100 - slider.value;
+  
+    // Update the current slider value (each time you drag the slider handle)
+    slider.oninput = function() {
+      urn1.innerHTML = this.value;
+      urn2.innerHTML = 100 - this.value;
+    }
+  
+    });
+  </script>
+
+<script>
+	function myFunction() {
+	
+		var slider = document.getElementById("DecisionSlider");
+		var urn1 = document.getElementById("Urn1");
+		var urn2 = document.getElementById("Urn2");
+		urn1.innerHTML = slider.value; // Display the default slider value
+		urn2.innerHTML = 100 - slider.value;
+
+		// Update the current slider value (each time you drag the slider handle)
+		slider.oninput = function() {
+			urn1.innerHTML = this.value;
+			urn2.innerHTML = 100 - this.value;
+			};
+
+		};
+</script>
+
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block styles %}
+
+<link href="{% static 'back_button_v3/css/custom.css' %}" rel="stylesheet">
+
+<style>
+  input[type=radio] {
+    transform: scale(1.5);
+    margin: 12px -10px 0px -30px;
+  }
+</style>
+
+<style>
+p    {font-size: 160%; line-height: 200%;}
+ul    {font-size: 160%; line-height: 200%;}
+</style>
+
+<style>
+  .otree-body{
+      max-width: 1400px;
+  }
+</style> 
+
+<style>
+
+.myslider{
+	width: 100%;
+	}
+
+.myslider {
+	-webkit-appearance: none;
+	background: #e0e0e0;
+	width: 100%;
+	height: 25px;
+	opacity: 2;
+	}
+
+.myslider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	cursor: pointer;
+	background: #4f5e60  ;
+	width: 15px;
+	height: 25px;
+	}
+
+.myslider:hover {
+	opacity: 1;
+	}
+
+ </style>
+
+
+
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block content %}
+
+<!-- Tab navigation -->
+<ul class="nav nav-tabs fixed-top navbar-light bg-light justify-content-center " id="myTab" role="tablist">
+
+  <li class="nav-item" >
+    <a class="nav-link active" id="part1-tab" data-toggle="tab" href="#part1" role="tab" aria-controls="part1" onclick="topFunction()"> </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="part2-tab" data-toggle="tab" href="#part2" role="tab" aria-controls="part2" onclick="topFunction()"> </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="part3-tab" data-toggle="tab" href="#part3" role="tab" aria-controls="part3" onclick="topFunction()"> </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="part4-tab" data-toggle="tab" href="#part4" role="tab" aria-controls="part4" onclick="topFunction()"> </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="part5-tab" data-toggle="tab" href="#part5" role="tab" aria-controls="part5" onclick="topFunction()"> </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="part6-tab" data-toggle="tab" href="#part6" role="tab" aria-controls="part6" onclick="topFunction()"> </a>
+  </li>
+
+</ul>
+
+
+<!-- Tab content -->
+<div class="tab-content" id="myTabContent">
+
+  <!-- Tab 1 -->
+  <div class="tab-pane show active" id="part1" role="tabpanel" aria-labelledby="part1-tab">
+
+<p>&nbsp;</p>
+<h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
+<p style="text-align: center;">Page <strong>1</strong> out of 6</p>
+<p>&nbsp;</p>
+<p>In this part of the experiment, you are presented with two urns.</p>
+<p style="text-align:center;"><img src="{% static 'T1_urnimage.png' %}" alt="Part3 Figure" style="width:800px;height:450px;" class="center"/></p>
+<p>&nbsp;</p>
+<p><strong><em>Urn 1</em></strong> contains 100 balls.</p>
+<p style="padding-left: 40px;">The number of <span style="color: #ff0000;">RED</span> balls in Urn 1 equals to the number of sliders, out of 100 sliders, <br>that <strong>YOU</strong> correctly positioned in Part 1.</p>
+<p style="padding-left: 40px;">The rest of balls are blue.</p>
+<p>&nbsp;</p>
+<p><em><strong>Urn 2</strong></em> contains 100 balls.</p>
+<p style="padding-left: 40px;">The number of <span style="color: #ff0000;">RED</span> balls in Urn 2 equals to the number of sliders, out of 100 sliders, <br>that <strong>YOUR TEAMMATE</strong> correctly positioned in Part 1.</p>
+<p style="padding-left: 40px;">The rest of balls are blue.</p>
+
+<button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
+
+</div>
+
+
+<!-- Tab 2 -->
+<div class="tab-pane" id="part2" role="tabpanel" aria-labelledby="part2-tab">
+
+<p>&nbsp;</p>
+<h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
+<p style="text-align: center;">Page <strong>2</strong> out of 6</p>
+<p>&nbsp;</p>
+<p>Part 3 consists of {{num_game_round}} rounds.</p>
+<p>
+  In every round, you are asked to decide how many balls to draw from each urn. 
+  <br>You can draw 1-99 balls from a single urn. You also have to draw 100 balls in total. 
+</p>
+<p>Your choice will look like this. The slider gets activated once you click it.</p>
+<br>
+<table align = "center" style = "border: 3px solid gray;" cellspacing="10" cellpadding="20">
+  <colgroup>
+     <col width="20%">
+     <col width="60%">
+     <col width="20%">
+  </colgroup>
+
+  <tr>
+    <td align="center" style = "font-size: 135%;"> From Urn 1, <br>draw <strong> <span id="Urn1"> NaN </span> </strong> balls </td>
+    <td align="center" style = "vertical-align: middle;"> 
+		  <input type="range" min="1" max="99" class = "myslider" id="DecisionSlider" step="1" onclick="myFunction()"> 
+    </td>
+    <td align="center" style = "font-size: 135%;"> From Urn 2, <br>draw <strong> <span id="Urn2"> NaN </span> </strong> balls </td>
+  </tr> 
+</table>
+<p>&nbsp;</p>
+<p>Whenever a ball is drawn, no matter from which urn, the drawn ball is replaced with the same-colored ball. That is, the probabilities of drawing a red ball (and the probabilities of drawing a blue ball) from Urn 1 and Urn 2 do NOT change as you keep drawing until 100 balls are drawn.</p>
+<br>
+<p>For example, suppose out of 100 balls in Urn 1, 50 balls are red. Further, assume that 70 balls are red, out of 100 balls in Urn 2. This implies:</p>
+<ul>
+<li>Whenever a ball is drawn from Urn 1, the ball is red with probability 50% and blue with probability 50%.</li>
+<li>Whenever a ball is drawn from Urn 2, the ball is red with probability 70% and blue with probability 30%.</li>
+<li>The probability of drawing a red (blue) ball from each urn remains constant during the entire experiment.</li>
+</ul>
+
+<button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 
+<button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
+  
+  </div>
+
+
+<!-- Tab 3 -->
+<div class="tab-pane" id="part3" role="tabpanel" aria-labelledby="part3-tab">
+
+<p>&nbsp;</p>
+<h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
+<p style="text-align: center;">Page <strong>3</strong> out of 6</p>
+<p>&nbsp;</p>
+<h3><strong>How do you earn points?</strong></h3>
+<p>
+  Once you submit your decision on how many balls to draw from each urn, the computer draws 100 balls accordingly. 
+  You receive lottery tickets depending on the colors of the drawn balls.
+</p>
+<ul>
+  <li>For every drawn <span style="color: #ff0000;">RED</span> ball, you are awarded <strong>10 lottery tickets or zero lottery tickets</strong>. </li>
+  <li>For every drawn BLUE ball, you receive <strong>zero lottery tickets</strong>.</li>
+</ul>
+<br>
+<p>
+  Then, the computer draws a random number "X" from the interval [0,1000]. 
+  Any number within the interval [0,1000] is equally likely to be selected.
+  The number of lottery tickets you received and the random number "X" determines your earning from Part 3. 
+</p>
+<ul>
+  <li>If "X" is less than or equal to the total number of lottery tickets awarded to you, you <strong>earn 200 points.</strong></li>
+  <li>If "X" is greater than the total number of lottery tickets awarded to you, you earn zero points.</li>
+</ul>
+<br>
+<p>
+  At the end of Part 3, i.e. when you finished all of {{num_game_round}}  rounds, one of the earnings from these {{num_game_round}} rounds will be randomly chosen as your payment from Part 3.
+</p>
+<br>
+<div style = "width: 1200px; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 10px; font-size: 100%; background-color: rgb(240, 239, 236);">
+<h3><strong>IMPORTANT:</strong></h3>
+<ul> 
+<li><em>In every round, you have the possibility to earn 200 points. </em></li>   
+<li><em>For every drawn RED ball, you have a chance to receive 10 lottery tickets.</em></li>   
+<li><em>The more lottery tickets you are awarded, the more likely you earn 200 points. </em></li>
+<li><em>Every 10 lottery tickets awarded to you increases the probability of earning 200 points by 1%.</em></li>
+</ul>  
+</div>
+
+<button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button>
+<button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
+
+</div>
+
+
+<!-- Tab 4 -->
+<div class="tab-pane" id="part4" role="tabpanel" aria-labelledby="part4-tab">
+
+<p>&nbsp;</p>
+<h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
+<p style="text-align: center;">Page <strong>4</strong> out of 6</p>
+<p>&nbsp;</p>
+<h3><strong>How do I maximize the probability of earning 200 points?</strong></h3>
+<p>To assist your decision-making, we provide you a <em>decision tool</em>. </p>
+<p>  
+  On the top of the decision-making screen, you will be asked to enter your guesses about the numbers of red balls that you and your teammate received from Part 1. 
+</p>
+<p>
+  <u>Conditional on the entered guesses</u>, the software calculates the optimal decision for you.
+  By 'optimal decision', we mean a decision that, 
+  conditional on your guesses, 
+  maximizes the expected number of lottery tickets you would be awarded, and thus maximizes the probability of winning 200 points.
+  The software also calculates, conditional on your guesses, the number of lottery tickets that are expected to be awarded to you when you follow the recommendation.
+</p>
+<p>
+  You may enter different guesses as many times as you wish. 
+  Whenever you enter new guesses, the software will provide a new optimal decision accordingly.
+</p>
+<br>
+<h3><strong>Practice the decision tool!</strong></h3>
+<ul>
+  <li>You can play around with the tool on this screen. </li>
+  <li>For each of your guesses, i.e. "Your Guess about # of Red balls YOU receievd" and "Your Guess about # of Red balls YOUR TEAMMATE receievd", 
+      you must enter any integer ranging from 0 to 100. 
+  </li>
+  <li>As an example, suppose you guessed you received 40 red balls and your teammate received 60 red balls. </li>
+  <li>Then, you should enter 40 and 60 for your guesses about yourself and about your teammate, repectively. 
+    Once you've done that, you will see the software recommends you draw 31 balls from Urn1 and draw 69 balls from Urn 2.
+    Conditional on those guesses, you are expected to receive 73 lottery tickets if you actually decide to draw 31 balls from Urn1 and draw 69 balls from Urn 2.  </li>
+</ul>
+<br>
+	<!-- Example: decision tool -->
+	<div align="center" style = "width: 1000px; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 0 auto; font-size: 75%; background-color: rgb(240, 239, 236);" >
+
+    <h3 style="text-align: center;"> Decision Tool </h3>
+    
+    <p> <strong>  Enter your guesses: </strong></p> 
+    <p style="padding-left: 40px;">
+      <em>Reminder:</em> The numbers of red balls you and your teammate received 
+      equal to the numbers of sliders you and your teammate correctly positioned, out of 100 sliders, respectively.
+    </p>
+    <br>
+    <table class="table borderless" align="center" style="border-spacing: 90; width: 75%; font-size: 130%;">
+      <colgroup>
+      <col width="50%">
+      <col width="50%">
+      </colgroup>
+        
+      <tr>
+      <td align="center"> Your Guess about <br> # of Red balls <b> YOU </b> received </td>
+      <td align="center"> Your Guess about <br> # of Red balls <b> YOUR TEAMMATE </b> received </td>
+      </tr>
+        
+      <tr>
+      <td align="center"> <input type='text' id='mine' value='' />  </td>
+      <td align="center"> <input type='text' id='teammate' value='' />  </td>
+      </tr>
+        
+    </table>
+    
+    
+    <p> <strong> Recommendation: </strong> </p>	
+    <p style="text-align: center;">
+      <span style="background-color: #bdb9b9; font-size: 140%">	Draw <strong>[ <span id="RecommendedAction1">  </span> ]</strong> balls from Urn 1 and 
+      draw <strong>[ <span id="RecommendedAction2">  </span> ]</strong> balls from Urn 2. 
+      </span>	
+    </p>
+    <p style="padding-left: 40px;"> 
+      Conditional on that you received <strong>[ <span id="reported_mine">  </span> ]</strong> red balls 
+          and your teammate received <strong>[ <span id="reported_teammate">  </span> ]</strong> red balls, <br>
+          the probability of winning the lottery is maximized when you follow the above recommendation. <br>	
+    </p>
+    <p style="padding-left: 40px;">
+      You are expected to receive <strong>[ <span id="ExpectedLT">  </span> ]</strong> lottery tickets 
+        when you follow the recommendation. 
+    </p>
+    <p style="padding-left: 40px;">
+      This means, you are expected to earn 200 points with probability of <strong>[ <span id="Prob200">  </span> % ]</strong> in this round when you follow the recommendation.
+    </p>
+    
+      </div>
+
+<button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button>
+<button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
+
+</div>
+
+
+<!-- Tab 5 -->
+<div class="tab-pane" id="part5" role="tabpanel" aria-labelledby="part5-tab">
+
+<p>&nbsp;</p>
+<h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
+<p style="text-align: center;">Page <strong>5</strong> out of 6</p>
+<p>&nbsp;</p>
+<p> 
+  The below shows how the decision-making screen looks like. 
+  After you experiment with different guesses as many times as you wish, 
+  position the decision slider at the bottem to indicate your decision.
+  To submit your decision, click &ldquo;Confirm&rdquo;.
+  Once you have clicked it, you may not reverse your decision.
+</p>
+<p>
+  Once you submit your decision by clicking "Confirm", 
+  you will receive information about 
+  the total number of red balls drawn out of 100 ball draws and the number of lottery tickets that consequently awarded to you.
+</p>
+<p>
+  To help you keep track of your decisions over time, 
+  we also provide you with a history box located on the right side of all decision-making screens. 
+</p>
+<br>
+<h4><li>Decision-making Screen (example):</li></h4>
+<p style="text-align:center;"><img src="{% static 'Part3_DecisionMakingScreen.png' %}" alt="Part3 Figure" style="width:1200px;height:1000px;" class="center"/></p>
+<br>
+<h4><li>Summary Screen (example):</li></h4>
+<p style="text-align:center;"><img src="{% static 'Part3_SummaryScreen.png' %}" alt="Part3 Figure" style="width:750px;height:400px;" class="center"/></p>
+
+
+<button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button>
+<button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
+
+</div>
+
+
+<!-- Tab 6-->
+<div class="tab-pane" id="part6" role="tabpanel" aria-labelledby="part6-tab">
+
+<p>&nbsp;</p>
+<h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
+<p style="text-align: center;">Page <strong>6</strong> out of 6</p>
+<p>&nbsp;</p>
+<p>On the next screen, you are presented with <em>comprehension questions</em>.</p>
+<p>If any of your submitted answers are incorrect, you may be excluded from the experiment and deprived of all payments aside from the minimum payment of $5 for attending.</p>
+<br>
+<p>You can review the instructions by clicking "Back". 
+  <br>Once you get familiar with Part 3 instructions, click &ldquo;Confirm&rdquo;.</p>
+<br>
+<p>The below is only for those who are interested in the exact payoff scheme. You can skip this information.</p>
+
+<p>&nbsp;</p>
+<h3><strong>Probability that a drawn ball awards you 10 lottery tickets</strong></h3>
+<br>
+<p>Every drawn ball awards you 10 lottery tickets with the following probability: </p>
+  <table style = "border: 3px solid gray;" cellspacing="10" cellpadding="20">
+    <colgroup>
+      <col width="45%">
+      <col width="5%">
+      <col width="45%">
+    </colgroup>
+    
+    <tr>
+      <td align="center" style = "font-size: 160%;"> Pr(a drawn ball is <span style="color: #ff0000;">RED</span> | Urn "i") </span> </td>
+      <td align="center" style = "font-size: 160%;"> X </td>
+      <td align="center" style = "font-size: 160%;"> ( # of balls drawn from Urn "i" )<sup>-.5</sup>  </td>
+    </tr> 
+  </table>  
+<p>&nbsp;</p>
+<p>
+  1. The first term implies that you have a chance to receive 10 lottery tickets <u>only when the drawn ball is <span style="color: #ff0000;">RED</span></u>. 
+    <strong>Therefore, the more red balls you draw, the more likely you receive more lottery tickets, and thus the more likely you earn 200 points.</strong> 
+    This means that you should draw more balls from Urn 1 if you believe Urn 1 contains more red balls than Urn 2.
+    On the contrary, if you believe Urn 2 contains more red balls than Urn 1, you should draw more balls from Urn 2. 
+</p>
+<br>
+<p>
+  2. The second term implies that, given that a ball drawn from Urn "i" is red, 
+    the probability of the drawn red ball awarding you 10 lottery tickets is exponentially decreasing as you draw more balls from Urn "i".
+    The below figure visualizes the relationship.
+    The x-axis represents the number of balls that you decided to draw from Urn "i".
+    The y-axis represents the probability that a drawn red ball from Urn "i" awards you 10 lottery tickets.
+    The figure implies:
+</p>
+<ul>
+  <li>As you decided to draw more balls from a single urn (Urn "i"), the probability that a red ball drawn from that urn gives you 10 lottery tickets gets lower.</li>
+  <li>Each additional ball you decided to draw from a single urn (Urn "i") lowers the probability that a red ball drawn from that urn gives you 10 lottery tickets less than the previous ball lowered the probability.</li>
+</ul>
+<p style="text-align:center;"><img src="{% static 'Part3_figure.png' %}" alt="Part3 Figure" style="width:1000px;height:600px;" class="center"/></p>
+<br>
+<p>
+  3. We also provide a table for you to look up the exact probabilities. 
+    If you click <a href="{% static 'Part3_Table.pdf' %}" target="_blank"> <em><u>here</u></em> </a>, the table will open in a new tab. 
+    You can freely refer to this table when making your decisions.
+</p>
+<br>
+<p>
+  Here are examples of how you read the table.
+</p>
+<p>Example 1:</p>
+<ul>
+<li>Suppose you decided to draw 30 balls from Urn 1 and 70 balls from Urn 2. Then, you should refer the 30th row of the provided Table where &ldquo;Your Decision&rdquo; column indicates &ldquo;# of balls to be drawn from Urn 1&rdquo; is 30 and &ldquo;# of balls to be drawn from Urn 2&rdquo; is 70.</li>
+<li>From the 30th row in &ldquo;Probability that a Red ball drawn from Urn 1 awards you 10 lottery tickets&rdquo; column, you learn that every red ball that is drawn from Urn 1 gives you 10 lottery tickets with probability of 18.26%.</li>
+<li>Similarly, from the 30th row in &ldquo;Probability that a Red ball drawn from Urn 2 awards you 10 lottery tickets&rdquo; column, you learn that every red ball that is drawn from Urn 2 gives you 10 lottery tickets with probability of 11.95%.</li>
+</ul>
+<p>Example 2:</p>
+<ul>
+<li>Suppose you decided to draw 70 balls from Urn 1 and 30 balls from Urn 2. Then, you should refer the 70th row of the provided Table where &ldquo;Your Decision&rdquo; column indicates &ldquo;# of balls to be drawn from Urn 1&rdquo; is 70 and &ldquo;# of balls to be drawn from Urn 2&rdquo; is 30.</li>
+<li>From the 70th row in &ldquo;Probability that a Red ball drawn from Urn 1 awards you 10 lottery tickets&rdquo; column, you learn that every red ball that is drawn from Urn 1 gives you 10 lottery tickets with probability of 11.95%.</li>
+<li>Similarly, the 70th row in &ldquo;Probability that a Red ball drawn from Urn 2 awards you 10 lottery tickets&rdquo; column, you learn that every red ball that is drawn from Urn 2 gives you 10 lottery tickets with probability of 18.26%.</li>
+</ul>
+  
+  <button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button>
+  <button class="nexttab btn-primary btn next">Confirm</button>
+    </div>
+  
+  
+
+
+
+{% endblock %}
+
+
+

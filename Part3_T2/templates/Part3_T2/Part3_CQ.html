@@ -1,0 +1,155 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+<!--------------------------------------------------------------------------->
+{% block scripts %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+<script>
+	
+	$(document).ready(function(){
+
+//iterate through each textboxes and add keyup
+//handler to trigger sum event
+$(".txt").each(function() {
+
+	$(this).keyup(function(){
+		calculateSum();
+	});
+});
+
+});
+
+function calculateSum() {
+
+var sum = 0;
+//iterate through each textboxes and add the values
+$(".txt").each(function() {
+
+	//add only if the value is number
+	if(!isNaN(this.value) && this.value.length!=0) {
+		sum += parseFloat(this.value);
+	}
+
+});
+//.toFixed() method will roundoff the final sum to 0 decimal places
+$("#sum").html(sum.toFixed(0));
+}
+
+
+$(document).ready(function(){
+
+//iterate through each textboxes and add keyup
+//handler to trigger sum event
+$(".txt2").each(function() {
+
+	$(this).keyup(function(){
+		calculateSum2();
+	});
+});
+
+});
+
+function calculateSum2() {
+
+var sum2 = 0;
+//iterate through each textboxes and add the values
+$(".txt2").each(function() {
+
+	//add only if the value is number
+	if(!isNaN(this.value) && this.value.length!=0) {
+		sum2 += parseFloat(this.value);
+	}
+
+});
+//.toFixed() method will roundoff the final sum to 2 decimal places
+$("#sum2").html(sum2.toFixed(0));
+}
+
+</script>
+
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block styles %}
+
+<style>
+  input[type=radio] {
+    transform: scale(1.5);
+    margin: 12px -10px 0px -30px;
+  }
+</style>
+
+<style>
+p    {font-size: 160%; line-height: 200%;}
+ul    {font-size: 160%; line-height: 200%;}
+</style>
+
+<style>
+  .otree-body{
+      max-width: 1400px;
+  }
+</style> 
+
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block content %}
+
+
+<h1 style="text-align: center;"><strong>PART 3: Comprehension Questions </strong></h1>
+<p>&nbsp;</p>
+<p> 
+  Please answer the following comprehension questions correctly. 
+  If you are ready to submit your answers, click “Submit” button. </p>
+<p> If any of your submitted answers are incorrect, 
+  you may be excluded from the experiment and deprived of all payments aside from the minimum payment of $5 for attending.  </p>
+
+<p>&nbsp;</p>
+<p>1. Suppose you received 50 red balls and 50 blue balls from Part 1. Also, suppose your teammate received 40 red balls and 60 blue balls from Part 1. </p> 
+<p>(a) Out of 200 balls in Urn 1, how many balls are red? </p>
+  {% formfield player.part3_cq1_a label="" %}	
+<p>(b) Out of 200 balls in Urn 2, how many balls are red? </p>
+  {% formfield player.part3_cq1_b label="" %}	  
+
+<p>&nbsp;</p>
+<p>2. Again, suppose you received 50 red balls and 50 blue balls from Part 1, and your teammate received 40 red balls and 60 blue balls from Part 1. Note that each urn has 200 balls in total. </p> 
+<p>(a) What is the probability of drawing a red ball from Urn1? </p>
+  {% formfield player.part3_cq2_a label="" %}	
+<p>(b) What is the probability of drawing a red ball from Urn2? </p>
+  {% formfield player.part3_cq2_b label="" %}	  
+
+<p>&nbsp;</p>
+<p>3. The probability of drawing a red ball from each urn remains constant during the entire experiment.  </p>
+  {% formfield player.part3_cq3 label="" %}	
+
+<p>&nbsp;</p>
+<p>4. The more red balls are drawn, the more likely it is that you are awareded more lottery tickets.  </p>
+    {% formfield player.part3_cq4 label="" %}	  
+
+<p>&nbsp;</p>
+<p>5. The more lottery tickets you are awarded, the more likely you win 200 points from Part 3. </p>
+    {% formfield player.part3_cq5 label="" %}	  
+
+
+  
+
+<div class="container">
+    <div class="row" style="padding-left:95%;">
+        <div class="col-md-2">
+            <button name="btn_submit" value="True" class="btn btn-primary btn-large">
+                    <span style="font-size:12pt">Next</span>
+         </button>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+

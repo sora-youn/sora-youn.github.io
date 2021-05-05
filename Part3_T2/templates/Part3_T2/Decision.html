@@ -1,0 +1,181 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block styles %}
+   <style>
+      input[type=radio] {
+        transform: scale(1.5);
+        margin: 12px -10px 0px -30px;
+      }
+
+	  .myslider{
+    width: 100%;
+}
+
+.myslider {
+    -webkit-appearance: none;
+    background: #e0e0e0;
+    width: 100%;
+    height: 25px;
+    opacity: 2;
+   }
+
+
+.myslider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    cursor: pointer;
+    background: #4f5e60  ;
+    width: 15px;
+    height: 25px;
+}
+
+.myslider:hover {
+    opacity: 1;
+}
+
+.sliderexample2{
+    width: 100%;
+}
+
+.sliderexample2 {
+    -webkit-appearance: none;
+    background: #f5f5f5  ;
+    width: 100%;
+    height: 25px;
+    opacity: 2;
+   }
+
+
+.sliderexample2::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    cursor: pointer;
+    background: #4f5e60  ;
+    width: 15px;
+    height: 25px;
+}
+
+.sliderexample2:hover {
+    opacity: 1;
+}
+
+.sliderExample{
+    width: 100%;
+}
+
+.sliderExample {
+    -webkit-appearance: none;
+    background: #e0e0e0  ;
+    width: 100%;
+    height: 25px;
+    opacity: 2;
+   }
+
+
+.sliderExample::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    cursor: pointer;
+    background: #4f5e60  ;
+    width: 15px;
+    height: 25px;
+}
+
+.sliderExample:hover {
+    opacity: 1;
+}
+   </style>
+{% endblock %}
+
+{% block content %}
+
+<h1> Part 3 - Round 3 (out of 100) </h1>
+
+	<div class="header" id="myHeader">
+		<div style="text-align: center; font-size: x-large"> Decide how many balls to draw from each of Urn 1 and Urn 2. <br><b style="color: red; font-size: xxx-large"> </b> </div>
+	</div>
+
+	<br>
+
+		<p> Your guess: </p>
+	
+			<table class="table borderless" align="center" style="border-spacing: 90; width: 100%;">
+				<colgroup>
+				   <col width="50%">
+				   <col width="50%">
+				</colgroup>
+
+				<tr>
+					<td align="center"> Your Guess about <br> # of Red balls <b> YOU </b> received </td>
+					<td align="center"> Your Guess about <br> # of Red balls <b> YOUR TEAMMATE </b> received </td>
+				</tr>
+
+				<tr>
+					<td align="center"> {{guess_mine}} </td>
+					<td align="center"> {{guess_teammate}} </td>
+				</tr>
+
+			</table>
+
+			<br> 
+
+		<p> Conditional on your guess, the probability of winning the prize will be maximized if you carry out the following recommendation: </p>
+	
+			<table class="table borderless" align="center" style="border-spacing: 90; width: 100%;">
+				<colgroup>
+				   <col width="100%">
+				</colgroup>
+
+				<tr>
+					<td align="center"> Draw <b> 50 </b> balls from Urn 1  </td>
+				</tr>
+
+				<tr>
+					<td align="center"> Draw <b> 50 </b> balls from Urn 2 </td>
+				</tr>
+
+			</table>
+
+			<br>
+
+		<p> Your decision: </p>
+		
+		<table class="table borderless" align="center" style="border-spacing: 90; width: 100%;">
+			<colgroup>
+			   <col width="15%">
+			   <col width="70%">
+			   <col width="15%">
+			</colgroup>
+
+			<tr>
+			<td> From Urn 1: <br> Draw <b>50</b> </td>
+			<td> <input type="range" min="0" max="800"  class="myslider" name="test" step="1" > </td>
+			<td> From Urn 2: <br> Draw <b>50</b> </td>
+			</tr> 
+
+			<tr>
+				<td> From Urn 1: {% formfield player.draw_urn1 label="" %} </td>
+				<td> <input type="range" min="0" max="800" class="myslider" name="test" step="1" > </td>
+				<td> From Urn 2: {% formfield player.draw_urn2 label="" %} </td>
+			</tr> 
+
+		</table>	
+</div>
+
+
+<div class="container">
+	<div class="row">
+		&nbsp;
+	</div>
+	<div class="row" style="padding-left:135px;">
+		<div class="col-md-10">
+
+		</div>
+		<div class="col-md-2">
+			<button name="btn_submit" value="True" class="btn btn-primary btn-large">
+					<span style="font-size:18pt">Next</span>
+		 </button>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

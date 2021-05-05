@@ -1,0 +1,201 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block styles %}
+<style>
+  input[type=radio] {
+       transform: scale(1.5);
+       margin: 12px -10px 0px -30px;
+     }
+</style>
+
+<style>
+p    {font-size: 160%; line-height: 200%;}
+ul    {font-size: 160%; line-height: 200%;}
+</style>
+
+<style>
+  .otree-body{
+      max-width: 1400px;
+  }
+</style> 
+{% endblock %}
+
+{% block content %}
+
+<h1 style="text-align: center;"><strong>PART 6</strong></h1>
+<br>
+<p align = "justify"> 
+  In each of the following 20 rows in the table, please select your preferred option between A and B. 
+  <br>When done, please click on the button "Continue".
+</p>
+<br>
+  <table class="table" style = "font-size: 135%;">
+    <thead>
+      <tr>
+        <th scope="col" style="text-align:center">#</th>
+        <th scope="col" style="text-align:center">A</th>
+        <th scope="col" ></th>
+        <th scope="col" style="text-align:center">B</th>
+      </tr>
+    </thead>
+    <tbody>
+  <!-- Row 1 -->
+    <tr>
+      <th scope="row" style="text-align:center">1</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig1 }}</td>
+      <td align="center"> <i> {{g1}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  <!-- Row 2 -->
+    <tr>
+      <th scope="row" style="text-align:center">2</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig2 }}</td>
+      <td align="center"> <i> {{g2}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  <!-- Row 3 -->
+    <tr>
+      <th scope="row" style="text-align:center">3</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig3 }}</td>
+      <td align="center"> <i> {{g3}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  <!-- Row 4 -->
+    <tr>
+      <th scope="row" style="text-align:center">4</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig4 }}</td>
+      <td align="center"> <i> {{g4}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  <!-- Row 5 -->
+    <tr>
+      <th scope="row" style="text-align:center">5</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig5 }}</td>
+      <td align="center"> <i> {{g5}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  <!-- Row 6 -->
+    <tr>
+      <th scope="row" style="text-align:center">6</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig6 }}</td>
+      <td align="center"> <i> {{g6}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  <!-- Row 7 -->
+    <tr>
+      <th scope="row" style="text-align:center">7</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig7 }}</td>
+      <td align="center"> <i> {{g7}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  <!-- Row 8 -->
+    <tr>
+      <th scope="row" style="text-align:center">8</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig8 }}</td>
+      <td align="center"> <i> {{g8}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  <!-- Row 9 -->
+    <tr>
+      <th scope="row" style="text-align:center">9</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig9 }}</td>
+      <td align="center"> <i> {{g9}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  <!-- Row 10 -->
+    <tr>
+      <th scope="row" style="text-align:center">10</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig10 }}</td>
+      <td align="center"> <i> {{g10}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+    <!-- Row 11 -->
+    <tr>
+      <th scope="row" style="text-align:center">11</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig11 }}</td>
+      <td align="center"> <i> {{g11}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  <!-- Row 12 -->
+    <tr>
+      <th scope="row" style="text-align:center">12</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig12 }}</td>
+      <td align="center"> <i> {{g12}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  <!-- Row 13 -->
+    <tr>
+      <th scope="row" style="text-align:center">13</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig13 }}</td>
+      <td align="center"> <i> {{g13}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  <!-- Row 14 -->
+    <tr>
+      <th scope="row" style="text-align:center">14</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig14 }}</td>
+      <td align="center"> <i> {{g14}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  <!-- Row 15 -->
+    <tr>
+      <th scope="row" style="text-align:center">15</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig15 }}</td>
+      <td align="center"> <i> {{g15}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  <!-- Row 16 -->
+    <tr>
+      <th scope="row" style="text-align:center">16</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig16 }}</td>
+      <td align="center"> <i> {{g16}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  <!-- Row 17 -->
+    <tr>
+      <th scope="row" style="text-align:center">17</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig17 }}</td>
+      <td align="center"> <i> {{g17}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  <!-- Row 18 -->
+    <tr>
+      <th scope="row" style="text-align:center">18</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig18 }}</td>
+      <td align="center"> <i> {{g18}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  <!-- Row 19 -->
+    <tr>
+      <th scope="row" style="text-align:center">19</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig19 }}</td>
+      <td align="center"> <i> {{g19}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  <!-- Row 20 -->
+    <tr>
+      <th scope="row" style="text-align:center">20</th>
+      <td align="center"> <i>200 points</i> with Prob. 1/2, <br> <i> 0 points</i> with Prob. 1/2 </td>
+      <td style="font-weight: bold">{{ form.ambig20 }}</td>
+      <td align="center"> <i> {{g20}} points</i> with Prob. Unknown, <br> <i> 0 points</i>, otherwise </td>
+    </tr>
+  
+  </tbody>
+  </table>
+
+
+<br>
+<div class="container">
+  <div class="row" style="padding-left:95%;">
+      <div class="col-md-2">
+          <button name="btn_submit" value="True" class="btn btn-primary btn-large">
+                  <span style="font-size:12pt">Next</span>
+       </button>
+      </div>
+  </div>
+</div>
+
+
+
+{% endblock %} -->

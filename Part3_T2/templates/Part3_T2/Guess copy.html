@@ -1,0 +1,66 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block styles %}
+   <style>
+      input[type=radio] {
+        transform: scale(1.5);
+        margin: 12px -10px 0px -30px;
+      }
+   </style>
+{% endblock %}
+
+{% block content %}
+
+<h1> Part 3 - Round 3 (out of 100) </h1>
+
+	<div class="header" id="myHeader">
+		<div style="text-align: center; font-size: x-large"> Decide how many balls to draw from each of Urn 1 and Urn 2. <br><b style="color: red; font-size: xxx-large"> </b> </div>
+	</div>
+	
+	<br>
+	
+		<p> Enter your guesses about the numbers of red balls that you and your teammate have.
+			In the next page, the computer will provide a recommmandation for your decision that, <b> conditional on your submitted guesses</b>, will maximize the probability of winning the prize. </p>
+	
+			<table class="table borderless" align="center" style="border-spacing: 90; width: 100%;">
+				<colgroup>
+				   <col width="50%">
+				   <col width="50%">
+				</colgroup>
+
+				<tr>
+					<td align="center"> Your Guess about <br> # of Red balls <b> YOU </b> received </td>
+					<td align="center"> Your Guess about <br> # of Red balls <b> YOUR TEAMMATE </b> received </td>
+				</tr>
+
+				<tr>
+					<td align="center"> {% formfield player.guess_mine label="" %} </td>
+					<td align="center"> {% formfield player.guess_teammate label="" %} </td>
+				</tr>
+
+			</table>
+
+
+			
+
+</div>
+
+	<div class="container">
+		<div class="row">
+			&nbsp;
+		</div>
+		<div class="row" style="padding-left:135px;">
+			<div class="col-md-10">
+
+			</div>
+			<div class="col-md-2">
+				<button name="btn_submit" value="True" class="btn btn-primary btn-large">
+						<span style="font-size:18pt">Calculate</span>
+			 </button>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}

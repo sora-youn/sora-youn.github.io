@@ -1,0 +1,133 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block styles %}
+<style>
+  input[type=radio] {
+       transform: scale(1.5);
+       margin: 12px -10px 0px -30px;
+     }
+</style>
+
+<style>
+p    {font-size: 160%; line-height: 200%;}
+ul    {font-size: 160%; line-height: 200%;}
+</style>
+
+<style>
+  .otree-body{
+      max-width: 1400px;
+  }
+</style> 
+
+{% endblock %}
+
+{% block content %}
+
+
+<h1 style="text-align: center;"><strong>PART 5</strong></h1>
+<br>
+<p align = "justify"> 
+  In each of the following 10 rows in the table, please select your preferred option between A and B. 
+  <br>When done, please click on the button "Continue".
+</p>
+<br>
+<table class="table" style = "font-size: 135%;">
+  <thead>
+    <tr>
+      <th scope="col" style="text-align:center">#</th>
+      <th scope="col" style="text-align:center">A</th>
+      <th scope="col" ></th>
+      <th scope="col" style="text-align:center">B</th>
+    </tr>
+  </thead>
+  <tbody>
+<!-- Row 1 -->
+  <tr>
+    <th scope="row" style = "vertical-align: middle;">1</th>
+    <td align="center"> 1/10 of <i>{{f1}} points</i>, <br> 9/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold">{{ form.risk1 }}</td>
+    <td align="center"> 1/10 of <i>{{f3}} points</i>, <br> 9/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 2 -->
+  <tr>
+    <th scope="row" style = "vertical-align: middle;">2</th>
+    <td align="center"> 2/10 of <i>{{f1}} points</i>, <br> 8/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold">{{ form.risk2 }}</td>
+    <td align="center"> 2/10 of <i>{{f3}} points</i>, <br> 8/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 3 -->
+  <tr>
+    <th scope="row" style = "vertical-align: middle;">3</th>
+    <td align="center"> 3/10 of <i>{{f1}} points</i>, <br> 7/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold">{{ form.risk3 }}</td>
+    <td align="center"> 3/10 of <i>{{f3}} points</i>, <br> 7/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 4 -->
+  <tr>
+    <th scope="row" style = "vertical-align: middle;">4</th>
+    <td align="center"> 4/10 of <i>{{f1}} points</i>, <br> 6/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold">{{ form.risk4 }}</td>
+    <td align="center"> 4/10 of <i>{{f3}} points</i>, <br> 6/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 5 -->
+  <tr>
+    <th scope="row" style = "vertical-align: middle;">5</th>
+    <td align="center"> 5/10 of <i>{{f1}} points</i>, <br> 5/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold">{{ form.risk5 }}</td>
+    <td align="center"> 5/10 of <i>{{f3}} points</i>, <br> 5/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 6 -->
+  <tr>
+    <th scope="row" style = "vertical-align: middle;">6</th>
+    <td align="center"> 6/10 of <i>{{f1}} points</i>, <br> 4/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold">{{ form.risk6 }}</td>
+    <td align="center"> 6/10 of <i>{{f3}} points</i>, <br> 4/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 7 -->
+  <tr>
+    <th scope="row" style = "vertical-align: middle;">7</th>
+    <td align="center"> 7/10 of <i>{{f1}} points</i>, <br> 3/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold">{{ form.risk7 }}</td>
+    <td align="center"> 7/10 of <i>{{f3}} points</i>, <br> 3/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 8 -->
+  <tr>
+    <th scope="row" style = "vertical-align: middle;">8</th>
+    <td align="center"> 8/10 of <i>{{f1}} points</i>, <br> 2/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold">{{ form.risk8 }}</td>
+    <td align="center"> 8/10 of <i>{{f3}} points</i>, <br> 2/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 9 -->
+  <tr>
+    <th scope="row" style = "vertical-align: middle;">9</th>
+    <td align="center"> 9/10 of <i>{{f1}} points</i>, <br> 1/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold">{{ form.risk9 }}</td>
+    <td align="center"> 9/10 of <i>{{f3}} points</i>, <br> 1/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 10 -->
+  <tr>
+    <th scope="row" style = "vertical-align: middle;">10</th>
+    <td align="center"> 10/10 of <i>{{f1}} points</i>, <br> 0/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold">{{ form.risk10 }}</td>
+    <td align="center"> 10/10 of <i>{{f3}} points</i>, <br> 0/10 of <i>{{f4}} points</i> </td>
+  </tr>
+
+</tbody>
+</table>
+
+
+<br>
+<div class="container">
+  <div class="row" style="padding-left:95%;">
+      <div class="col-md-2">
+          <button name="btn_submit" value="True" class="btn btn-primary btn-large">
+                  <span style="font-size:12pt">Next</span>
+       </button>
+      </div>
+  </div>
+</div>
+
+
+
+{% endblock %} -->

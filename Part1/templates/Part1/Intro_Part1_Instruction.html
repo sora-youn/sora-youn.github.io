@@ -1,0 +1,145 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+<!--------------------------------------------------------------------------->
+{% block scripts %}
+<script src="{% static 'back_button_v3/js/prev_next_button.js' %}"></script>
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block styles %}
+
+<link href="{% static 'back_button_v3/css/custom.css' %}" rel="stylesheet">
+
+<style>
+  input[type=radio] {
+    transform: scale(1.5);
+    margin: 12px -10px 0px -30px;
+  }
+</style>
+
+<style>
+p    {font-size: 160%; line-height: 200%;}
+ul    {font-size: 160%; line-height: 200%;}
+</style>
+
+<style>
+  .otree-body{
+      max-width: 1400px;
+  }
+</style> 
+
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block content %}
+
+<!-- Tab navigation -->
+<ul class="nav nav-tabs fixed-top navbar-light bg-light justify-content-center " id="myTab" role="tablist">
+
+  <li class="nav-item" >
+    <a class="nav-link active" id="part1-tab" data-toggle="tab" href="#part1" role="tab" aria-controls="part1" onclick="topFunction()"> </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="part2-tab" data-toggle="tab" href="#part2" role="tab" aria-controls="part2" onclick="topFunction()"> </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="part3-tab" data-toggle="tab" href="#part3" role="tab" aria-controls="part3" onclick="topFunction()"> </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="part4-tab" data-toggle="tab" href="#part4" role="tab" aria-controls="part4" onclick="topFunction()"> </a>
+  </li>
+
+</ul>
+
+
+<!-- Tab content -->
+<div class="tab-content" id="myTabContent">
+
+  <!-- Tab 1 -->
+  <div class="tab-pane show active" id="part1" role="tabpanel" aria-labelledby="part1-tab">
+
+<p>&nbsp;</p>
+<h1 style="text-align: center;"><strong>Welcome to this experiment! </strong></h1>
+<p>&nbsp;</p>
+<p>In this experiment, you will be asked to make multiple decisions that determine your earnings. The exact amount you will earn depends on your decisions that you make during the experiment. So, please read and follow the instructions carefully. They contain everything you need to know to participate.</p>
+<br>
+<p>Please note that from now on and during the experiment, no communication is permitted.&nbsp;Throughout the experiment, the use of mobile phones, smartphones, tablets, or the like is prohibited. Any infringement of these rules will result in exclusion from the experiment and all payments.</p>
+<br>
+<p>If you have questions at any point, please ask to the experimenter via chat in zoom.</p>
+<br>
+<p>During the experiment, your earnings will be calculated in experimental dollars called &ldquo;point&rdquo;. At the end of the experiment, the total amount of points you earn will be converted to dollars at the following rate. Your entire earnings from the experiment plus $5 of show up fee will be paid using whichever digital payment service you selected prior to this experiment.</p>
+<p style="text-align: center;">10 points = $1</p>
+<br>
+<p>The experiment consists of multiple parts.</p>
+<p>Some parts of the experiment include comprehension questions that ask your understanding about experimental tasks. If you provide an incorrect answer, you may be excluded from the experiment and deprived of all payments aside from the minimum payment of $5 for attending.</p>
+<br>
+<p>In the following, we will explain to you Part 1 of the experiment.</p>
+  
+<button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
+
+  </div>
+
+
+  <!-- Tab 2 -->
+  <div class="tab-pane" id="part2" role="tabpanel" aria-labelledby="part2-tab">
+
+<p>&nbsp;</p>  
+<h1 style="text-align: center;"><strong>PART 1 Instructions</strong></h1>
+<p style="text-align: center;">Page <strong>1</strong> out of 2</p>
+<p>&nbsp;</p>
+<p>In Part 1, you will be presented with 100 sliders. Your task is to position as many of the 100 sliders in the center of the respective scale as possible within 5 minutes.</p>
+<br>
+<p><u>A slider will count as correctly positioned at the middle position if you have positioned it between positions 49.5 and 50.5 (so either exactly at the middle position 50 or very nearby position 50)</u>. Initially, each slider is at the very left end of the scale (position 0) and can be moved on the scale with the help of the mouse, maximally to the very right end of the scale (position 100). To move the slider, you have to press the left mouse button. However, the current position of the slider is not shown, so that you have to estimate on your own where the middle of the scale is. The arrows on the keyboard and the mouse wheel are deactivated. The below is an example of a slider.</p>
+<br>
+
+  <div class="row" style="width: 350px; padding: 30px; margin: 0 auto; background-color: rgb(240, 238, 238);">
+      <div class="col-md-2">
+          <input type="range" min="0" max="100" value="0" step=".1" style="width:250px">
+      </div>
+  </div>
+
+<button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
+
+  </div>
+
+
+  <!-- Tab 3 -->
+  <div class="tab-pane" id="part3" role="tabpanel" aria-labelledby="part3-tab">
+
+<p>&nbsp;</p>  
+<h1 style="text-align: center;"><strong>PART 1 Instructions</strong></h1>
+<p style="text-align: center;">Page <strong>2</strong> out of 2</p>
+<p>&nbsp;</p>
+<p>In the end of Part 1, you will receive 100 balls. 
+  <span style="color: #ff0000;">For each <span style="text-decoration: underline;"><strong>correctly</strong></span> positioned slider, you will receive 1 red ball.</span> 
+  <span style="color: #0000ff;">For every <span style="text-decoration: underline;"><strong>incorrectly</strong></span> positioned slider, you will also receive 1 blue ball.</span> 
+  <strong>Therefore, the ratio of red to blue balls will be determined by how many sliders you correctly positioned</strong>. 
+    You will not learn the number of red and blue balls you received until the end of the experiment.</p>
+<br>
+<p>Every red ball you received will be converted to 1 point. 
+  Every blue ball you received will be converted to 0 points. 
+  <strong>Thus, <span style="color: #ff0000;">the number of red balls you received </span> will be your earning from Part 1.</strong> 
+  The number of red balls you received will also play an important role in your payoff from the later parts of the experiment. 
+  Therefore, it is in your interest that you position as many sliders as possible.</p>
+<br>
+<p>The remaining time will be shown on the top of the screen. When 5 minutes of the working time is over, the number of sliders you positioned correctly will be counted and saved by the computer automatically.</p>
+<br>
+<p>The screen which we use for asking for your estimates looks like this:</p>
+<p style="text-align:center;"><img src="{% static 'Part1_Screenshot.png' %}" alt="Part1 Screenshot" style="width:800px;height:1100px;" class="center"/></p>
+<p>&nbsp;</p>
+<p>On the next screen, you are presented with comprehension questions. If any of your submitted answers are incorrect, you may be excluded from the experiment and deprived of all payments aside from the minimum payment of $5 for attending.</p>
+<p>You can review the instructions by clicking &ldquo;Back&rdquo;.</p>
+<p>Once you get familiar with Part 1 instructions, click &ldquo;Next&rdquo;.</p>
+
+<button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 
+<button class="nexttab btn-primary btn next">Next</button>
+
+  </div>  
+{% endblock %}
+
+
+

@@ -1,0 +1,195 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+<!--------------------------------------------------------------------------->
+{% block scripts %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+<script>
+	
+	$(document).ready(function(){
+
+//iterate through each textboxes and add keyup
+//handler to trigger sum event
+$(".txt").each(function() {
+
+	$(this).keyup(function(){
+		calculateSum();
+	});
+});
+
+});
+
+function calculateSum() {
+
+var sum = 0;
+//iterate through each textboxes and add the values
+$(".txt").each(function() {
+
+	//add only if the value is number
+	if(!isNaN(this.value) && this.value.length!=0) {
+		sum += parseFloat(this.value);
+	}
+
+});
+//.toFixed() method will roundoff the final sum to 0 decimal places
+$("#sum").html(sum.toFixed(0));
+}
+
+
+$(document).ready(function(){
+
+//iterate through each textboxes and add keyup
+//handler to trigger sum event
+$(".txt2").each(function() {
+
+	$(this).keyup(function(){
+		calculateSum2();
+	});
+});
+
+});
+
+function calculateSum2() {
+
+var sum2 = 0;
+//iterate through each textboxes and add the values
+$(".txt2").each(function() {
+
+	//add only if the value is number
+	if(!isNaN(this.value) && this.value.length!=0) {
+		sum2 += parseFloat(this.value);
+	}
+
+});
+//.toFixed() method will roundoff the final sum to 2 decimal places
+$("#sum2").html(sum2.toFixed(0));
+}
+
+</script>
+
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block styles %}
+
+<link href="{% static 'back_button_v3/css/custom.css' %}" rel="stylesheet">
+
+<style>
+  input[type=radio] {
+    transform: scale(1.5);
+    margin: 12px -10px 0px -30px;
+  }
+</style>
+
+<style>
+  p    {font-size: 160%; line-height: 200%;}
+  ul    {font-size: 160%; line-height: 200%;}
+  </style>
+  
+<style>
+  .otree-body{
+      max-width: 1400px;
+   }
+</style> 
+
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block content %}
+
+<h1 style="text-align: center;"><strong>PART 4 </strong></h1>
+<br>
+<p>For each of your estimates, distribute 100 tokens across 10 pillars.</p>
+<p>Each token represents one percentage point. The more likely you deem a certain pillar to contain the number of red balls you (your teammate) received, the more tokens should be put into this pillar. </p>
+<p>The task will only be finished when you have distributed exactly 100 tokens for each of your estimates. </p>
+<br>	
+<table class="table borderless" align="center" style="border-spacing: 90; width: 100%; font-size:130%">
+    <colgroup>
+       <col width="20%">
+       <col width="40%">
+       <col width="40%">
+    </colgroup>
+    <tr>
+      <td align="center"> Pillar </td>
+      <td align="center"> # of Red balls <br> <b> YOU </b> received </td>
+      <td align="center"> # of Red balls <br> <b> YOUR TEAMMATE </b> received </td>
+    </tr>
+    <tr>
+      <td align="center"> 0 - 10 </td>
+      <td align="center"><input class="txt" type="text" name="bin1_mine"/> {{ form.bin1_mine.errors }} </td>
+      <td align="center"><input class="txt2" type="text" name="bin1_teammate"/> {{ form.bin1_teammate.errors }} </td>
+    </tr>
+    <tr>
+      <td align="center"> 11 - 20 </td>
+      <td align="center"><input class="txt" type="text" name="bin2_mine"/> {{ form.bin2_mine.errors }} </td>
+      <td align="center"><input class="txt2" type="text" name="bin2_teammate"/> {{ form.bin2_teammate.errors }} </td>
+    </tr>
+    <tr>
+      <td align="center"> 21 - 30 </td>
+      <td align="center"><input class="txt" type="text" name="bin3_mine"/> {{ form.bin3_mine.errors }} </td>
+      <td align="center"><input class="txt2" type="text" name="bin3_teammate"/> {{ form.bin3_teammate.errors }} </td>
+    </tr>
+    <tr>
+      <td align="center"> 31 - 40 </td>
+      <td align="center"><input class="txt" type="text" name="bin4_mine"/> {{ form.bin4_mine.errors }} </td>
+      <td align="center"><input class="txt2" type="text" name="bin4_teammate"/> {{ form.bin4_teammate.errors }} </td>
+    </tr>
+    <tr>
+      <td align="center"> 41 - 50 </td>
+      <td align="center"><input class="txt" type="text" name="bin5_mine"/> {{ form.bin5_mine.errors }} </td>
+      <td align="center"><input class="txt2" type="text" name="bin5_teammate"/> {{ form.bin5_teammate.errors }} </td>
+    </tr>
+    <tr>
+      <td align="center"> 51 - 60 </td>
+      <td align="center"><input class="txt" type="text" name="bin6_mine"/> {{ form.bin6_mine.errors }} </td>
+      <td align="center"><input class="txt2" type="text" name="bin6_teammate"/> {{ form.bin6_teammate.errors }} </td>
+    </tr>
+    <tr>
+      <td align="center"> 61 - 70 </td>
+      <td align="center"><input class="txt" type="text" name="bin7_mine"/> {{ form.bin7_mine.errors }} </td>
+      <td align="center"><input class="txt2" type="text" name="bin7_teammate"/> {{ form.bin7_teammate.errors }} </td>
+    </tr>
+    <tr>
+      <td align="center"> 71 - 80 </td>
+      <td align="center"><input class="txt" type="text" name="bin8_mine"/> {{ form.bin8_mine.errors }} </td>
+      <td align="center"><input class="txt2" type="text" name="bin8_teammate"/> {{ form.bin8_teammate.errors }} </td>
+    </tr>
+    <tr>
+      <td align="center"> 81 - 90 </td>
+      <td align="center"><input class="txt" type="text" name="bin9_mine"/> {{ form.bin9_mine.errors }} </td>
+      <td align="center"><input class="txt2" type="text" name="bin9_teammate"/> {{ form.bin9_teammate.errors }} </td>
+    </tr>
+    <tr>
+      <td align="center"> 91 - 100 </td>
+      <td align="center"><input class="txt" type="text" name="bin10_mine"/> {{ form.bin10_mine.errors }} </td>
+      <td align="center"><input class="txt2" type="text" name="bin10_teammate"/> {{ form.bin10_teammate.errors }} </td>
+    </tr>
+      <td align="center"># of tokens <br> you have distributed so far </td>
+      <td align="center"><span id="sum">0</span></td>
+      <td align="center"><span id="sum2">0</span></td>
+    </tr>
+  </table>
+
+
+<div class="container">
+    <div class="row" style="padding-left:95%;">
+        <div class="col-md-2">
+            <button name="btn_submit" value="True" class="btn btn-primary btn-large">
+                    <span style="font-size:12pt">Next</span>
+         </button>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+
