@@ -1,6 +1,5 @@
 import os
 from os import environ
-import django_heroku
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
