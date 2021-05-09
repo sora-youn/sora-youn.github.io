@@ -187,6 +187,14 @@ class Part2_Begins_Soon(WaitPage):
         return self.round_number >= Constants.num_attention_check_tries
 
 
+class Exit(Page):
+    form_model = 'player'
+
+    def is_displayed(self):
+        return self.round_number >= Constants.num_attention_check_tries and self.participant.vars["fail"] == True
+
+
+
 # the coreography of pages
 page_sequence = [
                     Intro_Part1_Instruction,
@@ -194,5 +202,6 @@ page_sequence = [
                     SecondChance,
                     FailedAttentionCheck,
                     Part1_Task,
-                    Part2_Begins_Soon
+                    Part2_Begins_Soon,
+                    Exit
                 ]

@@ -79,7 +79,7 @@ class Part3_Task(Page):
         )
 
     def is_displayed(self):
-        return self.round_number >= Constants.num_attention_check_tries
+        return self.round_number >= Constants.num_attention_check_tries 
 
 
 class Part3_Result(Page):
@@ -95,7 +95,7 @@ class Part3_Result(Page):
         )
 
     def is_displayed(self):
-        return self.round_number >= Constants.num_attention_check_tries
+        return self.round_number >= Constants.num_attention_check_tries  
 
 
 # the coreography of pages
@@ -106,4 +106,4 @@ page_sequence = [
                     FailedAttentionCheck,
                     Part3_Task,
                     Part3_Result
-]
+                ]       

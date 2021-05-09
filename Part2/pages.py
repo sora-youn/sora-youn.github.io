@@ -97,18 +97,10 @@ class Part2_Task(Page):
             return 'The numbers in each column must add up to 100'
 
     def is_displayed(self):
-        return self.round_number >= Constants.num_attention_check_tries
+        return self.round_number >= Constants.num_attention_check_tries and self.participant.vars["fail"] == False   
 
     def before_next_page(self):
         self.player.set_payoff()
-
-
-
-
-
-
-
-
 
 
 # the coreography of pages
