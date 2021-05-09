@@ -32,7 +32,10 @@ class Group(BaseGroup):
     def set_fundamental(self):
 
         all_players = self.get_players()
-        fundamental_list = [p.productivity for p in all_players]
+        print(all_players)
+
+        for p in all_players:
+            fundamental_list = [p.productivity for p in all_players if p.participant.vars["fail"] == False]
 
         for p in all_players:
             p.participant.vars['fundamental'] = statistics.median_high(fundamental_list)
@@ -58,8 +61,6 @@ class Group(BaseGroup):
                 p.participant.vars['bin_index_teammate'] = 8
             elif p.participant.vars['fundamental']>90 and p.participant.vars['fundamental']<=100:
                 p.participant.vars['bin_index_teammate'] = 9
-            
-
         
 
 class Subsession(BaseSubsession):

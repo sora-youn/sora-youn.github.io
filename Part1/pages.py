@@ -177,7 +177,7 @@ class Part1_Task(Page):
         self.player.set_payoff()
 
     def is_displayed(self):
-        return self.round_number >= Constants.num_attention_check_tries
+        return self.round_number >= Constants.num_attention_check_tries and self.participant.vars["fail"] == False   
 
 
 class Part2_Begins_Soon(WaitPage):
