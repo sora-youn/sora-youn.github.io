@@ -23,6 +23,7 @@
 <style>
 p    {font-size: 160%; line-height: 200%;}
 ul    {font-size: 160%; line-height: 200%;}
+ol    {font-size: 160%; line-height: 200%;}
 </style>
 
 <style>
@@ -39,28 +40,33 @@ ul    {font-size: 160%; line-height: 200%;}
 <p>&nbsp;</p>
 <h1 style="text-align: center;"><strong>PART 1 Comprehension Questions</strong></h1>
 <p>&nbsp;</p>
-<p> Please answer the following comprehension questions correctly. If you need to, you can click “Back” button and review the instructions again. If you are ready to submit your answers, click “Submit” button. </p>
+<p> Please answer the following comprehension questions correctly. 
+    <br>If you are ready to submit your answers, click “Submit” button. </p>
 <p> If any of your submitted answers are incorrect, you may be excluded from the experiment and deprived of all payments aside from the minimum payment of $5 for attending.  </p>
 <p>&nbsp;</p>
-<p>1. Your task in Part 1 is to position as many of the 100 sliders in the center of representative scale as possible within 5 minutes.</p> 
-    {% formfield player.part1_cq1 label="" %}	
+
+<div style = "width: 1300px; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 0 auto; font-size: 100%; background-color: rgb(240, 239, 236);" >
+    <ol>
+<li>Your task in Part 1 is to position as many of the 100 sliders in the center of representative scale as possible within 5 minutes.</li> 
+<div style="padding-left:85%;">{% formfield player.part1_cq1 label="" %}</div>
+<br>
+<li>The number of red balls you will received at the end of Part 1 equals to the number of sliders that you correctly positioned. </li> 
+<div style="padding-left:85%;">{% formfield player.part1_cq2 label="" %}</div>	
+<br>
+<li>You will earn 1 point for every blue ball you received. </li>
+<div style="padding-left:85%;">{% formfield player.part1_cq3 label="" %}</div>
+    </ol>
+</div>
+
+<!--------------------------------------------------------------------------->
 <p>&nbsp;</p>
-<p>2. The number of red balls you will received at the end of Part 1 equals to the number of sliders that you correctly positioned. </p> 
-    {% formfield player.part1_cq2 label="" %}		
-<p>&nbsp;</p>
-<p>3. You will earn 1 point for every blue ball you received. </p>
-    {% formfield player.part1_cq3 label="" %}	
-  
-    
-<div class="container">
     <div class="row" style="padding-left:95%;">
         <div class="col-md-2">
             <button name="btn_submit" value="True" class="btn btn-primary btn-large">
-                    <span style="font-size:12pt">Next</span>
-         </button>
+                    <span style="font-size:12pt">Submit</span>
+            </button>
         </div>
     </div>
-</div>
 
 
 {% endblock %}

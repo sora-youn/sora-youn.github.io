@@ -219,7 +219,7 @@ ul    {font-size: 160%; line-height: 200%;}
 <p>Part 3 consists of {{num_game_round}} rounds.</p>
 <p>
   In every round, you are asked to decide how many balls to draw from each urn. 
-  <br>You can draw 1-99 balls from a single urn. You also have to draw 100 balls in total. 
+  <br>You can draw 1-99 balls from a single urn. You have to draw 100 balls in total. 
 </p>
 <p>Your choice will look like this. The slider gets activated once you click it.</p>
 <br>
@@ -239,9 +239,9 @@ ul    {font-size: 160%; line-height: 200%;}
   </tr> 
 </table>
 <p>&nbsp;</p>
-<p>Whenever a ball is drawn, no matter from which urn, the drawn ball is replaced with the same-colored ball. That is, the probabilities of drawing a red ball (and the probabilities of drawing a blue ball) from Urn 1 and Urn 2 do NOT change as you keep drawing until 100 balls are drawn.</p>
+<p>Whenever a ball is drawn from whichever urn, the drawn ball is replaced with the same-colored ball. Therefore, the probabilities of drawing a red ball (and the probabilities of drawing a blue ball) from Urn 1 and Urn 2 do NOT change as you keep drawing until 100 balls are drawn.</p>
 <br>
-<p>For example, recall that out of 200 balls in Urn 1, 100 balls are red. Further, assume that 140 balls are red, out of 200 balls in Urn 2. This implies:</p>
+<p>For example, suppose  out of 200 balls in Urn 2, 140 balls are red. Recall that out of 200 balls in Urn 1, 100 balls are red. This implies:</p>
 <ul>
 <li>Whenever a ball is drawn from Urn 1, the ball is red with probability 50% and blue with probability 50%.</li>
 <li>Whenever a ball is drawn from Urn 2, the ball is red with probability 70% and blue with probability 30%.</li>
@@ -264,7 +264,7 @@ ul    {font-size: 160%; line-height: 200%;}
 <h3><strong>How do you earn points?</strong></h3>
 <p>
   Once you submit your decision on how many balls to draw from each urn, the computer draws 100 balls accordingly. 
-  You receive lottery tickets depending on the colors of the drawn balls.
+  <br> Then, you receive lottery tickets depending on the colors of the drawn balls.
 </p>
 <ul>
   <li>For every drawn <span style="color: #ff0000;">RED</span> ball, you are awarded <strong>10 lottery tickets or zero lottery tickets</strong>. </li>
@@ -272,7 +272,7 @@ ul    {font-size: 160%; line-height: 200%;}
 </ul>
 <br>
 <p>
-  Then, the computer draws a random number "X" from the interval [0,1000]. 
+  The computer draws a random number "X" from the interval [0,1000]. 
   Any number within the interval [0,1000] is equally likely to be selected.
   The number of lottery tickets you received and the random number "X" determines your earning from Part 3. 
 </p>
@@ -289,7 +289,7 @@ ul    {font-size: 160%; line-height: 200%;}
 <h3><strong>IMPORTANT:</strong></h3>
 <ul> 
 <li><em>In every round, you have the possibility to earn 200 points. </em></li>   
-<li><em>For every drawn RED ball, you have a chance to receive 10 lottery tickets.</em></li>   
+<li><em>For every drawn <span style="color: #ff0000;">RED</span> ball, you have a chance to receive 10 lottery tickets.</em></li>   
 <li><em>The more lottery tickets you are awarded, the more likely you earn 200 points. </em></li>
 <li><em>Every 10 lottery tickets awarded to you increases the probability of earning 200 points by 1%.</em></li>
 </ul>  
@@ -315,10 +315,10 @@ ul    {font-size: 160%; line-height: 200%;}
 </p>
 <p>
   <u>Conditional on the entered guesses</u>, the software calculates the optimal decision for you.
-  By 'optimal decision', we mean a decision that, 
+  <br>By "optimal decision", we mean a decision that, 
   conditional on your guesses, 
-  maximizes the expected number of lottery tickets you would be awarded, and thus maximizes the probability of winning 200 points.
-  The software also calculates, conditional on your guesses, the number of lottery tickets that are expected to be awarded to you when you follow the recommendation.
+  will maximize the expected number of lottery tickets that will be awarded to you, and thus will maximize the probability of you winning 200 points.
+  The software also calculates, conditional on your guesses, the number of lottery tickets that you are expected to receive when you follow the recommendation.
 </p>
 <p>
   You may enter different guesses as many times as you wish. 
@@ -329,12 +329,14 @@ ul    {font-size: 160%; line-height: 200%;}
 <ul>
   <li>You can play around with the tool on this screen. </li>
   <li>For each of your guesses, i.e. "Your Guess about # of Red balls YOU receievd" and "Your Guess about # of Red balls YOUR TEAMMATE receievd", 
-      you must enter any integer ranging from 0 to 100. 
+      you must enter an integer ranging from 0 to 100. 
   </li>
   <li>As an example, suppose you guessed you received 40 red balls and your teammate received 60 red balls. </li>
-  <li>Then, you should enter 40 and 60 for your guesses about yourself and about your teammate, repectively. 
+  <li>Then, you should enter 40 and 60 for your guesses about yourself and about your teammate, respectively. 
     Once you've done that, you will see the software recommends you draw 50 balls from Urn1 and draw 50 balls from Urn 2.
-    Conditional on those guesses, you are expected to receive 71 lottery tickets if you actually decide to draw 50 balls from Urn1 and draw 50 balls from Urn 2.  </li>
+    This means, conditional on those guesses, 
+    the expected number of lottery tickets that will be awarded to you will be maximized when you draw 50 balls from Urn1 and draw 50 balls from Urn 2.
+    If you actually decide to draw 50 balls from Urn1 and draw 50 balls from Urn 2, conditional on those guesses, you are expected to receive 71 lottery tickets  </li>
 </ul>
 <br>
 	<!-- Example: decision tool -->
@@ -419,10 +421,10 @@ ul    {font-size: 160%; line-height: 200%;}
 </p>
 <br>
 <h4><li>Decision-making Screen (example):</li></h4>
-<p style="text-align:center;"><img src="{% static 'Part3_DecisionMakingScreen.png' %}" alt="Part3 Figure" style="width:1200px;height:1000px;" class="center"/></p>
+<p style="text-align:center;"><img src="{% static 'Part3_T1_DecisionMakingScreen.png' %}" alt="Part3 Figure" style="width:1200px;height:1000px;" class="center"/></p>
 <br>
 <h4><li>Summary Screen (example):</li></h4>
-<p style="text-align:center;"><img src="{% static 'Part3_SummaryScreen.png' %}" alt="Part3 Figure" style="width:750px;height:400px;" class="center"/></p>
+<p style="text-align:center;"><img src="{% static 'Part3_T1_SummaryScreen.png' %}" alt="Part3 Figure" style="width:750px;height:400px;" class="center"/></p>
 
 
 <button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button>

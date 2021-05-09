@@ -17,11 +17,8 @@ class Constants(BaseConstants):
     name_in_url = 'part6'
     players_per_group = None
     num_rounds = 1
-    # these are the lottery payoffs, f1 and f2 refer to lottery A and f3 and f4 to lottery B
-    f1 = 200
-    f2 = 160
-    f3 = 385
-    f4 = 10
+    # these are the lottery payoffs
+    g0 = 200
     g1 = 164
     g2 = 172
     g3 = 180
@@ -50,96 +47,70 @@ class Subsession(BaseSubsession):
     pass
 
 class Player(BasePlayer):
-
-    # This is for main choices, each variable is one row in the choice table MPL
-    ambig1 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig2 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig3 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig4 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig5 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig6 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig7 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig8 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig9 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig10 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig11 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig12 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig13 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig14 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig15 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig16 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig17 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig18 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig19 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
-    ambig20 = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal)
+    ambig = models.PositiveIntegerField(choices=[[0, ''],[1, ''],[2, ''],[3, ''],[4, ''],[5, ''],[6, ''],[7, ''],[8, ''],[9, ''],[10, ''],[11, ''],[12, ''],[13, ''],[14, ''],[15, ''],[16, ''],[17, ''],[18, ''],[19, '']],widget=widgets.RadioSelectHorizontal)
 
     # This is needed for the instructions
-    practice = models.PositiveIntegerField(choices=[[1, 'A'],[2, 'B']],widget=widgets.RadioSelectHorizontal, blank=True)
-
-    # These variables are collected in the final questionnaire
-    sex = models.StringField(widget=widgets.RadioSelectHorizontal(),choices=['Male', 'Female'])
-    age = models.IntegerField(choices = range(18,60,1))
-    comment = models.TextField(label="Your comment here:")
-    like = models.FloatField()
-
-    payoff_slider = models.FloatField()
+    practice = models.PositiveIntegerField(choices=[[1, ''],[2, '']],widget=widgets.RadioSelectHorizontal, blank=True)
 
     # Define here the methods associated to Players
     # this method is needed to compute payoffs
-    def set_payoff_HL(self):
+    def set_payoff(self):
         #*******************************************
         # select random row and random outcome
         #*******************************************
-        self.participant.vars['HL_row'] = random.randint(1,10)
+
         # select one row randomly for payment (from module random)
-        self.participant.vars['HL_random'] = random.randint(1,10)
-        # select the number x that defines the outcome of the lottery (if x<=p, outcome is left f1 or f3, otherwise f2 or f4)
-        # write it to participant.vars['HL_random']
+        self.participant.vars['Payment_row'] = random.randint(1,20)
+        
+        # define the number of red balls 
+        # Urn A
+        self.participant.vars['num_reds_UrnA'] = 50 
+        # Urn B
+        self.participant.vars['num_reds_UrnB'] = random.randint(0,100)
+
+        # select the number x that defines the outcome of the lottery 
+        # if x<=num_reds_Urn, win the lottery; otherwise, earn 0.
+        # write it to participant.vars['RandomNum']
+        self.participant.vars['RandomNum'] = random.randint(1,100)
 
         #*******************************************
         # select choices in correspondence to random row
         #*******************************************
-        choices = [self.risk1,self.risk2,self.risk3,self.risk4,self.risk5,self.risk6,self.risk7,self.risk8,self.risk9,self.risk10]
-        # create a list with all choices of the player (see self)
-        self.participant.vars['HL_choice'] = choices[self.participant.vars['HL_row']-1]
-        # select from the list the choice in correspondence to the randomly drawn row (notice the offset)
-        # write it to participant.vars['HL_choice']
+
+        # create a list of prizes
+        prize = [Constants.g1,Constants.g2,Constants.g3,Constants.g4,Constants.g5,Constants.g6,Constants.g7,Constants.g8,Constants.g9,Constants.g10,Constants.g11,Constants.g12,Constants.g13,Constants.g14,Constants.g15,Constants.g16,Constants.g17,Constants.g18,Constants.g19,Constants.g20]
+
+        # create a list of choices
+        choice = []
+        for p in range(0,20) :
+            if p <= self.ambig :
+                choice.insert(p, "A")
+            else :
+                choice.insert(p, "B")
+    
+        # define the paid choice
+        self.participant.vars['Part6_choice'] = choice[self.participant.vars['Payment_row']-1]
 
         #*******************************************
         # Compute here the payoffs
         #*******************************************
-        if self.participant.vars['HL_random'] <= self.participant.vars['HL_row']:
-        # if the random number is smaller equal than the random row
-            if self.participant.vars['HL_choice'] == 1: #A
-            # if the choice was A
-                self.participant.vars['payoff_HL'] = Constants.f1
-                # because HL_row is the same as p in the MPL
-            else :
-            # if the choice was B
-                self.participant.vars['payoff_HL'] = Constants.f3
-        else:
-        # if the random number is slarger than the random row
-            if self.participant.vars['HL_choice'] == 1 :#A
-                # if the choice was A
-                self.participant.vars['payoff_HL'] = Constants.f2
-                # because HL_row is the same as p in the MPL
-            else :
-                self.participant.vars['payoff_HL'] = Constants.f4
+        if self.participant.vars['Part6_choice'] == "A":
+            if self.participant.vars['RandomNum'] <= self.participant.vars['num_reds_UrnA']:
+                self.participant.vars['points_earned_Part6'] = Constants.g0
+            else:
+                self.participant.vars['points_earned_Part6'] = 0
+        else: 
+            if self.participant.vars['RandomNum'] <= self.participant.vars['num_reds_UrnB']:
+                self.participant.vars['points_earned_Part6'] = prize[self.participant.vars['Payment_row']-1]
+            else:
+                self.participant.vars['points_earned_Part6'] = 0
 
-        self.payoff = self.participant.vars['payoff_HL']
         # write the payoff to player.payoff
+        self.payoff = self.participant.vars['points_earned_Part6']
+        
 
 
-    def set_payoffs_slider(self):
-        if self.like <= 50.5 :
-            if self.like >= 49.5: 
-                self.payoff_slider = 1
-            
-            else :
-                self.payoff_slider = 0
-        else : 
-            self.payoff_slider = 0
-
+  
 
 
 

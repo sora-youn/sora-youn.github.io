@@ -86,6 +86,7 @@ $("#sum2").html(sum2.toFixed(0));
 <style>
 p    {font-size: 160%; line-height: 200%;}
 ul    {font-size: 160%; line-height: 200%;}
+ol    {font-size: 160%; line-height: 200%;}
 </style>
 
 <style>
@@ -103,15 +104,24 @@ ul    {font-size: 160%; line-height: 200%;}
 <p>&nbsp;</p>
 <h1 style="text-align: center;"><strong>PART 2 Comprehension Questions</strong></h1>
 <p>&nbsp;</p>
-<p> Please answer the following comprehension questions correctly. If you need to, you can click “Back” button and review the instructions again. If you are ready to submit your answers, click “Submit” button. </p>
+<p> Please answer the following comprehension questions correctly.
+  <br>If you are ready to submit your answers, click “Submit” button. </p>
 <p> If any of your submitted answers are incorrect, you may be excluded from the experiment and deprived of all payments aside from the minimum payment of $5 for attending.  </p>
 <p>&nbsp;</p>
-<p>1. Your task in Part 2 is to provides two estimates: one is concerning the probability that you received a certain number of red balls from Part 1, two is concerning the probability that your teammate received a certain number of red balls from Part 1.  </p> 
-    {% formfield player.part2_cq1 label="" %}	
-<p>&nbsp;</p>
-<p>2. Suppose you assume that you received 53 red balls from Part 1 with 100% probability. Also, suppose you assume that your teammate received 33 red balls with 50% probability and your teammate received 41 red balls with 50% probability. Then, what is the correct way of distributing tokens? Fill the blanks.   </p> 
+
+<div style = "width: 1300px; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 0 auto; font-size: 100%; background-color: rgb(240, 239, 236);" >
+  <ol>
+<li>Your task in Part 2 is to provides two estimates: 
+  one is concerning the probability that you received a certain number of red balls from Part 1, 
+  two is concerning the probability that your teammate received a certain number of red balls from Part 1.  </li> 
+  <div style="padding-left:85%;">{% formfield player.part2_cq1 label="" %}</div>
+
 <br>
-  <table class="table borderless" align="center" style="border-spacing: 90; width: 100%; font-size:130%">
+<li>Suppose you assume that you received 53 red balls from Part 1 with 100% probability. 
+  Also, suppose you assume that your teammate received 33 red balls with 50% probability and your teammate received 41 red balls with 50% probability. 
+  Then, what is the distributions of tokens that represent your estimates?</li> 
+<br>
+  <table class="table borderless" align="center" style="border-spacing: 90; width: 100%; font-size:70%">
     <colgroup>
        <col width="20%">
        <col width="40%">
@@ -177,20 +187,28 @@ ul    {font-size: 160%; line-height: 200%;}
       <td align="center"><span id="sum2">0</span></td>
     </tr>
   </table>
-<p>&nbsp;</p>
-  <p>3. The more precise your estimates are, the more likely it is that you will earn more points from Part 2.  </p>
-    {% formfield player.part2_cq3 label="" %}	
+
+  <br>
+  <li>The more precise your estimates are, the more likely it is that you will earn more points from Part 2.  </li>
+  <div style="padding-left:85%;">{% formfield player.part2_cq3 label="" %}</div>
   
 
-<div class="container">
+
+  </ol>
+</div>
+
+<!--------------------------------------------------------------------------->
+<p>&nbsp;</p>
+<div class="container"></div>
     <div class="row" style="padding-left:95%;">
         <div class="col-md-2">
             <button name="btn_submit" value="True" class="btn btn-primary btn-large">
-                    <span style="font-size:12pt">Next</span>
-         </button>
+                    <span style="font-size:12pt">Submit</span>
+            </button>
         </div>
     </div>
 </div>
+
 
 
 {% endblock %}

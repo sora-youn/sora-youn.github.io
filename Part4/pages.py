@@ -39,6 +39,8 @@ class Part4_Task(Page):
         if values['bin1_mine'] + values['bin2_mine'] + values['bin3_mine'] + values['bin4_mine'] + values['bin5_mine'] + values['bin6_mine'] + values['bin7_mine'] + values['bin8_mine'] + values['bin9_mine'] + values['bin10_mine'] != 100 or values['bin1_teammate'] + values['bin2_teammate'] + values['bin3_teammate'] + values['bin4_teammate'] + values['bin5_teammate'] + values['bin6_teammate'] + values['bin7_teammate'] + values['bin8_teammate'] + values['bin9_teammate'] + values['bin10_teammate'] != 100  :
             return 'The numbers in each column must add up to 100'
 
+    def before_next_page(self):
+        self.player.set_payoff()
 
 # the coreography of pages
 page_sequence = [

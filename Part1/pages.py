@@ -9,6 +9,7 @@ class Intro_Part1_Instruction(Page):
         else:
             return self.participant.vars["fail"]
 
+
 class Part1_CQ(Page):            
     form_model = 'player'
     form_fields = [
@@ -46,7 +47,6 @@ class FailedAttentionCheck(Page):
 
 
 class Part1_Task(Page):
-# forms to retrieve individual information
     form_model = 'player'
     form_fields = [
         'slider1',
@@ -170,16 +170,22 @@ class Part1_Task(Page):
         'slider99',
         'slider100',
     ]
-        
-    # before moving to next page, compute payoffs (avoids that with refreshing payoffs are recomputed again)
+    
+    timeout_seconds = 300   
+
     def before_next_page(self):
-        # built-in method 
-        self.player.set_payoffs_slider()# see in models in Player class
+        self.player.set_payoff()
 
     def is_displayed(self):
         return self.round_number >= Constants.num_attention_check_tries
 
-    timeout_seconds = 300    
+
+class Part2_Begins_Soon(WaitPage):
+    after_all_players_arrive = 'set_fundamental'
+
+    def is_displayed(self):
+        return self.round_number >= Constants.num_attention_check_tries
+
 
 # the coreography of pages
 page_sequence = [
@@ -187,5 +193,6 @@ page_sequence = [
                     Part1_CQ,
                     SecondChance,
                     FailedAttentionCheck,
-                    Part1_Task
+                    Part1_Task,
+                    Part2_Begins_Soon
                 ]

@@ -12,6 +12,7 @@
   <style>
   p    {font-size: 160%; line-height: 200%;}
   ul    {font-size: 160%; line-height: 200%;}
+  ol    {font-size: 160%; line-height: 200%;}
   </style>
   
   <style>
@@ -25,37 +26,43 @@
 {% block content %}
 <h1 style="text-align: center;"><strong>Exit Survey</strong></h1>
 <br>
+<p>&nbsp;</p>
 
-<div style = "width: 1000px; margin: 0 auto;">
-<p>What sex were you assigned at birth, such as on an original birth certificate?</p>
-{% formfield player.sex label="" %}
-<br>
+<div style = "width: 1000px; margin: 0 auto; font-size: 100%;">
 
-<p>What is your age?</p>
-{% formfield player.age label="" %}
-<br>
-
-<p>Please indicate how strongly you agree or disagree with the following statement: 
-<br>"In general, the instructions were clear and easily understandable."</p>
-{% formfield player.like label="" %}
+<ol>  
+<li>What sex were you assigned at birth, such as on an original birth certificate?</li>
+<div>{% formfield player.sex label="" %}</div>
 
 <br>
-<p>Do you have any other comments that you would like to make about this experiment?</p>
+<li>What is your age?</li>
+<div>{% formfield player.age label="" %}</div>
+
+<br>
+<li>Please indicate how strongly you agree or disagree with the following statement: 
+<br>"In general, the instructions were clear and easily understandable."</li>
+<div>{% formfield player.like label="" %}</div>
+
+
+<br>
+<li>Do you have any other comments that you would like to make about this experiment?</li>
 {% formfield player.comment label="" %}
 </div>
 
-<br>
-<div class="container">
-  <div class="row" style="padding-left:95%;">
-      <div class="col-md-2">
-          <button name="btn_submit" value="True" class="btn btn-primary btn-large">
-                  <span style="font-size:12pt">Finish</span>
-       </button>
-      </div>
-  </div>
-</div>
+
+</ol>
+
+<!--------------------------------------------------------------------------->
+<p>&nbsp;</p>
+    <div class="row" style="padding-left:95%;">
+        <div class="col-md-2">
+            <button name="btn_submit" value="True" class="btn btn-primary btn-large">
+                    <span style="font-size:12pt">Finish</span>
+            </button>
+        </div>
+    </div>
 
 
-{{ form.like.errors }}
+
 
 {% endblock %}

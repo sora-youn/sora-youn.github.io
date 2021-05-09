@@ -11,7 +11,7 @@
 </style>
 
 <style>
-p    {font-size: 160%; line-height: 200%;}
+p    {font-size: 160%; line-height: 200%; }
 ul    {font-size: 160%; line-height: 200%;}
 </style>
 
@@ -25,51 +25,38 @@ ul    {font-size: 160%; line-height: 200%;}
 
 {% block content %}
 
-<p>&nbsp;</p>
 <h1 style="text-align: center;"><strong>PART 5 Instructions</strong></h1>
 <p style="text-align: center;">Page <strong>1</strong> out of 1</p>
 <p>&nbsp;</p>
 
-<p>You are going to choose between couples of lotteries. </p>
-<p>The following is an example of the decision setting you are facing.</p>
-  <table class="table" style = "font-size: 135%;">
-   <thead>
-     <tr>
-     <th scope="col">#</th>
-     <th scope="col" style="text-align:center">A</th>
-     <th scope="col" ></th>
-     <th scope="col" style="text-align:center">B</th>
-     </tr>
-    </thead>
-    <tbody>
-      <tr>
-      <th scope="row" style = "vertical-align: middle;">1</th>
-      <td align="center" style = "vertical-align: middle;"> p/10 of <i>{{f1}} points</i>, <br> (1-p)/10 of <i>{{f2}} points</i> </td>
-      <td style="font-weight: bold" style = "vertical-align: middle;">{{ form.practice }}</td>
-      <td align="center" style = "vertical-align: middle;">p/10 of <i>{{f3}} points</i>, <br> (1-p)/10 of <i>{{f4}} points</i> </td>
-      </tr>
-    </tbody>
-   </table>
-
-<br>
-<p>You must make 10 decisions between lottery A and lottery B</p>
 <p>
-  Lottery A delivers <i>{{f1}} points</i> with probability p/10 and <i>{{f2}} points</i> with probability (1-p)/10. 
-  <br>Similarly, lottery B delivers <i>{{f3}} points</i> with probability p/10 and <i>{{f4}} points</i> with probability (1-p)/10. 
-  <br>You will face 10 choices between A and B, with p changing across choices.
+  You are facing 10 separate decisions numbering 1 through 10.
+  <br>Each of these decisions is a choice between “Option A” or “Option B”. 
+</p>
+<p>
+  In each of the 10 decisions, Option A pays either <i>{{f1}} points</i> or <i>{{f2}} points</i>.
+  Option B, on the other hand, pays either <i>{{f3}} points</i> or <i>{{f4}} points</i>.
+  The only difference between the 10 decisions is the chances of earning the higher payoff for each option.
 </p> 
-<p>One of these decisions would be randomly selected to determine your payoffs from Part 5.</p> 
+<p>
+  To choose an Option for each decision, you will make one choice in the “Switch” column. 
+  This choice indicates that you would like to switch from Option A to Option B. 
+  For each decision before your choice, Option A will be used for payment. 
+  For each decision after your choice, including the decision where the choice was made, Option B will be used.
+</p>
+
+<p>One of these decisions would be randomly selected to determine your payoffs.</p> 
 
 
-<div class="container">
-  <div class="row" style="padding-left:95%;">
-      <div class="col-md-2">
-          <button name="btn_submit" value="True" class="btn btn-primary btn-large">
-                  <span style="font-size:12pt">Next</span>
-       </button>
-      </div>
-  </div>
-</div>
+<!--------------------------------------------------------------------------->
+<p>&nbsp;</p>
+    <div class="row" style="padding-left:95%;">
+        <div class="col-md-2">
+            <button name="btn_submit" value="True" class="btn btn-primary btn-large">
+                    <span style="font-size:12pt">Next</span>
+            </button>
+        </div>
+    </div>
 
 
 

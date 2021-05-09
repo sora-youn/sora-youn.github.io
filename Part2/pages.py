@@ -99,6 +99,17 @@ class Part2_Task(Page):
     def is_displayed(self):
         return self.round_number >= Constants.num_attention_check_tries
 
+    def before_next_page(self):
+        self.player.set_payoff()
+
+
+
+
+
+
+
+
+
 
 # the coreography of pages
 page_sequence = [

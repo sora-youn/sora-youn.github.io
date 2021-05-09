@@ -66,9 +66,9 @@ ul    {font-size: 160%; line-height: 200%;}
 <h1 style="text-align: center;"><strong>PART 4 Instructions</strong></h1>
 <p style="text-align: center;">Page <strong>1</strong> out of 4</p>
 <p>&nbsp;</p>
-<p>In Part 4 of the experiment, you are asked to provide new estimates:</p>
-<p style="text-align: justify; padding-left: 40px;">1. Your new estimate concerning the probability that <strong><u>you</u></strong> received a certain number of red balls from Part 1</p>
-<p style="text-align: justify; padding-left: 40px;">2. Your new estimate concerning the probability that <strong><u>your teammate</u></strong> received a certain number of red balls from Part 1.</p>
+<p>In Part 4 of the experiment, you are asked to revise two estimates that you provided in Part 2:</p>
+<p style="text-align: justify; padding-left: 40px;">1. Your estimate concerning the probability that <strong><u>you</u></strong> received a certain number of red balls from Part 1</p>
+<p style="text-align: justify; padding-left: 40px;">2. Your estimate concerning the probability that <strong><u>your teammate</u></strong> received a certain number of red balls from Part 1.</p>
 <br>
 <p><em>Reminder:</em></p>
 <p style="text-align: justify; padding-left: 40px;">The numbers of red balls you and your teammate received in Part 1 equal to the numbers of sliders you and your teammate correctly positioned, out of 100 sliders, respectively.</p>
@@ -91,11 +91,14 @@ ul    {font-size: 160%; line-height: 200%;}
 <p style="text-align:center;"><img src="{% static 'Part4_Screenshot.png' %}" alt="Part2 Further Information.png" style="width:800px;height:1100px;" class="center"/></p>
 <p>&nbsp;</p>
 <ul>
-<li>There are 10 pillars on the screen. Each pillar represents a certain quantity (in steps of 10) of red balls you (your teammate) received in Part 1.</li>
-<li>To provide an estimate concerning the probability that you received a certain number of red balls, you are asked to distribute 100 tokens into the 10 pillars in &ldquo;# of Red balls YOU received&rdquo; column by typing an integer, ranging from 0 to 100, in each pillar.</li>
+<li>There are 10 pillars. Each pillar represents a certain quantity (in steps of 10) of red balls you (your teammate) received in Part 1.</li>
+<li>To provide an estimate concerning the probability that you received a certain number of red balls, you are asked to distribute 100 tokens into the 10 pillars in &ldquo;# of Red balls YOU received&rdquo; column.
+  You can distribute tokens to a pillar by typing an integer, ranging from 0 to 100. </li>
 <li>Similarly, to provide an estimate concerning the probability that your teammate received a certain number of red balls, type an integer, ranging from 0 to 100, in each pillar of&nbsp; &ldquo;# of Red balls YOUR TEAMMATE received&rdquo; column.&nbsp;</li>
 <li>The more likely you deem a certain pillar to contain the number of red balls you (your teammate) received, the more tokens should be put into this pillar.</li>
+<li>Whenever you type an integer in any pillar, the last row of the decision table "# of tokens you have distributed so far" will be updated. </li>
 <li>The task will only be finished when you have distributed exactly 100 tokens into the 10 pillars in each of &ldquo;# of Red balls YOU received&rdquo; and &ldquo;# of Red balls YOUR TEAMMATE received&rdquo; columns.</li>
+<li>If you feel confident about the resulting probability distributions because they are good fits to your estimates concerning the quantity of red balls you and your teammate received, please press the &ldquo;Confirm&rdquo; button downright to continue with Part 5 of the experiment.</li>
 </ul>
 
 <button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 
@@ -110,12 +113,18 @@ ul    {font-size: 160%; line-height: 200%;}
 <h1 style="text-align: center;"><strong>PART 4 Instructions</strong></h1>
 <p style="text-align: center;">Page <strong>3</strong> out of 4</p>
 <p>&nbsp;</p>
-<p>Here are examples of how it works.</p>
+<p>Here is an example of how it works. Suppose you have distributed tokens in the following way.</p>
+<p style="text-align:center;"><img src="{% static 'Part2_example.png' %}" alt="Part2 example" style="width:1000px;height:800px;" class="center"/></p>
 <ul>
-<li>If you place 50 tokens in &ldquo;11-20&rdquo; pillar of &ldquo;# of Red balls YOU received&rdquo; column, that implies that you assume that with 50% probability you received between 11 and 20 red balls.</li>
-<li>If you place 23 tokens in &ldquo;81-90&rdquo; pillar of &ldquo;# of Red balls YOUR TEAMMATE received&rdquo; column, that implies that with 23% probability you assume that your teammate received between 81 and 90 red balls.</li>
+<li>First, look at &ldquo;# of Red balls YOU received&rdquo; column.  
+  You have placed 50 tokens in each of &ldquo;11-20&rdquo; pillar and &ldquo;21-30&rdquo; pillar.
+  This implies that you assume that with 50% probability you received between 11 and 20 red balls
+  and with 50% probability you received between 21 and 30 red balls.</li>  
+<li>Now, look at &ldquo;# of Red balls YOUR TEAMMATE received&rdquo; column. 
+  You have placed 77 tokens in &ldquo;71-80&rdquo; pillar and 23 tokens in &ldquo;81-90&rdquo;.
+  This implies that with 77% probability you assume that your teammate received between 71 and 80 red balls and
+  with 23% probability you assume that your teammate received between 81 and 90 red balls.</li>
 </ul>
-<p>If you feel confident about the resulting probability distributions because they are good fits to your estimates concerning the quantity of red balls you and your teammate received, please press the &ldquo;Confirm&rdquo; button downright to continue with Part 5 of the experiment.</p>
 
 <button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 
 <button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>

@@ -19,8 +19,8 @@ class Part5_Instruction(Page):
 class Part5_Task(Page):
 # which forms are needed from class player
     form_model = 'player'
-    form_fields = ['risk1','risk2','risk3','risk4','risk5','risk6','risk7','risk8','risk9','risk10'] # all 10 options
-
+    form_fields = ['risk'] 
+    
     # values that are to be displayed (dictionary)
     def vars_for_template(self):
         # retrieve values from constants and store them in a dictionary
@@ -34,7 +34,7 @@ class Part5_Task(Page):
     # before moving to next page, compute payoffs (avoids that with refreshing payoffs are recomputed again)
     def before_next_page(self):
         # built-in method 
-        self.player.set_payoff_HL()# see in models in Player class
+        self.player.set_payoff()# see in models in Player class
 
 
 # the coreography of pages

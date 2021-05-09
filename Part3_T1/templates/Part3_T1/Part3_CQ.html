@@ -86,6 +86,7 @@ $("#sum2").html(sum2.toFixed(0));
 <style>
 p    {font-size: 160%; line-height: 200%;}
 ul    {font-size: 160%; line-height: 200%;}
+ol    {font-size: 160%; line-height: 200%;}
 </style>
 
 <style>
@@ -103,50 +104,57 @@ ul    {font-size: 160%; line-height: 200%;}
 
 <h1 style="text-align: center;"><strong>PART 3: Comprehension Questions </strong></h1>
 <p>&nbsp;</p>
-<p> 
-  Please answer the following comprehension questions correctly. 
-  If you are ready to submit your answers, click “Submit” button. </p>
-<p> If any of your submitted answers are incorrect, 
-  you may be excluded from the experiment and deprived of all payments aside from the minimum payment of $5 for attending.  </p>
-
+<p> Please answer the following comprehension questions correctly.
+  <br>If you are ready to submit your answers, click “Submit” button. </p>
+<p> If any of your submitted answers are incorrect, you may be excluded from the experiment and deprived of all payments aside from the minimum payment of $5 for attending.  </p>
 <p>&nbsp;</p>
-<p>1. Suppose you received 50 red balls and 50 blue balls from Part 1. Also, suppose your teammate received 40 red balls and 60 blue balls from Part 1. </p> 
-<p>(a) Out of 100 balls in Urn 1, how many balls are red? </p>
-  {% formfield player.part3_cq1_a label="" %}	
-<p>(b) Out of 100 balls in Urn 2, how many balls are red? </p>
-  {% formfield player.part3_cq1_b label="" %}	  
 
+<div style = "width: 1300px; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 0 auto; font-size: 100%; background-color: rgb(240, 239, 236);" >
+
+  <ol>
+
+<li>Suppose you received 50 red balls and 50 blue balls from Part 1. Also, suppose your teammate received 40 red balls and 60 blue balls from Part 1. </li> 
+<br>
+  <p style = "font-size: 100%; ">(a) Out of 100 balls in Urn 1, how many balls are red? </p>
+  <div style="padding-left:85%;">{% formfield player.part3_cq1_a label="" %}	</div>
+
+  <p style = "font-size: 100%; ">(b) Out of 100 balls in Urn 2, how many balls are red? </p>
+  <div style="padding-left:85%;">{% formfield player.part3_cq1_b label="" %}	</div>
+
+<br>
+<li>Again, suppose you received 50 red balls and 50 blue balls from Part 1, and your teammate received 40 red balls and 60 blue balls from Part 1. Note that each urn has 100 balls in total. </li> 
+<br>
+  <p style = "font-size: 100%; ">(a) What is the probability of drawing a red ball from Urn1? </p>
+  <div style="padding-left:85%;">{% formfield player.part3_cq2_a label="" %}	</div>
+  <p style = "font-size: 100%; ">(b) What is the probability of drawing a red ball from Urn2? </p>
+  <div style="padding-left:85%;">{% formfield player.part3_cq2_b label="" %}	</div>
+
+<br>
+<li>The probability of drawing a red ball from each urn remains constant during the entire experiment.  </li>
+<div style="padding-left:85%;">{% formfield player.part3_cq3 label="" %}</div>
+
+<br>
+<li>The more red balls are drawn, the more likely it is that you are awareded more lottery tickets.  </li>
+<div style="padding-left:85%;">{% formfield player.part3_cq4 label="" %}</div> 
+
+<br>
+<li>The more lottery tickets you are awarded, the more likely you win 200 points from Part 3. </li>
+<div style="padding-left:85%;">{% formfield player.part3_cq5 label="" %}</div>
+
+  </ol>
+</div>
+
+<!--------------------------------------------------------------------------->
 <p>&nbsp;</p>
-<p>2. Again, suppose you received 50 red balls and 50 blue balls from Part 1, and your teammate received 40 red balls and 60 blue balls from Part 1. Note that each urn has 100 balls in total. </p> 
-<p>(a) What is the probability of drawing a red ball from Urn1? </p>
-  {% formfield player.part3_cq2_a label="" %}	
-<p>(b) What is the probability of drawing a red ball from Urn2? </p>
-  {% formfield player.part3_cq2_b label="" %}	  
-
-<p>&nbsp;</p>
-<p>3. The probability of drawing a red ball from each urn remains constant during the entire experiment.  </p>
-  {% formfield player.part3_cq3 label="" %}	
-
-<p>&nbsp;</p>
-<p>4. The more red balls are drawn, the more likely it is that you are awareded more lottery tickets.  </p>
-    {% formfield player.part3_cq4 label="" %}	  
-
-<p>&nbsp;</p>
-<p>5. The more lottery tickets you are awarded, the more likely you win 200 points from Part 3. </p>
-    {% formfield player.part3_cq5 label="" %}	  
-
-
-  
-
-<div class="container">
     <div class="row" style="padding-left:95%;">
         <div class="col-md-2">
             <button name="btn_submit" value="True" class="btn btn-primary btn-large">
-                    <span style="font-size:12pt">Next</span>
-         </button>
+                    <span style="font-size:12pt">Submit</span>
+            </button>
         </div>
     </div>
-</div>
+
+
 
 
 {% endblock %}

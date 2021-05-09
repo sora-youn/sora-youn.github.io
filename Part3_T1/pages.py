@@ -67,38 +67,15 @@ class Part3_Task(Page):
             return 'Please use the slider to make a decision.'
 
     def before_next_page(self):
-        self.player.draw_urn2 = 100 - self.player.draw_urn1
-
-        Prob_Red_Urn1 = 0.5
-        Prob_Red_Urn2 = 0.5
-
-        DrawnBalls_Urn1 = bernoulli.rvs(Prob_Red_Urn1, size = self.player.draw_urn1)
-        DrawnBalls_Urn2 = bernoulli.rvs(Prob_Red_Urn2, size = self.player.draw_urn2)
-
-        self.player.num_redballs_urn1 = sum(DrawnBalls_Urn1)
-        self.player.num_redballs_urn2 = sum(DrawnBalls_Urn2)
-
-        self.player.num_redballs =  sum(DrawnBalls_Urn1) + sum(DrawnBalls_Urn2)
-
-        Prob_Lotterytickets_Urn1 = Prob_Red_Urn1 * pow(self.player.draw_urn1, -0.5) 
-        Prob_Lotterytickets_Urn2 = Prob_Red_Urn2 * pow(self.player.draw_urn2, -0.5) 
-
-        AwardedLTs_Urn1 = bernoulli.rvs(Prob_Lotterytickets_Urn1, size = self.player.num_redballs_urn1)
-        AwardedLTs_Urn2 = bernoulli.rvs(Prob_Lotterytickets_Urn2, size = self.player.num_redballs_urn2)
-
-        self.player.num_LTs_Awareded_Urn1 = sum(AwardedLTs_Urn1) *10
-        self.player.num_LTs_Awareded_Urn2 = sum(AwardedLTs_Urn2) *10
-        
-        self.player.num_LTs_Awareded = self.player.num_LTs_Awareded_Urn1 + self.player.num_LTs_Awareded_Urn2
-
-        self.player.game_round_number = self.subsession.round_number - 1
+        self.player.set_payoff()
 
     def vars_for_template(self):
         
         return dict(
             # player_in_previous_rounds=self.player.in_previous_rounds(),
             player_in_previous_rounds=self.player.in_rounds(2,self.subsession.round_number-1),
-            game_round_number = self.subsession.round_number - 1
+            game_round_number = self.subsession.round_number - 1,
+            num_game_round = Constants.num_game_round
         )
 
     def is_displayed(self):
@@ -113,14 +90,12 @@ class Part3_Result(Page):
             draw_urn1 = self.player.draw_urn1,
             draw_urn2 = self.player.draw_urn2,
             num_redballs = self.player.num_redballs,
-            num_LTs_Awarded = self.player.num_LTs_Awareded
+            num_LTs_Awarded = self.player.num_LTs_Awareded,
+            num_game_round = Constants.num_game_round
         )
 
     def is_displayed(self):
         return self.round_number >= Constants.num_attention_check_tries
-
-
-     
 
 
 # the coreography of pages

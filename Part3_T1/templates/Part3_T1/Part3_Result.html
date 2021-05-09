@@ -125,7 +125,7 @@ ul    {font-size: 160%; line-height: 200%;}
 
 <!--------------------------------------------------------------------------->
 <h1 style="text-align: center;"><strong>PART 3 </strong></h1>
-<h3 style="text-align: center;"> Round {{round_number}} (out of 100) </h3>
+<h3 style="text-align: center;"> Round {{round_number}} (out of {{num_game_round}}) </h3>
 <br>
 
 <!--------------------------------------------------------------------------->
@@ -141,24 +141,23 @@ According to your submitted decision:
 {{draw_urn2}} balls were drawn from Urn 2.
 <br>
 <br>
-Out of 100 drawn balls, <strong>{{num_redballs}}</strong> were <span style="color: #ff0000;">RED</span>.
+Out of 100 drawn balls, <strong>{{num_redballs}}</strong> are <span style="color: #ff0000;">RED</span>.
 <br>
-As a result, <strong> {{num_LTs_Awarded}} lottery tickets </strong> were awarded to you.
+As a result, <strong> {{num_LTs_Awarded}} lottery tickets </strong> are awarded to you.
 </p>
 
 </div>
 
-
 <!--------------------------------------------------------------------------->
-<div class="container">
+<p>&nbsp;</p>
+<div class="container"></div>
     <div class="row" style="padding-left:95%;">
         <div class="col-md-2">
             <button name="btn_submit" value="True" class="btn btn-primary btn-large">
                     <span style="font-size:12pt">Next</span>
-         </button>
+            </button>
         </div>
     </div>
 </div>
-
 
 {% endblock %}

@@ -4,6 +4,7 @@ from otree.api import (
 )
 
 import numpy as np
+import statistics
 
 author = 'S. Youn'
 
@@ -24,11 +25,42 @@ class Constants(BaseConstants):
     ans_part1_cq1 = 0
     ans_part1_cq2 = 0
     ans_part1_cq3 = 1
-    exchange_rate = 0.1
-    show_up_fee = 5
 
 class Group(BaseGroup):
-    pass
+
+    ############################ SET THE FUNDAMENTAL ############################
+    def set_fundamental(self):
+
+        all_players = self.get_players()
+        fundamental_list = [p.productivity for p in all_players]
+
+        for p in all_players:
+            p.participant.vars['fundamental'] = statistics.median_high(fundamental_list)
+
+            ##
+            if p.participant.vars['fundamental'] <=10:
+                p.participant.vars['bin_index_teammate'] = 0
+            elif p.participant.vars['fundamental']>10 and p.participant.vars['fundamental']<=20:
+                p.participant.vars['bin_index_teammate'] = 1
+            elif p.participant.vars['fundamental']>20 and p.participant.vars['fundamental']<=30:
+                p.participant.vars['bin_index_teammate'] = 2
+            elif p.participant.vars['fundamental']>30 and p.participant.vars['fundamental']<=40:
+                p.participant.vars['bin_index_teammate'] = 3
+            elif p.participant.vars['fundamental']>40 and p.participant.vars['fundamental']<=50:
+                p.participant.vars['bin_index_teammate'] = 4
+            elif p.participant.vars['fundamental']>50 and p.participant.vars['fundamental']<=60:
+                p.participant.vars['bin_index_teammate'] = 5
+            elif p.participant.vars['fundamental']>60 and p.participant.vars['fundamental']<=70:
+                p.participant.vars['bin_index_teammate'] = 6
+            elif p.participant.vars['fundamental']>70 and p.participant.vars['fundamental']<=80:
+                p.participant.vars['bin_index_teammate'] = 7
+            elif p.participant.vars['fundamental']>80 and p.participant.vars['fundamental']<=90:
+                p.participant.vars['bin_index_teammate'] = 8
+            elif p.participant.vars['fundamental']>90 and p.participant.vars['fundamental']<=100:
+                p.participant.vars['bin_index_teammate'] = 9
+            
+
+        
 
 class Subsession(BaseSubsession):
     pass
@@ -139,10 +171,11 @@ class Player(BasePlayer):
     slider99 = models.FloatField()
     slider100 = models.FloatField()
 
-    payoff_slider = models.FloatField()
+    productivity = models.FloatField()
 
 
-    def set_payoffs_slider(self):
+    ############################ SET PAYOFFS ############################ 
+    def set_payoff(self):
 
         slider = [ 
             self.slider1,
@@ -247,24 +280,48 @@ class Player(BasePlayer):
             self.slider100
         ]
 
-        self.payoff_slider = 0
+        
+        ## count the number of correctly positioned sliders
+        self.participant.vars['productivity'] = 0
 
         for x in slider:
             if x <= 50.5 :
                 if x >= 49.5: 
-                    self.payoff_slider = self.payoff_slider + 1
+                    self.participant.vars['productivity'] = self.participant.vars['productivity'] + 1
                 else :
-                    self.payoff_slider = self.payoff_slider + 0
+                    self.participant.vars['productivity'] = self.participant.vars['productivity'] + 0
             else : 
-                self.payoff_slider = self.payoff_slider + 0
+                self.participant.vars['productivity'] = self.participant.vars['productivity'] + 0
 
+        self.productivity = self.participant.vars['productivity']
+        
+        ## payoff from Part 1 = the number of correctly positioned sliders
+        self.payoff = self.participant.vars['productivity']
 
+        ##
+        if self.participant.vars['productivity'] <=10:
+            self.participant.vars['bin_index_mine'] = 0
+        elif self.participant.vars['productivity']>10 and self.participant.vars['productivity']<=20:
+            self.participant.vars['bin_index_mine'] = 1
+        elif self.participant.vars['productivity']>20 and self.participant.vars['productivity']<=30:
+            self.participant.vars['bin_index_mine'] = 2
+        elif self.participant.vars['productivity']>30 and self.participant.vars['productivity']<=40:
+            self.participant.vars['bin_index_mine'] = 3
+        elif self.participant.vars['productivity']>40 and self.participant.vars['productivity']<=50:
+            self.participant.vars['bin_index_mine'] = 4
+        elif self.participant.vars['productivity']>50 and self.participant.vars['productivity']<=60:
+            self.participant.vars['bin_index_mine'] = 5
+        elif self.participant.vars['productivity']>60 and self.participant.vars['productivity']<=70:
+            self.participant.vars['bin_index_mine'] = 6
+        elif self.participant.vars['productivity']>70 and self.participant.vars['productivity']<=80:
+            self.participant.vars['bin_index_mine'] = 7
+        elif self.participant.vars['productivity']>80 and self.participant.vars['productivity']<=90:
+            self.participant.vars['bin_index_mine'] = 8
+        elif self.participant.vars['productivity']>90 and self.participant.vars['productivity']<=100:
+            self.participant.vars['bin_index_mine'] = 9
 
+        
+    
 
-
-
-
-
-
-
+   
 
