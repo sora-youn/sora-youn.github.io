@@ -53,13 +53,13 @@ SESSION_CONFIGS = [
     dict(
         name='Full_Sequence_T1',
         display_name="Full_Sequence_T1",
-        num_demo_participants=7,
+        num_demo_participants=5,
         app_sequence=['Part1', 'Part2','Part3_T1','Part4','Part5','Part6','Part7'],
     ),
     dict(
         name='Full_Sequence_T2',
         display_name="Full_Sequence_T2",
-        num_demo_participants=7,
+        num_demo_participants=5,
         app_sequence=['Part1', 'Part2','Part3_T2','Part4','Part5','Part6','Part7'],
     ),
 ]

@@ -74,6 +74,7 @@ class Player(BasePlayer):
 
         self.draw_urn2 = 100 - self.draw_urn1
 
+        ## T1
         Prob_Red_Urn1 = self.participant.vars['productivity']/100
         Prob_Red_Urn2 = self.participant.vars['fundamental']/100
 

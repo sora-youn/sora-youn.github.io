@@ -10,10 +10,10 @@
 
 <script>
 $(document).ready(function(){
-	$('#mine, #teammate').on('input',function() {
+  $('#mine, #teammate').on('input',function() {
 
-    var mine = parseInt($('#mine').val());
-    var teammate = parseInt($('#teammate').val());
+  var mine = parseInt($('#mine').val());
+  var teammate = parseFloat($('#teammate').val());
 
 	// T2
 	var r1 = 100/200
@@ -28,32 +28,32 @@ $(document).ready(function(){
 	$('#RecommendedAction2').html(foc2);
 	});
 });
-</script> 
+</script>
 
 <script>
-  $(document).ready(function(){
-    $('#mine, #teammate, #RecommendedAction1, #RecommendedAction2').on('input',function() {
+$(document).ready(function(){
+  $('#mine, #teammate, #RecommendedAction1, #RecommendedAction2').on('input',function() {
     
-      var mine = parseInt($('#mine').val());
-      var teammate = parseFloat($('#teammate').val());
+  var mine = parseInt($('#mine').val());
+  var teammate = parseFloat($('#teammate').val());
   
-      var action_urn1 = parseInt($('#RecommendedAction1').html());
-      var action_urn2 = parseFloat($('#RecommendedAction2').html());
+  var action_urn1 = parseInt($('#RecommendedAction1').html());
+  var action_urn2 = parseFloat($('#RecommendedAction2').html());
 
-    // T2
-	  var r1 = 100/200
-	  var r2 = (mine+teammate)/200
+  // T2
+	var r1 = 100/200
+	var r2 = (mine+teammate)/200
   
-    var ELT = ( Math.pow((r1*action_urn1 + r2*action_urn2), 0.5)*10).toFixed(0) 
-    var Prob200 = ( Math.pow((r1*action_urn1 + r2*action_urn2), 0.5) ).toFixed(1)
+  var ELT = ( Math.pow((r1*action_urn1 + r2*action_urn2), 0.5)*10).toFixed(0) 
+  var Prob200 = ( Math.pow((r1*action_urn1 + r2*action_urn2), 0.5) ).toFixed(1)
     
-    $('#reported_mine').html(mine);
-	  $('#reported_teammate').html(teammate);
-    $('#ExpectedLT').html(ELT);
-    $('#Prob200').html(Prob200);
+  $('#reported_mine').html(mine);
+	$('#reported_teammate').html(teammate);
+  $('#ExpectedLT').html(ELT);
+  $('#Prob200').html(Prob200);
 
-    });
   });
+});
 </script>
 
 <script>

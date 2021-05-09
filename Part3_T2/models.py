@@ -74,8 +74,9 @@ class Player(BasePlayer):
 
         self.draw_urn2 = 100 - self.draw_urn1
 
-        Prob_Red_Urn1 = self.participant.vars['productivity']/100
-        Prob_Red_Urn2 = self.participant.vars['fundamental']/100
+        ## T2
+        Prob_Red_Urn1 = 100/200
+        Prob_Red_Urn2 = (self.participant.vars['productivity']+self.participant.vars['fundamental'])/200
 
         DrawnBalls_Urn1 = bernoulli.rvs(Prob_Red_Urn1, size = self.draw_urn1)
         DrawnBalls_Urn2 = bernoulli.rvs(Prob_Red_Urn2, size = self.draw_urn2)
