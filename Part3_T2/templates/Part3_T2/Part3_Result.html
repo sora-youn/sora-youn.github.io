@@ -8,44 +8,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script>
-$(document).ready(function(){
-	$('#mine, #teammate').on('input',function() {
-
-    var mine = parseInt($('#mine').val());
-    var teammate = parseFloat($('#teammate').val());
-
-	// T1
-	var r1 = mine
-	var r2 = teammate
-
-    var foc = ( (r1 * r1) / (r1 * r1 + r2 * r2) *100 ).toFixed(0) // the optimal # of balls from urn 1
-	var foc2 = 100 - foc // the optimal # of balls from urn 2
-	
-	$('#reported_mine').html(mine);
-	$('#reported_teammate').html(teammate);
-    $('#RecommendedAction1').html(foc);
-	$('#RecommendedAction2').html(foc2);
-	});
-});
-</script>
-
-<script>
-$(document).ready(function(){
-	var slider = document.getElementById("DecisionSlider");
-	var urn1 = document.getElementById("Urn1");
-	var urn2 = document.getElementById("Urn2");
-	urn1.innerHTML = slider.value; // Display the default slider value
-	urn2.innerHTML = 100 - slider.value;
-
-	// Update the current slider value (each time you drag the slider handle)
-	slider.oninput = function() {
-		urn1.innerHTML = this.value;
-		urn2.innerHTML = 100 - this.value;
-	}
-
-	});
-</script>
 
 {% endblock %}
 
@@ -150,15 +112,14 @@ As a result, <strong> {{num_LTs_Awarded}} lottery tickets </strong> were awarded
 
 
 <!--------------------------------------------------------------------------->
-<div class="container">
+<p>&nbsp;</p>
     <div class="row" style="padding-left:95%;">
         <div class="col-md-2">
             <button name="btn_submit" value="True" class="btn btn-primary btn-large">
                     <span style="font-size:12pt">Next</span>
-         </button>
+            </button>
         </div>
     </div>
-</div>
 
 
 {% endblock %}
