@@ -4,7 +4,13 @@ from .models import Constants
 
 class Part6_Instructions(Page):
     form_model = 'player'
-    form_fields = ['practice'] # the demo MPL
+    form_fields = ['practice'] 
+
+    def vars_for_template(self):
+        # retrieve values from constants and store them in a dictionary
+        return{
+        'g0':Constants.g0
+        }
 
 class Part6_Task(Page):
 # which forms are needed from class player
@@ -15,6 +21,7 @@ class Part6_Task(Page):
     def vars_for_template(self):
         # retrieve values from constants and store them in a dictionary
         return{
+        'g0':Constants.g0,    
         'g1':Constants.g1,
         'g2':Constants.g2,
         'g3':Constants.g3,

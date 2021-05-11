@@ -16,8 +16,8 @@ $(document).ready(function(){
     var teammate = parseFloat($('#teammate').val());
 
 	// T1
-	var r1 = mine
-	var r2 = teammate
+	var r1 = mine/100
+	var r2 = teammate/100
 
     var foc = ( (r1 * r1) / (r1 * r1 + r2 * r2) *100 ).toFixed(0) // the optimal # of balls from urn 1
 	var foc2 = 100 - foc // the optimal # of balls from urn 2
