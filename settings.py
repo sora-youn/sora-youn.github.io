@@ -88,6 +88,11 @@ ROOMS = [
         participant_label_file='_rooms/econ101.txt',
     ),
     dict(name='live_demo', display_name='Room for live demo (no participant labels)'),
+    dict(
+        name='Aug2021',
+        display_name='Experiment',
+        participant_label_file='_rooms/test_label.txt',
+    ),
 ]
 
 ADMIN_USERNAME = 'admin'
