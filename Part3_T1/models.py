@@ -26,7 +26,6 @@ class Constants(BaseConstants):
     ans_part3_cq3 = 0
     ans_part3_cq4 = 0
     ans_part3_cq5 = 0
-    fundamental = 70 
     prize = 200
 
 class Group(BaseGroup):

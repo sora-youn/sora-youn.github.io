@@ -21,14 +21,14 @@
 </style>
 
 <style>
-p    {font-size: 160%; line-height: 200%;}
-ul    {font-size: 160%; line-height: 200%;}
-ol    {font-size: 160%; line-height: 200%;}
+p    {font-size: 120%; line-height: 200%;}
+ul    {font-size: 120%; line-height: 200%;}
+ol    {font-size: 120%; line-height: 200%;}
 </style>
 
 <style>
   .otree-body{
-      max-width: 1400px;
+      max-width: 80%;
   }
 </style> 
 {% endblock %}
@@ -45,15 +45,15 @@ ol    {font-size: 160%; line-height: 200%;}
 <p> If any of your submitted answers are incorrect, you may be excluded from the experiment and deprived of all payments aside from the minimum payment of $5 for attending.  </p>
 <p>&nbsp;</p>
 
-<div style = "width: 1300px; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 0 auto; font-size: 100%; background-color: rgb(240, 239, 236);" >
+<div style = "width: 100%; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 0 auto; font-size: 100%; background-color: rgb(240, 239, 236);" >
     <ol>
-<li>Your task in Part 1 is to position as many of the 100 sliders in the center of representative scale as possible within 5 minutes.</li> 
+<li>Your task in Part 1 is to position as many of the 100 sliders at the center of the representative scale as possible within 5 minutes.</li> 
 <div style="padding-left:85%;">{% formfield player.part1_cq1 label="" %}</div>
 <br>
-<li>The number of red balls you will received at the end of Part 1 equals to the number of sliders that you correctly positioned. </li> 
+<li>The number of Green balls you will receive at the end of Part 1 equals the number of sliders that you correctly positioned. </li> 
 <div style="padding-left:85%;">{% formfield player.part1_cq2 label="" %}</div>	
 <br>
-<li>You will earn 0.5 points for every blue ball you received. </li>
+<li>You earn 0.5 points for every Black ball you received while you earn 0 points for every Green ball you received. </li>
 <div style="padding-left:85%;">{% formfield player.part1_cq3 label="" %}</div>
     </ol>
 </div>

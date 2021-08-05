@@ -84,14 +84,14 @@ $("#sum2").html(sum2.toFixed(0));
 </style>
 
 <style>
-p    {font-size: 160%; line-height: 200%;}
-ul    {font-size: 160%; line-height: 200%;}
-ol    {font-size: 160%; line-height: 200%;}
+p    {font-size: 120%; line-height: 200%;}
+ul    {font-size: 120%; line-height: 200%;}
+ol    {font-size: 120%; line-height: 200%;}
 </style>
 
 <style>
   .otree-body{
-      max-width: 1400px;
+      max-width: 80%;
   }
 </style> 
 
@@ -109,32 +109,33 @@ ol    {font-size: 160%; line-height: 200%;}
 <p> If any of your submitted answers are incorrect, you may be excluded from the experiment and deprived of all payments aside from the minimum payment of $5 for attending.  </p>
 <p>&nbsp;</p>
 
-<div style = "width: 1300px; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 0 auto; font-size: 100%; background-color: rgb(240, 239, 236);" >
+<div style = "width: 100%; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 0 auto; font-size: 100%; background-color: rgb(240, 239, 236);" >
 
   <ol>
 
-<li>Suppose you received 50 red balls and 50 blue balls from Part 1. Also, suppose your teammate received 40 red balls and 60 blue balls from Part 1. </li> 
+<li>Suppose you received 50 Green balls from Part 1. Also, suppose your teammate received 40 Green balls from Part 1. </li> 
 <br>
-  <p style = "font-size: 100%; ">(a) Out of 200 balls in Urn 1, how many balls are red? </p>
+  <p style = "font-size: 100%; ">(a) Out of 200 balls in Urn 1, how many balls are Green? </p>
   <div style="padding-left:85%;">{% formfield player.part3_cq1_a label="" %}	</div>
 
-  <p style = "font-size: 100%; ">(b) Out of 200 balls in Urn 2, how many balls are red? </p>
+  <p style = "font-size: 100%; ">(b) Out of 200 balls in Urn 2, how many balls are Green? </p>
   <div style="padding-left:85%;">{% formfield player.part3_cq1_b label="" %}	</div>
 
 <br>
-<li>Again, suppose you received 50 red balls and 50 blue balls from Part 1, and your teammate received 40 red balls and 60 blue balls from Part 1. Note that each urn has 200 balls in total. </li> 
+<li>Again, suppose you received 50 Green balls from Part 1, and your teammate received 40 Green balls from Part 1. 
+  Note that each urn has 200 balls in total. </li> 
 <br>
-  <p style = "font-size: 100%; ">(a) What is the percent chance (%) that a ball drawn from Urn 1 is red? </p>
+  <p style = "font-size: 100%; ">(a) What is the percent chance (%) that a ball drawn from Urn 1 is Green? </p>
   <div style="padding-left:85%;">{% formfield player.part3_cq2_a label="" %}	</div>
-  <p style = "font-size: 100%; ">(b) What is the percent chance (%) that a ball drawn from Urn 2 is red? </p>
+  <p style = "font-size: 100%; ">(b) What is the percent chance (%) that a ball drawn from Urn 2 is Green? </p>
   <div style="padding-left:85%;">{% formfield player.part3_cq2_b label="" %}	</div>
 
 <br>
-<li>The probability of drawing a red ball from each urn remains constant during the entire experiment.  </li>
+<li>The probability of drawing a Green ball from each urn remains constant during the entire experiment.  </li>
 <div style="padding-left:85%;">{% formfield player.part3_cq3 label="" %}</div>
 
 <br>
-<li>The more red balls are drawn, the more likely it is that you are awareded more lottery tickets.  </li>
+<li>The more Green balls are drawn, the more likely it is that you are awarded more lottery tickets.  </li>
 <div style="padding-left:85%;">{% formfield player.part3_cq4 label="" %}</div> 
 
 <br>

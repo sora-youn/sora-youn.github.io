@@ -21,13 +21,13 @@
 </style>
 
 <style>
-p    {font-size: 160%; line-height: 200%;}
-ul    {font-size: 160%; line-height: 200%;}
+p    {font-size: 120%; line-height: 200%;}
+ul    {font-size: 120%; line-height: 200%;}
 </style>
 
 <style>
   .otree-body{
-      max-width: 1400px;
+      max-width: 80%;
   }
 </style> 
 
@@ -91,9 +91,16 @@ ul    {font-size: 160%; line-height: 200%;}
 <h1 style="text-align: center;"><strong>PART 1 Instructions</strong></h1>
 <p style="text-align: center;">Page <strong>1</strong> out of 2</p>
 <p>&nbsp;</p>
-<p>In Part 1, you will be presented with 100 sliders. Your task is to position as many of the 100 sliders in the center of the respective scale as possible within 5 minutes.</p>
-<br>
-<p><u>A slider will count as correctly positioned at the middle position if you have positioned it between positions 49.5 and 50.5 (so either exactly at the middle position 50 or very nearby position 50)</u>. Initially, each slider is at the very left end of the scale (position 0) and can be moved on the scale with the help of the mouse, maximally to the very right end of the scale (position 100). To move the slider, you have to press the left mouse button. However, the current position of the slider is not shown, so that you have to estimate on your own where the middle of the scale is. The arrows on the keyboard and the mouse wheel are deactivated. The below is an example of a slider.</p>
+<p>In Part 1, you will be presented with 100 sliders. Your task is to position as many of the 100 sliders at the center of the respective scale as possible within 5 minutes.</p>
+<p> 
+  Initially, each slider is at the very left end of the scale (position 0) and can be moved on the scale with the help of the mouse, maximally to the very right end of the scale (position 100). 
+  To move the slider, you have to press the left mouse button. </p>
+<p>
+  <u>A slider will count as correctly positioned at the center if you have positioned it between positions 49.5 and 50.5 (so either exactly at the middle position 50 or very nearby position 50)</u>.
+  The current position of the slider is not shown, so that you have to estimate on your own where the middle of the scale is. 
+  The arrows on the keyboard and the mouse wheel are deactivated. </p>
+<p>
+  The below is an example of a slider.</p>
 <br>
 
   <div class="row" style="width: 350px; padding: 30px; margin: 0 auto; background-color: rgb(240, 238, 238);">
@@ -101,6 +108,21 @@ ul    {font-size: 160%; line-height: 200%;}
           <input type="range" min="0" max="100" value="0" step=".1" style="width:250px">
       </div>
   </div>
+
+<br>
+<br>
+<p>
+  At the end of Part 1, you will receive a total of 100 balls, each of which is Green or Black.  </p>
+<ul>
+  <li>For every <span style="color: green;"><strong>correctly</strong></span> positioned slider, 
+    you will receive <span style="color: green;">one <strong>Green</strong> ball.</span> </li>
+  <li>For every <strong>incorrectly</strong> positioned slider, you will receive one <strong>Black</strong> ball.</li>
+</ul>
+  
+<p> 
+  <u>Notice that the number of Green balls you will have after Part 1 equals the number of sliders you positioned correctly.</u> <br>
+  You will not learn how many Green balls you received until the end of the experiment.</p>
+
 
 <button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
 
@@ -114,25 +136,30 @@ ul    {font-size: 160%; line-height: 200%;}
 <h1 style="text-align: center;"><strong>PART 1 Instructions</strong></h1>
 <p style="text-align: center;">Page <strong>2</strong> out of 2</p>
 <p>&nbsp;</p>
-<p>In the end of Part 1, you will receive 100 balls. 
-  <span style="color: #ff0000;">For each <span style="text-decoration: underline;"><strong>correctly</strong></span> positioned slider, you will receive 1 red ball.</span> 
-  <span style="color: #0000ff;">For every <span style="text-decoration: underline;"><strong>incorrectly</strong></span> positioned slider, you will also receive 1 blue ball.</span> 
-  <strong>Therefore, the ratio of red to blue balls will be determined by how many sliders you correctly positioned</strong>. 
-    You will not learn the number of red and blue balls you received until the end of the experiment.</p>
-<br>
-<p>Every red ball you received will be converted to 0.5 points. 
-  Every blue ball you received will be converted to 0 points. 
-  <strong>Thus, <span style="color: #ff0000;">the number of red balls you received </span> determines your earning from Part 1.</strong> 
-  The number of red balls you received will also play an important role in your payoff from the later parts of the experiment. 
-  Therefore, it is in your interest that you position as many sliders as possible.</p>
-<br>
-<p>The remaining time will be shown on the top of the screen. 
-  When 5 minutes of the working time is over, the number of sliders you positioned correctly will be counted and saved by the computer automatically.
+<!-- <p>
+  <span style="color: green;">For each <span style="text-decoration: underline;"><strong>correctly</strong></span> positioned slider, 
+  you will receive 1 <strong>GREEN</strong> ball.</span> 
+  <span style="color: red;">For every <span style="text-decoration: underline;"><strong>incorrectly</strong></span> positioned slider, 
+  you will receive 1 <strong>RED</strong> ball.</span> 
+  <strong>Therefore, you will receive a total of 100 balls in the end of Part 1, and the numbers of GREEN (and RED) balls you will receive 
+    is determined by how many sliders you correctly positioned at the center</strong>. 
+    You will not learn how many GREEN and RED balls you received until the end of the experiment.</p>
+<br> -->
+
+<p>
+  <span style="color: green;">For every <strong>Green</strong> ball</span> you received, you earn <strong>0.5 points</strong>, while you earn zero points for the black balls you received. 
+  <br> <u>Therefore, you could earn higher points as you position more sliders correctly and receive more Green balls.</u> 
+  The number of Green balls you have after Part 1 also plays an important role in your payoff from the later parts of the experiment. </p>
+
+<p>
+  The remaining time will be shown on the top of the screen. 
+  When 5 minutes of the working time is over, 
+  the number of sliders you positioned correctly will be counted and saved by the computer.
+  Then, you will be presented with Part 2 instructions automatically.
 </p>
-<br>
-<p>The screen for the task looks like this:</p>
-<p style="text-align:center;"><img src="{% static 'Part1_Screenshot.png' %}" alt="Part1 Screenshot" style="width:800px;height:1050px;" class="center"/></p>
-<p>&nbsp;</p>
+<!-- <p style="text-align:center;"><img src="{% static 'Part1_Screenshot.png' %}" alt="Part1 Screenshot" style="width:800px;height:1050px;" class="center"/></p>
+<p>&nbsp;</p> -->
+<p>&nbsp;</p> 
 <p>On the next screen, you are presented with comprehension questions. If any of your submitted answers are incorrect, you may be excluded from the experiment and deprived of all payments aside from the minimum payment of $5 for attending.</p>
 <p>You can review the instructions by clicking &ldquo;Back&rdquo;.</p>
 <p>Once you get familiar with Part 1 instructions, click &ldquo;Confirm&rdquo;.</p>

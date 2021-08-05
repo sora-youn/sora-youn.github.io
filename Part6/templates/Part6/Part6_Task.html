@@ -12,11 +12,11 @@ var index = $(this).index(".select");
 $(".A").removeClass('red');
 $(".B").removeClass('red');
 
-for (m=0;m<=index;m++) {
+for (m=0;m<index;m++) {
 $(".A").eq(m).addClass('red');
 } 
 
-for (m=index+1;m<=20;m++) {
+for (m=index;m<=20;m++) {
 $(".B").eq(m).addClass('red');
 } 
 
@@ -36,13 +36,13 @@ $(".B").eq(m).addClass('red');
 </style>
 
 <style>
-p    {font-size: 160%; line-height: 200%; }
-ul    {font-size: 160%; line-height: 200%;}
+p    {font-size: 120%; line-height: 200%; }
+ul    {font-size: 120%; line-height: 200%;}
 </style>
 
 <style>
   .otree-body{
-      max-width: 1400px;
+      max-width: 80%;
   }
 </style> 
 
@@ -83,7 +83,7 @@ td.red {
 </div>
 {% endif %}
 
-  <table class="table" style = "font-size: 135%;">
+  <table class="table" style = "font-size: 110%;">
     <colgroup>
       <col width="10%">
       <col width="40%">
