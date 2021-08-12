@@ -21,10 +21,10 @@ class Constants(BaseConstants):
     num_attention_check_tries = 2
     num_game_round = 2
     num_rounds = num_attention_check_tries + num_game_round - 1
-    ans_part3_cq1 = [90,40]
+    ans_part3_cq1 = [0,1]
     ans_part3_cq2 = [45,20]
     ans_part3_cq3 = 0
-    ans_part3_cq4 = 0
+    ans_part3_cq4 = 1
     ans_part3_cq5 = 0
     prize = 200
     subcontractor = 40
@@ -41,8 +41,8 @@ class Subsession(BaseSubsession):
 
 
 class Player(BasePlayer):
-    part3_cq1_a = models.IntegerField(min=0, max=100)
-    part3_cq1_b = models.IntegerField(min=0, max=100)
+    part3_cq1_a = models.PositiveIntegerField(choices=[[0, 'True'],[1, 'False']],widget=widgets.RadioSelectHorizontal)
+    part3_cq1_b = models.PositiveIntegerField(choices=[[0, 'True'],[1, 'False']],widget=widgets.RadioSelectHorizontal)
     part3_cq2_a = models.IntegerField(min=0, max=100)
     part3_cq2_b = models.IntegerField(min=0, max=100)
     part3_cq3 = models.PositiveIntegerField(choices=[[0, 'True'],[1, 'False']],widget=widgets.RadioSelectHorizontal)

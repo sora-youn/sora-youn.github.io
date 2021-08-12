@@ -1,0 +1,309 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+<!--------------------------------------------------------------------------->
+{% block scripts %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+	$('#mine, #teammate').on('input',function() {
+
+    var mine = parseInt($('#mine').val());
+    var teammate = parseFloat($('#teammate').val());
+
+	// T1
+	var r1 = mine/100
+	var r2 = teammate/100
+
+    var foc = ( (r1 * r1) / (r1 * r1 + r2 * r2) *100 ).toFixed(0) // the optimal # of balls from urn 1
+	var foc2 = 100 - foc // the optimal # of balls from urn 2
+	
+	$('#reported_mine').html(mine);
+	$('#reported_teammate').html(teammate);
+    $('#RecommendedAction1').html(foc);
+	$('#RecommendedAction2').html(foc2);
+	});
+});
+</script>
+
+<script>
+$(document).ready(function(){
+	$('#mine, #teammate, #RecommendedAction1, #RecommendedAction2').on('input',function() {
+	  
+	var mine = parseInt($('#mine').val());
+	var teammate = parseFloat($('#teammate').val());
+	
+	var action_urn1 = parseInt($('#RecommendedAction1').html());
+	var action_urn2 = parseFloat($('#RecommendedAction2').html());
+  
+	// T1
+	var r1 = mine/100
+	var r2 = teammate/100
+	
+	// var ELT = ( Math.pow((r1*action_urn1 + r2*action_urn2), 0.5)*10).toFixed(0)  -- wrong
+	// var Prob200 = ( Math.pow((r1*action_urn1 + r2*action_urn2), 0.5) ).toFixed(1) -- wrong
+  
+	var ELT = ( (r1*Math.pow(action_urn1, 0.5) + r2*Math.pow(action_urn2, 0.5))*10).toFixed(0) 
+	var Prob200 = ( r1*Math.pow(action_urn1, 0.5) + r2*Math.pow(action_urn2, 0.5) ).toFixed(1)
+	var ExpectedGreen = (r1*action_urn1 + r2*action_urn2).toFixed(0) 
+	  
+	$('#reported_mine').html(mine);
+	$('#reported_teammate').html(teammate);
+	$('#ExpectedLT').html(ELT);
+	$('#Prob200').html(Prob200);
+	$('#ExpectedGreen').html(ExpectedGreen)
+  
+	});
+});
+</script>
+
+<script>
+	function myFunction() {
+	
+		var slider = document.getElementById("DecisionSlider");
+		var urn1 = document.getElementById("Urn1");
+		var urn2 = document.getElementById("Urn2");
+		urn1.innerHTML = slider.value; // Display the default slider value
+		urn2.innerHTML = 100 - slider.value;
+
+		// Update the current slider value (each time you drag the slider handle)
+		slider.oninput = function() {
+			urn1.innerHTML = this.value;
+			urn2.innerHTML = 100 - this.value;
+			}
+
+		$('#check_DecisionSlider').val("True")
+
+		}
+</script>
+
+
+	
+	
+
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block styles %}
+
+<style>
+  input[type=radio] {
+    transform: scale(1.5);
+    margin: 12px -10px 0px -30px;
+  }
+</style>
+
+<style>
+p    {font-size: 120%; line-height: 200%;}
+ul    {font-size: 120%; line-height: 200%;}
+</style>
+
+<style>
+
+.myslider{
+	width: 100%;
+	}
+
+.myslider {
+	-webkit-appearance: none;
+	background: #e0e0e0;
+	width: 100%;
+	height: 25px;
+	opacity: 2;
+	}
+
+.myslider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	cursor: pointer;
+	background: #4f5e60  ;
+	width: 15px;
+	height: 25px;
+	}
+
+.myslider:hover {
+	opacity: 1;
+	}
+
+ </style>
+
+<style>
+    .otree-body{
+        max-width: 80%;
+    }
+</style> 
+
+<style>
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr .5fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 15px 15px;
+  grid-template-areas:
+    "decision_tool history"
+    "decision_tool history"
+    "decision history";
+}
+
+.decision { grid-area: decision; }
+
+.history { grid-area: history; }
+
+.decision_tool { grid-area: decision_tool; }
+
+</style>
+
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block content %}
+
+<!--------------------------------------------------------------------------->
+<h1 style="text-align: center;"><strong>PART 3 </strong></h1>
+<h3 style="text-align: center;"> Round {{game_round_number}} (out of {{num_game_round}}) </h3>
+<br>
+
+<!--------------------------------------------------------------------------->
+<div class="grid-container">
+
+	<!-- decision tool -->
+	<div class="decision_tool" style = "width: 100%; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 10px; font-size: 75%; background-color: rgb(240, 239, 236);" >
+
+<h3 style="text-align: center;"> Decision Tool </h3>
+
+<p> <strong>  Enter your guesses: </strong></p> 
+<p style="padding-left: 40px;">
+	<em>Reminder:</em> The numbers of GREEN balls you and your teammate received 
+	equal to the numbers of sliders you and your teammate correctly positioned, out of 100 sliders, respectively.
+</p>
+<br>
+<table class="table borderless" align="center" style="border-spacing: 90; width: 75%; font-size: 130%;">
+	<colgroup>
+	<col width="50%">
+	<col width="50%">
+	</colgroup>
+		
+	<tr>
+	<td align="center"> Your Guess about <br> # of GREEN balls <b> YOU </b> received </td>
+	<td align="center"> Your Guess about <br> # of GREEN balls <b> YOUR TEAMMATE </b> received </td>
+	</tr>
+		
+	<tr>
+	<td align="center"> <input type='text' name='guess_mine' id='mine' value='' /> {{ form.guess_mine.errors }} </td>
+	<td align="center"> <input type='text' name='guess_teammate' id='teammate' value='' />  {{ form.guess_teammate.errors }} </td>
+	</tr>
+		
+</table>
+
+
+<p> <strong> Recommendation: </strong> </p>	
+    
+    <p style="padding-left: 40px;"> 
+      Conditional on that you received <strong>[ <span id="reported_mine">  </span> ]</strong> GREEN balls 
+          and your teammate received <strong>[ <span id="reported_teammate">  </span> ]</strong> GREEN balls, 
+          the probability of earning 200 points is maximized: </p>
+
+    <p style="padding-left: 100px;">
+      <strong> when you draw [ <span id="RecommendedAction1">  </span> ] balls from Urn 1 and 
+        draw [ <span id="RecommendedAction2">  </span> ]balls from Urn 2. </strong>	
+    </p>
+
+    <p style="padding-left: 40px;">
+      If you follow the recommendation: </p>
+      
+      <p style="padding-left: 100px;"> 
+        <strong> you are expected to observe [ <span id="ExpectedGreen"> </span> ] GREEN balls (out of 100 drawn balls) 
+        <br> and receive [ <span id="ExpectedLT"> </span> ] lottery tickets on average. </strong>
+    </p>
+    <!-- <p style="padding-left: 40px;">
+      This means, you are expected to earn 200 points with probability of <strong>[ <span id="Prob200">  </span> % ]</strong> in this round when you follow the recommendation.
+    </p> -->
+
+	</div>
+
+
+	<!-- History -->
+	<div class="history" style = "width: 100%; font-size: 75%;">
+	
+<h3 style="text-align: center;"> Round History </h3>
+<br>
+<table class="table" style="border-spacing: 90; width: 100%;">
+	<colgroup>
+	<col width="20%">
+	<col width="20%">
+	<col width="20%">
+	<col width="20%">
+	<col width="20%">
+	</colgroup>
+
+	<tr>
+		<th rowspan="2" style= "vertical-align: middle; text-align: center;" >Round</th>
+		<th colspan="2" style="text-align: center;">Your Decision</th>
+		<th rowspan="2" style= "vertical-align: middle; text-align: center;"># of GREEN balls drawn</th>
+		<th rowspan="2" style= "vertical-align: middle; text-align: center;"># of lottery tickets awarded to you</th>
+	  </tr>
+	  <tr>
+		<th style= "vertical-align: middle; text-align: center;"># of balls drawn<br>from Urn 1</th>
+		<th style= "vertical-align: middle; text-align: center;"># of balls drawn<br>from Urn 2</th>
+	  </tr>
+
+	{% for p in player_in_previous_rounds %}
+	<tr>
+	<td style= "vertical-align: middle;" align = "center">{{ p.game_round_number }} </td>
+	<td style= "vertical-align: middle;" align = "center"> {{ p.draw_urn1}}</td>
+	<td style= "vertical-align: middle;" align = "center"> {{ p.draw_urn2}}</td>
+	<td style= "vertical-align: middle;" align = "center"> {{ p.num_redballs}}</td>
+	<td style= "vertical-align: middle;" align = "center">{{ p.num_LTs_Awareded}}</td>
+	</tr>
+	{% endfor %}
+
+
+</table>	
+	</div>
+
+	
+	<!-- Decision -->
+	<div class="decision" style = "width: 100%; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 10px; font-size: 100%; background-color: rgb(240, 239, 236);" >
+
+<h3 style="text-align: center;"> Make your decision! </h3>
+<br>		
+<table class="table borderless" align="center" style="border-spacing: 90; width: 90%; font-size: 115%;">
+	<colgroup>
+	<col width="20%">
+	<col width="60%">
+	<col width="20%">
+	</colgroup>
+
+	<tr>
+	<td align="center" style = "vertical-align: middle;"> From Urn 1, draw <br> <strong> <span id="Urn1"> NaN </span> </strong> balls </td>
+	<td align="center" style = "vertical-align: middle;"> 
+		<input type="hidden" name="check_DecisionSlider" id="check_DecisionSlider"> {{ form.check_DecisionSlider.errors }}
+		<input type="range" min="1" max="99" class = "myslider" id="DecisionSlider" name="draw_urn1" step="1" onclick="myFunction()"> {{ form.draw_urn1.errors }} 
+	</td>
+	<td align="center" style = "vertical-align: middle;"> From Urn 2, draw <br> <strong> <span id="Urn2"> NaN </span> </strong> balls </td>
+	</tr> 
+
+</table>
+
+
+		
+<!--------------------------------------------------------------------------->
+<p>&nbsp;</p>
+    <div class="row" style="padding-left:95%;">
+        <div class="col-md-2">
+            <button name="btn_submit" value="True" class="btn btn-primary btn-large">
+                    <span style="font-size:12pt">Submit</span>
+            </button>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+

@@ -112,34 +112,32 @@ ol    {font-size: 120%; line-height: 200%;}
 <div style = "width: 100%; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 0 auto; font-size: 100%; background-color: rgb(240, 239, 236);" >
 
   <ol>
-
-<li>Suppose you received 50 Green balls from Part 1. Also, suppose your teammate received 40 Green balls from Part 1. </li> 
+<li> Recall that, out of 200 balls in Urn 1, the number of Green balls equals twice the number of Green balls you received in Part 1. 
+  Out of 200 balls in Urn 2, the number of Green balls equals twice the number of Green balls your teammate received in Part 1. </li>
 <br>
-  <p style = "font-size: 100%; ">(a) Out of 100 balls in Urn 1, how many balls are Green? </p>
-  <div style="padding-left:85%;">{% formfield player.part3_cq1_a label="" %}	</div>
-
-  <p style = "font-size: 100%; ">(b) Out of 100 balls in Urn 2, how many balls are Green? </p>
-  <div style="padding-left:85%;">{% formfield player.part3_cq1_b label="" %}	</div>
+<p style = "font-size: 100%; ">(a) The better you were at the slider task in Part 1, the more Green balls are in Urn 1. </p>
+<div style="padding-left:85%;">{% formfield player.part3_cq1_a label="" %}	</div>
+<p style = "font-size: 100%; ">(b) The better your teammate were at the slider task in Part 1, the more Green balls are in Urn 2. </p>
+<div style="padding-left:85%;">{% formfield player.part3_cq1_b label="" %}	</div>
 
 <br>
-<li>Again, suppose you received 50 Green balls from Part 1, and your teammate received 40 Green balls from Part 1. 
-  Note that each urn has 100 balls in total. </li> 
+<li>Suppose you received 50 Green balls from Part 1, and your teammate received 40 Green balls from Part 1. </li> 
 <br>
   <p style = "font-size: 100%; ">(a) What is the percent chance (%) that a ball drawn from Urn 1 is Green? </p>
   <div style="padding-left:85%;">{% formfield player.part3_cq2_a label="" %}	</div>
   <p style = "font-size: 100%; ">(b) What is the percent chance (%) that a ball drawn from Urn 2 is Green? </p>
   <div style="padding-left:85%;">{% formfield player.part3_cq2_b label="" %}	</div>
 
-<br>
-<li>The probability of drawing a Green ball from each urn remains constant during the entire experiment.  </li>
-<div style="padding-left:85%;">{% formfield player.part3_cq3 label="" %}</div>
+  <br>
+  <li>You are likely to get more lottery tickets as you draw more Green balls.  </li>
+  <div style="padding-left:85%;">{% formfield player.part3_cq3 label="" %}</div>
+  
+  <br>
+  <li>The more balls you decided to draw from a single urn, the more likely it is that a Green ball drawn from that urn awards you a lottery ticket.</li>
+  <div style="padding-left:85%;">{% formfield player.part3_cq4 label="" %}</div> 
 
 <br>
-<li>The more Green balls are drawn, the more likely it is that you are awarded more lottery tickets.  </li>
-<div style="padding-left:85%;">{% formfield player.part3_cq4 label="" %}</div> 
-
-<br>
-<li>The more lottery tickets you are awarded, the more likely you win 200 points from Part 3. </li>
+<li>The more lottery tickets you get, the more likely you win 200 points from Part 3. </li>
 <div style="padding-left:85%;">{% formfield player.part3_cq5 label="" %}</div>
 
   </ol>

@@ -1,0 +1,156 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+   
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{% static 'back_button_v3/js/prev_next_button.js' %}"></script>
+<script src="https://unpkg.com/mathjs@9.4.4/lib/browser/math.js"></script>
+
+<script src="https://cdn.plot.ly/plotly-1.35.2.min.js"></script>
+
+<script>
+    function draw() {
+      try {
+        // compile the expression once
+        // const expression = document.getElementById('eq').value + '/5'
+        const draw1 = document.getElementById('eq').value 
+        const expression = '(100 - x)^.5 / (100^.5)' 
+        const expr = math.compile(expression)
+  
+        // evaluate the expression repeatedly for different values of x
+        const xValues = math.range(0, 100, 1, true).toArray()
+        const yValues = xValues.map(function (x) {
+          return expr.evaluate({x: x})
+        })
+  
+        // render the plot using plotly
+        const trace1 = {
+          x: xValues,
+          y: yValues,
+          type: 'scatter'
+        }
+
+        const layout = {
+            title: 'Probability that a Green ball drawn from this urn awards you 10 lottery tickets',
+            titlefont: {
+                    family: 'Old Standard TT, serif',
+                    size: 20,
+                },
+            xaxis: {
+                title: 'The number of balls you decided to draw from one urn',
+                titlefont: {
+                    family: 'Old Standard TT, serif',
+                    size: 18,
+                },
+                tickfont: {
+                family: 'Old Standard TT, serif',
+                size: 14,
+                color: 'black'
+                },
+            },
+            yaxis: {
+                title: 'Probability that a Green ball <br> drawn from this urn awards you 10 lottery tickets',
+                titlefont: {
+                    family: 'Old Standard TT, serif',
+                    size: 18,
+                },
+                tickfont: {
+                family: 'Old Standard TT, serif',
+                size: 14,
+                color: 'black'
+                },
+            },
+        };
+
+        // const layout = {
+        //    title: {
+        //     text:'Probability that a Green ball drawn from this urn awards you 10 lottery tickets',
+        //     font: {
+        //         size: 24
+        //         },
+        //         xref: 'paper',
+        //         x: 0.05,
+        //     },
+        //     xaxis: {
+        //        title: {
+        //         text: 'x Axis',
+        //         font: {
+        //             family: 'Courier New, monospace',
+        //             size: 18,
+        //             color: '#7f7f7f'
+        //             }
+        //        },
+        //     },
+        //     yaxis: {
+        //        title: {
+        //         text: 'y Axis',
+        //         font: {
+        //             family: 'Courier New, monospace',
+        //             size: 18,
+        //             color: '#7f7f7f'
+        //             }
+        //        }  
+        //     }
+        // }
+        
+        const data = [trace1]
+        Plotly.newPlot('plot', data, layout, {displayModeBar: false})
+      }
+      catch (err) {
+        console.error(err)
+        alert(err)
+      }
+    }
+
+    document.getElementById('form').onsubmit = function (event) {
+      event.preventDefault()
+      draw()
+    }
+  
+    draw()
+      
+  </script>
+
+{% endblock %}
+
+
+{% block styles %}
+
+<link href="{% static 'back_button_v3/css/custom.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+
+{% block content %}
+
+<form id="form">
+    <label for="eq">Enter an equation:</label>
+    <input type="text" id="eq" value="50" />
+    <input type="submit" value="Draw" />
+  </form>
+  
+  <div id="plot"></div>
+  
+  <!-- <p>
+    Used plot library: <a href="https://plot.ly/javascript/">Plotly</a>
+  </p> -->
+
+  <!--------------------------------------------------------------------------->
+<p>&nbsp;</p>
+<div class="row" style="padding-left:95%;">
+    <div class="col-md-2">
+        <button name="btn_submit" value="True" class="btn btn-primary btn-large">
+                <span style="font-size:12pt">Submit</span>
+        </button>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+

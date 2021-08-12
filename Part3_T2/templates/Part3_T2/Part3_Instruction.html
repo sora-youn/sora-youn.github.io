@@ -7,58 +7,218 @@
 <script src="{% static 'back_button_v3/js/prev_next_button.js' %}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://unpkg.com/mathjs@9.4.4/lib/browser/math.js"></script>
+<script src="https://cdn.plot.ly/plotly-1.35.2.min.js"></script>
 
 <script>
-$(document).ready(function(){
-	$('#mine, #teammate').on('input',function() {
+  function draw() {
+    try {
+      // compile the expression once
+      // const expression = document.getElementById('eq').value + '/5'
+      const expression = '(100 - x)^.5 / (100^.5)' 
+      const expr = math.compile(expression)
 
-  var mine = parseInt($('#mine').val());
-  var teammate = parseInt($('#teammate').val());
+      // evaluate the expression repeatedly for different values of x
+      const xValues = math.range(1, 99, 1, true).toArray()
+      const yValues = xValues.map(function (x) {
+        return expr.evaluate({x: x}).toFixed(4)*100
+      })
 
-	// T1
-	var r1 = (mine+teammate)/200
-	var r2 = 40/200
+      // render the plot using plotly
+      const trace1 = {
+        x: xValues,
+        y: yValues,
+        type: 'scatter',
+        hovertemplate: 'Price: %{y:$.2f}<extra></extra>',
+      }
 
-  var foc = ( (r1 * r1) / (r1 * r1 + r2 * r2) *100 ).toFixed(0) // the optimal # of balls from urn 1
-	var foc2 = 100 - foc // the optimal # of balls from urn 2
-	
-	$('#reported_mine').html(mine);
-	$('#reported_teammate').html(teammate);
-  $('#RecommendedAction1').html(foc);
-	$('#RecommendedAction2').html(foc2);
-	});
-});
-</script> 
+      const layout = {
+          title: 'The percent chance that a Green ball <br> drawn from that urn awards you a lottery ticket',
+          titlefont: {
+                  family: 'Old Standard TT, serif',
+                  size: 22,
+              },
+          xaxis: {
+              title: 'The number of balls you decided to draw from a single urn',
+              titlefont: {
+                  family: 'Old Standard TT, serif',
+                  size: 20,
+              },
+              tickfont: {
+                family: 'Old Standard TT, serif',
+                size: 14,
+                color: 'black',
+                range: [-2,102],
+                },
+              tickmode: "array", // If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
+              tickvals: [1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 99],
+              ticktext: ['1', '10', '20', '30', '40', '50','60','70','80','90','99']
+          },
+          yaxis: {
+              title: 'Percent Chance (%)',
+              titlefont: {
+                  family: 'Old Standard TT, serif',
+                  size: 20,
+              },
+              tickfont: {
+              family: 'Old Standard TT, serif',
+              size: 14,
+              color: 'black'
+              },
+          },
+      };
+      
+      const data = [trace1]
+      Plotly.newPlot('plot', data, layout, {displayModeBar: false})
+    }
+    catch (err) {
+      console.error(err)
+      alert(err)
+    }
+  }
 
-<script>
-$(document).ready(function(){
-  $('#mine, #teammate, #RecommendedAction1, #RecommendedAction2').on('input',function() {
-    
-  var mine = parseInt($('#mine').val());
-  var teammate = parseFloat($('#teammate').val());
-  
-  var action_urn1 = parseInt($('#RecommendedAction1').html());
-  var action_urn2 = parseFloat($('#RecommendedAction2').html());
+  // document.getElementById('form').onsubmit = function (event) {
+  //   event.preventDefault()
+  //   draw()
+  // }
 
-  // T1
-  var r1 = (mine+teammate)/200
-	var r2 = 40/200
-  
-  // var ELT = ( Math.pow((r1*action_urn1 + r2*action_urn2), 0.5)*10).toFixed(0)  -- wrong
-  // var Prob200 = ( Math.pow((r1*action_urn1 + r2*action_urn2), 0.5) ).toFixed(1) -- wrong
-  
-  var ELT = ( (r1*Math.pow(action_urn1, 0.5) + r2*Math.pow(action_urn2, 0.5))*10).toFixed(0) 
-  var Prob200 = ( r1*Math.pow(action_urn1, 0.5) + r2*Math.pow(action_urn2, 0.5) ).toFixed(1)
-  var ExpectedGreen = (r1*action_urn1 + r2*action_urn2).toFixed(0) 
-
-  $('#reported_mine').html(mine);
-	$('#reported_teammate').html(teammate);
-  $('#ExpectedLT').html(ELT);
-  $('#Prob200').html(Prob200);
-  $('#ExpectedGreen').html(ExpectedGreen)
-  });
-});
+  draw()
 </script>
+
+
+
+<script>
+  function draw2() {
+
+    function check() {
+    //validation code
+    const mine = document.getElementById('guess_mine').value
+    const teammate = document.getElementById('guess_teammate').value  
+    if (mine== parseInt(mine) && teammate == parseInt(teammate) && parseInt(mine) >=0 && parseInt(mine) <=100 && parseInt(teammate) >=0 && parseInt(teammate) <=100) {
+      return true;
+      } else{
+        alert("You must enter an integer from 0-100 for each of the guesses")
+      }
+}  
+
+  if (check()) {
+    try {
+          // compile the expression once
+          const mine = document.getElementById('guess_mine').value
+          const teammate = document.getElementById('guess_teammate').value
+          const r1 = document.getElementById('guess_mine').value/200 + document.getElementById('guess_teammate').value/200
+          const r2 = 40/200
+          const expression = r2 + '*(x)^.5*(100-x)*(1/10) +' + r1 + '*(100-x)^.5*(1/10)*x' // x = # balls to draw from Urn 1 
+          const expr = math.compile(expression)
+  
+          // evaluate the expression repeatedly for different values of x
+          const xValues = math.range(1, 99, 1, true).toArray()
+          const yValues = xValues.map(function (x) {
+            return expr.evaluate({x: x})
+            })
+          
+          const yOptimal = math.max(yValues)
+  
+          const index = yValues.findIndex(fruit => fruit == yOptimal)
+          const Draw1_Optimal = xValues[index]
+          const Draw2_Optimal = 100 - Draw1_Optimal
+  
+          const ExpectedGreen = r1*Draw1_Optimal + r2*Draw2_Optimal
+          const ExpectedLT = yOptimal.toFixed(2)
+  
+          // render the plot using plotly
+          const trace1 = {
+            x: xValues,
+            y: yValues,
+            type: 'scatter',
+            name: '',
+            showlegend: false,
+            hovertemplate: 'Price: %{y:$.2f}<extra></extra>',
+            }
+  
+          const trace2 = {
+            x: [Draw1_Optimal],
+            y: [yOptimal],
+            mode: 'markers',
+            type: 'scatter',
+            name: '',
+            text: ['The Maximum'],
+            marker: { size: 12 },
+            showlegend: false
+            }
+  
+          const layout = {
+              title: 'The expected number of lottery tickets you will be awarded',
+              titlefont: {
+                      family: 'Old Standard TT, serif',
+                      size: 20,
+                  },
+              xaxis: {
+                  title: 'You ball-draw decision <br> (# of balls to draw from Urn 1, # of balls to draw from Urn 2)',
+                  titlefont: {
+                      family: 'Old Standard TT, serif',
+                      size: 18,
+                  },
+                  tickfont: {
+                  family: 'Old Standard TT, serif',
+                  size: 14,
+                  color: 'black',
+                  range: [-2,102],
+                  },
+                  tickmode: "array", // If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
+                  tickvals: [1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 99],
+                  ticktext: ['(1,99)','(10,90)', '(20,80)', '(30,70)', '(30,70)', '(40,60)','(50,50)','(60,40)','(70,30)','(80,20)','(99,1)']
+                },
+              yaxis: {
+                  title: 'The expected number of lottery tickets',
+                  titlefont: {
+                      family: 'Old Standard TT, serif',
+                      size: 18,
+                  },
+                  tickfont: {
+                  family: 'Old Standard TT, serif',
+                  size: 14,
+                  color: 'black',
+                  },
+                  hoverformat: '.2f',
+                  range: [0,100],
+              },
+              autosize: false,
+              width: 700,
+              height: 500,
+              margin: {
+                l: 50,
+                r: 50,
+                b: 100,
+                t: 100,
+                pad: 4
+              },
+            };
+  
+          const data = [trace1, trace2]
+          Plotly.newPlot('plot2', data, layout, {displayModeBar: false})
+          
+          $('#reported_mine').html(mine);
+          $('#reported_teammate').html(teammate);
+          $('#RecommendedAction1').html(Draw1_Optimal);
+          $('#RecommendedAction2').html(Draw2_Optimal);
+          $('#ExpectedGreen').html(ExpectedGreen);
+          $('#ExpectedLT').html(ExpectedLT);
+        }
+  
+    catch (err) {
+          console.error(err)
+          alert(err)
+          }
+  }
+  }
+    
+  draw2()
+  
+  </script>
+
+
+
 
 <script>
   $(document).ready(function(){
@@ -78,21 +238,21 @@ $(document).ready(function(){
   </script>
 
 <script>
-	function myFunction() {
-	
-		var slider = document.getElementById("DecisionSlider");
-		var urn1 = document.getElementById("Urn1");
-		var urn2 = document.getElementById("Urn2");
-		urn1.innerHTML = slider.value; // Display the default slider value
-		urn2.innerHTML = 100 - slider.value;
+  function myFunction() {
+  
+    var slider = document.getElementById("DecisionSlider");
+    var urn1 = document.getElementById("Urn1");
+    var urn2 = document.getElementById("Urn2");
+    urn1.innerHTML = slider.value; // Display the default slider value
+    urn2.innerHTML = 100 - slider.value;
 
-		// Update the current slider value (each time you drag the slider handle)
-		slider.oninput = function() {
-			urn1.innerHTML = this.value;
-			urn2.innerHTML = 100 - this.value;
-			};
+    // Update the current slider value (each time you drag the slider handle)
+    slider.oninput = function() {
+      urn1.innerHTML = this.value;
+      urn2.innerHTML = 100 - this.value;
+      };
 
-		};
+    };
 </script>
 
 {% endblock %}
@@ -124,32 +284,53 @@ ul    {font-size: 120%; line-height: 200%;}
 <style>
 
 .myslider{
-	width: 100%;
-	}
+  width: 100%;
+  }
 
 .myslider {
-	-webkit-appearance: none;
-	background: #e0e0e0;
-	width: 100%;
-	height: 25px;
-	opacity: 2;
-	}
+  -webkit-appearance: none;
+  background: #e0e0e0;
+  width: 100%;
+  height: 25px;
+  opacity: 2;
+  }
 
 .myslider::-webkit-slider-thumb {
-	-webkit-appearance: none;
-	cursor: pointer;
-	background: #4f5e60  ;
-	width: 15px;
-	height: 25px;
-	}
+  -webkit-appearance: none;
+  cursor: pointer;
+  background: #4f5e60  ;
+  width: 15px;
+  height: 25px;
+  }
 
 .myslider:hover {
-	opacity: 1;
-	}
+  opacity: 1;
+  }
 
  </style>
 
+ 
+<style>
 
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr .5fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 15px 15px;
+    grid-template-areas:
+      "decision_tool history"
+      "decision_tool history"
+      "decision history";
+  }
+  
+  .decision { grid-area: decision; }
+  
+  .history { grid-area: history; }
+  
+  .decision_tool { grid-area: decision_tool; }
+  
+  </style>
+  
 
 {% endblock %}
 
@@ -169,7 +350,7 @@ ul    {font-size: 120%; line-height: 200%;}
   <li class="nav-item">
     <a class="nav-link" id="part3-tab" data-toggle="tab" href="#part3" role="tab" aria-controls="part3" onclick="topFunction()"> </a>
   </li>
-  <li class="nav-item">
+  <!-- <li class="nav-item">
     <a class="nav-link" id="part4-tab" data-toggle="tab" href="#part4" role="tab" aria-controls="part4" onclick="topFunction()"> </a>
   </li>
   <li class="nav-item">
@@ -177,7 +358,7 @@ ul    {font-size: 120%; line-height: 200%;}
   </li>
   <li class="nav-item">
     <a class="nav-link" id="part6-tab" data-toggle="tab" href="#part6" role="tab" aria-controls="part6" onclick="topFunction()"> </a>
-  </li>
+  </li> -->
 
 </ul>
 
@@ -190,29 +371,339 @@ ul    {font-size: 120%; line-height: 200%;}
 
 <p>&nbsp;</p>
 <h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
-<p style="text-align: center;">Page <strong>1</strong> out of 6</p>
+<p style="text-align: center;">Page <strong>1</strong> out of 3</p>
 <p>&nbsp;</p>
-<p>In this part of the experiment, you are presented with two urns.</p>
-<!-- <p style="text-align:center;"><img src="{% static 'T1_urnimage.png' %}" alt="Part3 Figure" style="width:800px;height:450px;" class="center"/></p>
-<p>&nbsp;</p> -->
-<p><strong><em>Urn 1</em></strong> contains the 200 balls <strong>YOU</strong> and <strong>YOUR TEAMMATE</strong> received in Part 1.</p>
-<p style="padding-left: 30px;">That is, the number of <span style="color: green;"><strong>Green</strong></span> balls in Urn 1 equals 
-  the number of sliders (out of the 100 sliders given to you) you correctly positioned <em><u>plus</u></em> 
-  the number of sliders (out of the 100 sliders given to your teammate) your teammate correctly positioned in Part 1. 
-  The rest of the balls are black.
+
+<p>
+  In this part of the experiment, you are presented with two urns.
 </p>
-<p>&nbsp;</p>
-<p><em><strong>Urn 2</strong></em> contains the 200 balls.</p>
-<p style="padding-left: 30px;">40 balls are Green and the rest of the balls are Black.</p>
+<p>
+  Part 3 consists of {{num_game_round}} rounds.
+  In every round, you are asked to draw a total of 100 balls from Urn 1 and Urn 2.
+  <br>
+  <u>Your task is to decide how many balls to draw from each urn. </u>
+  You can draw 1-99 balls from a single urn.
+</p>
+
+<ul>
+  <li>
+  <strong><em>Urn 1</em></strong> contains 200 balls.
+  There are as many Green balls as <strong>YOU</strong> and <strong>YOUR TEAMMATE</strong> received in Part 1 . 
+  The rest of the balls are Black.
+  </li>
+  <li>
+  <em><strong>Urn 2</strong></em> contains 200 balls.
+  There are 40 Green balls. 
+  The rest of the balls are Black.
+  </li>
+</ul>
+
+<p>
+  <em>Reminder:</em> You and your teammate received Green balls based on the performance of the slider task in Part 1.  
+</p>
+<ul>
+  <li>
+    The better <strong>YOU</strong> were at the slider task, the more Green balls you received, and hence the more Green balls are in <strong>Urn 1</strong>.
+  </li>
+  <li>
+    The better <strong>YOUR TEAMMATE</strong> were at the slider task, the more Green balls your teammate received, and hence the more Green balls are in <strong>Urn 1</strong>.
+  </li>
+</ul>
+
+<br>
+<p>
+  Whenever a ball is drawn from whichever urn, the drawn ball is replaced with the same-colored ball. 
+  Therefore, the probabilities of drawing a Green ball (and the probabilities of drawing a Black ball) from Urn 1 and Urn 2 do <em>NOT</em> change.
+</p>
+
+<p>Here are some examples:</p>
+
+<ul>
+  <li>
+    Suppose you received 30 Green balls and your teammate received 60 Green balls in Part 1.
+    <br>
+    This means, whenever a ball is drawn from Urn 1, the ball is Green with (30+60)/2 = 45 percent chance and Black with the remaining percent chance (100-45 = 55 percent chance).
+    Furthermore, whenever a ball is drawn from Urn 2, the ball is Green with 40/2 = 20 percent chance and Black with the remaining percent chance (100-20 = 80 percent chance).
+  </li>
+  <li>
+    Suppose you received 50 Green balls and your teammate received 25 Green balls in Part 1.
+    <br>
+    This means, whenever a ball is drawn from Urn 1, the ball is Green with (50+25)/2 = 37.5 percent chance and Black with the remaining percent chance (100-37.5 = 62.5 percent chance).
+    Furthermore, whenever a ball is drawn from Urn 2, the ball is Green with 40/2 = 20 percent chance and Black with the remaining percent chance (100-20 = 80 percent chance).
+  </li>
+  <li>These are just examples for your clarification. 
+    The chances you will face in the actual experiment may be completely different.</li>  
+</ul>
+
 
 <button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
 
 </div>
 
 
+
 <!-- Tab 2 -->
 <div class="tab-pane" id="part2" role="tabpanel" aria-labelledby="part2-tab">
 
+  <p>&nbsp;</p>
+<h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
+<p style="text-align: center;">Page <strong>2</strong> out of 3</p>
+<p>&nbsp;</p>
+<!-- <h3><strong>How do you earn points?</strong></h3> -->
+<p>
+  In every round, you earn either 200 points or zero points. 
+  <br> Once you submit your decision on how many balls to draw from each urn, the computer draws 100 balls accordingly. 
+  <br> Afterward, you get lottery tickets depending on your submitted ball-draw decision and the colors of the drawn balls.
+  <br> <u>The more lottery tickets you get, the more likely you earn 200 points.</u>
+  You will see the detailed explanation on how your payoff will be determined on the next page.
+</p>
+
+<br>
+<p>
+  <strong>How do you get lottery tickets? </strong>
+</p>
+
+<p>
+  There are two factors that determine how many lottery tickets you will get:
+</p>
+<p style="padding-left: 10px;">
+<em>(1) How many Green balls are drawn.</em>
+</p>
+<p style="padding-left: 25px;">
+  For every drawn <span style="color: green;"><strong>Green</strong></span> ball, 
+    you get one lottery ticket or no lottery ticket.
+    For every drawn Black ball, you always get nothing.
+    <br>
+    Therefore, you are likely to get more lottery tickets as you draw more Green balls.
+</p>
+
+<p style="padding-left: 10px;">
+  <em>(2) How many balls you decide to draw from each urn</em>
+</p>
+<p style="padding-left: 25px;">
+  The probability of a drawn Green ball awarding you a lottery ticket depends on how many balls you decided to draw from each urns.
+  The more balls you decided to draw from a single urn, the less likely it is that a Green ball drawn from that urn awards you a lottery ticket. 
+  The below figure visualizes the relationship between the number of ball-draws from a single urn (the x-axis)
+  and the probability that a Green ball drawn from that urn awards you a lottery ticket (the y-axis).
+  <!-- The x-axis represents the number of balls that you decided to draw from Urn 1 (or Urn 2).
+  The y-axis represents the probability that a Green ball drawn from the same urn awards you a lottery ticket. -->
+  If you take your mouse cursor on the figure, it displays exact probabilities. 
+  For example, if you take your mouse cursor on the very right of the figure where the value on the x-axis equals 99, 
+  you will see the corresponding y-value is 10. 
+  This means, if you decided to draw 99 balls from one urn (either Urn 1 or Urn 2), 
+  a Green ball drawn from the same urn awards you a lottery ticket with 10 percent chance. 
+  As another example, take your mouse cursor on the very left of the figure where the value on the x-axis equals 1 and the corresponding y-value is 99.5.
+  This means, if you decided to draw one ball from one urn (either Urn 1 or Urn 2) and the drawn ball is Green, the Green ball awards you a lottery ticket with 99.5 percent chance.
+</p>
+
+<br>
+<div align="center" id="plot"></div>
+<!-- <br>
+<p>
+  For example, if you take your mouse cursor on the very right of the figure where the value on the x-axis equals 99, 
+  you will see the corresponding y-value is 10. 
+  This means, if you decided to draw 99 balls from one urn (either Urn 1 or Urn 2), 
+  a Green ball drawn from the same urn awards you a lottery ticket with 10 percent chance. 
+  As another example, take your mouse cursor on the very left of the figure where the value on the x-axis equals 1 and the corresponding y-value is 99.5.
+  This means, if you decided to draw one ball from one urn (either Urn 1 or Urn 2) and the drawn ball is Green, the Green ball awards you a lottery ticket with 99.5 percent chance.
+</p> -->
+
+<br>
+<p>
+  <strong>How do you optimize ball-draw decisions? </strong>
+</p>
+<p>
+  Then, what should you do to get as many lottery tickets as possible and increase the probability of earning 200 points?
+  In one hand, you should draw more balls from the urn that, you believe, contains more Green balls 
+  because only Green balls give you a chance to get lottery tickets.
+  However, you do not want to draw too many balls from the urn even if you are very confident that it has far more Green balls than the other urn. 
+  The more balls are drawn from one urn, the less likely it is a Green ball drawn from that urn awards you a lottery ticket.  
+  <!-- Therefore, it is obviously not simple to make the optimal ball-draw decision (which guarantees the highest probability of earning 200 points) 
+  and to predict how many lottery tickets you will get. -->
+</p>
+<p>
+  To help your decision-making, we provide a simulator in every decision-making screen.
+  To use the simulator, you must report your guesses about how many Green balls you and your teammate received in Part 1. 
+  Conditional on your guesses, the simulator
+  predicts the expected number of lottery tickets you will get for every possible ball-draw decision. 
+  By <em>the expected number of lottery tickets you will get</em> we mean, 
+  the average number of lottery tickets you will get if you repeat the same ball-draw decision infinitely many times. 
+  Therefore, the simulator can inform you the optimal ball-draw decision that, conditional on your reported guesses, 
+  maximizes the expected number of lottery tickets you will get and hence guarantees the highest probability of earning 200 points. 
+</p>
+
+<br>
+<p>
+  <strong>Practice decision-making! </strong>
+</p> 
+
+<p>
+  Here, you can play around with the simulator and practice your decision-making.
+  The below is the decision-making screen you will face in the actual decision-making rounds. 
+</p>
+
+<p>
+  There is the simulator on the top left of the decision-making screen. 
+  Note that your guesses about the number of Green balls you and your teammate received are set to be zero by default.
+  To revise your guesses, you should enter an integer from 0-100 for each of the guesses 
+  (the minimum and the maximum numbers of Green balls one can receive are 0 and 100). 
+  Once you click "Calculate" button, you will see the corresponding simulation result.
+  You may enter different guesses as many times as you wish. 
+  Whenever you enter new guesses, you must click "Calculate" button so that the simulator updates the simulation results accordingly.
+</p>
+<p>
+  How you interpret the simulation results?
+  First, the x-axis represents ball-draw decisions.
+  As the x-value gets closer to the right, it means more balls are drawn from Urn 1 and less balls are drawn from Urn 2.
+  For example, the very left value on the x-axis (1,99) indicates you draw 1 ball from Urn 1 and 99 balls from Urn 2.
+  The very right value on the x-axis (99,1) indicates you draw 99 balls from Urn 1 and 1 ball from Urn 2.
+  
+  Second, the y-axis represents the expected number of lottery tickets you will get, conditional on your entered guesses.
+  Taking your mouse cursor on the simulation results displays the exact value. 
+</p>
+<p>
+  As an example, suppose you guessed you received 40 Green balls and your teammate received 60 Green balls. 
+  Then, you should enter 40 and 60 for your guesses about yourself and about your teammate, respectively, and then click "Calculate" button. 
+  The simulation result shows every pair of a ball-draw decision and the expected number of lottery tickets you will get conditional on your entered guess. 
+  For instance, conditional on your entered guesses, 
+  you are expected to get 2.48 lottery tickets when you draw 1 ball from Urn 1 and 99 balls from Urn 2 (the very left of the x-axis).
+  Conditional on your entered guesses, 
+  you are expected to get 5.15 lottery tickets when you draw 99 balls from Urn 1 and 1 ball from Urn 2 (the very right of the x-axis).
+  Also, notice that, the optimal ball-draw decision that, conditional on your entered guesses, maximizes the expected number of lottery tickets you will get is colored in orange.
+  In this example, conditional on your entered guesses, 
+  you are expected to get 25.19 lottery tickets to the maximum when you draw 58 balls from Urn 1 and 42 balls from Urn 2. 
+  The simulator also announces what ball-draw decision leads to the optimal ball-draw decision at the bottom of the simulation results.
+</p>
+<p>
+  To submit your decision, you should use the decision-slider located at the bottom left of the decision-making screen. 
+  Once you have submitted your decision, you may not reverse your decision.
+  Afterward, you will receive information about 
+  the total number of Green balls drawn out of 100 ball draws
+  and the number of lottery tickets that are consequently awarded to you.
+</p>
+<p>
+  To help you keep track of your decisions over time, 
+  we also provide you with a history box located on the right of the decision-making screen.
+</p>
+
+
+<br>
+<!--------------------------------------------------------------------------->
+<div class="grid-container" style = "background-color: rgba(190, 190, 190, 0.26); padding: 0px; margin: 0px;">
+
+	<!-- decision tool -->
+<br>
+<div class="decision_tool" style = "width: 100%; border: 2px solid rgb(10, 10, 10); padding: 10px; margin: 10px; font-size: 100%;" >
+
+  <h3 style="text-align: center;"> Simulator </h3>
+  
+  <!-- <p> <strong>  Enter your guesses: </strong></p>  -->
+  
+  <table class="table borderless" align="center" style="border-spacing: 90; width: 75%; font-size: 100%;">
+    <colgroup>
+    <col width="40%">
+    <col width="40%">
+    <col width="20%">
+    </colgroup>
+      
+    <tr>
+    <td align="center"> Your Guess about <br> # of GREEN balls <b> YOU </b> received </td>
+    <td align="center"> Your Guess about <br> # of GREEN balls <b> YOUR TEAMMATE </b> received </td>
+    <td align="center"> </td>
+    </tr>
+      
+    <tr>
+    <td align="center"> <input type='text' name='practice_guess_mine' id='guess_mine' value='0' />  </td>
+    <td align="center"> <input type='text' name='practice_guess_teammate' id='guess_teammate' value='0' />  </td>
+    <!-- <td align="center"> <input type="submit" value="Calculate" /> </td> -->
+    <td> <button type="button" onclick="draw2()" >Calculate</button>  </td>
+    </tr>
+      
+  </table>
+  
+  <div id="plot2" align="center"></div> 
+  
+  <br>
+  <p style="padding-left: 10px;"> 
+    Conditional on that you received <strong><span id="reported_mine">  </span></strong> Green balls 
+    and your teammate received <strong><span id="reported_teammate">  </span></strong> Green balls, 
+    you are expected to get <strong><span id="ExpectedLT"> </span></strong> lottery tickets to the maximum 
+    when you draw <strong><span id="RecommendedAction1"> </span></strong> balls from Urn 1 and <strong><span id="RecommendedAction2"> </span></strong> balls from Urn 2.
+  </p>
+
+
+    </div>
+
+    
+	<!-- History -->
+	<div class="history" style = "width: 95%; font-size: 75%; border: 2px solid rgb(10, 10, 10); padding: 0px; margin: 10px; ">
+	
+    <h3 style="text-align: center;"> Round History </h3>
+    <br>
+    <table class="table" style="border-spacing: 90; width: 95%;">
+      <colgroup>
+      <col width="20%">
+      <col width="20%">
+      <col width="20%">
+      <col width="20%">
+      <!-- <col width="20%"> -->
+      </colgroup>
+    
+      <tr>
+        <th rowspan="2" style= "vertical-align: middle; text-align: center;" >Round</th>
+        <th colspan="2" style="text-align: center;">Your Decision</th>
+        <!-- <th rowspan="2" style= "vertical-align: middle; text-align: center;"># of GREEN balls drawn</th> -->
+        <th rowspan="2" style= "vertical-align: middle; text-align: center;"># of lottery tickets awarded to you</th>
+      </tr>
+      <tr>
+        <th style= "vertical-align: middle; text-align: center;"># of balls drawn<br>from Urn 1</th>
+        <th style= "vertical-align: middle; text-align: center;"># of balls drawn<br>from Urn 2</th>
+      </tr>
+    
+
+      <tr>
+      <td style= "vertical-align: middle;" align = "center"> </td>
+      <td style= "vertical-align: middle;" align = "center"> </td>
+      <td style= "vertical-align: middle;" align = "center"> </td>
+      <td style= "vertical-align: middle;" align = "center"> </td>
+      <!-- <td style= "vertical-align: middle;" align = "center"></td> -->
+      </tr>
+
+    
+    </table>	
+      </div>
+    
+      
+      <!-- Decision -->
+      <div class="decision" style = "width: 100%; border: 2px solid rgb(10, 10, 10); padding: 10px; margin: 10px; font-size: 75%;" >
+    
+    <h3 style="text-align: center;"> Make your decision! </h3>
+    <br>		
+    <table class="table borderless" align="center" style="border-spacing: 90; width: 90%; font-size: 115%;">
+      <colgroup>
+      <col width="20%">
+      <col width="60%">
+      <col width="20%">
+      </colgroup>
+    
+      <tr>
+      <td align="center" style = "vertical-align: middle;"> From Urn 1, draw <br> <strong> <span id="Urn1"> NaN </span> </strong> balls </td>
+      <td align="center" style = "vertical-align: middle;"> 
+        <input type="hidden" name="check_DecisionSlider" id="check_DecisionSlider"> 
+        <input type="range" min="1" max="99" class = "myslider" id="DecisionSlider" name="draw_urn1" step="1" onclick="myFunction()"> 
+      </td>
+      <td align="center" style = "vertical-align: middle;"> From Urn 2, draw <br> <strong> <span id="Urn2"> NaN </span> </strong> balls </td>
+      </tr> 
+    
+    </table>
+    
+      </div>		
+    
+    </div>		
+    
+
+
+<!-- 
 <p>&nbsp;</p>
 <h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
 <p style="text-align: center;">Page <strong>2</strong> out of 6</p>
@@ -234,23 +725,23 @@ ul    {font-size: 120%; line-height: 200%;}
   <tr>
     <td align="center" style = "font-size: 100%;"> From Urn 1, <br>draw <strong> <span id="Urn1"> NaN </span> </strong> balls </td>
     <td align="center" style = "vertical-align: middle;"> 
-		  <input type="range" min="1" max="99" class = "myslider" id="DecisionSlider" step="1" onclick="myFunction()"> 
+      <input type="range" min="1" max="99" class = "myslider" id="DecisionSlider" step="1" onclick="myFunction()"> 
     </td>
     <td align="center" style = "font-size: 100%;"> From Urn 2, <br>draw <strong> <span id="Urn2"> NaN </span> </strong> balls </td>
   </tr> 
 </table>
 <p>&nbsp;</p>
 <p>Whenever a ball is drawn from whichever urn, the drawn ball is replaced with the same-colored ball. 
-  Therefore, the probabilities of drawing a <span style="color: green;"><strong>Green</strong></span> ball (and the probabilities of drawing a Black ball) from Urn 1 and Urn 2 do NOT change as you keep drawing until 100 balls are drawn.</p>
+  Therefore, the probabilities of drawing a <span style="color: green;"><strong>Green</strong></span> ball (and the probabilities of drawing a Black ball) from Urn 1 and Urn 2 do NOT change.
+</p>
 <br>
-<p>For example, suppose  out of 200 balls in Urn 1, 140 balls are Green. 
-  Recall that out of 200 balls in Urn 2, 40 balls are Green. This implies:</p>
+<p>For example, suppose out of 100 balls in Urn 1, 70 balls are Green. Further, assume that out of 100 balls in Urn 2, 20 balls are Green. This implies:</p>
 <ul>
-  <li>Whenever a ball is drawn from Urn 1, the ball is Green with 70% probability and Black with 30% probability.</li>
-  <li>Whenever a ball is drawn from Urn 2, the ball is Green with 20% probability and Black with 80% probability.</li>
+<li>Whenever a ball is drawn from Urn 1, the ball is Green with 70% probability and Black with 30% probability.</li>
+<li>Whenever a ball is drawn from Urn 2, the ball is Green with 20% probability and Black with 80% probability.</li>
 <li>These are examples that are meant to clarify that the probability of drawing a Green (or Black) ball from each urn remains constant during the entire experiment.
   The chances you will face in the actual experiment may be completely different.</li>  
-</ul>
+</ul> -->
 
 <button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 
 <button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
@@ -258,273 +749,59 @@ ul    {font-size: 120%; line-height: 200%;}
   </div>
 
 
+
 <!-- Tab 3 -->
 <div class="tab-pane" id="part3" role="tabpanel" aria-labelledby="part3-tab">
 
-<p>&nbsp;</p>
-<h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
-<p style="text-align: center;">Page <strong>3</strong> out of 6</p>
-<p>&nbsp;</p>
-<!-- <h3><strong>How do you earn points?</strong></h3> -->
-<p>
-  In every round, you earn either 200 points or zero points. 
-  <br> Once you submit your decision on how many balls to draw from each urn, the computer draws 100 balls accordingly. 
-  <br> Then, you receive lottery tickets depending on the colors of the drawn balls.
-</p>
-<ul>
-  <li>For every drawn <span style="color: green;"><strong>Green</strong></span> ball, you are awarded <strong>10 lottery tickets or zero lottery tickets</strong>. </li>
-  <li>For every drawn Black ball, you receive zero lottery tickets.</li>
-</ul>
-<p>
-  The probability of earning 200 points increases in the number of lottery tickets you received. 
-  Specifically, the computer draws a random number "X" from the interval [0,1000]. 
-  Any number within the interval [0,1000] is equally likely to be selected.
-  If "X" is less than or equal to the total number of lottery tickets awarded to you, you earn 200 points.
-  If "X" is greater than the total number of lottery tickets awarded to you, you earn zero points.
-  <strong> In other words, the more lottery tickets you are awarded, the more likely you earn 200 points.</strong>
-</p>
-<p>
-  At the end of Part 3, i.e. when you finished all of {{num_game_round}}  rounds, one of the earnings from these {{num_game_round}} rounds will be randomly chosen as your payment from Part 3.
-</p>
-<br>
-<div style = "width: 100%; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 10px; font-size: 100%; background-color: rgb(240, 239, 236);">
-<h3><strong>IMPORTANT:</strong></h3>
-<ul> 
-<li><em>In every round, you have the possibility to earn 200 points. </em></li>   
-<li><em>The more Green balls you draw, it is more likely that you receive more lottery tickets. </em></li>   
-<li><em>The more lottery tickets you are awarded, the more likely you earn 200 points. </em></li>
-<!-- <li><em>Every 10 lottery tickets awarded to you increases the probability of earning 200 points by 1%.</em></li> -->
-</ul>  
-</div>
-
-<button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button>
-<button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
-
-</div>
-
-
-
-<!-- Tab 4-->
-<div class="tab-pane" id="part4" role="tabpanel" aria-labelledby="part4-tab">
-
   <p>&nbsp;</p>
   <h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
-  <p style="text-align: center;">Page <strong>4</strong> out of 6</p>
+  <p style="text-align: center;">Page <strong>3</strong> out of 3</p>
   <p>&nbsp;</p>
-
-  <p>
-    The probability of a drawn Green ball awarding you 10 lottery tickets depends on how many balls you draw from each urn. 
-    Specifically, given that a ball drawn from Urn 1 (or Urn 2) is <span style="color: green;">Green</span>, 
-      the probability of the drawn Green ball awarding you 10 lottery tickets is exponentially decreasing as you have drawn more balls from Urn 1 (or Urn 2).
-      The below figure visualizes the relationship.
-      The x-axis represents the number of balls that you decided to draw from Urn 1 (or Urn 2).
-      The y-axis represents the probability that a Green ball drawn from Urn 1 (or Urn 2) awards you 10 lottery tickets.
-      <!-- For example, suppose you draw one ball from Urn 1 and 99 balls from Urn 2 (Red dot). 
-      Then, if the ball drawn from Urn 1 is green, the ball awards you 10 lottery tickets with 100% probability. 
-      On the other hand, every Green ball, out of 99 balls drawn from Urn 2, awards you 10 lottery tickets with 10.5% probability  -->
-  </p>
-  <p>
-    For example, Point A represents your decision to draw one ball from one urn.  
-    If the drawn ball is Green, the Green ball awards you 10 lottery tickets with 100% probability. 
+  <!-- <h3><strong>How do you earn points?</strong></h3> -->
   
-    Point B illustrates if you draw 40 balls from one urn, 
-    then every Green ball, out of the 40 balls drawn from that urn, awards you 10 lottery tickets with 15.81% probability. 
   
-    Point C illustrates if you draw 99 balls from one urn, 
-    then every Green ball, out of the 99 balls drawn from that urn, awards you 10 lottery tickets with 10.5% probability. 
+  <p>
+    At the end of every round, the computer draws a random number "X" from the interval [0,100]. 
+    Any number within the interval [0,100] is equally likely to be selected.
+    If "X" is less than or equal to the total number of lottery tickets awarded to you, you earn 200 points.
+    If "X" is greater than the total number of lottery tickets awarded to you, you earn nothing.
+    Here are some examples:
   </p>
-  <p style="text-align:center;"><img src="{% static 'Part3_instruction_Aug5.png' %}" alt="Part3 Figure" style="width:70%;" class="center"/></p>
+  <ul>
+    <li>
+      If you've got 100 lottery tickets, you earn 200 points for sure (with 100 percent chance).
+    </li>
+    <li>
+      If you've got 50 lottery tickets, you earn 200 points with 50 percent chance and earn nothing with 50 percent chance.
+    </li>
+    <li>
+      If you've got 0 lottery tickets, there is no chance that you earn 200 points (with 0 percent chance). 
+    </li>
+  </ul>
+  <p>
+    In other words, the more lottery tickets you are awarded, the more likely you earn 200 points.
+    Every lottery ticket awarded to you increases the probability of earning 200 points by 1 percent chance.
+  </p>
+  
   <br>
   <p>
-    Notice:
-    <ul>
-      <li>As you decided to draw more balls from a single urn, the probability that a Green ball drawn from that urn gives you 10 lottery tickets decreases exponentially.</li>
-      <li>Each additional ball you decided to draw from a single urn lowers the probability 
-        that a Green ball drawn from that urn gives you 10 lottery tickets less than the previous ball lowered the probability.</li>
-    </ul>
-  </p>
-  
-  
-  <p>
-    We also provide a table for you to look up the exact probabilities. 
-      If you click <a href="{% static 'Part3_Table_Aug5.pdf' %}" target="_blank"> <em><u>here</u></em></a>, the table will open in a new tab. 
-      You can freely refer to this table when making your decisions.
+    At the end of Part 3, i.e. when you finished all of {{num_game_round}}  rounds, one of the earnings from these {{num_game_round}} rounds will be randomly chosen as your payment from Part 3.
   </p>
   <br>
-  <p>
-    Here are examples of how you read the table.
-  </p>
-  <p>Example 1:</p>
-  <ul>
-  <li>Suppose you decided to draw 30 balls from Urn 1 and 70 balls from Urn 2. 
-    Then, you should refer to the 30th row of the provided Table where &ldquo;Your Decision&rdquo; column indicates &ldquo;# of balls to be drawn from Urn 1&rdquo; is 30 and &ldquo;# of balls to be drawn from Urn 2&rdquo; is 70.</li>
-  <li>From the 30th row of &ldquo;Probability that a Green ball drawn from Urn 1 awards you 10 lottery tickets&rdquo; column, 
-    you learn that every Green ball that is drawn from Urn 1 gives you 10 lottery tickets with the probability of 18.26%.</li>
-  <li>Similarly, from the 30th row of &ldquo;Probability that a Green ball drawn from Urn 2 awards you 10 lottery tickets&rdquo; column, 
-    you learn that every GREEN ball that is drawn from Urn 2 gives you 10 lottery tickets with the probability of 11.95%.</li>
-  </ul>
-  <p>Example 2:</p>
-  <ul>
-  <li>Suppose you decided to draw 70 balls from Urn 1 and 30 balls from Urn 2. 
-    Then, you should refer to the 70th row of the provided Table where &ldquo;Your Decision&rdquo; column indicates &ldquo;# of balls to be drawn from Urn 1&rdquo; is 70 and &ldquo;# of balls to be drawn from Urn 2&rdquo; is 30.</li>
-  <li>From the 70th row of &ldquo;Probability that a Green ball drawn from Urn 1 awards you 10 lottery tickets&rdquo; column, 
-    you learn that every Green ball that is drawn from Urn 1 gives you 10 lottery tickets with the probability of 11.95%.</li>
-  <li>Similarly, from the 70th row of &ldquo;Probability that a Green ball drawn from Urn 2 awards you 10 lottery tickets&rdquo; column, 
-    you learn that every Green ball that is drawn from Urn 2 gives you 10 lottery tickets with the probability of 18.26%.</li>
-  </ul>
-    
-  <button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button>
-  <button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
-      </div>
-
-
-<!-- Tab 5 -->
-<div class="tab-pane" id="part5" role="tabpanel" aria-labelledby="part5-tab">
-
-<p>&nbsp;</p>
-<h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
-<p style="text-align: center;">Page <strong>5</strong> out of 6</p>
-<p>&nbsp;</p>
-<!-- <h3><strong>How do I maximize the probability of earning 200 points?</strong></h3> -->
-<p>To assist your decision-making, we provide you a <em>decision tool</em>. </p>
-<p>  
-  On the top of the decision-making screen, 
-  you will be asked to enter your guesses about the numbers of <span style="color: green;"><strong>Green</strong></span> balls 
-  that you and your teammate received from Part 1. 
-  <em>Conditional on the entered guesses</em>, the software then calculates the optimal decision for you.
-</p>
-<p>
-  By "optimal decision", we mean a decision that, 
-  conditional on your guesses, 
-  will maximize the expected number of lottery tickets that will be awarded to you, and thus will maximize the probability of you winning 200 points.
-</p>
-<p>
-  You may enter different guesses as many times as you wish. 
-  Whenever you enter new guesses, the software will provide a new optimal decision accordingly.
-  Your final decision could be different from the provided recommendation.
-</p>
-<br>
-
-<h3><strong>Practice the decision tool!</strong></h3>
-<ul>
-  <li>You can play around with the tool on this screen. </li>
-  <li>For each of your guesses, i.e. "Your Guess about # of GREEN balls YOU received" and "Your Guess about # of GREEN balls YOUR TEAMMATE received", 
-      you must enter an integer ranging from 0 to 100. 
-  </li>
-  <li>As an example, suppose you guessed you received 40 Green balls and your teammate received 60 Green balls. </li>
-  <li>Then, you should enter 40 and 60 for your guesses about yourself and about your teammate, respectively. 
-    Once you've done that, you will see the software recommends you draw 86 balls from Urn1 and draw 14 balls from Urn 2.
-    This means, conditional on the guesses you entered, 
-    your optimal decision to maximize the probability of earning 200 points is to draw 86 balls from Urn1 and draw 14 balls from Urn 2.
-    If you actually decide to draw 86 balls from Urn1 and draw 14 balls from Urn 2, conditional on those guesses, 
-    you are expected to observe 46 green balls (out of 100 drawn balls) and receive 54 lottery tickets. </li>
-  <li>This is just an example to illustrate. Your guesses may be completely different.</li>  
-  </ul>
-<br>
-	<!-- Example: decision tool -->
-	<div align="center" style = "width: 80%; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 0 auto; font-size: 100%; background-color: rgb(240, 239, 236);" >
-
-    <h3 style="text-align: center;"> Decision Tool </h3>
-    
-    <p> <strong>  Enter your guesses: </strong></p> 
-    <p style="padding-left: 40px;">
-      <em>Reminder:</em> The numbers of GREEN balls you and your teammate received 
-      equal to the numbers of sliders you and your teammate correctly positioned, out of 100 sliders, respectively.
-    </p>
-    <br>
-    <table class="table borderless" align="center" style="border-spacing: 90; width: 75%; font-size: 110%;">
-      <colgroup>
-      <col width="50%">
-      <col width="50%">
-      </colgroup>
-        
-      <tr>
-      <td align="center"> Your Guess about <br> # of GREEN balls <b> YOU </b> received </td>
-      <td align="center"> Your Guess about <br> # of GREEN balls <b> YOUR TEAMMATE </b> received </td>
-      </tr>
-        
-      <tr>
-      <td align="center"> <input type='text' id='mine' value='' />  </td>
-      <td align="center"> <input type='text' id='teammate' value='' />  </td>
-      </tr>
-        
-    </table>
-    
-    
-    <p> <strong> Recommendation: </strong> </p>	
-    
-    <p style="padding-left: 40px;"> 
-      Conditional on that you received <strong>[ <span id="reported_mine">  </span> ]</strong> GREEN balls 
-          and your teammate received <strong>[ <span id="reported_teammate">  </span> ]</strong> GREEN balls, 
-          the probability of earning 200 points is maximized: </p>
-
-    <p style="padding-left: 100px;">
-      <strong> when you draw [ <span id="RecommendedAction1">  </span> ] balls from Urn 1 and 
-        draw [ <span id="RecommendedAction2">  </span> ]balls from Urn 2. </strong>	
-    </p>
-
-    <p style="padding-left: 40px;">
-      If you follow the recommendation: </p>
-      
-      <p style="padding-left: 100px;"> 
-        <strong> you are expected to observe [ <span id="ExpectedGreen"> </span> ] GREEN balls (out of 100 drawn balls) 
-        <br> and receive [ <span id="ExpectedLT"> </span> ] lottery tickets on average. </strong>
-    </p>
-    <!-- <p style="padding-left: 40px;">
-      This means, you are expected to earn 200 points with probability of <strong>[ <span id="Prob200">  </span> % ]</strong> in this round when you follow the recommendation.
-    </p> -->
-    
-      </div>
-
-<button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button>
-<button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
-
-</div>
-
-
-<!-- Tab 6 -->
-<div class="tab-pane" id="part6" role="tabpanel" aria-labelledby="part6-tab">
-
-<p>&nbsp;</p>
-<h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
-<p style="text-align: center;">Page <strong>6</strong> out of 6</p>
-<p>&nbsp;</p>
-<p> 
-  To submit your decision, indicate your decision by positioning the decision slider at the bottom 
-  and click &ldquo;Submit&rdquo;.
-  <br>Once you have submitted your decision, you may not reverse your decision.
-</p>
-<p>
-  Afterward, you will receive information about 
-  the total number of Green balls drawn out of 100 ball draws and the number of lottery tickets that are consequently awarded to you.
-</p>
-<p>
-  To help you keep track of your decisions over time, 
-  we also provide you with a history box located on the right side of all decision-making screens. 
-</p>
-<br>
-<!-- <h4><li>Decision-making Screen (example):</li></h4>
-<p style="text-align:center;"><img src="{% static 'Part3_T1_DecisionMakingScreen.png' %}" alt="Part3 Figure" style="width:80%" class="center"/></p>
-<br>
-<h4><li>Summary Screen (example):</li></h4>
-<p style="text-align:center;"><img src="{% static 'Part3_T1_SummaryScreen.png' %}" alt="Part3 Figure" style="width:80%" class="center"/></p> -->
-
-
-<p>On the next screen, you are presented with comprehension questions.
-  If any of your submitted answers are incorrect, you may be excluded from the experiment and deprived of all payments aside from the minimum payment of $5 for attending.</p>
-<br>
-<p>You can review the instructions by clicking "Back". 
-  <br>Once you get familiar with Part 3 instructions, click &ldquo;Confirm&rdquo;.</p>
-
-  <button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button>
-  <button class="nexttab btn-primary btn next">Confirm</button>
-    </div>
+  
+  <p>On the next screen, you are presented with comprehension questions.
+    If any of your submitted answers are incorrect, you may be excluded from the experiment and deprived of all payments aside from the minimum payment of $5 for attending.</p>
+  <br>
+  <p>You can review the instructions by clicking "Back". 
+    <br>Once you get familiar with Part 3 instructions, click &ldquo;Confirm&rdquo;.</p>
   
   
+    <button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 
+    <button class="nexttab btn-primary btn next">Confirm</button>
+  </div>
+  {% endblock %}
+  
 
-
-
-{% endblock %}
 
 
 
