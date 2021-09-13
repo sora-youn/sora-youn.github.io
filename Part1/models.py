@@ -21,7 +21,7 @@ class Constants(BaseConstants):
     num_attention_check_tries = 2
     num_game_round = 1
     num_rounds = num_attention_check_tries + num_game_round - 1
-    payment_per_correct_answer = 1 
+    point_per_correct_slider = 1
     ans_part1_cq1 = 0
     ans_part1_cq2 = 0
     ans_part1_cq3 = 1
@@ -297,8 +297,7 @@ class Player(BasePlayer):
         self.productivity = self.participant.vars['productivity']
         
         ## payoff from Part 1 = the number of correctly positioned sliders * 0.5
-        self.payoff = self.participant.vars['productivity'] * 0.5
-
+        self.payoff = self.participant.vars['productivity'] * Constants.point_per_correct_slider
         ##
         if self.participant.vars['productivity'] <=10:
             self.participant.vars['bin_index_mine'] = 0

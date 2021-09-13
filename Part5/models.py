@@ -18,10 +18,10 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
     # these are the lottery payoffs, f1 and f2 refer to lottery A and f3 and f4 to lottery B
-    f1 = 20
-    f2 = 16
-    f3 = 38.5
-    f4 = 1
+    f1 = 200
+    f2 = 160
+    f3 = 385
+    f4 = 10
 
 class Group(BaseGroup):
     pass
@@ -38,6 +38,12 @@ class Player(BasePlayer):
     # Define here the methods associated to Players
     # this method is needed to compute payoffs
     def set_payoff(self):
+        #*******************************************
+        # select between part 5 and part 6 for payment
+        #*******************************************
+        # select one row randomly for payment (from module random)
+        self.participant.vars['pref_payment'] = random.randint(1,2)
+
         #*******************************************
         # select random row and random outcome
         #*******************************************
@@ -82,7 +88,10 @@ class Player(BasePlayer):
                 self.participant.vars['points_earned_Part5'] = Constants.f4
 
         # write the payoff to player.payoff
-        self.payoff = self.participant.vars['points_earned_Part5']
+        if self.participant.vars['pref_payment'] == 1:
+            self.payoff = self.participant.vars['points_earned_Part5']
+        else:
+            self.payoff = 0
         
 
 

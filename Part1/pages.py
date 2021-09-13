@@ -9,6 +9,12 @@ class Intro_Part1_Instruction(Page):
         else:
             return self.participant.vars["fail"]
 
+    def vars_for_template(self):
+        return dict(
+            point_per_correct_slider  = Constants.point_per_correct_slider 
+        )
+            
+
 
 class Part1_CQ(Page):            
     form_model = 'player'
@@ -29,6 +35,11 @@ class Part1_CQ(Page):
             return True
         else:
             return self.participant.vars["fail"]    
+
+    def vars_for_template(self):
+        return dict(
+            point_per_correct_slider  = Constants.point_per_correct_slider 
+        )        
 
 
 class SecondChance(Page):

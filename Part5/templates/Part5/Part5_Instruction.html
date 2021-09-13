@@ -2,7 +2,15 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree %}
 
+{% block scripts %}
+<script src="{% static 'back_button_v3/js/prev_next_button.js' %}"></script>
+{% endblock %}
+
+
 {% block styles %}
+
+<link href="{% static 'back_button_v3/css/custom.css' %}" rel="stylesheet">
+
 <style>
   input[type=radio] {
     transform: scale(1.5);
@@ -25,40 +33,73 @@ ul    {font-size: 120%; line-height: 200%;}
 
 {% block content %}
 
+
+<!-- Tab navigation -->
+<ul class="nav nav-tabs fixed-top navbar-light bg-light justify-content-center " id="myTab" role="tablist">
+
+  <li class="nav-item" >
+    <a class="nav-link active" id="part1-tab" data-toggle="tab" href="#part1" role="tab" aria-controls="part1" onclick="topFunction()"> </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="part2-tab" data-toggle="tab" href="#part2" role="tab" aria-controls="part2" onclick="topFunction()"> </a>
+  </li>
+</ul>
+
+
+<!-- Tab content -->
+<div class="tab-content" id="myTabContent">
+
+  <!-- Tab 1 -->
+  <div class="tab-pane show active" id="part1" role="tabpanel" aria-labelledby="part1-tab">
+
+
+    <p>&nbsp;</p>
+    <h1 style="text-align: center;"><strong>PART 5 & 6</strong></h1>
+    <p>&nbsp;</p>
+    
+    
+    <p>
+      You are about to begin Part 5 and Part 6.
+    </p>
+
+    <p>
+      One of the two parts will be selected at random for payment. 
+      Since you do not know, and we do not know, which part will be selected, your best bet is to make each decision as if you will be paid for it. 
+    </p>
+    
+<button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
+
+  </div>
+
+
+  <!-- Tab 2 -->
+  <div class="tab-pane" id="part2" role="tabpanel" aria-labelledby="part2-tab">
+    <p>&nbsp;</p>  
 <h1 style="text-align: center;"><strong>PART 5 Instructions</strong></h1>
 <p style="text-align: center;">Page <strong>1</strong> out of 1</p>
 <p>&nbsp;</p>
 
-<p>
-  Now, you are facing 10 separate decisions numbering 1 through 10.
-  <br>Each of these decisions is a choice between “Option A” or “Option B”. 
-</p>
-<p>
-  In each of the 10 decisions, Option A pays either <i>{{f1}} points</i> or <i>{{f2}} points</i>.
-  Option B, on the other hand, pays either <i>{{f3}} points</i> or <i>{{f4}} point</i>.
-  The only difference between the 10 decisions is the chances of earning the higher payoff for each option.
-</p> 
-<p>
-  To choose an Option for each decision, you will make one choice in the “Switch” column. 
-  This choice indicates that you would like to switch from Option A to Option B. 
-  For each decision before your choice, Option A will be used for payment. 
-  For each decision after your choice, including the decision where the choice was made, Option B will be used.
-</p>
-
-<p>One of these decisions would be randomly selected to determine your payoffs.</p> 
-
-
-<!--------------------------------------------------------------------------->
-<p>&nbsp;</p>
-    <div class="row" style="padding-left:95%;">
-        <div class="col-md-2">
-            <button name="btn_submit" value="True" class="btn btn-primary btn-large">
-                    <span style="font-size:12pt">Next</span>
-            </button>
-        </div>
-    </div>
+    <p>
+      In Part 5, you are facing 10 separate decisions numbering 1 through 10.
+      <br>Each of these decisions is a choice between “Option A” or “Option B”. 
+    </p>
+    <p>
+      In each of the 10 decisions, Option A pays either <i>{{f1}} points</i> or <i>{{f2}} points</i>.
+      Option B, on the other hand, pays either <i>{{f3}} points</i> or <i>{{f4}} points</i>.
+      The only difference between the 10 decisions is the chances of earning the higher payoff for each option.
+    </p> 
+    <p>
+      To choose an Option for each decision, you will make one choice in the “Switch” column. 
+      This choice indicates that you would like to switch from Option A to Option B. 
+      For each decision before your choice, Option A will be used for payment. 
+      For each decision after your choice, including the decision where the choice was made, Option B will be used.
+    </p>
+    
+    <p>One of these decisions would be randomly selected to determine your payoffs.</p> 
 
 
+<!-- <button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button>  -->
+<button class="nexttab btn-primary btn next">Confirm</button>
 
-
+  </div>  
 {% endblock %}

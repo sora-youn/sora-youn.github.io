@@ -8,89 +8,211 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://unpkg.com/mathjs@9.4.4/lib/browser/math.js"></script>
-<script src="https://cdn.plot.ly/plotly-1.35.2.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 <script>
-  function draw() {
-    try {
-      // compile the expression once
-      // const expression = document.getElementById('eq').value + '/5'
-      const expression = '(100 - x)^.5 / (100^.5)' 
-      const expr = math.compile(expression)
+function draw() {
+  try {
+    // compile the expression once
+    const expression = '(x)^(-.5)*100' 
+    const expression2 = '(100-x)^(-.5)*100' 
+    var expr = math.compile(expression)
+    var expr2 = math.compile(expression2)
 
-      // evaluate the expression repeatedly for different values of x
-      const xValues = math.range(1, 99, 1, true).toArray()
-      const yValues = xValues.map(function (x) {
-        return expr.evaluate({x: x}).toFixed(4)*100
+    // evaluate the expression repeatedly for different values of x
+    var xValues = math.range(1, 99, 1, true).toArray()
+    var yValues = xValues.map(function (x) {
+      return expr.evaluate({x: x}).toFixed(4)
       })
+    var yValues2 = xValues.map(function (x) {
+      return expr2.evaluate({x: x}).toFixed(4)
+      })  
 
-      // render the plot using plotly
-      const trace1 = {
-        x: xValues,
-        y: yValues,
+    const xlabel = ['(	1,	99	)',
+          '(	2,	98	)',
+          '(	3,	97	)',
+          '(	4,	96	)',
+          '(	5,	95	)',
+          '(	6,	94	)',
+          '(	7,	93	)',
+          '(	8,	92	)',
+          '(	9,	91	)',
+          '(	10,	90	)',
+          '(	11,	89	)',
+          '(	12,	88	)',
+          '(	13,	87	)',
+          '(	14,	86	)',
+          '(	15,	85	)',
+          '(	16,	84	)',
+          '(	17,	83	)',
+          '(	18,	82	)',
+          '(	19,	81	)',
+          '(	20,	80	)',
+          '(	21,	79	)',
+          '(	22,	78	)',
+          '(	23,	77	)',
+          '(	24,	76	)',
+          '(	25,	75	)',
+          '(	26,	74	)',
+          '(	27,	73	)',
+          '(	28,	72	)',
+          '(	29,	71	)',
+          '(	30,	70	)',
+          '(	31,	69	)',
+          '(	32,	68	)',
+          '(	33,	67	)',
+          '(	34,	66	)',
+          '(	35,	65	)',
+          '(	36,	64	)',
+          '(	37,	63	)',
+          '(	38,	62	)',
+          '(	39,	61	)',
+          '(	40,	60	)',
+          '(	41,	59	)',
+          '(	42,	58	)',
+          '(	43,	57	)',
+          '(	44,	56	)',
+          '(	45,	55	)',
+          '(	46,	54	)',
+          '(	47,	53	)',
+          '(	48,	52	)',
+          '(	49,	51	)',
+          '(	50,	50	)',
+          '(	51,	49	)',
+          '(	52,	48	)',
+          '(	53,	47	)',
+          '(	54,	46	)',
+          '(	55,	45	)',
+          '(	56,	44	)',
+          '(	57,	43	)',
+          '(	58,	42	)',
+          '(	59,	41	)',
+          '(	60,	40	)',
+          '(	61,	39	)',
+          '(	62,	38	)',
+          '(	63,	37	)',
+          '(	64,	36	)',
+          '(	65,	35	)',
+          '(	66,	34	)',
+          '(	67,	33	)',
+          '(	68,	32	)',
+          '(	69,	31	)',
+          '(	70,	30	)',
+          '(	71,	29	)',
+          '(	72,	28	)',
+          '(	73,	27	)',
+          '(	74,	26	)',
+          '(	75,	25	)',
+          '(	76,	24	)',
+          '(	77,	23	)',
+          '(	78,	22	)',
+          '(	79,	21	)',
+          '(	80,	20	)',
+          '(	81,	19	)',
+          '(	82,	18	)',
+          '(	83,	17	)',
+          '(	84,	16	)',
+          '(	85,	15	)',
+          '(	86,	14	)',
+          '(	87,	13	)',
+          '(	88,	12	)',
+          '(	89,	11	)',
+          '(	90,	10	)',
+          '(	91,	9	)',
+          '(	92,	8	)',
+          '(	93,	7	)',
+          '(	94,	6	)',
+          '(	95,	5	)',
+          '(	96,	4	)',
+          '(	97,	3	)',
+          '(	98,	2	)',
+          '(	99,	1	)']
+
+    // render the plot using plotly
+    var trace1 = {
         type: 'scatter',
-        hovertemplate: 'Price: %{y:$.2f}<extra></extra>',
+        mode: 'lines+markers',
+        x: xlabel,
+        y: yValues,
+        name: 'Urn 1',
+        hoverinfo: 'y',
+        hovertemplate: 'A Green ball drawn from <b>Urn 1</b> gives you a lottery ticket with <b>%{y} percant chance</b>.'+ "<extra></extra>",
+        showlegend: true
       }
 
-      const layout = {
-          title: 'The percent chance that a Green ball <br> drawn from that urn awards you a lottery ticket',
+    var trace2 = {
+      x: xlabel,
+      y: yValues2,
+      type: 'scatter',
+      mode: 'lines+markers',
+      hoverinfo: 'y',
+      hovertemplate: 'A Green ball drawn from <b>Urn 2</b> gives you a lottery ticket with <b>%{y} percant chance</b>.'+ "<extra></extra>",
+      name: 'Urn 2',
+      hoverdistance: -1,
+      showlegend: true
+      }
+
+    var layout = {
+      hovermode:'x unified',
+      title: 'The percent chance that a Green ball <br> drawn from each urn awards you a lottery ticket',
+      titlefont: {
+        family: 'Old Standard TT, serif',
+        size: 22,
+        },
+        xaxis: {
+          // showticklabels : false, 
+          title: 'Your decision <br> (# of balls to be drawn from Urn 1, # of balls to be drawn from Urn 2)',
           titlefont: {
-                  family: 'Old Standard TT, serif',
-                  size: 22,
-              },
-          xaxis: {
-              title: 'The number of balls you decided to draw from a single urn',
-              titlefont: {
-                  family: 'Old Standard TT, serif',
-                  size: 20,
-              },
-              tickfont: {
-                family: 'Old Standard TT, serif',
-                size: 14,
-                color: 'black',
-                range: [-2,102],
-                },
-              tickmode: "array", // If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
-              tickvals: [1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 99],
-              ticktext: ['1', '10', '20', '30', '40', '50','60','70','80','90','99']
+            family: 'Old Standard TT, serif',
+            size: 20,
+            },
+          tickfont: {
+            family: 'Old Standard TT, serif',
+            size: 14,
+            color: 'black',
+            range: [1,99],
+            },
+          zeroline: true,  
+          tickmode: "array", // If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
+          tickvals: [0, 9, 19, 29, 39, 49, 59, 69, 79, 89, 99],
+        ticktext: ['( 1, 99 )','( 10, 90 )', '( 20, 80 )', '( 30, 70 )', '( 40, 60 )','( 50, 50 )','( 60, 40 )','( 70, 30 )','( 80, 20 )','( 90, 10 )','( 99, 1 )'],  
+      },
+        yaxis: {
+          hoverformat: '.2f',
+          title: 'Percent Chance (%)',
+          titlefont: {
+            family: 'Old Standard TT, serif',
+            size: 20,
+            },
+          tickfont: {
+            family: 'Old Standard TT, serif',
+            size: 14,
+            color: 'black',
+            range: [0,100],
+            },
           },
-          yaxis: {
-              title: 'Percent Chance (%)',
-              titlefont: {
-                  family: 'Old Standard TT, serif',
-                  size: 20,
-              },
-              tickfont: {
-              family: 'Old Standard TT, serif',
-              size: 14,
-              color: 'black'
-              },
-          },
+        width: 1200,  
       };
       
-      const data = [trace1]
-      Plotly.newPlot('plot', data, layout, {displayModeBar: false})
+    var data = [trace1, trace2]
+    Plotly.newPlot('plot', data, layout, {displayModeBar: true, displaylogo: false})
+
     }
+
     catch (err) {
       console.error(err)
       alert(err)
-    }
+      }
   }
 
-  // document.getElementById('form').onsubmit = function (event) {
-  //   event.preventDefault()
-  //   draw()
-  // }
-
-  draw()
+draw()
 </script>
 
-
-
 <script>
-  function draw2() {
 
-    function check() {
+function draw2() {
+
+  function check() {
     //validation code
     const mine = document.getElementById('guess_mine').value
     const teammate = document.getElementById('guess_teammate').value  
@@ -102,121 +224,231 @@
 }  
 
   if (check()) {
-    try {
-          // compile the expression once
-          const mine = document.getElementById('guess_mine').value
-          const teammate = document.getElementById('guess_teammate').value
-          const r1 = document.getElementById('guess_mine').value/200 + document.getElementById('guess_teammate').value/200
-          const r2 = 40/200
-          const expression = r2 + '*(x)^.5*(100-x)*(1/10) +' + r1 + '*(100-x)^.5*(1/10)*x' // x = # balls to draw from Urn 1 
-          const expr = math.compile(expression)
-  
-          // evaluate the expression repeatedly for different values of x
-          const xValues = math.range(1, 99, 1, true).toArray()
-          const yValues = xValues.map(function (x) {
-            return expr.evaluate({x: x})
-            })
-          
-          const yOptimal = math.max(yValues)
-  
-          const index = yValues.findIndex(fruit => fruit == yOptimal)
-          const Draw1_Optimal = xValues[index]
-          const Draw2_Optimal = 100 - Draw1_Optimal
-  
-          const ExpectedGreen = r1*Draw1_Optimal + r2*Draw2_Optimal
-          const ExpectedLT = yOptimal.toFixed(2)
-  
-          // render the plot using plotly
-          const trace1 = {
-            x: xValues,
-            y: yValues,
-            type: 'scatter',
-            name: '',
-            showlegend: false,
-            hovertemplate: 'Price: %{y:$.2f}<extra></extra>',
-            }
-  
-          const trace2 = {
-            x: [Draw1_Optimal],
-            y: [yOptimal],
-            mode: 'markers',
-            type: 'scatter',
-            name: '',
-            text: ['The Maximum'],
-            marker: { size: 12 },
-            showlegend: false
-            }
-  
-          const layout = {
-              title: 'The expected number of lottery tickets you will be awarded',
-              titlefont: {
-                      family: 'Old Standard TT, serif',
-                      size: 20,
-                  },
-              xaxis: {
-                  title: 'You ball-draw decision <br> (# of balls to draw from Urn 1, # of balls to draw from Urn 2)',
-                  titlefont: {
-                      family: 'Old Standard TT, serif',
-                      size: 18,
-                  },
-                  tickfont: {
-                  family: 'Old Standard TT, serif',
-                  size: 14,
-                  color: 'black',
-                  range: [-2,102],
-                  },
-                  tickmode: "array", // If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
-                  tickvals: [1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 99],
-                  ticktext: ['(1,99)','(10,90)', '(20,80)', '(30,70)', '(30,70)', '(40,60)','(50,50)','(60,40)','(70,30)','(80,20)','(99,1)']
-                },
-              yaxis: {
-                  title: 'The expected number of lottery tickets',
-                  titlefont: {
-                      family: 'Old Standard TT, serif',
-                      size: 18,
-                  },
-                  tickfont: {
-                  family: 'Old Standard TT, serif',
-                  size: 14,
-                  color: 'black',
-                  },
-                  hoverformat: '.2f',
-                  range: [0,100],
-              },
-              autosize: false,
-              width: 700,
-              height: 500,
-              margin: {
-                l: 50,
-                r: 50,
-                b: 100,
-                t: 100,
-                pad: 4
-              },
-            };
-  
-          const data = [trace1, trace2]
-          Plotly.newPlot('plot2', data, layout, {displayModeBar: false})
-          
-          $('#reported_mine').html(mine);
-          $('#reported_teammate').html(teammate);
-          $('#RecommendedAction1').html(Draw1_Optimal);
-          $('#RecommendedAction2').html(Draw2_Optimal);
-          $('#ExpectedGreen').html(ExpectedGreen);
-          $('#ExpectedLT').html(ExpectedLT);
-        }
-  
-    catch (err) {
-          console.error(err)
-          alert(err)
-          }
-  }
-  }
-    
-  draw2()
-  
-  </script>
+  try {
 
+    //compile the expression once
+    const mine = document.getElementById('guess_mine').value
+    const teammate = document.getElementById('guess_teammate').value    
+    const r1 = document.getElementById('guess_mine').value/200 + document.getElementById('guess_teammate').value/200
+    const r2 = 40/200
+    const expression = r1 + '*(x)^.5 +' + r2 + '*(100-x)^.5' // x = # balls to draw from Urn 1 
+    const expr = math.compile(expression)
+
+    // evaluate the expression repeatedly for different values of x
+    const xValues = math.range(1, 99, 1, true).toArray()
+    const yValues = xValues.map(function (x) {
+      return expr.evaluate({x: x})
+      })
+          
+    const yOptimal = math.max(yValues)
+  
+    const index = yValues.findIndex(fruit => fruit == yOptimal)
+    const Draw1_Optimal = xValues[index]
+    const Draw2_Optimal = 100 - Draw1_Optimal
+  
+    const ExpectedGreen = r1*Draw1_Optimal + r2*Draw2_Optimal
+    const ExpectedLT = yOptimal.toFixed(2)
+  
+    const xlabel = ['(	1,	99	)',
+          '(	2,	98	)',
+          '(	3,	97	)',
+          '(	4,	96	)',
+          '(	5,	95	)',
+          '(	6,	94	)',
+          '(	7,	93	)',
+          '(	8,	92	)',
+          '(	9,	91	)',
+          '(	10,	90	)',
+          '(	11,	89	)',
+          '(	12,	88	)',
+          '(	13,	87	)',
+          '(	14,	86	)',
+          '(	15,	85	)',
+          '(	16,	84	)',
+          '(	17,	83	)',
+          '(	18,	82	)',
+          '(	19,	81	)',
+          '(	20,	80	)',
+          '(	21,	79	)',
+          '(	22,	78	)',
+          '(	23,	77	)',
+          '(	24,	76	)',
+          '(	25,	75	)',
+          '(	26,	74	)',
+          '(	27,	73	)',
+          '(	28,	72	)',
+          '(	29,	71	)',
+          '(	30,	70	)',
+          '(	31,	69	)',
+          '(	32,	68	)',
+          '(	33,	67	)',
+          '(	34,	66	)',
+          '(	35,	65	)',
+          '(	36,	64	)',
+          '(	37,	63	)',
+          '(	38,	62	)',
+          '(	39,	61	)',
+          '(	40,	60	)',
+          '(	41,	59	)',
+          '(	42,	58	)',
+          '(	43,	57	)',
+          '(	44,	56	)',
+          '(	45,	55	)',
+          '(	46,	54	)',
+          '(	47,	53	)',
+          '(	48,	52	)',
+          '(	49,	51	)',
+          '(	50,	50	)',
+          '(	51,	49	)',
+          '(	52,	48	)',
+          '(	53,	47	)',
+          '(	54,	46	)',
+          '(	55,	45	)',
+          '(	56,	44	)',
+          '(	57,	43	)',
+          '(	58,	42	)',
+          '(	59,	41	)',
+          '(	60,	40	)',
+          '(	61,	39	)',
+          '(	62,	38	)',
+          '(	63,	37	)',
+          '(	64,	36	)',
+          '(	65,	35	)',
+          '(	66,	34	)',
+          '(	67,	33	)',
+          '(	68,	32	)',
+          '(	69,	31	)',
+          '(	70,	30	)',
+          '(	71,	29	)',
+          '(	72,	28	)',
+          '(	73,	27	)',
+          '(	74,	26	)',
+          '(	75,	25	)',
+          '(	76,	24	)',
+          '(	77,	23	)',
+          '(	78,	22	)',
+          '(	79,	21	)',
+          '(	80,	20	)',
+          '(	81,	19	)',
+          '(	82,	18	)',
+          '(	83,	17	)',
+          '(	84,	16	)',
+          '(	85,	15	)',
+          '(	86,	14	)',
+          '(	87,	13	)',
+          '(	88,	12	)',
+          '(	89,	11	)',
+          '(	90,	10	)',
+          '(	91,	9	)',
+          '(	92,	8	)',
+          '(	93,	7	)',
+          '(	94,	6	)',
+          '(	95,	5	)',
+          '(	96,	4	)',
+          '(	97,	3	)',
+          '(	98,	2	)',
+          '(	99,	1	)']
+
+    
+
+    // render the plot using plotly
+    const trace1 = {
+      x: xlabel,
+      y: yValues,
+      type: 'scatter',
+      mode: 'lines+markers',
+      name: '',
+      showlegend: false,
+      hovertemplate: ' If you draw %{x} balls from Urn 1 and Urn 2 <br> <b>%{y} lottery tickets</b> are expected to awarded on average.'+ "<extra></extra>",
+      }
+  
+    const layout = {
+      title: 'The expected number of lottery tickets you will get',
+      titlefont: {
+        family: 'Old Standard TT, serif',
+        size: 20,
+        },
+      xaxis: {
+        title: 'Your decision <br> (# of balls to draw from Urn 1, # of balls to draw from Urn 2)',
+        titlefont: {
+          family: 'Old Standard TT, serif',
+          size: 18,
+          },
+        tickfont: {
+          family: 'Old Standard TT, serif',
+          size: 14,
+          color: 'black',
+          range: [1,99],
+          },
+        tickmode: "array", // If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
+        tickvals: [0, 9, 19, 29, 39, 49, 59, 69, 79, 89, 99],
+        ticktext: ['(1,99)','(10,90)', '(20,80)', '(30,70)', '(40,60)','(50,50)','(60,40)','(70,30)','(80,20)','(90,10)','(99,1)']
+        },
+      yaxis: {
+        title: 'The expected number of lottery tickets',
+        titlefont: {
+          family: 'Old Standard TT, serif',
+          size: 18,
+          },
+        tickfont: {
+          family: 'Old Standard TT, serif',
+          size: 14,
+          color: 'black',
+          },
+        hoverformat: '.2f',
+        autorange: true, 
+        // range: [0,25],
+        },
+      autosize: true,
+      width: 700,
+      height: 500,
+      margin: {
+        l: 50,
+        r: 50,
+        b: 100,
+        t: 100,
+        pad: 4
+        },   
+    hoverlabel: { bgcolor: "#FFF" },    
+    annotations: [
+    {
+      x: Draw1_Optimal,
+      y: yOptimal,
+      xref: 'x',
+      yref: 'y',
+      text: 'The maximum',
+      showarrow: true,
+      arrowhead: 7,
+      font: {
+        size: 15,
+        color: '#ff0000'
+      },
+      arrowcolor: '#ff0000',
+      ax: 0,
+      ay: -40
+    }
+  ]
+      };
+  
+    const data = [trace1]
+    Plotly.newPlot('plot2', data, layout, {displayModeBar: true, displaylogo: false})
+          
+    $('#reported_mine').html(mine);
+    $('#reported_teammate').html(teammate);
+    $('#RecommendedAction1').html(Draw1_Optimal);
+    $('#RecommendedAction2').html(Draw2_Optimal);
+    $('#ExpectedGreen').html(ExpectedGreen);
+    $('#ExpectedLT').html(ExpectedLT);
+    }
+  
+  catch (err) {
+    console.error(err)
+    alert(err)
+    }
+  }
+}
+draw2()
+</script>
 
 
 
@@ -238,11 +470,29 @@
   </script>
 
 <script>
-  function myFunction() {
+  function myFunction2() {
   
     var slider = document.getElementById("DecisionSlider");
     var urn1 = document.getElementById("Urn1");
     var urn2 = document.getElementById("Urn2");
+    urn1.innerHTML = slider.value; // Display the default slider value
+    urn2.innerHTML = 100 - slider.value;
+
+    // Update the current slider value (each time you drag the slider handle)
+    slider.oninput = function() {
+      urn1.innerHTML = this.value;
+      urn2.innerHTML = 100 - this.value;
+      };
+
+    };
+</script>
+
+<script>
+  function myFunction() {
+  
+    var slider = document.getElementById("DecisionSlider_ex");
+    var urn1 = document.getElementById("Urn1_ex");
+    var urn2 = document.getElementById("Urn2_ex");
     urn1.innerHTML = slider.value; // Display the default slider value
     urn2.innerHTML = 100 - slider.value;
 
@@ -314,7 +564,7 @@ ul    {font-size: 120%; line-height: 200%;}
 
   .grid-container {
     display: grid;
-    grid-template-columns: 1fr .5fr;
+    grid-template-columns: .7fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     gap: 15px 15px;
     grid-template-areas:
@@ -375,47 +625,37 @@ ul    {font-size: 120%; line-height: 200%;}
 <p>&nbsp;</p>
 
 <p>
-  In this part of the experiment, you are presented with two urns.
-</p>
-<p>
   Part 3 consists of {{num_game_round}} rounds.
-  In every round, you are asked to draw a total of 100 balls from Urn 1 and Urn 2.
-  <br>
-  <u>Your task is to decide how many balls to draw from each urn. </u>
-  You can draw 1-99 balls from a single urn.
 </p>
+<p>
+  In Part 3, you are presented with two urns.
+  Each urn contains a total of 200 balls, each of which is Green or Black.
+</p>
+  <ul>
+    <li>
+    <!-- <strong><em>Urn 1</em></strong> contains 200 balls. -->
+    <!-- There are twice as many Green balls as <strong>YOU</strong> received in Part 1 .  -->
+    Out of 200 balls in <strong><em>Urn 1</em></strong>, there are as many Green balls as <strong>YOU</strong> and <strong>YOUR TEAMMATE</strong> received in Part 1. 
+    The rest of the balls are Black.
+    </li>
+    <li>
+    <!-- <em><strong>Urn 2</strong></em> contains 200 balls.
+    There are twice as many Green balls as <strong>YOUR TEAMMATE</strong> received in Part 1 .  -->
+    Out of 200 balls in <strong><em>Urn 2</em></strong>, There are 40 Green balls.  
+    The rest of the balls are Black.
+    </li>
+  </ul>
 
-<ul>
-  <li>
-  <strong><em>Urn 1</em></strong> contains 200 balls.
-  There are as many Green balls as <strong>YOU</strong> and <strong>YOUR TEAMMATE</strong> received in Part 1 . 
-  The rest of the balls are Black.
-  </li>
-  <li>
-  <em><strong>Urn 2</strong></em> contains 200 balls.
-  There are 40 Green balls. 
-  The rest of the balls are Black.
-  </li>
-</ul>
+
 
 <p>
-  <em>Reminder:</em> You and your teammate received Green balls based on the performance of the slider task in Part 1.  
-</p>
-<ul>
-  <li>
-    The better <strong>YOU</strong> were at the slider task, the more Green balls you received, and hence the more Green balls are in <strong>Urn 1</strong>.
-  </li>
-  <li>
-    The better <strong>YOUR TEAMMATE</strong> were at the slider task, the more Green balls your teammate received, and hence the more Green balls are in <strong>Urn 1</strong>.
-  </li>
-</ul>
-
-<br>
-<p>
-  Whenever a ball is drawn from whichever urn, the drawn ball is replaced with the same-colored ball. 
-  Therefore, the probabilities of drawing a Green ball (and the probabilities of drawing a Black ball) from Urn 1 and Urn 2 do <em>NOT</em> change.
+In every round, you are asked to draw a total of 100 balls from Urn 1 and Urn 2 <em>with replacement</em>.
+<em>"With replacement"</em> means that once you draw a ball from one of the two urns, 
+you put the ball back in the urn where it was drawn before you draw another ball. 
+Drawing with replacement makes the probabilities of drawing a Green ball (and the probabilities of drawing a Black ball) from Urn 1 and Urn 2 constant.
 </p>
 
+<Br>
 <p>Here are some examples:</p>
 
 <ul>
@@ -436,10 +676,53 @@ ul    {font-size: 120%; line-height: 200%;}
 </ul>
 
 
+<div style = "width: 100%; background-color: white; padding: 20px; margin: 20px; font-size: 100%;">
+<p>
+  <em>Reminder:</em> You and your teammate received Green balls based on the performance of the slider task in Part 1.  
+</p>
+<ul>
+  <li>
+    The better <strong>YOU</strong> were at the slider task, the more Green balls you received, and hence the more Green balls are in <strong>Urn 1</strong>.
+  </li>
+  <li>
+    The better <strong>YOUR TEAMMATE</strong> were at the slider task, the more Green balls your teammate received, and hence the more Green balls are in <strong>Urn 1</strong>.
+  </li>
+</ul>
+</div>
+
+<br>
+
+<p>
+  Your task in Part 3 is to decide how many balls to draw from each urn.
+    You can draw 1-99 balls from a single urn. <br>
+    To indicate your decision, you will have to position a decision slider in every round. The below is a practice decision slider.
+    Try to move the slider. You should see the numbers on the left and right side changing as you move the slider. <br>
+  <!-- <u> <em>Draw x balls from Urn 1 and draw (100-x) balls from Urn 2, where 1<span>&#8804;</span>x<span>&#8804;</span>99.</em></u>   -->
+</p>
+<br>
+<table class="table borderless" align="center" style="border-spacing: 90; width: 70%; font-size: 115%;">
+  <colgroup>
+  <col width="20%">
+  <col width="60%">
+  <col width="20%">
+  </colgroup>
+
+  <tr>
+  <td align="center" style = "vertical-align: middle;"> From Urn 1, draw <br> <strong> <span id="Urn1_ex"> NaN </span> </strong> balls </td>
+  <td align="center" style = "vertical-align: middle;"> 
+    <input type="hidden" id="check_DecisionSlider_ex"> 
+    <input type="range" min="1" max="99" class = "myslider" id="DecisionSlider_ex" step="1" onclick="myFunction()"> 
+  </td>
+  <td align="center" style = "vertical-align: middle;"> From Urn 2, draw <br> <strong> <span id="Urn2_ex"> NaN </span> </strong> balls </td>
+  </tr> 
+
+</table>
+
+
+
 <button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
 
 </div>
-
 
 
 <!-- Tab 2 -->
@@ -451,14 +734,124 @@ ul    {font-size: 120%; line-height: 200%;}
 <p>&nbsp;</p>
 <!-- <h3><strong>How do you earn points?</strong></h3> -->
 <p>
-  In every round, you earn either 200 points or zero points. 
-  <br> Once you submit your decision on how many balls to draw from each urn, the computer draws 100 balls accordingly. 
-  <br> Afterward, you get lottery tickets depending on your submitted ball-draw decision and the colors of the drawn balls.
-  <br> <u>The more lottery tickets you get, the more likely you earn 200 points.</u>
-  You will see the detailed explanation on how your payoff will be determined on the next page.
+  Once you submit your decision on how many balls to draw from each urn, the computer draws 100 balls accordingly. 
+  <br>Depending on your submitted decision and the colors of the drawn balls, you will get lottery tickets.
+  <br> In every round, you have a chance to win the prize of {{prize}} points. 
+  <strong>The more lottery tickets you get, the more likely you win the prize.</strong>
+  We explain how you get lottery tickets in the next page.
+</p>
+<p>
+  At the end of every round, the computer draws a random number "X" from the interval [0,{{max_lt}}]. 
+  Any number within the interval [0,{{max_lt}}] is equally likely to be selected.
+  If "X" is less than or equal to the total number of lottery tickets awarded to you, you win the prize.
+  If "X" is greater than the total number of lottery tickets awarded to you, you win nothing.
+</p>
+<p>
+  At the end of Part 3, i.e. when you finished all of {{num_game_round}}  rounds, one of the earnings from these {{num_game_round}} rounds will be randomly chosen as your payment from Part 3.
 </p>
 
 <br>
+<p>
+  Here are some examples:
+</p>
+<ul>
+  <li>
+    If you've got 0 lottery tickets, there is no chance that you win the prize (0/25).
+  </li>
+  <!-- <li>
+    If you've got 1 lottery ticket, you win the prize with 4 percent chance (1/25).
+  </li>
+  <li>
+    If you've got 2 lottery ticket, you win the prize with 8 percent chance (2/25).
+  </li>
+  <li>
+    If you've got 3 lottery ticket, you win the prize with 12 percent chance (3/25).
+  </li>
+  <li>
+    If you've got 4 lottery ticket, you win the prize with 16 percent chance (4/25).
+  </li>
+  <li>
+    If you've got 5 lottery ticket, you win the prize with 20 percent chance (5/25).
+  </li>
+  <li>
+    If you've got 6 lottery ticket, you win the prize with 24 percent chance (6/25).
+  </li>
+  <li>
+    If you've got 7 lottery ticket, you win the prize with 28 percent chance (7/25).
+  </li>
+  <li>
+    If you've got 8 lottery ticket, you win the prize with 32 percent chance (8/25).
+  </li>
+  <li>
+    If you've got 9 lottery ticket, you win the prize with 36 percent chance (9/25).
+  </li> -->
+  <li>
+    If you've got 10 lottery ticket, you win the prize with 40 percent chance (10/25).
+  </li>
+  <!-- <li>
+    If you've got 11 lottery ticket, you win the prize with 44 percent chance (11/25).
+  </li>
+  <li>
+    If you've got 12 lottery ticket, you win the prize with 48 percent chance (12/25).
+  </li>
+  <li>
+    If you've got 13 lottery ticket, you win the prize with 52 percent chance (13/25).
+  </li>
+  <li>
+    If you've got 14 lottery ticket, you win the prize with 56 percent chance (14/25).
+  </li>
+  <li>
+    If you've got 15 lottery ticket, you win the prize with 60 percent chance (15/25).
+  </li>
+  <li>
+    If you've got 16 lottery ticket, you win the prize with 64 percent chance (16/25).
+  </li>
+  <li>
+    If you've got 17 lottery ticket, you win the prize with 68 percent chance (17/25).
+  </li>
+  <li>
+    If you've got 18 lottery ticket, you win the prize with 72 percent chance (18/25).
+  </li>
+  <li>
+    If you've got 19 lottery ticket, you win the prize with 76 percent chance (19/25).
+  </li> -->
+  <li>
+    If you've got 20 lottery ticket, you win the prize with 80 percent chance (20/25).
+  <!-- </li>
+  <li>
+    If you've got 21 lottery ticket, you win the prize with 84 percent chance (21/25).
+  </li>
+  <li>
+    If you've got 22 lottery ticket, you win the prize with 88 percent chance (22/25).
+  </li>
+  <li>
+    If you've got 23 lottery ticket, you win the prize with 92 percent chance (23/25).
+  </li>
+  <li>
+    If you've got 24 lottery tickets, you win the prize with 96 percent chance (24/25).
+  </li> -->
+  <li>
+    If you've got 25 lottery tickets or more than 25 lottery tickets, you win the prize with 100 percent chance (25/25).
+  </li>
+</ul>
+
+
+
+
+
+<button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 
+<button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
+  
+  </div>
+
+
+<!-- Tab 3 -->
+<div class="tab-pane" id="part3" role="tabpanel" aria-labelledby="part3-tab">
+
+<p>&nbsp;</p>
+<h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
+<p style="text-align: center;">Page <strong>3</strong> out of 3</p>
+<p>&nbsp;</p>
 <p>
   <strong>How do you get lottery tickets? </strong>
 </p>
@@ -471,29 +864,57 @@ ul    {font-size: 120%; line-height: 200%;}
 </p>
 <p style="padding-left: 25px;">
   For every drawn <span style="color: green;"><strong>Green</strong></span> ball, 
-    you get one lottery ticket or no lottery ticket.
-    For every drawn Black ball, you always get nothing.
+    you have a chance to get a lottery ticket.
+    However, there is no chance that a drawn Black ball awards you a lottery ticket.
     <br>
-    Therefore, you are likely to get more lottery tickets as you draw more Green balls.
+    <em><u>Therefore, you are likely to get more lottery tickets as you draw more Green balls.</u></em>
 </p>
 
 <p style="padding-left: 10px;">
   <em>(2) How many balls you decide to draw from each urn</em>
 </p>
 <p style="padding-left: 25px;">
-  The probability of a drawn Green ball awarding you a lottery ticket depends on how many balls you decided to draw from each urns.
-  The more balls you decided to draw from a single urn, the less likely it is that a Green ball drawn from that urn awards you a lottery ticket. 
-  The below figure visualizes the relationship between the number of ball-draws from a single urn (the x-axis)
-  and the probability that a Green ball drawn from that urn awards you a lottery ticket (the y-axis).
+  The probability of a drawn <span style="color: green;"><strong>Green</strong></span> ball awarding you a lottery ticket depends on how many balls you decided to draw from each urns.
+  <em><u>The more balls you decided to draw from a single urn, the less likely it is that a Green ball drawn from that urn awards you a lottery ticket. </u></em>
+  The below figure visualizes the relationship between your decision on how many balls to draw from each urn (the x-axis)
+  and the probability that a Green ball drawn from each urn awards you a lottery ticket (the y-axis).
   <!-- The x-axis represents the number of balls that you decided to draw from Urn 1 (or Urn 2).
   The y-axis represents the probability that a Green ball drawn from the same urn awards you a lottery ticket. -->
   If you take your mouse cursor on the figure, it displays exact probabilities. 
-  For example, if you take your mouse cursor on the very right of the figure where the value on the x-axis equals 99, 
-  you will see the corresponding y-value is 10. 
-  This means, if you decided to draw 99 balls from one urn (either Urn 1 or Urn 2), 
-  a Green ball drawn from the same urn awards you a lottery ticket with 10 percent chance. 
-  As another example, take your mouse cursor on the very left of the figure where the value on the x-axis equals 1 and the corresponding y-value is 99.5.
-  This means, if you decided to draw one ball from one urn (either Urn 1 or Urn 2) and the drawn ball is Green, the Green ball awards you a lottery ticket with 99.5 percent chance.
+  <br> 
+  <br> Here are some examples of how you read the figure. 
+  <ul>
+    <li>
+      Suppose you decides to draw 10 balls from Urn 1 and 90 balls from Urn 2. The decision is denoted (10,90) on the x-axis.
+  Take your mouse cursor to where the value on the x-axis equals (10,90).  
+  Then, you will see the corresponding information that a green ball drawn from Urn 1 awards you a lottery ticket with 31.62 percent chance (blue line)
+  and that a green ball drawn from Urn 2 awards you a lottery ticket with 10.54 percent chance (orange line).
+    </li>
+    <!-- <li>
+      Suppose you decides to draw 1 balls from Urn 1 and 99 balls from Urn 2. The decision is denoted (1,99) on the x-axis.
+  Take your mouse cursor on the very right of the figure where the value on the x-axis equals (1,99).  
+  Then, you will see the corresponding information that a green ball drawn from Urn 1 awards you a lottery ticket with 100 percent chance (blue line)
+  and that a green ball drawn from Urn 2 awards you a lottery ticket with 10.05 percent chance (orange line).
+    </li> -->
+    <!-- <li>
+      Suppose you decides to draw 10 balls from Urn 1 and 90 balls from Urn 2. The decision is denoted (10,90) on the x-axis.
+  Take your mouse cursor to where the value on the x-axis equals (10,90).  
+  Then, you will see the corresponding information that a green ball drawn from Urn 1 awards you a lottery ticket with 31.62 percent chance (blue line)
+  and that a green ball drawn from Urn 2 awards you a lottery ticket with 10.54 percent chance (orange line).
+    </li> -->
+    <li>
+      Suppose you decides to draw 50 balls from Urn 1 and 50 balls from Urn 2. The decision is denoted (50,50) on the x-axis.
+  Take your mouse cursor on the center of the figure where the value on the x-axis equals (50,50).  
+  Then, you will see the corresponding information that a green ball drawn from Urn 1 awards you a lottery ticket with 14.14 percent chance (blue line)
+  and that a green ball drawn from Urn 2 also awards you a lottery ticket with 14.14 percent chance (orange line).
+    </li>
+    <li>
+      Suppose you decides to draw 90 balls from Urn 1 and 10 balls from Urn 2. The decision is denoted (90,10) on the x-axis.
+  Take your mouse cursor to where the value on the x-axis equals (90,10).  
+  Then, you will see the corresponding information that a green ball drawn from Urn 1 awards you a lottery ticket with 10.54 percent chance (blue line)
+  and that a green ball drawn from Urn 2 awards you a lottery ticket with 31.62 percent chance (orange line).
+    </li>
+  </ul>
 </p>
 
 <br>
@@ -509,14 +930,15 @@ ul    {font-size: 120%; line-height: 200%;}
 </p> -->
 
 <br>
+<br>
 <p>
-  <strong>How do you optimize ball-draw decisions? </strong>
+  <strong>What should you do to make a good decision? </strong>
 </p>
 <p>
-  Then, what should you do to get as many lottery tickets as possible and increase the probability of earning 200 points?
+  What should you do to get as many lottery tickets as possible and increase the probability of winning the prize of 200 points?
   In one hand, you should draw more balls from the urn that, you believe, contains more Green balls 
   because only Green balls give you a chance to get lottery tickets.
-  However, you do not want to draw too many balls from the urn even if you are very confident that it has far more Green balls than the other urn. 
+  On the other hand, you do not want to draw too many balls from the urn even if you are very confident that it has far more Green balls than the other urn. 
   The more balls are drawn from one urn, the less likely it is a Green ball drawn from that urn awards you a lottery ticket.  
   <!-- Therefore, it is obviously not simple to make the optimal ball-draw decision (which guarantees the highest probability of earning 200 points) 
   and to predict how many lottery tickets you will get. -->
@@ -525,17 +947,17 @@ ul    {font-size: 120%; line-height: 200%;}
   To help your decision-making, we provide a simulator in every decision-making screen.
   To use the simulator, you must report your guesses about how many Green balls you and your teammate received in Part 1. 
   Conditional on your guesses, the simulator
-  predicts the expected number of lottery tickets you will get for every possible ball-draw decision. 
-  By <em>the expected number of lottery tickets you will get</em> we mean, 
-  the average number of lottery tickets you will get if you repeat the same ball-draw decision infinitely many times. 
-  Therefore, the simulator can inform you the optimal ball-draw decision that, conditional on your reported guesses, 
-  maximizes the expected number of lottery tickets you will get and hence guarantees the highest probability of earning 200 points. 
+  predicts the expected number of lottery tickets you will get for every possible decision. 
+  By <em>"the expected number of lottery tickets you will get"</em>, we mean
+  the average number of lottery tickets you will get if you repeatedly make the same decision infinitely many times. 
+  The simulator can inform you the optimal decision that, conditional on your reported guesses, 
+  maximizes the expected number of lottery tickets you will get and hence guarantees the highest probability of winning the prize. 
 </p>
 
 <br>
 <p>
   <strong>Practice decision-making! </strong>
-</p> 
+</p>
 
 <p>
   Here, you can play around with the simulator and practice your decision-making.
@@ -553,7 +975,7 @@ ul    {font-size: 120%; line-height: 200%;}
 </p>
 <p>
   How you interpret the simulation results?
-  First, the x-axis represents ball-draw decisions.
+  First, the x-axis represents your potential decisions.
   As the x-value gets closer to the right, it means more balls are drawn from Urn 1 and less balls are drawn from Urn 2.
   For example, the very left value on the x-axis (1,99) indicates you draw 1 ball from Urn 1 and 99 balls from Urn 2.
   The very right value on the x-axis (99,1) indicates you draw 99 balls from Urn 1 and 1 ball from Urn 2.
@@ -564,22 +986,21 @@ ul    {font-size: 120%; line-height: 200%;}
 <p>
   As an example, suppose you guessed you received 40 Green balls and your teammate received 60 Green balls. 
   Then, you should enter 40 and 60 for your guesses about yourself and about your teammate, respectively, and then click "Calculate" button. 
-  The simulation result shows every pair of a ball-draw decision and the expected number of lottery tickets you will get conditional on your entered guess. 
+  The simulation result shows every pair of your potential decision and the expected number of lottery tickets you will get, conditional on your entered guess. 
   For instance, conditional on your entered guesses, 
-  you are expected to get 2.48 lottery tickets when you draw 1 ball from Urn 1 and 99 balls from Urn 2 (the very left of the x-axis).
+  you are expected to get 2.49 lottery tickets when you draw 1 ball from Urn 1 and 99 balls from Urn 2 (the very left of the x-axis).
   Conditional on your entered guesses, 
-  you are expected to get 5.15 lottery tickets when you draw 99 balls from Urn 1 and 1 ball from Urn 2 (the very right of the x-axis).
-  Also, notice that, the optimal ball-draw decision that, conditional on your entered guesses, maximizes the expected number of lottery tickets you will get is colored in orange.
+  you are expected to get 5.17 lottery tickets when you draw 99 balls from Urn 1 and 1 ball from Urn 2 (the very right of the x-axis).
+  Also, notice that, the optimal decision that, conditional on your entered guesses, maximizes the expected number of lottery tickets you will get is tagged in red.
   In this example, conditional on your entered guesses, 
-  you are expected to get 25.19 lottery tickets to the maximum when you draw 58 balls from Urn 1 and 42 balls from Urn 2. 
-  The simulator also announces what ball-draw decision leads to the optimal ball-draw decision at the bottom of the simulation results.
+  you are expected to get 5.39 lottery tickets to the maximum when you draw 86 balls from Urn 1 and 14 balls from Urn 2. 
+  The simulator also announces the optimal decision at the bottom of the simulation results.
 </p>
 <p>
   To submit your decision, you should use the decision-slider located at the bottom left of the decision-making screen. 
   Once you have submitted your decision, you may not reverse your decision.
   Afterward, you will receive information about 
-  the total number of Green balls drawn out of 100 ball draws
-  and the number of lottery tickets that are consequently awarded to you.
+  the number of lottery tickets that are actually awarded to you.
 </p>
 <p>
   To help you keep track of your decisions over time, 
@@ -589,15 +1010,13 @@ ul    {font-size: 120%; line-height: 200%;}
 
 <br>
 <!--------------------------------------------------------------------------->
-<div class="grid-container" style = "background-color: rgba(190, 190, 190, 0.26); padding: 0px; margin: 0px;">
+<div class="grid-container" style = "background-color: rgba(190, 190, 190, 0.26); padding: 0px; margin: 0px; width: 110%;">
 
 	<!-- decision tool -->
 <br>
 <div class="decision_tool" style = "width: 100%; border: 2px solid rgb(10, 10, 10); padding: 10px; margin: 10px; font-size: 100%;" >
 
   <h3 style="text-align: center;"> Simulator </h3>
-  
-  <!-- <p> <strong>  Enter your guesses: </strong></p>  -->
   
   <table class="table borderless" align="center" style="border-spacing: 90; width: 75%; font-size: 100%;">
     <colgroup>
@@ -613,8 +1032,8 @@ ul    {font-size: 120%; line-height: 200%;}
     </tr>
       
     <tr>
-    <td align="center"> <input type='text' name='practice_guess_mine' id='guess_mine' value='0' />  </td>
-    <td align="center"> <input type='text' name='practice_guess_teammate' id='guess_teammate' value='0' />  </td>
+    <td align="center"> <input type='text' id='guess_mine' value='0' /> </td>
+    <td align="center"> <input type='text' id='guess_teammate' value='0' /> </td>
     <!-- <td align="center"> <input type="submit" value="Calculate" /> </td> -->
     <td> <button type="button" onclick="draw2()" >Calculate</button>  </td>
     </tr>
@@ -642,26 +1061,33 @@ ul    {font-size: 120%; line-height: 200%;}
     <br>
     <table class="table" style="border-spacing: 90; width: 95%;">
       <colgroup>
-      <col width="20%">
-      <col width="20%">
-      <col width="20%">
-      <col width="20%">
+      <col width="5%">
+      <col width="19%">
+      <col width="19%">
+      <col width="19%">
+      <col width="19%">
+      <col width="19%">
       <!-- <col width="20%"> -->
       </colgroup>
     
       <tr>
         <th rowspan="2" style= "vertical-align: middle; text-align: center;" >Round</th>
+        <th colspan="2" style="text-align: center;">Your Guess</th>
         <th colspan="2" style="text-align: center;">Your Decision</th>
         <!-- <th rowspan="2" style= "vertical-align: middle; text-align: center;"># of GREEN balls drawn</th> -->
         <th rowspan="2" style= "vertical-align: middle; text-align: center;"># of lottery tickets awarded to you</th>
       </tr>
       <tr>
+        <th style= "vertical-align: middle; text-align: center;">Your Guess about # of GREEN balls you received</th>
+        <th style= "vertical-align: middle; text-align: center;">Your Guess about # of GREEN balls you received</th>
         <th style= "vertical-align: middle; text-align: center;"># of balls drawn<br>from Urn 1</th>
         <th style= "vertical-align: middle; text-align: center;"># of balls drawn<br>from Urn 2</th>
       </tr>
     
 
       <tr>
+      <td style= "vertical-align: middle;" align = "center"> </td>
+      <td style= "vertical-align: middle;" align = "center"> </td>
       <td style= "vertical-align: middle;" align = "center"> </td>
       <td style= "vertical-align: middle;" align = "center"> </td>
       <td style= "vertical-align: middle;" align = "center"> </td>
@@ -690,7 +1116,7 @@ ul    {font-size: 120%; line-height: 200%;}
       <td align="center" style = "vertical-align: middle;"> From Urn 1, draw <br> <strong> <span id="Urn1"> NaN </span> </strong> balls </td>
       <td align="center" style = "vertical-align: middle;"> 
         <input type="hidden" name="check_DecisionSlider" id="check_DecisionSlider"> 
-        <input type="range" min="1" max="99" class = "myslider" id="DecisionSlider" name="draw_urn1" step="1" onclick="myFunction()"> 
+        <input type="range" min="1" max="99" class = "myslider" id="DecisionSlider" name="draw_urn1" step="1" onclick="myFunction2()"> 
       </td>
       <td align="center" style = "vertical-align: middle;"> From Urn 2, draw <br> <strong> <span id="Urn2"> NaN </span> </strong> balls </td>
       </tr> 
@@ -743,64 +1169,11 @@ ul    {font-size: 120%; line-height: 200%;}
   The chances you will face in the actual experiment may be completely different.</li>  
 </ul> -->
 
-<button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 
-<button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
-  
-  </div>
 
-
-
-<!-- Tab 3 -->
-<div class="tab-pane" id="part3" role="tabpanel" aria-labelledby="part3-tab">
-
-  <p>&nbsp;</p>
-  <h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
-  <p style="text-align: center;">Page <strong>3</strong> out of 3</p>
-  <p>&nbsp;</p>
-  <!-- <h3><strong>How do you earn points?</strong></h3> -->
-  
-  
-  <p>
-    At the end of every round, the computer draws a random number "X" from the interval [0,100]. 
-    Any number within the interval [0,100] is equally likely to be selected.
-    If "X" is less than or equal to the total number of lottery tickets awarded to you, you earn 200 points.
-    If "X" is greater than the total number of lottery tickets awarded to you, you earn nothing.
-    Here are some examples:
-  </p>
-  <ul>
-    <li>
-      If you've got 100 lottery tickets, you earn 200 points for sure (with 100 percent chance).
-    </li>
-    <li>
-      If you've got 50 lottery tickets, you earn 200 points with 50 percent chance and earn nothing with 50 percent chance.
-    </li>
-    <li>
-      If you've got 0 lottery tickets, there is no chance that you earn 200 points (with 0 percent chance). 
-    </li>
-  </ul>
-  <p>
-    In other words, the more lottery tickets you are awarded, the more likely you earn 200 points.
-    Every lottery ticket awarded to you increases the probability of earning 200 points by 1 percent chance.
-  </p>
-  
-  <br>
-  <p>
-    At the end of Part 3, i.e. when you finished all of {{num_game_round}}  rounds, one of the earnings from these {{num_game_round}} rounds will be randomly chosen as your payment from Part 3.
-  </p>
-  <br>
-  
-  <p>On the next screen, you are presented with comprehension questions.
-    If any of your submitted answers are incorrect, you may be excluded from the experiment and deprived of all payments aside from the minimum payment of $5 for attending.</p>
-  <br>
-  <p>You can review the instructions by clicking "Back". 
-    <br>Once you get familiar with Part 3 instructions, click &ldquo;Confirm&rdquo;.</p>
-  
-  
-    <button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 
-    <button class="nexttab btn-primary btn next">Confirm</button>
-  </div>
-  {% endblock %}
-  
+  <button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 
+  <button class="nexttab btn-primary btn next">Confirm</button>
+</div>
+{% endblock %}
 
 
 

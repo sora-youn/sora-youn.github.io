@@ -50,16 +50,22 @@ SESSION_CONFIGS = [
         num_demo_participants=3,
         app_sequence=['Part7'],
     ),
+     dict(
+        name='RiskAmbiguity',
+        display_name="RiskAmbiguity",
+        num_demo_participants=1,
+        app_sequence=['Part5','Part6'],
+    ),
     dict(
         name='Full_Sequence_T1',
         display_name="Full_Sequence_T1",
-        num_demo_participants=1,
+        num_demo_participants=3,
         app_sequence=['Part1', 'Part2','Part3_T1','Part4','Part5','Part6','Part7'],
     ),
     dict(
         name='Full_Sequence_T2',
         display_name="Full_Sequence_T2",
-        num_demo_participants=1,
+        num_demo_participants=3,
         app_sequence=['Part1', 'Part2','Part3_T2','Part4','Part5','Part6','Part7'],
     ),
 ]
@@ -70,7 +76,7 @@ SESSION_CONFIGS = [
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=0.1, participation_fee=5.00, doc=""
+    real_world_currency_per_point=0.05, participation_fee=5.00, doc=""
 )
 
 # ISO-639 code

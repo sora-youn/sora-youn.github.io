@@ -28,6 +28,7 @@ class Constants(BaseConstants):
     ans_part3_cq5 = 0
     prize = 200
     subcontractor = 40
+    max_lt = 25
 
 class Group(BaseGroup):
     pass
@@ -92,8 +93,8 @@ class Player(BasePlayer):
         AwardedLTs_Urn1 = bernoulli.rvs(Prob_Lotterytickets_Urn1, size = self.num_redballs_urn1)
         AwardedLTs_Urn2 = bernoulli.rvs(Prob_Lotterytickets_Urn2, size = self.num_redballs_urn2)
 
-        self.num_LTs_Awareded_Urn1 = sum(AwardedLTs_Urn1) *10
-        self.num_LTs_Awareded_Urn2 = sum(AwardedLTs_Urn2) *10
+        self.num_LTs_Awareded_Urn1 = sum(AwardedLTs_Urn1) *1
+        self.num_LTs_Awareded_Urn2 = sum(AwardedLTs_Urn2) *1
         
         self.num_LTs_Awareded = self.num_LTs_Awareded_Urn1 + self.num_LTs_Awareded_Urn2
 
@@ -101,7 +102,7 @@ class Player(BasePlayer):
 
 
         ## Draw a random number
-        self.participant.vars['Part3_X'] = random.randint(0,1000)
+        self.participant.vars['Part3_X'] = random.randint(0,Constants.max_lt)
 
         ##
         if self.num_LTs_Awareded >= self.participant.vars['Part3_X'] :

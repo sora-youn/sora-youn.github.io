@@ -53,7 +53,7 @@ ol    {font-size: 120%; line-height: 200%;}
 <li>The number of Green balls you will receive at the end of Part 1 equals the number of sliders that you correctly positioned. </li> 
 <div style="padding-left:85%;">{% formfield player.part1_cq2 label="" %}</div>	
 <br>
-<li>You earn 0.5 points for every Black ball you received while you earn 0 points for every Green ball you received. </li>
+<li>You earn {{point_per_correct_slider}} points for every Black ball you received while you earn 0 points for every Green ball you received. </li>
 <div style="padding-left:85%;">{% formfield player.part1_cq3 label="" %}</div>
     </ol>
 </div>

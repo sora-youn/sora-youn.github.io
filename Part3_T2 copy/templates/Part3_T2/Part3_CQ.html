@@ -1,0 +1,162 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+<!--------------------------------------------------------------------------->
+{% block scripts %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+<script>
+	
+	$(document).ready(function(){
+
+//iterate through each textboxes and add keyup
+//handler to trigger sum event
+$(".txt").each(function() {
+
+	$(this).keyup(function(){
+		calculateSum();
+	});
+});
+
+});
+
+function calculateSum() {
+
+var sum = 0;
+//iterate through each textboxes and add the values
+$(".txt").each(function() {
+
+	//add only if the value is number
+	if(!isNaN(this.value) && this.value.length!=0) {
+		sum += parseFloat(this.value);
+	}
+
+});
+//.toFixed() method will roundoff the final sum to 0 decimal places
+$("#sum").html(sum.toFixed(0));
+}
+
+
+$(document).ready(function(){
+
+//iterate through each textboxes and add keyup
+//handler to trigger sum event
+$(".txt2").each(function() {
+
+	$(this).keyup(function(){
+		calculateSum2();
+	});
+});
+
+});
+
+function calculateSum2() {
+
+var sum2 = 0;
+//iterate through each textboxes and add the values
+$(".txt2").each(function() {
+
+	//add only if the value is number
+	if(!isNaN(this.value) && this.value.length!=0) {
+		sum2 += parseFloat(this.value);
+	}
+
+});
+//.toFixed() method will roundoff the final sum to 2 decimal places
+$("#sum2").html(sum2.toFixed(0));
+}
+
+</script>
+
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block styles %}
+
+<style>
+  input[type=radio] {
+    transform: scale(1.5);
+    margin: 12px -10px 0px -30px;
+  }
+</style>
+
+<style>
+p    {font-size: 120%; line-height: 200%;}
+ul    {font-size: 120%; line-height: 200%;}
+ol    {font-size: 120%; line-height: 200%;}
+</style>
+
+<style>
+  .otree-body{
+      max-width: 80%;
+  }
+</style> 
+
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block content %}
+
+
+<h1 style="text-align: center;"><strong>PART 3: Comprehension Questions </strong></h1>
+<p>&nbsp;</p>
+<p> Please answer the following comprehension questions correctly.
+  <br>If you are ready to submit your answers, click “Submit” button. </p>
+<p> If any of your submitted answers are incorrect, you may be excluded from the experiment and deprived of all payments aside from the minimum payment of $5 for attending.  </p>
+<p>&nbsp;</p>
+
+<div style = "width: 100%; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 0 auto; font-size: 100%; background-color: rgb(240, 239, 236);" >
+
+  <ol>
+<li> Recall that, out of 200 balls in Urn 1, the number of Green balls equals the sum of the numbers of Green balls you and your teammate received in Part 1. 
+  Out of 200 balls in Urn 2, 40 balls are Green. </li>
+<br>
+<p style = "font-size: 100%; ">(a) The better you were at the slider task in Part 1, the more Green balls are in Urn 1. </p>
+<div style="padding-left:85%;">{% formfield player.part3_cq1_a label="" %}	</div>
+<p style = "font-size: 100%; ">(b) The better your teammate were at the slider task in Part 1, the more Green balls are in Urn 2. </p>
+<div style="padding-left:85%;">{% formfield player.part3_cq1_b label="" %}	</div>
+
+<br>
+<li>Suppose you received 50 Green balls from Part 1, and your teammate received 40 Green balls from Part 1.  </li> 
+<br>
+  <p style = "font-size: 100%; ">(a) What is the percent chance (%) that a ball drawn from Urn 1 is Green? </p>
+  <div style="padding-left:85%;">{% formfield player.part3_cq2_a label="" %}	</div>
+  <p style = "font-size: 100%; ">(b) What is the percent chance (%) that a ball drawn from Urn 2 is Green? </p>
+  <div style="padding-left:85%;">{% formfield player.part3_cq2_b label="" %}	</div>
+
+<br>
+<li>You are likely to get more lottery tickets as you draw more Green balls.  </li>
+<div style="padding-left:85%;">{% formfield player.part3_cq3 label="" %}</div>
+
+<br>
+<li>The more balls you decided to draw from a single urn, the more likely it is that a Green ball drawn from that urn awards you a lottery ticket.</li>
+<div style="padding-left:85%;">{% formfield player.part3_cq4 label="" %}</div> 
+
+<br>
+<li>The more lottery tickets you get, the more likely you win 200 points from Part 3. </li>
+<div style="padding-left:85%;">{% formfield player.part3_cq5 label="" %}</div>
+
+  </ol>
+</div>
+
+<!--------------------------------------------------------------------------->
+<p>&nbsp;</p>
+    <div class="row" style="padding-left:95%;">
+        <div class="col-md-2">
+            <button name="btn_submit" value="True" class="btn btn-primary btn-large">
+                    <span style="font-size:12pt">Submit</span>
+            </button>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+
+

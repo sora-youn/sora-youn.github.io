@@ -12,7 +12,9 @@ class Part3_Instruction(Page):
 
     def vars_for_template(self):
         return dict(
-            num_game_round = Constants.num_game_round
+            num_game_round = Constants.num_game_round,
+            prize = Constants.prize,
+            max_lt = Constants.max_lt
         )
 
 class Part3_CQ(Page):

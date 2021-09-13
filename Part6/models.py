@@ -18,27 +18,27 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
     # these are the lottery payoffs
-    g0 = 20
-    g1 = 16.4
-    g2 = 17.2
-    g3 = 18
-    g4 = 18.8
-    g5 = 19.6
-    g6 = 20.4
-    g7 = 21.2
-    g8 = 22
-    g9 = 22.8
-    g10 = 23.6
-    g11 = 24.4
-    g12 = 25.2
-    g13 = 26
-    g14 = 26.8
-    g15 = 27.6
-    g16 = 28.4
-    g17 = 29.2
-    g18 = 30
-    g19 = 30.8
-    g20 = 31.6
+    g0 = 200
+    g1 = 164
+    g2 = 172
+    g3 = 180
+    g4 = 188
+    g5 = 196
+    g6 = 204
+    g7 = 212
+    g8 = 220
+    g9 = 228
+    g10 = 236
+    g11 = 244
+    g12 = 252
+    g13 = 260
+    g14 = 268
+    g15 = 276
+    g16 = 284
+    g17 = 292
+    g18 = 300
+    g19 = 308
+    g20 = 316
 
 class Group(BaseGroup):
     pass
@@ -106,7 +106,10 @@ class Player(BasePlayer):
                 self.participant.vars['points_earned_Part6'] = 0
 
         # write the payoff to player.payoff
-        self.payoff = self.participant.vars['points_earned_Part6']
+        if self.participant.vars['pref_payment'] == 2:
+            self.payoff = self.participant.vars['points_earned_Part6']
+        else:
+            self.payoff = 0
         
 
 
