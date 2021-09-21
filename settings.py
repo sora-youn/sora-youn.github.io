@@ -59,7 +59,7 @@ SESSION_CONFIGS = [
     dict(
         name='Full_Sequence_T1',
         display_name="Full_Sequence_T1",
-        num_demo_participants=1,
+        num_demo_participants=3,
         app_sequence=['Part1', 'Part2','Part3_T1','Part4','Part5','Part6','Part7'],
     ),
     dict(
