@@ -9,6 +9,20 @@
 
 
 <script>
+      document.getElementById("some-button").style.display = "none";
+
+      function showStuff() {
+          document.getElementById("some-button").style.display = "inline";
+      }
+
+     function myFunction() {
+          window.location = "project.html"
+      }
+
+      setTimeout(showStuff, 30000); // 1000 ms = 1 second.
+</script>
+
+<script>
 
   function draw2() {
   
@@ -480,13 +494,12 @@ ul    {font-size: 120%; line-height: 200%;}
     </div>		
 
 
-
 		
 <!--------------------------------------------------------------------------->
 <p>&nbsp;</p>
     <div class="row" style="padding-left:95%;">
         <div class="col-md-2">
-            <button name="btn_submit" value="True" class="btn btn-primary btn-large">
+            <button name="btn_submit" value="True" id="some-button" class="btn btn-primary btn-large">
                     <span style="font-size:12pt">Submit</span>
             </button>
         </div>

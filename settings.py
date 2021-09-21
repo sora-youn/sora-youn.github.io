@@ -59,13 +59,13 @@ SESSION_CONFIGS = [
     dict(
         name='Full_Sequence_T1',
         display_name="Full_Sequence_T1",
-        num_demo_participants=3,
+        num_demo_participants=1,
         app_sequence=['Part1', 'Part2','Part3_T1','Part4','Part5','Part6','Part7'],
     ),
     dict(
         name='Full_Sequence_T2',
         display_name="Full_Sequence_T2",
-        num_demo_participants=3,
+        num_demo_participants=1,
         app_sequence=['Part1', 'Part2','Part3_T2','Part4','Part5','Part6','Part7'],
     ),
 ]
@@ -88,16 +88,16 @@ REAL_WORLD_CURRENCY_CODE = 'USD'
 USE_POINTS = True
 
 ROOMS = [
+    # dict(
+    #     name='econ101',
+    #     display_name='Econ 101 class',
+    #     participant_label_file='_rooms/econ101.txt',
+    # ),
+    # dict(name='live_demo', display_name='Room for live demo (no participant labels)'),
     dict(
-        name='econ101',
-        display_name='Econ 101 class',
-        participant_label_file='_rooms/econ101.txt',
-    ),
-    dict(name='live_demo', display_name='Room for live demo (no participant labels)'),
-    dict(
-        name='Aug2021',
-        display_name='Experiment',
-        participant_label_file='_rooms/test_label.txt',
+        name='ERL_Online_Experiment',
+        display_name='ERL',
+        participant_label_file='_rooms/participant_labels.txt',
     ),
 ]
 

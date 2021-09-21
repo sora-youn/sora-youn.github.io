@@ -5,7 +5,7 @@ from .models import Constants
 class ExitSurvey(Page):
 # forms to retrieve individual information
     form_model = 'player'
-    form_fields = ['comment','like','sex','age']# plyaer.comment, player.like, ...
+    form_fields = ['comment','like','enjoy','sex','age']# plyaer.comment, player.like, ...
 
 class Finish(Page):
 

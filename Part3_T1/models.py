@@ -19,7 +19,7 @@ class Constants(BaseConstants):
     name_in_url = 'part3_T1'
     players_per_group = None
     num_attention_check_tries = 2
-    num_game_round = 2
+    num_game_round = 50
     num_rounds = num_attention_check_tries + num_game_round - 1
     ans_part3_cq1 = [0,0]
     ans_part3_cq2 = [50,40]

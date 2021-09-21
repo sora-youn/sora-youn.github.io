@@ -29,6 +29,7 @@ class Player(BasePlayer):
     sex = models.StringField(widget=widgets.RadioSelectHorizontal(),choices=['Male', 'Female', 'Decline to state'])
     age = models.IntegerField(choices = range(18,60,1))
     like = models.StringField(widget=widgets.RadioSelectHorizontal(),choices=['Strongly disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly agree'])
+    enjoy = models.StringField(widget=widgets.RadioSelectHorizontal(),choices=['Strongly disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly agree'])
     comment = models.TextField(label="Your comment here:")
     
 
