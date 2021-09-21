@@ -112,4 +112,4 @@ Here are some oTree games.
 
 SECRET_KEY = '1o3dc8s=s^$7mexh1hf21=uulkm_t%8mbjlm*%)6(deg%xjtdd'
 
-INSTALLED_APPS = ['otree']
+INSTALLED_APPS = ['otree', 'django.contrib.staticfiles']
