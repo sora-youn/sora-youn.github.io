@@ -3,9 +3,6 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 class Part5_Instruction(Page):
-    form_model = 'player'
-    form_fields = ['practice'] 
-
     # values that are to be displayed (dictionary)
     def vars_for_template(self):
         # retrieve values from constants and store them in a dictionary
