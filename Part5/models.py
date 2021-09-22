@@ -32,16 +32,14 @@ class Subsession(BaseSubsession):
 class Player(BasePlayer):
     risk = models.PositiveIntegerField(choices=[[0, ''],[1, ''],[2, ''],[3, ''],[4, ''],[5, ''],[6, ''],[7, ''],[8, ''],[9, '']],widget=widgets.RadioSelectHorizontal)
 
-    # This is needed for the instructions
-    practice = models.PositiveIntegerField(choices=[[1, ''],[2, '']],widget=widgets.RadioSelectHorizontal,blank=True)
-
     # Define here the methods associated to Players
     # this method is needed to compute payoffs
     def set_payoff(self):
         #*******************************************
         # select between part 5 and part 6 for payment
         #*******************************************
-        # select one row randomly for payment (from module random)
+
+        # select which part will be paid
         self.participant.vars['pref_payment'] = random.randint(1,2)
 
         #*******************************************
@@ -62,7 +60,7 @@ class Player(BasePlayer):
         # create a list of choices
         choice = []
         for p in range(0,10) :
-            if p <= self.risk :
+            if p < self.risk :
                 choice.insert(p, "A")
             else :
                 choice.insert(p, "B")

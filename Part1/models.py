@@ -296,7 +296,7 @@ class Player(BasePlayer):
 
         self.productivity = self.participant.vars['productivity']
         
-        ## payoff from Part 1 = the number of correctly positioned sliders * 0.5
+        ## payoff from Part 1 = the number of correctly positioned sliders * point_per_correct_slider
         self.payoff = self.participant.vars['productivity'] * Constants.point_per_correct_slider
         ##
         if self.participant.vars['productivity'] <=10:

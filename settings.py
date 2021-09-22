@@ -65,7 +65,7 @@ SESSION_CONFIGS = [
     dict(
         name='Full_Sequence_T2',
         display_name="Full_Sequence_T2",
-        num_demo_participants=1,
+        num_demo_participants=3,
         app_sequence=['Part1', 'Part2','Part3_T2','Part4','Part5','Part6','Part7'],
     ),
 ]
@@ -113,3 +113,5 @@ Here are some oTree games.
 SECRET_KEY = '1o3dc8s=s^$7mexh1hf21=uulkm_t%8mbjlm*%)6(deg%xjtdd'
 
 INSTALLED_APPS = ['otree', 'django.contrib.staticfiles']
+
+STATIC_URL = '/static/'
