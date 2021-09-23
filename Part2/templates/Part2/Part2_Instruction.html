@@ -103,7 +103,7 @@ ul    {font-size: 120%; line-height: 200%;}
 <h1 style="text-align: center;"><strong>PART 2 Instructions</strong></h1>
 <p style="text-align: center;">Page <strong>2</strong> out of 3</p>
 <p>&nbsp;</p>  
-<p>The screen which we use for asking for your estimate looks like this:</p>
+<p>The screen which we use for asking for your estimates looks like this:</p>
 <p style="text-align:center;"><img src="{% static 'Part2_example1_Aug5.png' %}" alt="Part2 screenshot.png" style="width:60%;" class="center"/></p>
 <p style="text-align:center;"><img src="{% static 'Part2_example2_Aug5.png' %}" alt="Part2 screenshot.png" style="width:60%;" class="center"/></p>
 <p>
@@ -128,6 +128,7 @@ ul    {font-size: 120%; line-height: 200%;}
 
 <p>
   The task will only be finished when you have distributed exactly 100 tokens into the 10 bins in each of Box A and Box B.
+  In other words, the last column <i>"# of tokens distributed so far"</i> in each box must be 100 to move on to Part 3.
   If you feel confident about the resulting probability distributions 
   because they are good fits to your estimates concerning the numbers of Green balls you and your teammate received, 
   please press the &ldquo;Confirm&rdquo; button to continue with Part 3 of the experiment.
@@ -136,10 +137,12 @@ ul    {font-size: 120%; line-height: 200%;}
 <p>Here is an example of how it works.</p>
 <ul>
   <li>Suppose you distributed tokens as shown in the above screenshot.</li>
-  <li>You have placed 50 tokens in each of &ldquo;11-20&rdquo; bin and &ldquo;21-30&rdquo; bin in Box A.
+  <li>You have placed 50 tokens in each of &ldquo;11-20&rdquo; bin and &ldquo;21-30&rdquo; bin, 
+    and 0 tokens in all the other bins in Box A.
     This implies that you assume that with 50% probability you received between 11 and 20 Green balls
-    and with 50% probability you received between 21 and 30 Green balls.</li>  
-  <li>You have placed 77 tokens in &ldquo;71-80&rdquo; bin and 23 tokens in &ldquo;81-90&rdquo; bin in Box B.
+    and with 50% probability you received between 21 and 30 Green balls.
+  </li>  
+  <li>You have placed 77 tokens in &ldquo;71-80&rdquo; bin, 23 tokens in &ldquo;81-90&rdquo; bin, and 0 tokens in all the other bins in Box B.
     This implies that with 77% probability you assume that your teammate received between 71 and 80 Green balls and
     with 23% probability you assume that your teammate received between 81 and 90 Green balls.</li>
   <li>This is just an example to illustrate. The chances you have in mind may be completely different.</li>  

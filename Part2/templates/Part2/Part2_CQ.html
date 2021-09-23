@@ -339,15 +339,18 @@ ol    {font-size: 120%; line-height: 200%;}
 
 <br>
 <li>Suppose you assume that you received 53 Green balls from Part 1 with 100% probability. 
-  Also, suppose you assume that your teammate received 33 Green balls with 50% probability and your teammate received 41 Green balls with 50% probability. 
-  Then, what is the distributions of tokens that represent your estimates?</li> 
+  Also, suppose you assume that your teammate received 33 Green balls with 50% probability and 41 Green balls with 50% probability. 
+  Then, what is the distributions of tokens that represent your estimates?
+  Remember each token represents one percentage point. You should enter 0 to a bin where you do not want to assign any tokens. 
+  The last column <i>"# of tokens distributed so far"</i> in each box must be 100 to proceed.
+  </li> 
 <br>
 
 <div style = "width: 100%; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 10px; font-size: 100%; background-color: rgb(248, 246, 241);" >
 
-  <div id="chartContainer_mine" style="height: 360px; width: 100%;"></div> 
+  <div id="chartContainer_mine" style="height: 360px; width: 80%;"></div> 
   <p>&nbsp;</p>
-  <table class="table borderless" id="datatable" align="center" style="border-spacing: 90; width: 100%; font-size:1vw">
+  <table class="table borderless" id="datatable" style="border-spacing: 90; width: 80%; font-size:80%;">
     <thead>
       <tr>
         <th align="center" style="text-align: center;">Bins</th>
@@ -388,10 +391,10 @@ ol    {font-size: 120%; line-height: 200%;}
   
   <div style = "width: 100%; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 10px; font-size: 75%; background-color: rgb(248, 246, 241);" >
   
-  <div id="chartContainer_teammate" style="height: 360px; width: 100%;"></div> 
+  <div id="chartContainer_teammate" style="height: 360px; width: 80%;"></div> 
   
   <p>&nbsp;</p>  
-  <table class="table borderless" id="datatable" align="center" style="border-spacing: 90; width: 100%; font-size:1vw;">
+  <table class="table borderless" id="datatable" style="border-spacing: 90; width: 80%; font-size:100%;">
     <thead>
       <tr>
         <th align="center" style="text-align: center;">Bins</th>
