@@ -5,6 +5,297 @@
 <!--------------------------------------------------------------------------->
 {% block scripts %}
 <script src="{% static 'back_button_v3/js/prev_next_button.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'canvasjs-3/canvasjs.min.js' %}"></script>
+
+<script>
+	
+$(document).ready(function(){
+
+//iterate through each textboxes and add keyup
+//handler to trigger sum event
+$(".txt").each(function() {
+
+	$(this).keyup(function(){
+		calculateSum();
+	});
+});
+
+});
+
+function calculateSum() {
+
+var sum = 0;
+//iterate through each textboxes and add the values
+$(".txt").each(function() {
+
+	//add only if the value is number
+	if(!isNaN(this.value) && this.value.length!=0) {
+		sum += parseFloat(this.value);
+	}
+
+});
+//.toFixed() method will roundoff the final sum to 0 decimal places
+$("#sum").html(sum.toFixed(0));
+}
+
+
+$(document).ready(function(){
+
+//iterate through each textboxes and add keyup
+//handler to trigger sum event
+$(".txt2").each(function() {
+
+	$(this).keyup(function(){
+		calculateSum2();
+	});
+});
+
+});
+
+function calculateSum2() {
+
+var sum2 = 0;
+//iterate through each textboxes and add the values
+$(".txt2").each(function() {
+
+	//add only if the value is number
+	if(!isNaN(this.value) && this.value.length!=0) {
+		sum2 += parseFloat(this.value);
+	}
+
+});
+//.toFixed() method will roundoff the final sum to 2 decimal places
+$("#sum2").html(sum2.toFixed(0));
+}
+
+</script>
+
+<!-----------------Chart function 1 ------------------------>
+<script>
+
+$(document).ready(function(){
+  
+  var chart = new CanvasJS.Chart("chartContainer_mine", {
+    theme: "theme2",//theme1  
+    title: {
+      text: "Box A: The number of GREEN balls YOU received",
+      // fontSize: 18,
+    },
+    // width: 600,
+    // height: 300,
+    backgroundColor: "rgb(248, 246, 241)",
+    data: [{
+      type: "column",
+      color: "green", 
+      dataPoints: [
+          { y: 0,label: "0-10" },
+          { y: 0,label: "11-20" },
+          { y: 0,label: "21-30" },
+          { y: 0,label: "31-40" },
+          { y: 0,label: "41-50" },
+          { y: 0,label: "51-60" },
+          { y: 0,label: "61-70" },
+          { y: 0,label: "71-80" },
+          { y: 0,label: "81-90" },
+          { y: 0,label: "91-100" }
+       ]
+    }],
+    axisY:{
+        minimum: 0,
+        maximum: 100
+       },
+  });
+  
+  chart.render();
+  
+  $("#dataSeries1").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries1").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[0].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries2").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries2").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[1].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries3").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries3").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[2].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries4").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries4").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[3].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries5").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries5").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[4].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries6").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries6").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[5].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries7").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries7").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[6].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries8").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries8").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[7].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries9").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries9").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[8].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries10").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries10").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[9].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  });
+    
+</script>
+
+
+<!-----------------Chart function 2 ------------------------>
+<script>
+
+$(document).ready(function(){
+  
+  var chart = new CanvasJS.Chart("chartContainer_teammate", {
+    theme: "theme2",//theme1  
+    title: {
+      text: "Box B: The number of GREEN balls YOUR TEAMMATE received",
+      // fontSize: 18,
+    },
+    // width: 600,
+    // height: 300,
+    backgroundColor: "rgb(248, 246, 241)",
+    data: [{
+      type: "column",
+      color: "green", 
+      dataPoints: [
+          { y: 0,label: "0-10" },
+          { y: 0,label: "11-20" },
+          { y: 0,label: "21-30" },
+          { y: 0,label: "31-40" },
+          { y: 0,label: "41-50" },
+          { y: 0,label: "51-60" },
+          { y: 0,label: "61-70" },
+          { y: 0,label: "71-80" },
+          { y: 0,label: "81-90" },
+          { y: 0,label: "91-100" }
+       ]
+    }],
+    axisY:{
+        minimum: 0,
+        maximum: 100
+       },
+  });
+  
+  chart.render();
+  
+  $("#dataSeries11").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries11").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[0].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries12").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries12").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[1].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries13").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries13").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[2].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries14").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries14").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[3].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries15").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries15").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[4].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries16").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries16").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[5].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries17").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries17").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[6].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries18").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries18").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[7].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries19").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries19").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[8].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries20").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries20").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[9].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  });
+  
+  
+</script>
 {% endblock %}
 
 
@@ -14,21 +305,20 @@
 <link href="{% static 'back_button_v3/css/custom.css' %}" rel="stylesheet">
 
 <style>
-  input[type=radio] {
-    transform: scale(1.5);
-    margin: 12px -10px 0px -30px;
-  }
+input[type=radio] {
+  transform: scale(1.5);
+  margin: 12px -10px 0px -30px;
+}
 </style>
 
 <style>
 p    {font-size: 120%; line-height: 200%;}
 ul    {font-size: 120%; line-height: 200%;}
+ol    {font-size: 120%; line-height: 200%;}
 </style>
 
 <style>
-  .otree-body{
-      max-width: 80%;
-  }
+.otree-body{max-width: 80%;}
 </style> 
 
 {% endblock %}
@@ -66,9 +356,17 @@ ul    {font-size: 120%; line-height: 200%;}
 <h1 style="text-align: center;"><strong>PART 2 Instructions</strong></h1>
 <p style="text-align: center;">Page <strong>1</strong> out of 3</p>
 <p>&nbsp;</p>
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">You did not answer all questions correctly. </h4>
+  <p>Please read the instructions again and correct your answers.</p>
+</div>
+{% endif %}
+
+
 <p>Now, you are matched with a teammate who also completed Part 1 of the experiment. You will be matched with the same teammate for the entire experiment. The identity of your teammate will remain anonymous for the entire experiment.</p>
 <br>
-<p>In Part 2 of the experiment, you are asked to provide two estimates:</p>
+<p>In Part 2, you are asked to provide two estimates:</p>
 <p style="text-align: justify; padding-left: 40px;">1. Your estimate concerning the probability that <strong><u>you</u></strong> received a certain number of <span style="color: green;"><strong>Green balls </strong></span> from Part 1.</p>
 <p style="text-align: justify; padding-left: 40px;">2. Your estimate concerning the probability that <strong><u>your teammate</u></strong> received a certain number of <span style="color: green;"><strong>Green balls </strong></span> from Part 1.</p>
 <br>
@@ -80,9 +378,9 @@ ul    {font-size: 120%; line-height: 200%;}
 </p>
 <br>
 <p>
-  By providing each of the estimates, you have the possibility to earn 30 points. 
+  By providing each of the estimates, you have the possibility to earn 30 Experimental Dollars. 
   Since you are asked to provide two estimates, one concerning yourself and the other concerning your teammate, 
-  you will earn 60 points to the maximum from Part 2. 
+  you will earn 60 Experimental Dollars to the maximum from Part 2. 
   <!-- <strong>The more accurate your estimate is, the more likely you will earn the 30 points.</strong> -->
   You will see detailed explanations on how you complete the task and how your payoff will be determined on the next pages. 
 </p> 
@@ -96,6 +394,9 @@ ul    {font-size: 120%; line-height: 200%;}
 
   </div>
 
+
+
+
   <!-- Tab 2 -->
   <div class="tab-pane" id="part2" role="tabpanel" aria-labelledby="part2-tab">
 
@@ -106,7 +407,7 @@ ul    {font-size: 120%; line-height: 200%;}
 <p>The screen which we use for asking for your estimates looks like this:</p>
 <p style="text-align:center;"><img src="{% static 'Part2_example1_Aug5.png' %}" alt="Part2 screenshot.png" style="width:60%;" class="center"/></p>
 <p style="text-align:center;"><img src="{% static 'Part2_example2_Aug5.png' %}" alt="Part2 screenshot.png" style="width:60%;" class="center"/></p>
-<p>
+<!-- <p>
   There are 10 bins in each of Box A (the upper box) and Box B (the bottom box).
   Each bin represents a certain quantity (in steps of 10) of Green balls you (Box A) and your teammate (Box B) received in Part 1. 
   For instance, the first bin in Box A stands for you receiving 0-10 Green balls and the tenth bin in Box B stands for your teammate receiving 91-100 Green balls. 
@@ -124,16 +425,20 @@ ul    {font-size: 120%; line-height: 200%;}
   Similarly, to provide an estimate concerning the probability that your teammate received a certain number of Green balls, 
   you are asked to distribute another 100 tokens into the 10 bins in Box B. 
   The more likely you deem a certain bin to contain the number of Green balls your teammate received, the more tokens should be put into this bin.
-</p>
+</p> -->
 
 <p>
-  The task will only be finished when you have distributed exactly 100 tokens into the 10 bins in each of Box A and Box B.
-  In other words, the last column <i>"# of tokens distributed so far"</i> in each box must be 100 to move on to Part 3.
-  If you feel confident about the resulting probability distributions 
-  because they are good fits to your estimates concerning the numbers of Green balls you and your teammate received, 
-  please press the &ldquo;Confirm&rdquo; button to continue with Part 3 of the experiment.
+  There are 10 bins in each of Box A (the upper box) and Box B (the bottom box). 
+  To provide an estimate concerning the probability that you received a certain number of Green balls, you are asked to distribute 100 tokens, by typing an integer ranging from 0 to 100, into the 10 bins in Box A. 
+  To provide an estimate concerning the probability that your teammate received a certain number of Green balls, you are asked to distribute another 100 tokens, by typing an integer ranging from 0 to 100, into the 10 bins in Box B. 
 </p>
-
+<p>
+  Each bin represents a certain quantity (in steps of 10) of Green balls you (Box A) and your teammate (Box B) received in Part 1. 
+  Each token represents one percentage point. 
+  Therefore, the number of tokens you distribute to each bin in Box A represents your belief about the percent chance that you received a certain quantity of Green balls.
+  The number of tokens you distribute to each bin in Box B represents your belief about the percent chance that your teammate received a certain quantity of Green balls.
+  The more likely you deem a certain bin to contain the number of Green balls you and your teammate received, the more tokens should be put into this bin.
+</p>
 <p>Here is an example of how it works.</p>
 <ul>
   <li>Suppose you distributed tokens as shown in the above screenshot.</li>
@@ -143,131 +448,100 @@ ul    {font-size: 120%; line-height: 200%;}
     and with 50% probability you received between 21 and 30 Green balls.
   </li>  
   <li>You have placed 77 tokens in &ldquo;71-80&rdquo; bin, 23 tokens in &ldquo;81-90&rdquo; bin, and 0 tokens in all the other bins in Box B.
-    This implies that with 77% probability you assume that your teammate received between 71 and 80 Green balls and
-    with 23% probability you assume that your teammate received between 81 and 90 Green balls.</li>
+    This implies that you assume that with 77% probability your teammate received between 71 and 80 Green balls and
+    with 23% probability your teammate received between 81 and 90 Green balls.</li>
   <li>This is just an example to illustrate. The chances you have in mind may be completely different.</li>  
-  </ul>
+</ul>
+
+
+<!-- 
+<p>
+For instance, you should put more tokens to the first bin “0-10” in Box A as you more strongly believe that you received Green balls greater than (or equal to) 0 but less than (or equal to) 10. 
+You should put more tokens to the first bin “11-20” in Box A as you more strongly believe that you received Green balls greater than (or equal to) 11 but less than (or equal to) 20. 
+You should put more tokens to the first bin “21-30” in Box A as you more strongly believe that you received Green balls greater than (or equal to) 21 but less than (or equal to) 30, and so on.  
+Remember that you must distribute a total of 100 tokens into the 10 bins in Box A.
+</p>
+<p>
+Similarly, you should put more tokens to the first bin “0-10” in Box B as you more strongly believe that your teammate received Green balls greater than (or equal to) 0 but less than (or equal to) 10. 
+You should put more tokens to the first bin “11-20” in Box B as you more strongly believe that your teammate received Green balls greater than (or equal to) 11 but less than (or equal to) 20. 
+You should put more tokens to the first bin “21-30” in Box B as you more strongly believe that your teammate received Green balls greater than (or equal to) 21 but less than (or equal to) 30, and so on.  
+Remember that you must distribute a total of 100 tokens into the 10 bins in Box B.
+</p> -->
+
+<p>
+  The task will only be finished when you have distributed exactly 100 tokens into the 10 bins in each of Box A and Box B.
+  In other words, the last column <i>"# of tokens distributed so far"</i> in each box must be 100 to move on to Part 3.
+  If you feel confident about the resulting probability distributions 
+  because they are good fits to your estimates concerning the numbers of Green balls you and your teammate received, 
+  please press the &ldquo;Confirm&rdquo; button to continue with Part 3 of the experiment.
+</p>
+
 
 <button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 
 <button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
     
   </div>
 
-  <!-- Tab 3 -->
-  <div class="tab-pane" id="part2" role="tabpanel" aria-labelledby="part2-tab">
 
-<p>&nbsp;</p>    
-<h1 style="text-align: center;"><strong>PART 2 Instructions</strong></h1>
-<p style="text-align: center;">Page <strong>3</strong> out of 3</p>    
-<p>&nbsp;</p>    
-
-<p>
-  Now, we explain how your payoff will be determined. 
-  <br>
-  The bottom line is that
-  <strong>the more accurate your estimate is, the more likely you will earn a higher payoff.</strong>
-</p>
-<!-- <ul>
-  <li><strong>The more precise your estimate is, the more likely you will earn the 30 points.</strong> </li>
-  <li>You will receive a higher penalty score and be less likely to earn 30 points 
-  as each of your estimates deviates more from the actual number of Green balls you (or your teammate) received.  </li>
-</ul>   -->
-<p>&nbsp;</p>  
-<p style="text-align:center;"><img src="{% static 'Part2_payoffrule_0914.png' %}" alt="Part2 Further Information.png" style="width:80%;" class="center"/></p>
-<br>
-<p>
-  To help your understanding, suppose you (or your teammate) received 55 Green balls. 
-  In this case, the bin that contains the number of the actual Green balls you (or your teammate) received is <em>bin "51-60"</em>. 
-  <br> Consider the following scenarios. 
-</p>
-
-<ul>
-  <li> <strong>Scenario 1:</strong> You allocated all the 100 tokens to “51-60” bin. 
-    <br> There is no penalty 
-    because your estimate is accurate. You earn 30 points with certainty (100 percent chance).</li>
-</ul>
-
-<style type="text/css">
-  .tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
-  .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-    overflow:hidden;padding:10px 5px;word-break:normal;}
-  .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-    font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-  .tg .tg-idru{color:#4472C4;font-weight:bold;text-align:center;vertical-align:top}
-  .tg .tg-baqh{text-align:center;vertical-align:top}
-  .tg .tg-6t95{font-weight:bold;position:-webkit-sticky;position:sticky;text-align:center;top:-1px;vertical-align:top;
-    will-change:transform}
-  .tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
-  .tg .tg-2imo{font-style:italic;text-align:center;text-decoration:underline;vertical-align:top}
-  </style>
-  <table class="tg" align="center" style="border-spacing: 90; width: 100%;">
-  <thead>
-    <tr>
-      <th class="tg-6t95"><span style="color:black">Bins</span></th>
-      <th class="tg-6t95"><span style="color:black">0-10</span></th>
-      <th class="tg-6t95"><span style="color:black">11-20</span></th>
-      <th class="tg-6t95"><span style="color:black">21-30</span></th>
-      <th class="tg-6t95"><span style="color:black">31-40</span></th>
-      <th class="tg-6t95"><span style="color:black">41-50</span></th>
-      <th class="tg-6t95"><span style="color:black">51-60</span></th>
-      <th class="tg-6t95"><span style="color:black">61-70</span></th>
-      <th class="tg-6t95"><span style="color:black">71-80</span></th>
-      <th class="tg-6t95"><span style="color:black">81-90</span></th>
-      <th class="tg-6t95"><span style="color:black">91-100</span></th>
-      <th class="tg-6t95" rowspan="3"><span style="color:black">Penalty Score</span></th>
-    </tr>
-    <tr>
-      <td class="tg-amwm"><span style="color:black">Does this bin contain </span><br><span style="color:black">the actual number of Green balls?</span></td>
-      <td class="tg-baqh"> No</td>
-      <td class="tg-baqh"> No</td>
-      <td class="tg-baqh"> No</td>
-      <td class="tg-baqh"> No</td>
-      <td class="tg-baqh"> No</td>
-      <td class="tg-baqh"><span style="color:red">Yes</span></td>
-      <td class="tg-baqh"> No</td>
-      <td class="tg-baqh"> No</td>
-      <td class="tg-baqh"> No</td>
-      <td class="tg-baqh"> No</td>
-    </tr>
-    <tr>
-      <td class="tg-amwm"><span style="color:black"># tokens you distributed to this bin</span></td>
-      <td class="tg-baqh"><span style="color:black">0</span></td>
-      <td class="tg-baqh"><span style="color:black">0</span></td>
-      <td class="tg-baqh"><span style="color:black">0</span></td>
-      <td class="tg-baqh"><span style="color:black">0</span></td>
-      <td class="tg-baqh"><span style="color:black">0</span></td>
-      <td class="tg-baqh"><span style="color:#4472C4">100</span></td>
-      <td class="tg-baqh"><span style="color:black">0</span></td>
-      <td class="tg-baqh"><span style="color:black">0</span></td>
-      <td class="tg-baqh"><span style="color:black">0</span></td>
-      <td class="tg-baqh"><span style="color:black">0</span></td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="tg-baqh"> </td>
-      <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
-      <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
-      <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
-      <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
-      <td class="tg-baqh"><span style="color:black">(0 <span style="color:black">- 0)</span><sup>2</sup></td>
-      <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">100</span> </span> <span style="color:red">- 100</span><span style="color:black">)</span><sup>2</sup></td>
-      <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
-      <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
-      <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
-      <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
-      <td class="tg-2imo"><span style="color:black">0</span></td>
-    </tr>
-  </tbody>
-  </table>
-
-
+<!-- Tab 3 -->
+<div class="tab-pane" id="part3" role="tabpanel" aria-labelledby="part3-tab">
 
   <p>&nbsp;</p>    
+  <h1 style="text-align: center;"><strong>PART 2 Instructions</strong></h1>
+  <p style="text-align: center;">Page <strong>3</strong> out of 3</p>    
+  <p>&nbsp;</p>    
+  
+  <p>
+    Now, we explain how your payoff will be determined. 
+    <br>
+    The bottom line is that
+    <strong>the more accurate your estimate is, the more likely you will earn a higher payoff.</strong>
+  </p>
+  <!-- <ul>
+    <li><strong>The more precise your estimate is, the more likely you will earn the 30 points.</strong> </li>
+    <li>You will receive a higher penalty score and be less likely to earn 30 points 
+    as each of your estimates deviates more from the actual number of Green balls you (or your teammate) received.  </li>
+  </ul>   -->
+  <p>&nbsp;</p>  
+  <p>
+    <strong>How is your payoff determined?</strong>
+  </p>
+
+  <p> <i><u>Step 1:</u></i> At the end of Part 2, your penalty score for each of your estimates will be calculated in the following way. 
+    <u>You will receive a higher penalty score from Box A as your estimate concering yourself deviates more from the actual number of Green balls you received.
+    You will receive a higher penalty score from Box B as your estimate concerning your teammate deviates more from the actual number of Green balls your teammate received.  
+    </u>
+  </p>
+  <br>
+  <p style="text-align:center;"><img src="{% static '0930.png' %}" alt="Part2 Further Information.png" style="width:80%;" class="center"/></p>
+  <br>
+  <p> <u>Step 2:</u> Then, a number X<sup>A</sup> is drawn randomly from the interval [0,20000]. 
+    Any number within the interval [0,20000] is equally likely to be selected. 
+    Independent of X<sup>A</sup>, a number X<sup>B</sup> is also drawn in the same way.  
+    If your Penalty Score from Box A is less than or equal to the random number X<sup>A</sup>, you will earn 30 Experimental Dollars. 
+    Otherwise, you will earn zero. 
+    If your Penalty Score from Box B is less than or equal to the random number X<sup>B</sup>, you will earn 30 Experimental Dollars. 
+    Otherwise, you will earn zero. 
+    <u>In other words, the higher penalty score you get, you will earn 30 Experimental Dollars with the lower probability for each of your estimates.</u>
+  </p>
+
+  <p>&nbsp;</p>    
+  <p>
+    To help your understanding, suppose you received 55 Green balls in Part 1. 
+    Instead of informing you of the number of Green balls you received in the experiment, 
+    we ask you to estimate how many Green balls you received by allocating 100 tokens to each of 10 bins in Box A.
+    Notice that, in this example, the bin that contains the actual number of Green balls you received is <em>bin "51-60"</em>. 
+  </p>
+  <p>
+    Consider the following scenarios. 
+  </p>
   <ul>
-    <li> <strong>Scenario 2:</strong> You allocated all the 100 tokens to a bin that does not contain, say “41-50” bin.
-      <br> Your penalty score is 20000 (the highest possible penalty score) because your estimate is completely wrong. 
-      There is no chance of earning 30 points (0 percent chance). </li>
+    <li> <strong>Scenario 1:</strong> 
+      <br>
+      You feel very confident that you received more than (or equal to) 51 but less than (or equal to) 60 Green balls in Part 1. 
+      Therefore, you allocated all the 100 tokens to “51-60” bin. 
+      If this is the case, you receive no penalty because you estimate is very accurate.
+      You will earn 30 Experimental Dollars with certainty (100 percent chance).</li>
   </ul>
   
   <style type="text/css">
@@ -314,6 +588,7 @@ ul    {font-size: 120%; line-height: 200%;}
       </tr>
       <tr>
         <td class="tg-amwm"><span style="color:black"># tokens you distributed to this bin</span></td>
+        <td class="tg-baqh"><span style="color:black">0</span></td>
         <td class="tg-baqh"><span style="color:black">0</span></td>
         <td class="tg-baqh"><span style="color:black">0</span></td>
         <td class="tg-baqh"><span style="color:black">0</span></td>
@@ -323,7 +598,6 @@ ul    {font-size: 120%; line-height: 200%;}
         <td class="tg-baqh"><span style="color:black">0</span></td>
         <td class="tg-baqh"><span style="color:black">0</span></td>
         <td class="tg-baqh"><span style="color:black">0</span></td>
-        <td class="tg-baqh"><span style="color:black">0</span></td>
       </tr>
     </thead>
     <tbody>
@@ -333,118 +607,523 @@ ul    {font-size: 120%; line-height: 200%;}
         <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
         <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
         <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
-        <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">100</span> <span style="color:black">- 0)</span><sup>2</sup></td>
-        <td class="tg-baqh"><span style="color:black">(0</span> <span style="color:red">- 100</span><span style="color:black">)</span><sup>2</sup></td>
+        <td class="tg-baqh"><span style="color:black">(0 <span style="color:black">- 0)</span><sup>2</sup></td>
+        <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">100</span> </span> <span style="color:red">- 100</span><span style="color:black">)</span><sup>2</sup></td>
         <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
         <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
         <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
         <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
-        <td class="tg-2imo"><span style="color:black">20000</span></td>
-      </tr>
-    </tbody>
-  </table>    
-    
-  <p>&nbsp;</p>  
-<ul>
-  <li> <strong>Scenario 3:</strong> You equally distributed the 100 tokens to each bin.
-    <br> Your penalty score is 9000. You earn 30 points with 55 percent chance and no points with 45 percent chance. 
-     </li>
-</ul>
-  
-  <style type="text/css">
-    .tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
-    .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-      overflow:hidden;padding:10px 5px;word-break:normal;}
-    .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-      font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-    .tg .tg-idru{color:#4472C4;font-weight:bold;text-align:center;vertical-align:top}
-    .tg .tg-baqh{text-align:center;vertical-align:top}
-    .tg .tg-6t95{font-weight:bold;position:-webkit-sticky;position:sticky;text-align:center;top:-1px;vertical-align:top;
-      will-change:transform}
-    .tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
-    .tg .tg-2imo{font-style:italic;text-align:center;text-decoration:underline;vertical-align:top}
-    </style>
-    <table class="tg" align="center" style="border-spacing: 90; width: 100%;">
-    <thead>
-      <tr>
-        <th class="tg-6t95"><span style="color:black">Bins</span></th>
-        <th class="tg-6t95"><span style="color:black">0-10</span></th>
-        <th class="tg-6t95"><span style="color:black">11-20</span></th>
-        <th class="tg-6t95"><span style="color:black">21-30</span></th>
-        <th class="tg-6t95"><span style="color:black">31-40</span></th>
-        <th class="tg-6t95"><span style="color:black">41-50</span></th>
-        <th class="tg-6t95"><span style="color:black">51-60</span></th>
-        <th class="tg-6t95"><span style="color:black">61-70</span></th>
-        <th class="tg-6t95"><span style="color:black">71-80</span></th>
-        <th class="tg-6t95"><span style="color:black">81-90</span></th>
-        <th class="tg-6t95"><span style="color:black">91-100</span></th>
-        <th class="tg-6t95" rowspan="3"><span style="color:black">Penalty Score</span></th>
-      </tr>
-      <tr>
-        <td class="tg-amwm"><span style="color:black">Does this bin contain </span><br><span style="color:black">the actual number of Green balls?</span></td>
-        <td class="tg-baqh"> No</td>
-        <td class="tg-baqh"> No</td>
-        <td class="tg-baqh"> No</td>
-        <td class="tg-baqh"> No</td>
-        <td class="tg-baqh"> No</td>
-        <td class="tg-baqh"><span style="color:red">Yes</span></td>
-        <td class="tg-baqh"> No</td>
-        <td class="tg-baqh"> No</td>
-        <td class="tg-baqh"> No</td>
-        <td class="tg-baqh"> No</td>
-      </tr>
-      <tr>
-        <td class="tg-amwm"><span style="color:black"># tokens you distributed to this bin</span></td>
-        <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
-        <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
-        <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
-        <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
-        <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
-        <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
-        <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
-        <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
-        <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
-        <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="tg-baqh"> </td>
-        <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">10</span> <span style="color:black">- 0)</span><sup>2</sup></td>
-        <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">10</span> <span style="color:black">- 0)</span><sup>2</sup></td>
-        <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">10</span> <span style="color:black">- 0)</span><sup>2</sup></td>
-        <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">10</span> <span style="color:black">- 0)</span><sup>2</sup></td>
-        <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">10</span> <span style="color:black">- 0)</span><sup>2</sup></td>
-        <td class="tg-baqh"><span style="color:black">(<span style="color:#4472C4">10</span> </span> <span style="color:red">- 100</span><span style="color:black">)</span><sup>2</sup></td>
-        <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">10</span> <span style="color:black">- 0)</span><sup>2</sup></td>
-        <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">10</span> <span style="color:black">- 0)</span><sup>2</sup></td>
-        <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">10</span> <span style="color:black">- 0)</span><sup>2</sup></td>
-        <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">10</span> <span style="color:black">- 0)</span><sup>2</sup></td>
-        <td class="tg-2imo"><span style="color:black">9000</span></td>
+        <td class="tg-2imo"><span style="color:black">0</span></td>
       </tr>
     </tbody>
     </table>
   
-<p>&nbsp;</p>   
-<p>
-  In summary, you earn the 30 points with certainty in case your estimate is accurate. 
-  There is no chance you earn 30 points if your estimate is completely wrong.
-  There is almost 50% chance if you distribute tokens equally across all the 10 bins. 
-  Thus, to increase a chance to earn 30 points, you should provide an estimate as accurate as possible.
-</p>
+  
+  
+    <p>&nbsp;</p>    
+    <ul>
+      <li> <strong>Scenario 2:</strong> 
+        <br>
+        You feel very confident that you received more than (or equal to) 41 but less than (or equal to) 50 Green balls in Part 1. 
+        Therefore, you allocated all the 100 tokens to “41-50” bin. 
+        If this is the case, your penalty score is 20000 (the highest possible penalty score) because your estimate is completely wrong. 
+        You will have a zero percent chance of earning 30 Experimental Dollars.</li>
+    </ul>
+    
+    <style type="text/css">
+      .tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
+      .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+        overflow:hidden;padding:10px 5px;word-break:normal;}
+      .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+        font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+      .tg .tg-idru{color:#4472C4;font-weight:bold;text-align:center;vertical-align:top}
+      .tg .tg-baqh{text-align:center;vertical-align:top}
+      .tg .tg-6t95{font-weight:bold;position:-webkit-sticky;position:sticky;text-align:center;top:-1px;vertical-align:top;
+        will-change:transform}
+      .tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
+      .tg .tg-2imo{font-style:italic;text-align:center;text-decoration:underline;vertical-align:top}
+      </style>
+      <table class="tg" align="center" style="border-spacing: 90; width: 100%;">
+      <thead>
+        <tr>
+          <th class="tg-6t95"><span style="color:black">Bins</span></th>
+          <th class="tg-6t95"><span style="color:black">0-10</span></th>
+          <th class="tg-6t95"><span style="color:black">11-20</span></th>
+          <th class="tg-6t95"><span style="color:black">21-30</span></th>
+          <th class="tg-6t95"><span style="color:black">31-40</span></th>
+          <th class="tg-6t95"><span style="color:black">41-50</span></th>
+          <th class="tg-6t95"><span style="color:black">51-60</span></th>
+          <th class="tg-6t95"><span style="color:black">61-70</span></th>
+          <th class="tg-6t95"><span style="color:black">71-80</span></th>
+          <th class="tg-6t95"><span style="color:black">81-90</span></th>
+          <th class="tg-6t95"><span style="color:black">91-100</span></th>
+          <th class="tg-6t95" rowspan="3"><span style="color:black">Penalty Score</span></th>
+        </tr>
+        <tr>
+          <td class="tg-amwm"><span style="color:black">Does this bin contain </span><br><span style="color:black">the actual number of Green balls?</span></td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"><span style="color:red">Yes</span></td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+        </tr>
+        <tr>
+          <td class="tg-amwm"><span style="color:black"># tokens you distributed to this bin</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:#4472C4">100</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tg-baqh"> </td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">100</span> <span style="color:black">- 0)</span><sup>2</sup></td>
+          <td class="tg-baqh"><span style="color:black">(0</span> <span style="color:red">- 100</span><span style="color:black">)</span><sup>2</sup></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-2imo"><span style="color:black">20000</span></td>
+        </tr>
+      </tbody>
+    </table>    
+ 
+    <p>&nbsp;</p>    
+    <ul>
+      <li> <strong>Scenario 3:</strong> 
+        <br>
+        You guess you received 41-50 Green balls with 50 percent chance and 51-60 Green balls with 50 percent chance. 
+        Therefore, you allocated all the 50 tokens to “41-50” bin and the rest of 50 tokens to “51-60” bin. 
+        If this is the case, your penalty score is 5000. 
+        You will have a 75 percent chance of earning 30 Experimental Dollars.
+      </li>
+    </ul>
+    
+    <style type="text/css">
+      .tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
+      .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+        overflow:hidden;padding:10px 5px;word-break:normal;}
+      .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+        font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+      .tg .tg-idru{color:#4472C4;font-weight:bold;text-align:center;vertical-align:top}
+      .tg .tg-baqh{text-align:center;vertical-align:top}
+      .tg .tg-6t95{font-weight:bold;position:-webkit-sticky;position:sticky;text-align:center;top:-1px;vertical-align:top;
+        will-change:transform}
+      .tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
+      .tg .tg-2imo{font-style:italic;text-align:center;text-decoration:underline;vertical-align:top}
+      </style>
+      <table class="tg" align="center" style="border-spacing: 90; width: 100%;">
+      <thead>
+        <tr>
+          <th class="tg-6t95"><span style="color:black">Bins</span></th>
+          <th class="tg-6t95"><span style="color:black">0-10</span></th>
+          <th class="tg-6t95"><span style="color:black">11-20</span></th>
+          <th class="tg-6t95"><span style="color:black">21-30</span></th>
+          <th class="tg-6t95"><span style="color:black">31-40</span></th>
+          <th class="tg-6t95"><span style="color:black">41-50</span></th>
+          <th class="tg-6t95"><span style="color:black">51-60</span></th>
+          <th class="tg-6t95"><span style="color:black">61-70</span></th>
+          <th class="tg-6t95"><span style="color:black">71-80</span></th>
+          <th class="tg-6t95"><span style="color:black">81-90</span></th>
+          <th class="tg-6t95"><span style="color:black">91-100</span></th>
+          <th class="tg-6t95" rowspan="3"><span style="color:black">Penalty Score</span></th>
+        </tr>
+        <tr>
+          <td class="tg-amwm"><span style="color:black">Does this bin contain </span><br><span style="color:black">the actual number of Green balls?</span></td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"><span style="color:red">Yes</span></td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+        </tr>
+        <tr>
+          <td class="tg-amwm"><span style="color:black"># tokens you distributed to this bin</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:#4472C4">50</span></td>
+          <td class="tg-baqh"><span style="color:#4472C4">50</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tg-baqh"> </td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">50</span> <span style="color:black">- 0)</span><sup>2</sup></td>
+          <td class="tg-baqh"><span style="color:black">(<span style="color:#4472C4">50</span></span> <span style="color:red">- 100</span><span style="color:black">)</span><sup>2</sup></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-2imo"><span style="color:black">5000</span></td>
+        </tr>
+      </tbody>
+    </table>    
+    
+    <p>&nbsp;</p>    
+    <ul>
+      <li> <strong>Scenario 4:</strong> 
+        <br>
+        You guess that you received 41-50 Green balls with 30 percent chance and 51-60 Green balls with 70 percent chance. 
+        Therefore, you allocated all the 30 tokens to “41-50” bin and the rest of 70 tokens to “51-60” bin. 
+        If this is the case, your penalty score is 1800. 
+        You will have a 91 percent chance of earning 30 Experimental Dollars.
+      </li>
+    </ul>
+    
+    <style type="text/css">
+      .tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
+      .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+        overflow:hidden;padding:10px 5px;word-break:normal;}
+      .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+        font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+      .tg .tg-idru{color:#4472C4;font-weight:bold;text-align:center;vertical-align:top}
+      .tg .tg-baqh{text-align:center;vertical-align:top}
+      .tg .tg-6t95{font-weight:bold;position:-webkit-sticky;position:sticky;text-align:center;top:-1px;vertical-align:top;
+        will-change:transform}
+      .tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
+      .tg .tg-2imo{font-style:italic;text-align:center;text-decoration:underline;vertical-align:top}
+      </style>
+      <table class="tg" align="center" style="border-spacing: 90; width: 100%;">
+      <thead>
+        <tr>
+          <th class="tg-6t95"><span style="color:black">Bins</span></th>
+          <th class="tg-6t95"><span style="color:black">0-10</span></th>
+          <th class="tg-6t95"><span style="color:black">11-20</span></th>
+          <th class="tg-6t95"><span style="color:black">21-30</span></th>
+          <th class="tg-6t95"><span style="color:black">31-40</span></th>
+          <th class="tg-6t95"><span style="color:black">41-50</span></th>
+          <th class="tg-6t95"><span style="color:black">51-60</span></th>
+          <th class="tg-6t95"><span style="color:black">61-70</span></th>
+          <th class="tg-6t95"><span style="color:black">71-80</span></th>
+          <th class="tg-6t95"><span style="color:black">81-90</span></th>
+          <th class="tg-6t95"><span style="color:black">91-100</span></th>
+          <th class="tg-6t95" rowspan="3"><span style="color:black">Penalty Score</span></th>
+        </tr>
+        <tr>
+          <td class="tg-amwm"><span style="color:black">Does this bin contain </span><br><span style="color:black">the actual number of Green balls?</span></td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"><span style="color:red">Yes</span></td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+        </tr>
+        <tr>
+          <td class="tg-amwm"><span style="color:black"># tokens you distributed to this bin</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:#4472C4">30</span></td>
+          <td class="tg-baqh"><span style="color:#4472C4">70</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+          <td class="tg-baqh"><span style="color:black">0</span></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tg-baqh"> </td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">30</span> <span style="color:black">- 0)</span><sup>2</sup></td>
+          <td class="tg-baqh"><span style="color:black">(<span style="color:#4472C4">70</span></span> <span style="color:red">- 100</span><span style="color:black">)</span><sup>2</sup></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-baqh"><span style="color:black">(0 - 0)<sup>2</sup></span></td>
+          <td class="tg-2imo"><span style="color:black">1800</span></td>
+        </tr>
+      </tbody>
+    </table>    
+    
+    
+    <p>&nbsp;</p>  
+  <ul>
+    <li> <strong>Scenario 5:</strong> 
+      <br>
+      You decided to just randomly distribute the 100 tokens to each bin.
+      If this is the case, your penalty score is 9000. 
+      You will have a 55 percent chance of earning 30 Experimental Dollars.   
+    </li>
+  </ul>
+    
+    <style type="text/css">
+      .tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
+      .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+        overflow:hidden;padding:10px 5px;word-break:normal;}
+      .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+        font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+      .tg .tg-idru{color:#4472C4;font-weight:bold;text-align:center;vertical-align:top}
+      .tg .tg-baqh{text-align:center;vertical-align:top}
+      .tg .tg-6t95{font-weight:bold;position:-webkit-sticky;position:sticky;text-align:center;top:-1px;vertical-align:top;
+        will-change:transform}
+      .tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
+      .tg .tg-2imo{font-style:italic;text-align:center;text-decoration:underline;vertical-align:top}
+      </style>
+      <table class="tg" align="center" style="border-spacing: 90; width: 100%;">
+      <thead>
+        <tr>
+          <th class="tg-6t95"><span style="color:black">Bins</span></th>
+          <th class="tg-6t95"><span style="color:black">0-10</span></th>
+          <th class="tg-6t95"><span style="color:black">11-20</span></th>
+          <th class="tg-6t95"><span style="color:black">21-30</span></th>
+          <th class="tg-6t95"><span style="color:black">31-40</span></th>
+          <th class="tg-6t95"><span style="color:black">41-50</span></th>
+          <th class="tg-6t95"><span style="color:black">51-60</span></th>
+          <th class="tg-6t95"><span style="color:black">61-70</span></th>
+          <th class="tg-6t95"><span style="color:black">71-80</span></th>
+          <th class="tg-6t95"><span style="color:black">81-90</span></th>
+          <th class="tg-6t95"><span style="color:black">91-100</span></th>
+          <th class="tg-6t95" rowspan="3"><span style="color:black">Penalty Score</span></th>
+        </tr>
+        <tr>
+          <td class="tg-amwm"><span style="color:black">Does this bin contain </span><br><span style="color:black">the actual number of Green balls?</span></td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"><span style="color:red">Yes</span></td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+          <td class="tg-baqh"> No</td>
+        </tr>
+        <tr>
+          <td class="tg-amwm"><span style="color:black"># tokens you distributed to this bin</span></td>
+          <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
+          <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
+          <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
+          <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
+          <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
+          <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
+          <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
+          <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
+          <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
+          <td class="tg-baqh"><span style="color:#4472C4">10</span></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tg-baqh"> </td>
+          <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">10</span> <span style="color:black">- 0)</span><sup>2</sup></td>
+          <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">10</span> <span style="color:black">- 0)</span><sup>2</sup></td>
+          <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">10</span> <span style="color:black">- 0)</span><sup>2</sup></td>
+          <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">10</span> <span style="color:black">- 0)</span><sup>2</sup></td>
+          <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">10</span> <span style="color:black">- 0)</span><sup>2</sup></td>
+          <td class="tg-baqh"><span style="color:black">(<span style="color:#4472C4">10</span> </span> <span style="color:red">- 100</span><span style="color:black">)</span><sup>2</sup></td>
+          <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">10</span> <span style="color:black">- 0)</span><sup>2</sup></td>
+          <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">10</span> <span style="color:black">- 0)</span><sup>2</sup></td>
+          <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">10</span> <span style="color:black">- 0)</span><sup>2</sup></td>
+          <td class="tg-baqh"><span style="color:black">(</span><span style="color:#4472C4">10</span> <span style="color:black">- 0)</span><sup>2</sup></td>
+          <td class="tg-2imo"><span style="color:black">9000</span></td>
+        </tr>
+      </tbody>
+      </table>
+    
+  <p>&nbsp;</p>   
+  <p>
+    In summary, 
+    you will earn 30 Experimental Dollars with certainty if your estimate is very accurate. 
+    You will have a zero percent chance of earning 30 Experimental Dollars if your estimate is completely wrong.
+    <strong>
+      To increase the chance of earning 30 Experimental Dollars, you should provide an estimate as accurate as possible.
+    </strong>
+  </p>
+  
+  <p>
+    The same rule applies to your estimates concerning your teammate. 
+    <strong>
+      To increase the chance of earning 30 Experimental Dollars, you should provide an estimate as accurate as possible.
+    </strong>
+  </p>
+  
+  <p>&nbsp;</p>      
+  <p>On the next screen, you are presented with comprehension questions.</p>
+  <p>You can review the instructions by clicking "Back".</p>
+  <p>Once you get familiar with the instruction, click "Next".</p>
+
+  <button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 
+  <button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
+  
+  
+</div>  
 
 
-<p>&nbsp;</p>      
-<p>On the next screen, you are presented with comprehension questions.
-    If any of your submitted answers are incorrect, you may be excluded from the experiment and deprived of all payments aside from the minimum payment of $5 for attending.</p>
-<br>
-<p>You can review the instructions by clicking "Back".</p>
-<p>Once you get familiar with Part 2 instructions, click "Confirm".</p>
 
 
-<button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 
-<button class="nexttab btn-primary btn next">Confirm</button>
 
+
+<!-- Tab 4 -->
+<div class="tab-pane" id="part4" role="tabpanel" aria-labelledby="part4-tab">
+
+  <p>&nbsp;</p>
+  <h1 style="text-align: center;"><strong>PART 2 Comprehension Questions</strong></h1>
+  <p>&nbsp;</p>
+   
+  <p> Please answer the following comprehension questions correctly. 
+    <br>If you are confident with your answers, click “Submit” button. 
+    <br>If you are not confident with your answers, click "Back" button and review the instruction.
+  </p>
+  <p>&nbsp;</p>
+  
+  <!-- comprehension quesitons  -->
+  <div style = "width: 100%; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 0 auto; font-size: 100%; background-color: rgb(240, 239, 236);" >
+    
+    <ol>
+    <li>Your task in Part 2 is to provides two estimates: 
+      one is concerning the probability that you received a certain number of Green balls from Part 1, 
+      two is concerning the probability that your teammate received a certain number of Green balls from Part 1.  
+    </li> 
+    <div style="padding-left:85%;">{% formfield player.part2_cq1 label="" %}</div>
+    
+    <br>
+    <li>Suppose you assume that you received 53 Green balls from Part 1 with 100% probability. 
+      Also, suppose you assume that your teammate received 33 Green balls with 50% probability and 41 Green balls with 50% probability. 
+      Then, what is the distributions of tokens that represent your estimates?
+      Remember each token represents one percentage point. You should enter 0 to a bin where you do not want to assign any tokens. 
+      The last column <i>"# of tokens distributed so far"</i> in each box must be 100 to proceed.
+    </li> 
+    <br>
+    
+    <div style = "width: 100%; border: 0px solid rgb(255, 255, 255); padding: 30px; margin: 10px; font-size: 75%; background-color: rgb(248, 246, 241);" >
+
+      <div id="chartContainer_mine" style="height: 360px; width: 100%;"></div> 
+      <p>&nbsp;</p>
+      <table class="table borderless" id="datatable" align="center" style="border-spacing: 90; width: 100%; font-size:100%">
+        <thead>
+          <tr>
+            <th align="center" style="text-align: center;">Bins</th>
+            <th align="center" style="text-align: center;">0-10</th>
+            <th align="center" style="text-align: center;">11-20</th>
+            <th align="center" style="text-align: center;">21-30</th>
+            <th align="center" style="text-align: center;">31-40</th>
+            <th align="center" style="text-align: center;">41-50</th>
+            <th align="center" style="text-align: center;">51-60</th>
+            <th align="center" style="text-align: center;">61-70</th>
+            <th align="center" style="text-align: center;">71-80</th>
+            <th align="center" style="text-align: center;">81-90</th>
+            <th align="center" style="text-align: center;">91-100</th>
+            <th align="center" style="text-align: center;"># of tokens <br> distributed so far</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th align="center" style="text-align: center;"># tokens</th>
+            <td align="center" style="text-align: center;"><input class="txt" size="4" type="text" id="dataSeries1" name="part2_cq2_bin1_mine"/>{{ form.part2_cq2_bin1_mine.errors }}</td>
+            <td align="center" style="text-align: center;"><input class="txt" size="4" type="text" id="dataSeries2" name="part2_cq2_bin2_mine"/>{{ form.part2_cq2_bin2_mine.errors }}</td>
+            <td align="center" style="text-align: center;"><input class="txt" size="4" type="text" id="dataSeries3" name="part2_cq2_bin3_mine"/>{{ form.part2_cq2_bin3_mine.errors }}</td>
+            <td align="center" style="text-align: center;"><input class="txt" size="4" type="text" id="dataSeries4" name="part2_cq2_bin4_mine"/>{{ form.part2_cq2_bin4_mine.errors }}</td>
+            <td align="center" style="text-align: center;"><input class="txt" size="4" type="text" id="dataSeries5" name="part2_cq2_bin5_mine"/>{{ form.part2_cq2_bin5_mine.errors }}</td>
+            <td align="center" style="text-align: center;"><input class="txt" size="4" type="text" id="dataSeries6" name="part2_cq2_bin6_mine"/>{{ form.part2_cq2_bin6_mine.errors }}</td>
+            <td align="center" style="text-align: center;"><input class="txt" size="4" type="text" id="dataSeries7" name="part2_cq2_bin7_mine"/>{{ form.part2_cq2_bin7_mine.errors }}</td>
+            <td align="center" style="text-align: center;"><input class="txt" size="4" type="text" id="dataSeries8" name="part2_cq2_bin8_mine"/>{{ form.part2_cq2_bin8_mine.errors }}</td>
+            <td align="center" style="text-align: center;"><input class="txt" size="4" type="text" id="dataSeries9" name="part2_cq2_bin9_mine"/>{{ form.part2_cq2_bin9_mine.errors }}</td>
+            <td align="center" style="text-align: center;"><input class="txt" size="4" type="text" id="dataSeries10" name="part2_cq2_bin10_mine"/>{{ form.part2_cq2_bin10_mine.errors }}</td>
+            <td align="center" style="text-align: center;"><span id="sum">0</span></td>
+          </tr>
+        </tbody>
+        </table>
+      
+      </div>
+      
+      <p>&nbsp;</p>
+      
+      <div style = "width: 100%; border: 0px solid rgb(255, 255, 255); padding: 30px; margin: 10px; font-size: 75%; background-color: rgb(248, 246, 241);" >
+      
+      <div id="chartContainer_teammate" style="height: 360px; width: 100%;"></div> 
+      
+      <p>&nbsp;</p>  
+      <table class="table borderless" id="datatable" align="center" style="border-spacing: 90; width: 100%; font-size:100%">
+        <thead>
+          <tr>
+            <th align="center" style="text-align: center;">Bins</th>
+            <th align="center" style="text-align: center;">0-10</th>
+            <th align="center" style="text-align: center;">11-20</th>
+            <th align="center" style="text-align: center;">21-30</th>
+            <th align="center" style="text-align: center;">31-40</th>
+            <th align="center" style="text-align: center;">41-50</th>
+            <th align="center" style="text-align: center;">51-60</th>
+            <th align="center" style="text-align: center;">61-70</th>
+            <th align="center" style="text-align: center;">71-80</th>
+            <th align="center" style="text-align: center;">81-90</th>
+            <th align="center" style="text-align: center;">91-100</th>
+            <th align="center" style="text-align: center;"># of tokens <br> distributed so far</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th align="center" style="text-align: center;"># tokens</th>
+            <td align="center" style="text-align: center;"><input class="txt2" size="4" type="text" id="dataSeries11" name="part2_cq2_bin1_teammate"/>{{ form.part2_cq2_bin1_teammate.errors }}</td>
+            <td align="center" style="text-align: center;"><input class="txt2" size="4" type="text" id="dataSeries12" name="part2_cq2_bin2_teammate"/>{{ form.part2_cq2_bin2_teammate.errors }}</td>
+            <td align="center" style="text-align: center;"><input class="txt2" size="4" type="text" id="dataSeries13" name="part2_cq2_bin3_teammate"/>{{ form.part2_cq2_bin3_teammate.errors }}</td>
+            <td align="center" style="text-align: center;"><input class="txt2" size="4" type="text" id="dataSeries14" name="part2_cq2_bin4_teammate"/>{{ form.part2_cq2_bin4_teammate.errors }}</td>
+            <td align="center" style="text-align: center;"><input class="txt2" size="4" type="text" id="dataSeries15" name="part2_cq2_bin5_teammate"/>{{ form.part2_cq2_bin5_teammate.errors }}</td>
+            <td align="center" style="text-align: center;"><input class="txt2" size="4" type="text" id="dataSeries16" name="part2_cq2_bin6_teammate"/>{{ form.part2_cq2_bin6_teammate.errors }}</td>
+            <td align="center" style="text-align: center;"><input class="txt2" size="4" type="text" id="dataSeries17" name="part2_cq2_bin7_teammate"/>{{ form.part2_cq2_bin7_teammate.errors }}</td>
+            <td align="center" style="text-align: center;"><input class="txt2" size="4" type="text" id="dataSeries18" name="part2_cq2_bin8_teammate"/>{{ form.part2_cq2_bin8_teammate.errors }}</td>
+            <td align="center" style="text-align: center;"><input class="txt2" size="4" type="text" id="dataSeries19" name="part2_cq2_bin9_teammate"/>{{ form.part2_cq2_bin9_teammate.errors }}</td>
+            <td align="center" style="text-align: center;"><input class="txt2" size="4" type="text" id="dataSeries20" name="part2_cq2_bin10_teammate"/>{{ form.part2_cq2_bin10_teammate.errors }}</td>
+            <td align="center" style="text-align: center;"><span id="sum2">0</span></td>
+          </tr>
+        </tbody>
+        </table>
+      
+      </div>
+      
+      <br>
+      <li>The more accurate your estimates are, the more likely it is that you will earn a higher payoff from Part 2.  </li>
+      <div style="padding-left:85%;">{% formfield player.part2_cq3 label="" %}</div>
+    
+      </ol>
+    
+    </div>
+
+
+
+    <button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 
+    <button class="nexttab btn-primary btn next">Confirm</button>
+  </div>
+
+</div>
 {% endblock %}
 
 

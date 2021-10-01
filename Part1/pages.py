@@ -2,21 +2,10 @@ from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
 from .models import Constants
 
-class Intro_Part1_Instruction(Page):
-    def is_displayed(self):
-        if self.round_number == 1:
-            return True
-        else:
-            return self.participant.vars["fail"]
+class Intro(Page):
+    pass
 
-    def vars_for_template(self):
-        return dict(
-            point_per_correct_slider  = Constants.point_per_correct_slider 
-        )
-            
-
-
-class Part1_CQ(Page):            
+class Part1_Instruction(Page):
     form_model = 'player'
     form_fields = [
         'part1_cq1',
@@ -24,38 +13,12 @@ class Part1_CQ(Page):
         'part1_cq3',
         ]
 
-    def before_next_page(self):
-        if self.player.part1_cq1 == Constants.ans_part1_cq1 and self.player.part1_cq2 == Constants.ans_part1_cq2 and self.player.part1_cq3 == Constants.ans_part1_cq3 :
-            self.participant.vars["fail"] = False
-        else :
-            self.participant.vars["fail"] = True
-
-    def is_displayed(self):
-        if self.round_number == 1:
-            return True
-        else:
-            return self.participant.vars["fail"]    
-
     def vars_for_template(self):
         return dict(
-            point_per_correct_slider  = Constants.point_per_correct_slider 
-        )        
-
-
-class SecondChance(Page):
-    def is_displayed(self):
-        if self.round_number == 1:
-            return self.participant.vars["fail"]
-        else:
-            return False
-
-class FailedAttentionCheck(Page):
-    def is_displayed(self):
-        if self.round_number > 1:
-            return self.participant.vars["fail"]
-        else:
-            return False
-
+            point_per_correct_slider  = Constants.point_per_correct_slider, 
+            correct_upper_bound = Constants.correct_upper_bound,
+            correct_lower_bound = Constants.correct_lower_bound
+        )       
 
 class Part1_Task(Page):
     form_model = 'player'
@@ -187,32 +150,25 @@ class Part1_Task(Page):
     def before_next_page(self):
         self.player.set_payoff()
 
-    def is_displayed(self):
-        return self.round_number >= Constants.num_attention_check_tries and self.participant.vars["fail"] == False   
+    def vars_for_template(self):
+        return dict(
+            correct_upper_bound = Constants.correct_upper_bound,
+            correct_lower_bound = Constants.correct_lower_bound
+        )       
 
+
+
+class Ready(Page):
+    pass
 
 class Part2_Begins_Soon(WaitPage):
     after_all_players_arrive = 'set_fundamental'
 
-    def is_displayed(self):
-        return self.round_number >= Constants.num_attention_check_tries
-
-
-class Exit(Page):
-    form_model = 'player'
-
-    def is_displayed(self):
-        return self.round_number >= Constants.num_attention_check_tries and self.participant.vars["fail"] == True
-
-
-
 # the coreography of pages
 page_sequence = [
-                    Intro_Part1_Instruction,
-                    Part1_CQ,
-                    SecondChance,
-                    FailedAttentionCheck,
+                    Intro,
+                    Part1_Instruction,
+                    Ready,
                     Part1_Task,
                     Part2_Begins_Soon,
-                    Exit
                 ]

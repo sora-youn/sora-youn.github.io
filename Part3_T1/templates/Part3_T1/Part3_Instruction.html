@@ -136,7 +136,7 @@ function draw() {
         y: yValues,
         name: 'Urn 1',
         hoverinfo: 'y',
-        hovertemplate: 'A Green ball drawn from <b>Urn 1</b> gives you a lottery ticket with <b>%{y} percant chance</b>.'+ "<extra></extra>",
+        hovertemplate: 'You earn <b>%{y} points</b> for every Green ball drawn from <b>Urn 1</b>.'+ "<extra></extra>",
         showlegend: true
       }
 
@@ -146,7 +146,7 @@ function draw() {
       type: 'scatter',
       mode: 'lines+markers',
       hoverinfo: 'y',
-      hovertemplate: 'A Green ball drawn from <b>Urn 2</b> gives you a lottery ticket with <b>%{y} percant chance</b>.'+ "<extra></extra>",
+      hovertemplate: 'You earn <b>%{y} points</b> for every Green ball drawn from <b>Urn 2</b>.'+ "<extra></extra>",
       name: 'Urn 2',
       hoverdistance: -1,
       showlegend: true
@@ -154,7 +154,7 @@ function draw() {
 
     var layout = {
       hovermode:'x unified',
-      title: 'The percent chance that a Green ball <br> drawn from each urn awards you a lottery ticket',
+      title: 'The Points You Earn for a Green ball Drawn from Each Urn',
       titlefont: {
         family: 'Old Standard TT, serif',
         size: 22,
@@ -179,7 +179,7 @@ function draw() {
       },
         yaxis: {
           hoverformat: '.2f',
-          title: 'Percent Chance (%)',
+          title: 'Points',
           titlefont: {
             family: 'Old Standard TT, serif',
             size: 20,
@@ -231,7 +231,7 @@ function draw2() {
     const teammate = document.getElementById('guess_teammate').value    
     const r1 = document.getElementById('guess_mine').value /100
     const r2 = document.getElementById('guess_teammate').value /100
-    const expression = r1 + '*(x)^.5 +' + r2 + '*(100-x)^.5' // x = # balls to draw from Urn 1 
+    const expression = r1 + '*(x)^.5 *100+' + r2 + '*(100-x)^.5 *100' // x = # balls to draw from Urn 1 
     const expr = math.compile(expression)
 
     // evaluate the expression repeatedly for different values of x
@@ -359,11 +359,11 @@ function draw2() {
       mode: 'lines+markers',
       name: '',
       showlegend: false,
-      hovertemplate: ' If you draw %{x} balls from Urn 1 and Urn 2 <br> <b>%{y} lottery tickets</b> are expected to awarded on average.'+ "<extra></extra>",
+      hovertemplate: ' If you draw %{x} balls from Urn 1 and Urn 2, <br> you are expected to earn <b>%{y} points</b>.'+ "<extra></extra>",
       }
   
     const layout = {
-      title: 'The expected number of lottery tickets you will get',
+      title: 'The Expected Number of Points You Will Earn',
       titlefont: {
         family: 'Old Standard TT, serif',
         size: 20,
@@ -385,7 +385,7 @@ function draw2() {
         ticktext: ['(1,99)','(10,90)', '(20,80)', '(30,70)', '(40,60)','(50,50)','(60,40)','(70,30)','(80,20)','(90,10)','(99,1)']
         },
       yaxis: {
-        title: 'The expected number of lottery tickets',
+        title: 'The Expected Number of Points',
         titlefont: {
           family: 'Old Standard TT, serif',
           size: 18,
@@ -600,7 +600,7 @@ ul    {font-size: 120%; line-height: 200%;}
   <li class="nav-item">
     <a class="nav-link" id="part3-tab" data-toggle="tab" href="#part3" role="tab" aria-controls="part3" onclick="topFunction()"> </a>
   </li>
-  <!-- <li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" id="part4-tab" data-toggle="tab" href="#part4" role="tab" aria-controls="part4" onclick="topFunction()"> </a>
   </li>
   <li class="nav-item">
@@ -608,7 +608,7 @@ ul    {font-size: 120%; line-height: 200%;}
   </li>
   <li class="nav-item">
     <a class="nav-link" id="part6-tab" data-toggle="tab" href="#part6" role="tab" aria-controls="part6" onclick="topFunction()"> </a>
-  </li> -->
+  </li>
 
 </ul>
 
@@ -618,10 +618,16 @@ ul    {font-size: 120%; line-height: 200%;}
 
   <!-- Tab 1 -->
   <div class="tab-pane show active" id="part1" role="tabpanel" aria-labelledby="part1-tab">
-
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading">You did not answer all questions correctly. </h4>
+      <p>Please read the instructions again and correct your answers.</p>
+    </div>
+    {% endif %}
+    
 <p>&nbsp;</p>
 <h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
-<p style="text-align: center;">Page <strong>1</strong> out of 3</p>
+<p style="text-align: center;">Page <strong>1</strong> out of 4</p>
 <p>&nbsp;</p>
 
 <p>
@@ -660,16 +666,22 @@ Drawing with replacement makes the probabilities of drawing a Green ball (and th
 
 <ul>
   <li>
-    Suppose you received 30 Green balls and your teammate received 60 Green balls in Part 1.
+    Suppose you received 40 Green balls and your teammate received 20 Green balls in Part 1.
     <br>
-    This means, whenever a ball is drawn from Urn 1, the ball is Green with (30*2)/2 = 30 percent chance and Black with the remaining percent chance (100-30 = 70 percent chance).
-    Furthermore, whenever a ball is drawn from Urn 2, the ball is Green with (60*2)/2 = 60 percent chance and Black with the remaining percent chance (100-60 = 40 percent chance).
+    This means, whenever a ball is drawn from Urn 1, the ball is Green with (40*2)/2 = 40 percent chance and Black with the remaining percent chance (100-40 = 60 percent chance).
+    Furthermore, whenever a ball is drawn from Urn 2, the ball is Green with (20*2)/2 = 20 percent chance and Black with the remaining percent chance (100-20 = 80 percent chance).
   </li>
   <li>
-    Suppose you received 50 Green balls and your teammate received 25 Green balls in Part 1.
+    Suppose you received 50 Green balls and your teammate received 50 Green balls in Part 1.
     <br>
     This means, whenever a ball is drawn from Urn 1, the ball is Green with (50*2)/2 = 50 percent chance and Black with the remaining percent chance (100-50 = 50 percent chance).
-    Furthermore, whenever a ball is drawn from Urn 2, the ball is Green with (25*2)/2 = 25 percent chance and Black with the remaining percent chance (100-25 = 75 percent chance).
+    Furthermore, whenever a ball is drawn from Urn 2, the ball is Green with (50*2)/2 = 50 percent chance and Black with the remaining percent chance (100-50 = 50 percent chance).
+  </li>
+  <li>
+    Suppose you received 75 Green balls and your teammate received 80 Green balls in Part 1.
+    <br>
+    This means, whenever a ball is drawn from Urn 1, the ball is Green with (75*2)/2 = 75 percent chance and Black with the remaining percent chance (100-75 = 25 percent chance).
+    Furthermore, whenever a ball is drawn from Urn 2, the ball is Green with (80*2)/2 = 80 percent chance and Black with the remaining percent chance (100-80 = 20 percent chance).
   </li>
   <li>These are just examples for your clarification. 
     The chances you will face in the actual experiment depend on how many Green balls you and your teammate received in Part 1.</li>  
@@ -689,12 +701,13 @@ Drawing with replacement makes the probabilities of drawing a Green ball (and th
 
 <p>
   Your task in Part 3 is to decide how many balls to draw from each urn.
-    You can draw 1-99 balls from a single urn. <br>
-    To indicate your decision, you will have to position a decision slider in every round. The below is a practice decision slider.
-    Try to move the slider. You should see the numbers on the left and right side changing as you move the slider. <br>
+  You can draw 1-99 balls from a single urn. <br>
+  To indicate your decision, you will have to position a decision slider in every round. The below is a practice decision slider.
+  Try to move the slider. You should see the numbers on the left and right side changing as you move the slider. <br>
   <!-- <u> <em>Draw x balls from Urn 1 and draw (100-x) balls from Urn 2, where 1<span>&#8804;</span>x<span>&#8804;</span>99.</em></u>   -->
 </p>
 <br>
+
 <table class="table borderless" align="center" style="border-spacing: 90; width: 70%; font-size: 115%;">
   <colgroup>
   <col width="20%">
@@ -710,10 +723,14 @@ Drawing with replacement makes the probabilities of drawing a Green ball (and th
   </td>
   <td align="center" style = "vertical-align: middle;"> From Urn 2, draw <br> <strong> <span id="Urn2_ex"> NaN </span> </strong> balls </td>
   </tr> 
-
 </table>
 
-
+<br>
+<p>
+  Once you submit your decision on how many balls to draw from each urn, the computer draws 100 balls accordingly. 
+  As a result of the submitted decision and the colors of the drawn balls, you will earn points. 
+  We explain how you earn points and how the points you earned will be translated into your payoff in the next pages.
+</p>
 
 <button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
 
@@ -725,24 +742,17 @@ Drawing with replacement makes the probabilities of drawing a Green ball (and th
 
   <p>&nbsp;</p>
 <h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
-<p style="text-align: center;">Page <strong>2</strong> out of 3</p>
+<p style="text-align: center;">Page <strong>2</strong> out of 4</p>
 <p>&nbsp;</p>
 <!-- <h3><strong>How do you earn points?</strong></h3> -->
 <p>
-  Once you submit your decision on how many balls to draw from each urn, the computer draws 100 balls accordingly. 
-  <br>Depending on your submitted decision and the colors of the drawn balls, you will get lottery tickets.
-  <br> In every round, you have a chance to win the prize of {{prize}} points. 
-  <strong>The more lottery tickets you get, the more likely you win the prize.</strong>
-  We explain how you get lottery tickets in the next page.
-</p>
-<p>
-  At the end of every round, the computer draws a random number "X" from the interval [0,{{max_lt}}]. 
+  In every round, you have a chance to win a prize worth {{prize}} Experimental Dollars.
+  <strong>The chance of winning the prize increases as you earn more points.</strong>
+
+  Specifically, the computer draws a random number "X" from the interval [0,{{max_lt}}] at the end of every round. 
   Any number within the interval [0,{{max_lt}}] is equally likely to be selected.
-  If "X" is less than or equal to the total number of lottery tickets awarded to you, you win the prize.
-  If "X" is greater than the total number of lottery tickets awarded to you, you win nothing.
-</p>
-<p>
-  At the end of Part 3, i.e. when you finished all of {{num_game_round}}  rounds, one of the earnings from these {{num_game_round}} rounds will be randomly chosen as your payment from Part 3.
+  If the points you earned is greater than or equal to "X", you win the prize.
+  If the points you earned is less than "X", you receive nothing.
 </p>
 
 <br>
@@ -751,67 +761,16 @@ Drawing with replacement makes the probabilities of drawing a Green ball (and th
 </p>
 <ul>
   <li>
-    If you've got 0 lottery tickets, there is no chance that you win the prize (0/25).
-  </li>
-  <!-- <li>
-    If you've got 1 lottery ticket, you win the prize with 4 percent chance (1/25).
+    If you've earned 0 points, there is no chance that you win the prize (0/{{max_lt}}).
   </li>
   <li>
-    If you've got 2 lottery ticket, you win the prize with 8 percent chance (2/25).
+    If you've earned 100 points, you win the prize with 4 percent chance (100/{{max_lt}}).
   </li>
   <li>
-    If you've got 3 lottery ticket, you win the prize with 12 percent chance (3/25).
+    If you've earned 1000 points, you win the prize with 40 percent chance (1000/{{max_lt}}).
   </li>
   <li>
-    If you've got 4 lottery ticket, you win the prize with 16 percent chance (4/25).
-  </li>
-  <li>
-    If you've got 5 lottery ticket, you win the prize with 20 percent chance (5/25).
-  </li>
-  <li>
-    If you've got 6 lottery ticket, you win the prize with 24 percent chance (6/25).
-  </li>
-  <li>
-    If you've got 7 lottery ticket, you win the prize with 28 percent chance (7/25).
-  </li>
-  <li>
-    If you've got 8 lottery ticket, you win the prize with 32 percent chance (8/25).
-  </li>
-  <li>
-    If you've got 9 lottery ticket, you win the prize with 36 percent chance (9/25).
-  </li> -->
-  <li>
-    If you've got 10 lottery ticket, you win the prize with 40 percent chance (10/25).
-  </li>
-  <!-- <li>
-    If you've got 11 lottery ticket, you win the prize with 44 percent chance (11/25).
-  </li>
-  <li>
-    If you've got 12 lottery ticket, you win the prize with 48 percent chance (12/25).
-  </li>
-  <li>
-    If you've got 13 lottery ticket, you win the prize with 52 percent chance (13/25).
-  </li>
-  <li>
-    If you've got 14 lottery ticket, you win the prize with 56 percent chance (14/25).
-  </li>
-  <li>
-    If you've got 15 lottery ticket, you win the prize with 60 percent chance (15/25).
-  </li>
-  <li>
-    If you've got 16 lottery ticket, you win the prize with 64 percent chance (16/25).
-  </li>
-  <li>
-    If you've got 17 lottery ticket, you win the prize with 68 percent chance (17/25).
-  </li>
-  <li>
-    If you've got 18 lottery ticket, you win the prize with 72 percent chance (18/25).
-  </li>
-  <li>
-    If you've got 19 lottery ticket, you win the prize with 76 percent chance (19/25).
-  </li> -->
-  <li>
-    If you've got 20 lottery ticket, you win the prize with 80 percent chance (20/25).
+    If you've earned 2000 points, you win the prize with 80 percent chance (2000/{{max_lt}}).
   <!-- </li>
   <li>
     If you've got 21 lottery ticket, you win the prize with 84 percent chance (21/25).
@@ -826,10 +785,15 @@ Drawing with replacement makes the probabilities of drawing a Green ball (and th
     If you've got 24 lottery tickets, you win the prize with 96 percent chance (24/25).
   </li> -->
   <li>
-    If you've got 25 lottery tickets or more than 25 lottery tickets, you win the prize with 100 percent chance (25/25).
+    If you've earned 2500 points or more than 2500 points, you win the prize with 100 percent chance (2500/{{max_lt}}).
   </li>
 </ul>
 
+<br>
+<p>
+  At the end of Part 3, i.e. when you finished all of {{num_game_round}} rounds, 
+  one of the earnings from these {{num_game_round}} rounds will be randomly chosen as your payment from Part 3.
+</p>
 
 
 
@@ -845,45 +809,59 @@ Drawing with replacement makes the probabilities of drawing a Green ball (and th
 
 <p>&nbsp;</p>
 <h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
-<p style="text-align: center;">Page <strong>3</strong> out of 3</p>
+<p style="text-align: center;">Page <strong>3</strong> out of 4</p>
 <p>&nbsp;</p>
 <p>
-  <strong>How do you get lottery tickets? </strong>
+  <strong>How do you earn points? </strong>
 </p>
 
 <p>
-  There are two factors that determine how many lottery tickets you will get:
+  There are two factors that determine your points:
 </p>
 <p style="padding-left: 10px;">
-<em>(1) How many Green balls are drawn.</em>
+<em>(1) How many Green balls are drawn:</em>
 </p>
 <p style="padding-left: 25px;">
-  For every drawn <span style="color: green;"><strong>Green</strong></span> ball, 
-    you have a chance to get a lottery ticket.
-    However, there is no chance that a drawn Black ball awards you a lottery ticket.
-    <br>
-    <em><u>Therefore, you are likely to get more lottery tickets as you draw more Green balls.</u></em>
+  Once you submit your decision on how many balls to draw from each urn, the computer draws 100 balls accordingly.
+  If a drawn ball is Green, the Green ball awards you a positive number of points. 
+  If a drawn ball is Black, the Black ball awards you 0 points. 
+  <br>
+  <em><u>Therefore, you will earn more points as you get to draw more <span style="color: green;"><strong>Green</strong></span> balls.</u></em>
+  <!-- For every drawn <span style="color: green;"><strong>Green</strong></span> ball, you earn some points.
+  For every drawn Black ball, you earn 0 points. -->
 </p>
 
 <p style="padding-left: 10px;">
-  <em>(2) How many balls you decide to draw from each urn</em>
+  <em>(2) How many balls you decide to draw from each urn: </em>
 </p>
 <p style="padding-left: 25px;">
-  The probability of a drawn <span style="color: green;"><strong>Green</strong></span> ball awarding you a lottery ticket depends on how many balls you decided to draw from each urns.
-  <em><u>The more balls you decided to draw from a single urn, the less likely it is that a Green ball drawn from that urn awards you a lottery ticket. </u></em>
-  The below figure visualizes the relationship between your decision on how many balls to draw from each urn (the x-axis)
-  and the probability that a Green ball drawn from each urn awards you a lottery ticket (the y-axis).
-  <!-- The x-axis represents the number of balls that you decided to draw from Urn 1 (or Urn 2).
-  The y-axis represents the probability that a Green ball drawn from the same urn awards you a lottery ticket. -->
-  If you take your mouse cursor on the figure, it displays exact probabilities. 
+  How many points do you earn for each of the drawn Green balls? This depends on how many balls you decided to draw from each urn.
+  <em><u>The more balls you decided to draw from one urn, 
+    every Green ball drawn from that urn awards you the lower points.
+    In other words, the fewer balls you decided to draw from one urn, 
+    every Green ball drawn from that urn awards you the higher points.
+    <!-- you earn the less points for a Green ball drawn from that urn 
+    and you earn the more points for a Green ball drawn from the other urn. -->
+  </u></em>
+  The below figure visualizes the relationship. 
+  <!-- between your decision rnon how many balls to draw from each u 
+  and the number of points that a Green ball drawn from each urn awards you. -->
+  The x-axis represents your decisions on how many balls to draw from each urn. 
+  As the x-value gets closer to the right, it means you draw more balls from Urn 1 and draw fewer balls from Urn 2. 
+  For example, the very left value on the x-axis (1,99) indicates you draw 1 ball from Urn 1 and 99 balls from Urn 2. 
+  The very right value on the x-axis (99,1) indicates you draw 99 balls from Urn 1 and 1 ball from Urn 2. 
+  
+  The y-axis represents the number of points you earn for every Green ball drawn from each urn. 
+  If you take your mouse cursor on the figure, it displays exact values. 
   <br> 
-  <br> Here are some examples of how you read the figure. 
+  <br> 
+  Here are some examples of how you read the figure. 
   <ul>
     <li>
       Suppose you decides to draw 10 balls from Urn 1 and 90 balls from Urn 2. The decision is denoted (10,90) on the x-axis.
   Take your mouse cursor to where the value on the x-axis equals (10,90).  
-  Then, you will see the corresponding information that a green ball drawn from Urn 1 awards you a lottery ticket with 31.62 percent chance (blue line)
-  and that a green ball drawn from Urn 2 awards you a lottery ticket with 10.54 percent chance (orange line).
+  Then, you will see the corresponding information that every green ball drawn from Urn 1 awards you 31.62 points (blue line)
+  and that every green ball drawn from Urn 2 awards you 10.54 points (orange line).
     </li>
     <!-- <li>
       Suppose you decides to draw 1 balls from Urn 1 and 99 balls from Urn 2. The decision is denoted (1,99) on the x-axis.
@@ -900,20 +878,21 @@ Drawing with replacement makes the probabilities of drawing a Green ball (and th
     <li>
       Suppose you decides to draw 50 balls from Urn 1 and 50 balls from Urn 2. The decision is denoted (50,50) on the x-axis.
   Take your mouse cursor on the center of the figure where the value on the x-axis equals (50,50).  
-  Then, you will see the corresponding information that a green ball drawn from Urn 1 awards you a lottery ticket with 14.14 percent chance (blue line)
-  and that a green ball drawn from Urn 2 also awards you a lottery ticket with 14.14 percent chance (orange line).
+  Then, you will see the corresponding information that every green ball drawn from Urn 1 awards you 14.14 points (blue line)
+  and that every green ball drawn from Urn 2 also awards you 14.14 points (orange line).
     </li>
     <li>
       Suppose you decides to draw 90 balls from Urn 1 and 10 balls from Urn 2. The decision is denoted (90,10) on the x-axis.
   Take your mouse cursor to where the value on the x-axis equals (90,10).  
-  Then, you will see the corresponding information that a green ball drawn from Urn 1 awards you a lottery ticket with 10.54 percent chance (blue line)
-  and that a green ball drawn from Urn 2 awards you a lottery ticket with 31.62 percent chance (orange line).
+  Then, you will see the corresponding information that every green ball drawn from Urn 1 awards you 10.54 points (blue line)
+  and that every green ball drawn from Urn 2 awards you 31.62 points (orange line).
     </li>
   </ul>
 </p>
 
 <br>
 <div align="center" id="plot"></div>
+
 <!-- <br>
 <p>
   For example, if you take your mouse cursor on the very right of the figure where the value on the x-axis equals 99, 
@@ -923,30 +902,40 @@ Drawing with replacement makes the probabilities of drawing a Green ball (and th
   As another example, take your mouse cursor on the very left of the figure where the value on the x-axis equals 1 and the corresponding y-value is 99.5.
   This means, if you decided to draw one ball from one urn (either Urn 1 or Urn 2) and the drawn ball is Green, the Green ball awards you a lottery ticket with 99.5 percent chance.
 </p> -->
+<br>
+<button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 
+<button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
+  
+  </div>
 
-<br>
-<br>
+
+<!-- Tab 4 -->
+<div class="tab-pane" id="part5" role="tabpanel" aria-labelledby="part4-tab">
+
+  <p>&nbsp;</p>
+  <h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
+  <p style="text-align: center;">Page <strong>4</strong> out of 4</p>
+  <p>&nbsp;</p>
 <p>
   <strong>What should you do to make a good decision? </strong>
 </p>
 <p>
-  What should you do to get as many lottery tickets as possible and increase the probability of winning the prize of 200 points?
-  In one hand, you should draw more balls from the urn that, you believe, contains more Green balls 
-  because only Green balls give you a chance to get lottery tickets.
+  What should you do to earn as many points as possible and increase the probability of winning the prize of 200 Experimental Dollars?
+  On one hand, you should draw more balls from the urn that, you believe, contains more Green balls 
+  because you will earn more points as you get to draw more Green balls.
   On the other hand, you do not want to draw too many balls from the urn even if you are very confident that it has far more Green balls than the other urn. 
-  The more balls are drawn from one urn, the less likely it is a Green ball drawn from that urn awards you a lottery ticket.  
+  The more balls are drawn from one urn, you earn the less points for a Green ball drawn from that urn.  
   <!-- Therefore, it is obviously not simple to make the optimal ball-draw decision (which guarantees the highest probability of earning 200 points) 
   and to predict how many lottery tickets you will get. -->
 </p>
 <p>
   To help your decision-making, we provide a simulator in every decision-making screen.
   To use the simulator, you must report your guesses about how many Green balls you and your teammate received in Part 1. 
-  Conditional on your guesses, the simulator
-  predicts the expected number of lottery tickets you will get for every possible decision. 
-  By <em>"the expected number of lottery tickets you will get"</em>, we mean
-  the average number of lottery tickets you will get if you repeatedly make the same decision infinitely many times. 
+  Conditional on your guesses, the simulator predicts the expected number of points you will earn for every possible decision. 
+  By <em>"the expected number of points"</em>, we mean
+  the average number of points you will earn if you repeatedly make the same decision infinitely many times. 
   The simulator can inform you the optimal decision that, conditional on your reported guesses, 
-  maximizes the expected number of lottery tickets you will get and hence guarantees the highest probability of winning the prize. 
+  maximizes the expected number of points you will earn and hence guarantees the highest probability of winning the prize. 
 </p>
 
 <br>
@@ -975,32 +964,62 @@ Drawing with replacement makes the probabilities of drawing a Green ball (and th
   For example, the very left value on the x-axis (1,99) indicates you draw 1 ball from Urn 1 and 99 balls from Urn 2.
   The very right value on the x-axis (99,1) indicates you draw 99 balls from Urn 1 and 1 ball from Urn 2.
   
-  Second, the y-axis represents the expected number of lottery tickets you will get, conditional on your entered guesses.
-  Taking your mouse cursor on the simulation results displays the exact value. 
+  Second, the y-axis represents the expected number of points you will earn, conditional on your entered guesses.
+  Taking your mouse cursor on the simulation results displays the exact values. 
 </p>
+<br>
 <p>
-  As an example, let's suppose you are guessing you received 40 Green balls and your teammate received 60 Green balls. 
-  Use the below practice simulator and enter 40 and 60 for your guesses about yourself and about your teammate, respectively. Then click "Calculate" button.
+As an example, let's suppose you are guessing you received 40 Green balls and your teammate received 60 Green balls. 
+</p>
+
+<ul>
+<li>
+  Using the below practice simulator, enter 40 and 60 for your guesses about yourself and about your teammate, respectively. 
+  Then click "Calculate" button.
+</li>
+
+<li>
+  Once you have done this, you will see the simulator update the result. 
+  The simulation result (i.e., the blue dots) shows every pair of your potential decision and the expected number of points you will earn, 
+  conditional on the entered guesses that you received 40 Green balls and your teammate received 60 Green balls. 
+</li>
+
+<li>
+  For instance, conditional on the entered guesses, 
+  you are expected to earn 636.99 points when you draw 1 ball from Urn 1 and 99 balls from Urn 2 (the very left of the x-axis).
+  Conditional on the entered guesses, 
+  you are expected to earn 457.99 points when you draw 99 balls from Urn 1 and 1 ball from Urn 2 (the very right of the x-axis).
+  Also, notice that, the optimal decision that, conditional on your entered guesses, maximizes the expected number of points you will earn is tagged in red.
+  In this example, conditional on the entered guesses that you received 40 Green balls and your teammate received 60 Green balls, 
+  you are expected to earn 721.11 points, which is the maximum, when you draw 31 balls from Urn 1 and 69 balls from Urn 2. 
+  The simulator also announces the optimal decision at the bottom of the simulation results.
+</li>
+
+</ul>
+<br>
+<!-- <p>
+  Using the below practice simulator, enter 40 and 60 for your guesses about yourself and about your teammate, respectively. 
+  Then click "Calculate" button.
 <br>  
   Once you have done this, you will see the simulator update the result. 
-  The simulation result (i.e., the blue dots) shows every pair of your potential decision and the expected number of lottery tickets you will get, 
+  The simulation result (i.e., the blue dots) shows every pair of your potential decision and the expected number of points you will earn, 
   conditional on the entered guesses that you received 40 Green balls and your teammate received 60 Green balls. 
   For instance, conditional on the entered guesses, 
-  you are expected to get 6.37 lottery tickets when you draw 1 ball from Urn 1 and 99 balls from Urn 2 (the very left of the x-axis).
+  you are expected to earn 6.37 points when you draw 1 ball from Urn 1 and 99 balls from Urn 2 (the very left of the x-axis).
   Conditional on the entered guesses, 
-  you are expected to get 4.58 lottery tickets when you draw 99 balls from Urn 1 and 1 ball from Urn 2 (the very right of the x-axis).
-  Also, notice that, the optimal decision that, conditional on your entered guesses, maximizes the expected number of lottery tickets you will get is tagged in red.
+  you are expected to earn 4.58 points when you draw 99 balls from Urn 1 and 1 ball from Urn 2 (the very right of the x-axis).
+  Also, notice that, the optimal decision that, conditional on your entered guesses, maximizes the expected number of points you will earn is tagged in red.
   In this example, conditional on the entered guesses that you received 40 Green balls and your teammate received 60 Green balls, 
-  you are expected to get 7.21 lottery tickets, which is the maximum, when you draw 31 balls from Urn 1 and 69 balls from Urn 2. 
+  you are expected to earn 7.21 points, which is the maximum, when you draw 31 balls from Urn 1 and 69 balls from Urn 2. 
   The simulator also announces the optimal decision at the bottom of the simulation results.
-</p>
+</p> -->
 <p>
   To indicate your decision, you should use the decision-slider located at the bottom left of the decision-making screen. 
-  You can submit your decision by clicking "Submit" button. 
-  The "Submit" button will appear at the bottom right of the screen in 20 seconds after each round begins. 
-  Once you have submitted your decision, you may not reverse your decision.
-  Afterward, you will receive information about 
-  the number of lottery tickets that are actually awarded to you.
+    You can submit your decision by clicking "Submit" button,
+    which will appear at the bottom right of the screen in 20 seconds after each round begins. 
+    Once you have submitted your decision, you may not reverse your decision.
+    Afterward, you will receive information about 
+    the number of points you actually earned in that round.
 </p>
 <p>
   To help you keep track of your decisions over time, 
@@ -1046,8 +1065,9 @@ Drawing with replacement makes the probabilities of drawing a Green ball (and th
   <p style="padding-left: 10px;"> 
     Conditional on that you received <strong><span id="reported_mine">  </span></strong> Green balls 
     and your teammate received <strong><span id="reported_teammate">  </span></strong> Green balls, 
-    you are expected to get <strong><span id="ExpectedLT"> </span></strong> lottery tickets to the maximum 
+    the expected number of points is maximized
     when you draw <strong><span id="RecommendedAction1"> </span></strong> balls from Urn 1 and <strong><span id="RecommendedAction2"> </span></strong> balls from Urn 2.
+    You are expected to earn <strong><span id="ExpectedLT"> </span></strong> points.
   </p>
 
 
@@ -1075,7 +1095,7 @@ Drawing with replacement makes the probabilities of drawing a Green ball (and th
         <th colspan="2" style="text-align: center;">Your Guess</th>
         <th colspan="2" style="text-align: center;">Your Decision</th>
         <!-- <th rowspan="2" style= "vertical-align: middle; text-align: center;"># of GREEN balls drawn</th> -->
-        <th rowspan="2" style= "vertical-align: middle; text-align: center;"># of lottery tickets awarded to you</th>
+        <th rowspan="2" style= "vertical-align: middle; text-align: center;">Points You Earned</th>
       </tr>
       <tr>
         <th style= "vertical-align: middle; text-align: center;">Your Guess about # of GREEN balls you received</th>
@@ -1126,48 +1146,68 @@ Drawing with replacement makes the probabilities of drawing a Green ball (and th
       </div>		
     
     </div>		
+  
     
+    <p>&nbsp;</p>      
+    <p>On the next screen, you are presented with comprehension questions.</p>
+    <p>You can review the instructions by clicking "Back".</p>
+    <p>Once you get familiar with the instruction, click "Next".</p>
+    
+    
+    <button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 
+    <button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
+      
+      </div>
 
 
-<!-- 
+
+<!-- Tab 5 -->
+<div class="tab-pane" id="part5" role="tabpanel" aria-labelledby="part5-tab">
+
+
+  
+<h1 style="text-align: center;"><strong>PART 3: Comprehension Questions </strong></h1>
 <p>&nbsp;</p>
-<h1 style="text-align: center;"><strong>PART 3 Instructions</strong></h1>
-<p style="text-align: center;">Page <strong>2</strong> out of 6</p>
-<p>&nbsp;</p>
-<p>Part 3 consists of {{num_game_round}} rounds.</p>
-<p>
-  In every round, you are asked to decide how many balls to draw from each urn. 
-  <br>You can draw 1-99 balls from a single urn. You have to draw 100 balls in total. 
+<p> Please answer the following comprehension questions correctly. 
+  <br>If you are confident with your answers, click “Submit” button. 
+  <br>If you are not confident with your answers, click "Back" button and review the instruction.
 </p>
-<p>Your choice will look like this. The slider gets activated once you click it.</p>
-<br>
-<table align = "center" style = "border: 3px solid gray;" cellspacing="10" cellpadding="20">
-  <colgroup>
-     <col width="20%">
-     <col width="60%">
-     <col width="20%">
-  </colgroup>
-
-  <tr>
-    <td align="center" style = "font-size: 100%;"> From Urn 1, <br>draw <strong> <span id="Urn1"> NaN </span> </strong> balls </td>
-    <td align="center" style = "vertical-align: middle;"> 
-      <input type="range" min="1" max="99" class = "myslider" id="DecisionSlider" step="1" onclick="myFunction()"> 
-    </td>
-    <td align="center" style = "font-size: 100%;"> From Urn 2, <br>draw <strong> <span id="Urn2"> NaN </span> </strong> balls </td>
-  </tr> 
-</table>
 <p>&nbsp;</p>
-<p>Whenever a ball is drawn from whichever urn, the drawn ball is replaced with the same-colored ball. 
-  Therefore, the probabilities of drawing a <span style="color: green;"><strong>Green</strong></span> ball (and the probabilities of drawing a Black ball) from Urn 1 and Urn 2 do NOT change.
-</p>
+
+<div style = "width: 100%; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 0 auto; font-size: 100%; background-color: rgb(240, 239, 236);" >
+
+  <ol>
+<li> Recall that, out of 200 balls in Urn 1, the number of Green balls equals twice the number of Green balls you received in Part 1. 
+  Out of 200 balls in Urn 2, the number of Green balls equals twice the number of Green balls your teammate received in Part 1. </li>
 <br>
-<p>For example, suppose out of 100 balls in Urn 1, 70 balls are Green. Further, assume that out of 100 balls in Urn 2, 20 balls are Green. This implies:</p>
-<ul>
-<li>Whenever a ball is drawn from Urn 1, the ball is Green with 70% probability and Black with 30% probability.</li>
-<li>Whenever a ball is drawn from Urn 2, the ball is Green with 20% probability and Black with 80% probability.</li>
-<li>These are examples that are meant to clarify that the probability of drawing a Green (or Black) ball from each urn remains constant during the entire experiment.
-  The chances you will face in the actual experiment may be completely different.</li>  
-</ul> -->
+<p style = "font-size: 100%; ">(a) The better you were at the slider task in Part 1, the more Green balls are in Urn 1. </p>
+<div style="padding-left:85%;">{% formfield player.part3_cq1_a label="" %}	</div>
+<p style = "font-size: 100%; ">(b) The better your teammate were at the slider task in Part 1, the more Green balls are in Urn 2. </p>
+<div style="padding-left:85%;">{% formfield player.part3_cq1_b label="" %}	</div>
+
+<br>
+<li>Suppose you received 50 Green balls from Part 1, and your teammate received 40 Green balls from Part 1. </li> 
+<br>
+  <p style = "font-size: 100%; ">(a) What is the percent chance (%) that a ball drawn from Urn 1 is Green? </p>
+  <div style="padding-left:85%;">{% formfield player.part3_cq2_a label="" %}	</div>
+  <p style = "font-size: 100%; ">(b) What is the percent chance (%) that a ball drawn from Urn 2 is Green? </p>
+  <div style="padding-left:85%;">{% formfield player.part3_cq2_b label="" %}	</div>
+
+  <br>
+  <li>You earn more points as you get to draw more Green balls.  </li>
+  <div style="padding-left:85%;">{% formfield player.part3_cq3 label="" %}</div>
+  
+  <br>
+  <li>The more balls you decided to draw from a single urn, a Green ball drawn from that urn awards you more points.</li>
+  <div style="padding-left:85%;">{% formfield player.part3_cq4 label="" %}</div> 
+
+<br>
+<li>The more points you earn, the more likely you win the prize of 200 Experimental Dollars. </li>
+<div style="padding-left:85%;">{% formfield player.part3_cq5 label="" %}</div>
+
+  </ol>
+</div>
+
 
 
   <button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 

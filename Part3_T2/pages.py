@@ -4,20 +4,6 @@ from .models import Constants
 from scipy.stats import bernoulli
 
 class Part3_Instruction(Page):
-    def is_displayed(self):
-        if self.round_number == 1:
-            return True
-        else:
-            return self.participant.vars["fail"]
-
-    def vars_for_template(self):
-        return dict(
-            num_game_round = Constants.num_game_round,
-            prize = Constants.prize,
-            max_lt = Constants.max_lt
-        )
-
-class Part3_CQ(Page):
     form_model = 'player'
     form_fields = [
         'part3_cq1_a',
@@ -28,32 +14,20 @@ class Part3_CQ(Page):
         'part3_cq4',
         'part3_cq5'
     ]    
-
-    def before_next_page(self):
-        if [self.player.part3_cq1_a, self.player.part3_cq1_b] == Constants.ans_part3_cq1 and [self.player.part3_cq2_a, self.player.part3_cq2_b] == Constants.ans_part3_cq2 and self.player.part3_cq3 == Constants.ans_part3_cq3 and self.player.part3_cq4 == Constants.ans_part3_cq4 and self.player.part3_cq5 == Constants.ans_part3_cq5:
-            self.participant.vars["fail"] = False
-        else :
-            self.participant.vars["fail"] = True
+    
+    def vars_for_template(self):
+        return dict(
+            num_game_round = Constants.num_rounds-1,
+            prize = Constants.prize,
+            max_lt = Constants.max_lt,
+            subcontractor = Constants.subcontractor,
+            urn2_green = round(Constants.subcontractor/2),
+            urn2_black = round(100-Constants.subcontractor/2)
+        )
 
     def is_displayed(self):
         if self.round_number == 1:
             return True
-        else:
-            return self.participant.vars["fail"]   
-
-class SecondChance(Page):
-    def is_displayed(self):
-        if self.round_number == 1:
-            return self.participant.vars["fail"]
-        else:
-            return False
-
-class FailedAttentionCheck(Page):
-    def is_displayed(self):
-        if self.round_number > 1:
-            return self.participant.vars["fail"]
-        else:
-            return False
 
 class Part3_Task(Page):
     form_model = 'player'
@@ -74,38 +48,49 @@ class Part3_Task(Page):
     def vars_for_template(self):
         
         return dict(
-            # player_in_previous_rounds=self.player.in_previous_rounds(),
-            player_in_previous_rounds=self.player.in_rounds(2,self.subsession.round_number-1),
-            game_round_number = self.subsession.round_number - 1,
-            num_game_round = Constants.num_game_round
+            player_in_previous_rounds = self.player.in_previous_rounds(),
+            game_round_number = self.player.round_number,
+            num_game_round = Constants.num_rounds-1 
         )
 
     def is_displayed(self):
-        return self.round_number >= Constants.num_attention_check_tries
+        return self.round_number <= 50
 
 
 class Part3_Result(Page):
     def vars_for_template(self):
         return dict(
-            player_in_previous_rounds=self.player.in_previous_rounds(),
-            round_number = self.subsession.round_number - 1,
+            player_in_previous_rounds = self.player.in_previous_rounds(),
+            round_number = self.subsession.round_number,
             draw_urn1 = self.player.draw_urn1,
             draw_urn2 = self.player.draw_urn2,
-            num_redballs = self.player.num_redballs,
+            num_Gballs = self.player.num_Gballs,
             num_LTs_Awarded = self.player.num_LTs_Awareded,
-            num_game_round = Constants.num_game_round
+            num_game_round = Constants.num_rounds-1
         )
 
     def is_displayed(self):
-        return self.round_number >= Constants.num_attention_check_tries
+        return self.round_number <= 50
 
+class Part3_Summary(Page):
+    def vars_for_template(self):
+        return dict(
+            player_in_previous_rounds = self.player.in_previous_rounds(),
+            round_number = self.subsession.round_number,
+            draw_urn1 = self.player.draw_urn1,
+            draw_urn2 = self.player.draw_urn2,
+            num_Gballs = self.player.num_Gballs,
+            num_LTs_Awarded = self.player.num_LTs_Awareded,
+            num_game_round = Constants.num_rounds-1
+        )
+
+    def is_displayed(self):
+        return self.round_number ==51 
 
 # the coreography of pages
 page_sequence = [
                     Part3_Instruction,
-                    Part3_CQ,
-                    SecondChance,
-                    FailedAttentionCheck,
                     Part3_Task,
-                    Part3_Result
-]
+                    Part3_Result,
+                    Part3_Summary,
+]    

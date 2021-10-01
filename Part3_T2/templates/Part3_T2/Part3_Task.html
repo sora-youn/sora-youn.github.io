@@ -7,18 +7,19 @@
 <script src="https://unpkg.com/mathjs@9.4.4/lib/browser/math.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
+
 <script>
-  document.getElementById("some-button").style.display = "none";
+      document.getElementById("some-button").style.display = "none";
 
-  function showStuff() {
-      document.getElementById("some-button").style.display = "inline";
-  }
+      function showStuff() {
+          document.getElementById("some-button").style.display = "inline";
+      }
 
- function myFunction() {
-      window.location = "project.html"
-  }
+     function myFunction() {
+          window.location = "project.html"
+      }
 
-  setTimeout(showStuff, 20000); // 1000 ms = 1 second.
+      setTimeout(showStuff, 2); // 1000 ms = 1 second.
 </script>
 
 <script>
@@ -42,9 +43,9 @@
       //compile the expression once
       const mine = document.getElementById('guess_mine').value
       const teammate = document.getElementById('guess_teammate').value    
-      const r1 = document.getElementById('guess_mine').value/200 + document.getElementById('guess_teammate').value/200
+      const r1 = document.getElementById('guess_mine').value /200 + document.getElementById('guess_teammate').value /200
       const r2 = 40/200
-      const expression = r1 + '*(x)^.5 +' + r2 + '*(100-x)^.5' // x = # balls to draw from Urn 1 
+      const expression = r1 + '*(x)^.5*100+' + r2 + '*(100-x)^.5*100' // x = # balls to draw from Urn 1 
       const expr = math.compile(expression)
   
       // evaluate the expression repeatedly for different values of x
@@ -176,7 +177,7 @@
         }
     
       const layout = {
-        title: 'The expected number of lottery tickets you will get',
+        title: 'The Expected Number of Points You Will Earn',
         titlefont: {
           family: 'Old Standard TT, serif',
           size: 20,
@@ -198,7 +199,7 @@
           ticktext: ['(1,99)','(10,90)', '(20,80)', '(30,70)', '(40,60)','(50,50)','(60,40)','(70,30)','(80,20)','(90,10)','(99,1)']
           },
         yaxis: {
-          title: 'The expected number of lottery tickets',
+          title: 'The Expected Number of Points',
           titlefont: {
             family: 'Old Standard TT, serif',
             size: 18,
@@ -213,14 +214,14 @@
           // range: [0,25],
           },
         autosize: true,
-        width: 700,
+        width: 600,
         height: 500,
         margin: {
           l: 50,
           r: 50,
           b: 100,
           t: 100,
-          pad: 4
+          pad: 0
           },   
       hoverlabel: { bgcolor: "#FFF" },    
       annotations: [
@@ -341,9 +342,9 @@ ul    {font-size: 120%; line-height: 200%;}
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr .5fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  gap: 15px 15px;
+  gap: 5px 5px;
   grid-template-areas:
     "decision_tool history"
     "decision_tool history"
@@ -380,7 +381,7 @@ ul    {font-size: 120%; line-height: 200%;}
 
   <h3 style="text-align: center;"> Simulator </h3>
   
-  <table class="table borderless" align="center" style="border-spacing: 90; width: 75%; font-size: 100%;">
+  <table class="table borderless" align="center" style="border-spacing: 90; width: 100%; font-size: 100%;">
     <colgroup>
     <col width="40%">
     <col width="40%">
@@ -408,16 +409,15 @@ ul    {font-size: 120%; line-height: 200%;}
   <p style="padding-left: 10px;"> 
     Conditional on that you received <strong><span id="reported_mine">  </span></strong> Green balls 
     and your teammate received <strong><span id="reported_teammate">  </span></strong> Green balls, 
-    you are expected to get <strong><span id="ExpectedLT"> </span></strong> lottery tickets to the maximum 
+    the expected number of points is maximized
     when you draw <strong><span id="RecommendedAction1"> </span></strong> balls from Urn 1 and <strong><span id="RecommendedAction2"> </span></strong> balls from Urn 2.
+    You are expected to earn <strong><span id="ExpectedLT"> </span></strong> points.
   </p>
-
-
     </div>
 
     
 	<!-- History -->
-	<div class="history" style = "width: 95%; font-size: 75%; border: 2px solid rgb(10, 10, 10); padding: 0px; margin: 10px; ">
+	<div class="history" style = "width: 100%; font-size: 75%; border: 2px solid rgb(10, 10, 10); padding: 0px; margin: 10px; ">
 	
     <h3 style="text-align: center;"> Round History </h3>
     <br>
@@ -437,7 +437,7 @@ ul    {font-size: 120%; line-height: 200%;}
         <th colspan="2" style="text-align: center;">Your Guess</th>
         <th colspan="2" style="text-align: center;">Your Decision</th>
         <!-- <th rowspan="2" style= "vertical-align: middle; text-align: center;"># of GREEN balls drawn</th> -->
-        <th rowspan="2" style= "vertical-align: middle; text-align: center;"># of lottery tickets awarded to you</th>
+        <th rowspan="2" style= "vertical-align: middle; text-align: center;">Points You Earned</th>
       </tr>
       <tr>
         <th style= "vertical-align: middle; text-align: center;">Your Guess about # of GREEN balls you received</th>
@@ -448,7 +448,7 @@ ul    {font-size: 120%; line-height: 200%;}
     
       {% for p in player_in_previous_rounds %}
       <tr>
-        <td style= "vertical-align: middle;" align = "center">{{ p.game_round_number }}</td>
+        <td style= "vertical-align: middle;" align = "center">{{ p.round_number }}</td>
         <td style= "vertical-align: middle;" align = "center">{{ p.guess_mine }}</td>
         <td style= "vertical-align: middle;" align = "center">{{ p.guess_teammate }}</td>
         <td style= "vertical-align: middle;" align = "center"> {{ p.draw_urn1}}</td>
@@ -460,7 +460,6 @@ ul    {font-size: 120%; line-height: 200%;}
 
       
 
-    
     </table>	
       </div>
     
@@ -491,7 +490,6 @@ ul    {font-size: 120%; line-height: 200%;}
       </div>		
     
     </div>		
-
 
 
 		

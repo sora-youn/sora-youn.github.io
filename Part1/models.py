@@ -18,13 +18,13 @@ import time
 class Constants(BaseConstants):
     name_in_url = 'part1'
     players_per_group = None
-    num_attention_check_tries = 2
-    num_game_round = 1
-    num_rounds = num_attention_check_tries + num_game_round - 1
+    num_rounds = 1
     point_per_correct_slider = 1
-    ans_part1_cq1 = 0
+    ans_part1_cq1 = 'True'
     ans_part1_cq2 = 0
     ans_part1_cq3 = 1
+    correct_upper_bound = 51
+    correct_lower_bound = 49
 
 class Group(BaseGroup):
 
@@ -35,7 +35,7 @@ class Group(BaseGroup):
         print(all_players)
 
         for p in all_players:
-            fundamental_list = [p.productivity for p in all_players if p.participant.vars["fail"] == False]
+            fundamental_list = [p.productivity for p in all_players]
 
         for p in all_players:
             p.participant.vars['fundamental'] = statistics.median_high(fundamental_list)
@@ -67,7 +67,7 @@ class Subsession(BaseSubsession):
     pass
 
 class Player(BasePlayer):
-    part1_cq1 = models.PositiveIntegerField(choices=[[0, 'True'],[1, 'False']],widget=widgets.RadioSelectHorizontal)
+    part1_cq1 = models.StringField(widget=widgets.RadioSelectHorizontal(),choices=['True', 'False'])
     part1_cq2 = models.PositiveIntegerField(choices=[[0, 'True'],[1, 'False']],widget=widgets.RadioSelectHorizontal)
     part1_cq3 = models.PositiveIntegerField(choices=[[0, 'True'],[1, 'False']],widget=widgets.RadioSelectHorizontal)
 
@@ -174,6 +174,17 @@ class Player(BasePlayer):
 
     productivity = models.FloatField()
 
+
+    ############################ ATTENTION CHECK ############################ 
+    def part1_cq1_error_message(self, value):
+        if value != Constants.ans_part1_cq1 :
+            return 'Your answer to this question is wrong'
+    def part1_cq2_error_message(self, value):
+        if value != Constants.ans_part1_cq2 :
+            return 'Your answer to this question is wrong'
+    def part1_cq3_error_message(self, value):
+        if value != Constants.ans_part1_cq3 :
+            return 'Your answer to this question is wrong'
 
     ############################ SET PAYOFFS ############################ 
     def set_payoff(self):
@@ -286,8 +297,8 @@ class Player(BasePlayer):
         self.participant.vars['productivity'] = 0
 
         for x in slider:
-            if x <= 50.5 :
-                if x >= 49.5: 
+            if x <= Constants.correct_upper_bound :
+                if x >= Constants.correct_lower_bound: 
                     self.participant.vars['productivity'] = self.participant.vars['productivity'] + 1
                 else :
                     self.participant.vars['productivity'] = self.participant.vars['productivity'] + 0

@@ -18,16 +18,14 @@ import time
 class Constants(BaseConstants):
     name_in_url = 'part3_T1'
     players_per_group = None
-    num_attention_check_tries = 2
-    num_game_round = 50
-    num_rounds = num_attention_check_tries + num_game_round - 1
+    num_rounds = 51
     ans_part3_cq1 = [0,0]
     ans_part3_cq2 = [50,40]
     ans_part3_cq3 = 0
     ans_part3_cq4 = 1
     ans_part3_cq5 = 0
     prize = 200
-    max_lt = 25
+    max_lt = 2500
 
 class Group(BaseGroup):
     pass
@@ -55,15 +53,13 @@ class Player(BasePlayer):
     draw_urn1 = models.IntegerField(min=0, max=100)
     draw_urn2 = models.IntegerField(min=0, max=100)
 
-    num_redballs_urn1 = models.IntegerField(min=0, max=100)
-    num_redballs_urn2 = models.IntegerField(min=0, max=100)
-    num_redballs = models.IntegerField(min=0, max=100)
+    num_Gballs_urn1 = models.IntegerField(min=0, max=100)
+    num_Gballs_urn2 = models.IntegerField(min=0, max=100)
+    num_Gballs = models.IntegerField(min=0, max=100)
 
-    num_LTs_Awareded_Urn1 = models.IntegerField(min=0, max=100)
-    num_LTs_Awareded_Urn2 = models.IntegerField(min=0, max=100)
-    num_LTs_Awareded = models.IntegerField(min=0, max=100)
-
-    game_round_number = models.IntegerField(min=0, max=100)
+    num_LTs_Awareded_Urn1 = models.FloatField(min=0, max=100)
+    num_LTs_Awareded_Urn2 = models.FloatField(min=0, max=100)
+    num_LTs_Awareded = models.FloatField(min=0, max=100)
 
     check_DecisionSlider = models.BooleanField(blank=True)
 
@@ -75,33 +71,29 @@ class Player(BasePlayer):
         self.draw_urn2 = 100 - self.draw_urn1
 
         ## T1
-        Prob_Red_Urn1 = self.participant.vars['productivity']/100
-        Prob_Red_Urn2 = self.participant.vars['fundamental']/100
+        Prob_G_Urn1 = self.participant.vars['productivity']/100
+        Prob_G_Urn2 = self.participant.vars['fundamental']/100
 
-        DrawnBalls_Urn1 = bernoulli.rvs(Prob_Red_Urn1, size = self.draw_urn1)
-        DrawnBalls_Urn2 = bernoulli.rvs(Prob_Red_Urn2, size = self.draw_urn2)
+        DrawnBalls_Urn1 = bernoulli.rvs(Prob_G_Urn1, size = self.draw_urn1) # realization of the ball-draw from urn 1
+        DrawnBalls_Urn2 = bernoulli.rvs(Prob_G_Urn2, size = self.draw_urn2) # realization of the ball-draw from urn 2
 
-        self.num_redballs_urn1 = sum(DrawnBalls_Urn1)
-        self.num_redballs_urn2 = sum(DrawnBalls_Urn2)
+        # print(DrawnBalls_Urn1)
+        # print(DrawnBalls_Urn2)
 
-        self.num_redballs =  sum(DrawnBalls_Urn1) + sum(DrawnBalls_Urn2)
+        self.num_Gballs_urn1 = sum(DrawnBalls_Urn1)
+        self.num_Gballs_urn2 = sum(DrawnBalls_Urn2)
 
-        Prob_Lotterytickets_Urn1 = Prob_Red_Urn1 * pow(self.draw_urn1, -0.5) 
-        Prob_Lotterytickets_Urn2 = Prob_Red_Urn2 * pow(self.draw_urn2, -0.5) 
+        self.num_Gballs =  sum(DrawnBalls_Urn1) + sum(DrawnBalls_Urn2)
 
-        AwardedLTs_Urn1 = bernoulli.rvs(Prob_Lotterytickets_Urn1, size = self.num_redballs_urn1)
-        AwardedLTs_Urn2 = bernoulli.rvs(Prob_Lotterytickets_Urn2, size = self.num_redballs_urn2)
+        self.num_LTs_Awareded_Urn1 = self.num_Gballs_urn1 * pow(self.draw_urn1, -0.5) *100 # the number of drawn green balls * the number of lottery tickets per green ball
+        self.num_LTs_Awareded_Urn2 = self.num_Gballs_urn2 * pow(self.draw_urn2, -0.5) *100 # the number of drawn green balls * the number of lottery tickets per green ball
 
-        self.num_LTs_Awareded_Urn1 = sum(AwardedLTs_Urn1) *1
-        self.num_LTs_Awareded_Urn2 = sum(AwardedLTs_Urn2) *1
-        
-        self.num_LTs_Awareded = self.num_LTs_Awareded_Urn1 + self.num_LTs_Awareded_Urn2
-
-        self.game_round_number = self.subsession.round_number - 1
+        self.num_LTs_Awareded = round(self.num_LTs_Awareded_Urn1 + self.num_LTs_Awareded_Urn2,2)
 
 
         ## Draw a random number
         self.participant.vars['Part3_X'] = random.randint(0,Constants.max_lt)
+
 
         ##
         if self.num_LTs_Awareded >= self.participant.vars['Part3_X'] :
@@ -112,12 +104,40 @@ class Player(BasePlayer):
 
         ############################ PAYOFF REALIZATION ############################
 
-        if self.round_number == self.session.vars['paying_round'] +1:
+        if self.round_number == self.session.vars['paying_round']:
             self.payoff = self.participant.vars['points_earned_Part3'] 
         else :
             self.payoff = 0
 
         
+############################ ATTENTION CHECK ############################ 
+    def part3_cq1_a_error_message(self, value):
+        if value != Constants.ans_part3_cq1[0] :
+            return 'Wrong!'
+    
+    def part3_cq1_b_error_message(self, value):
+        if value != Constants.ans_part3_cq1[1]:
+            return 'Wrong!'
+
+    def part3_cq2_a_error_message(self, value):
+        if value != Constants.ans_part3_cq2[0]:
+            return 'Wrong!'
+
+    def part3_cq2_b_error_message(self, value):
+        if value != Constants.ans_part3_cq2[1]:
+            return 'Wrong!'
+
+    def part3_cq3_error_message(self, value):
+        if value != Constants.ans_part3_cq3:
+            return 'Wrong!'
+
+    def part3_cq4_error_message(self, value):
+        if value != Constants.ans_part3_cq4:
+            return 'Wrong!'
+
+    def part3_cq5_error_message(self, value):
+        if value != Constants.ans_part3_cq5:
+            return 'Wrong!'
 
 
 

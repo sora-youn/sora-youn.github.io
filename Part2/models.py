@@ -18,9 +18,7 @@ import time
 class Constants(BaseConstants):
     name_in_url = 'part2'
     players_per_group = None
-    num_attention_check_tries = 2
-    num_game_round = 1
-    num_rounds = num_attention_check_tries + num_game_round - 1
+    num_rounds = 1
     ans_part2_cq1 = 0
     ans_part2_cq2_mine = [0,0,0,0,0,100,0,0,0,0]
     ans_part2_cq2_teammate = [0,0,0,50,50,0,0,0,0,0]
@@ -85,6 +83,97 @@ class Player(BasePlayer):
     fundamental = models.FloatField()
 
     
+    ############################ ATTENTION CHECK ############################ 
+    def part2_cq1_error_message(self, value):
+        if value != Constants.ans_part2_cq1 :
+            return 'Wrong!'
+    
+    def part2_cq2_bin1_mine_error_message(self, value):
+        if value != Constants.ans_part2_cq2_mine[0]:
+            return 'Wrong!'
+
+    def part2_cq2_bin2_mine_error_message(self, value):
+        if value != Constants.ans_part2_cq2_mine[1]:
+            return 'Wrong!'
+
+    def part2_cq2_bin3_mine_error_message(self, value):
+        if value != Constants.ans_part2_cq2_mine[2]:
+            return 'Wrong!'
+
+    def part2_cq2_bin4_mine_error_message(self, value):
+        if value != Constants.ans_part2_cq2_mine[3]:
+            return 'Wrong!'
+
+    def part2_cq2_bin5_mine_error_message(self, value):
+        if value != Constants.ans_part2_cq2_mine[4]:
+            return 'Wrong!'
+
+    def part2_cq2_bin6_mine_error_message(self, value):
+        if value != Constants.ans_part2_cq2_mine[5]:
+            return 'Wrong!'
+
+    def part2_cq2_bin7_mine_error_message(self, value):
+        if value != Constants.ans_part2_cq2_mine[6]:
+            return 'Wrong!'
+
+    def part2_cq2_bin8_mine_error_message(self, value):
+        if value != Constants.ans_part2_cq2_mine[7]:
+            return 'Wrong!'
+
+    def part2_cq2_bin9_mine_error_message(self, value):
+        if value != Constants.ans_part2_cq2_mine[8]:
+            return 'Wrong!'
+
+    def part2_cq2_bin10_mine_error_message(self, value):
+        if value != Constants.ans_part2_cq2_mine[9]:
+            return 'Wrong!'      
+
+    def part2_cq2_bin1_teammate_error_message(self, value):
+        if value != Constants.ans_part2_cq2_teammate[0]:
+            return 'Wrong!'
+
+    def part2_cq2_bin2_teammate_error_message(self, value):
+        if value != Constants.ans_part2_cq2_teammate[1]:
+            return 'Wrong!'
+
+    def part2_cq2_bin3_teammate_error_message(self, value):
+        if value != Constants.ans_part2_cq2_teammate[2]:
+            return 'Wrong!'
+
+    def part2_cq2_bin4_teammate_error_message(self, value):
+        if value != Constants.ans_part2_cq2_teammate[3]:
+            return 'Wrong!'
+
+    def part2_cq2_bin5_teammate_error_message(self, value):
+        if value != Constants.ans_part2_cq2_teammate[4]:
+            return 'Wrong!'
+
+    def part2_cq2_bin6_teammate_error_message(self, value):
+        if value != Constants.ans_part2_cq2_teammate[5]:
+            return 'Wrong!'
+
+    def part2_cq2_bin7_teammate_error_message(self, value):
+        if value != Constants.ans_part2_cq2_teammate[6]:
+            return 'Wrong!'
+
+    def part2_cq2_bin8_teammate_error_message(self, value):
+        if value != Constants.ans_part2_cq2_teammate[7]:
+            return 'Wrong!'
+
+    def part2_cq2_bin9_teammate_error_message(self, value):
+        if value != Constants.ans_part2_cq2_teammate[8]:
+            return 'Wrong!'
+
+    def part2_cq2_bin10_teammate_error_message(self, value):
+        if value != Constants.ans_part2_cq2_teammate[9]:
+            return 'Wrong!'          
+    
+    def part2_cq3_error_message(self, value):
+        if value != Constants.ans_part2_cq3 :
+            return 'Wrong!'
+
+
+    ######################################################################### 
     def set_payoff(self):
         
         self.fundamental = self.participant.vars['fundamental']

@@ -1,15 +1,6 @@
 {
 	"folders": [
 		{
-			"path": "../../oTree"
-		},
-		{
-			"path": "../oTreeDemos"
-		},
-		{
-			"path": "../sora_slider_tests"
-		},
-		{
 			"path": "."
 		}
 	],
