@@ -20,12 +20,12 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 51
     ans_part3_cq1 = [0,1]
-    ans_part3_cq2 = [45,20]
+    ans_part3_cq2 = [45,30]
     ans_part3_cq3 = 0
     ans_part3_cq4 = 1
     ans_part3_cq5 = 0
     prize = 200
-    subcontractor = 40
+    subcontractor = 60
     max_lt = 2500
 
 class Group(BaseGroup):

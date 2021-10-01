@@ -44,7 +44,7 @@
       const mine = document.getElementById('guess_mine').value
       const teammate = document.getElementById('guess_teammate').value    
       const r1 = document.getElementById('guess_mine').value /200 + document.getElementById('guess_teammate').value /200
-      const r2 = 40/200
+      const r2 = 60/200
       const expression = r1 + '*(x)^.5*100+' + r2 + '*(100-x)^.5*100' // x = # balls to draw from Urn 1 
       const expr = math.compile(expression)
   

@@ -230,7 +230,7 @@ function draw2() {
     const mine = document.getElementById('guess_mine').value
     const teammate = document.getElementById('guess_teammate').value    
     const r1 = document.getElementById('guess_mine').value /200 + document.getElementById('guess_teammate').value /200
-    const r2 = 40/200
+    const r2 = 60/200
     const expression = r1 + '*(x)^.5 *100 +' + r2 + '*(100-x)^.5 *100' // x = # balls to draw from Urn 1 
     const expr = math.compile(expression)
 
@@ -1037,12 +1037,12 @@ As an example, let's suppose you are guessing you received 40 Green balls and yo
 
 <li>
   For instance, conditional on the entered guesses, 
-  you are expected to earn 249 points when you draw 1 ball from Urn 1 and 99 balls from Urn 2 (the very left of the x-axis).
+  you are expected to earn 348.5 points when you draw 1 ball from Urn 1 and 99 balls from Urn 2 (the very left of the x-axis).
   Conditional on the entered guesses, 
-  you are expected to earn 517.49 points when you draw 99 balls from Urn 1 and 1 ball from Urn 2 (the very right of the x-axis).
+  you are expected to earn 527.49 points when you draw 99 balls from Urn 1 and 1 ball from Urn 2 (the very right of the x-axis).
   Also, notice that, the optimal decision that, conditional on your entered guesses, maximizes the expected number of points you will earn is tagged in red.
   In this example, conditional on the entered guesses that you received 40 Green balls and your teammate received 60 Green balls, 
-  you are expected to earn 538.51 points, which is the maximum, when you draw 86 balls from Urn 1 and 14 balls from Urn 2. 
+  you are expected to earn 538.09 points, which is the maximum, when you draw 74 balls from Urn 1 and 26 balls from Urn 2. 
   The simulator also announces the optimal decision at the bottom of the simulation results.
 </li>
 
