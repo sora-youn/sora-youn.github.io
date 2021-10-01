@@ -19,7 +19,7 @@
           window.location = "project.html"
       }
 
-      setTimeout(showStuff, 20000); // 1000 ms = 1 second.
+      setTimeout(showStuff, 2); // 1000 ms = 1 second.
 </script>
 
 <script>
@@ -43,9 +43,9 @@
       //compile the expression once
       const mine = document.getElementById('guess_mine').value
       const teammate = document.getElementById('guess_teammate').value    
-      const r1 = document.getElementById('guess_mine').value /200 + document.getElementById('guess_teammate').value /200
-      const r2 = 40/200
-      const expression = r1 + '*(x)^.5*100+' + r2 + '*(100-x)^.5*100' // x = # balls to draw from Urn 1 
+      const r1 = document.getElementById('guess_mine').value /100
+      const r2 = document.getElementById('guess_teammate').value /100
+      const expression = r1 + '*(x)^.5 *100+' + r2 + '*(100-x)^.5*100' // x = # balls to draw from Urn 1 
       const expr = math.compile(expression)
   
       // evaluate the expression repeatedly for different values of x
@@ -460,6 +460,7 @@ ul    {font-size: 120%; line-height: 200%;}
 
       
 
+    
     </table>	
       </div>
     
