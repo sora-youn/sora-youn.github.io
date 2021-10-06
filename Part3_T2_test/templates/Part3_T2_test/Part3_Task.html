@@ -1,0 +1,510 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block scripts %}
+
+<script src="{% static 'back_button_v3/js/prev_next_button.js' %}"></script>
+<script src="https://unpkg.com/mathjs@9.4.4/lib/browser/math.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
+<script>
+      document.getElementById("some-button").style.display = "none";
+
+      function showStuff() {
+          document.getElementById("some-button").style.display = "inline";
+      }
+
+     function myFunction() {
+          window.location = "project.html"
+      }
+
+      setTimeout(showStuff, 1); // 1000 ms = 1 second.
+</script>
+
+<script>
+
+  function draw2() {
+  
+    function check() {
+      //validation code
+      const mine = document.getElementById('guess_mine').value
+      const teammate = document.getElementById('guess_teammate').value  
+      if (mine== parseInt(mine) && teammate == parseInt(teammate) && parseInt(mine) >=0 && parseInt(mine) <=100 && parseInt(teammate) >=0 && parseInt(teammate) <=100) {
+        return true;
+        } else{
+          alert("You must enter an integer from 0-100 for each of the guesses")
+        }
+  }  
+  
+    if (check()) {
+    try {
+  
+      //compile the expression once
+      const mine = document.getElementById('guess_mine').value
+      const teammate = document.getElementById('guess_teammate').value    
+      const r1 = document.getElementById('guess_mine').value /200 + document.getElementById('guess_teammate').value /200
+      const r2 = 60/200
+      const expression = r1 + '*(x)^.5*100+' + r2 + '*(100-x)^.5*100' // x = # balls to draw from Urn 1 
+      const expr = math.compile(expression)
+  
+      // evaluate the expression repeatedly for different values of x
+      const xValues = math.range(1, 99, 1, true).toArray()
+      const yValues = xValues.map(function (x) {
+        return expr.evaluate({x: x})
+        })
+            
+      const yOptimal = math.max(yValues)
+    
+      const index = yValues.findIndex(fruit => fruit == yOptimal)
+      const Draw1_Optimal = xValues[index]
+      const Draw2_Optimal = 100 - Draw1_Optimal
+    
+      const ExpectedGreen = r1*Draw1_Optimal + r2*Draw2_Optimal
+      const ExpectedLT = yOptimal.toFixed(2)
+    
+      const xlabel = ['(	1,	99	)',
+            '(	2,	98	)',
+            '(	3,	97	)',
+            '(	4,	96	)',
+            '(	5,	95	)',
+            '(	6,	94	)',
+            '(	7,	93	)',
+            '(	8,	92	)',
+            '(	9,	91	)',
+            '(	10,	90	)',
+            '(	11,	89	)',
+            '(	12,	88	)',
+            '(	13,	87	)',
+            '(	14,	86	)',
+            '(	15,	85	)',
+            '(	16,	84	)',
+            '(	17,	83	)',
+            '(	18,	82	)',
+            '(	19,	81	)',
+            '(	20,	80	)',
+            '(	21,	79	)',
+            '(	22,	78	)',
+            '(	23,	77	)',
+            '(	24,	76	)',
+            '(	25,	75	)',
+            '(	26,	74	)',
+            '(	27,	73	)',
+            '(	28,	72	)',
+            '(	29,	71	)',
+            '(	30,	70	)',
+            '(	31,	69	)',
+            '(	32,	68	)',
+            '(	33,	67	)',
+            '(	34,	66	)',
+            '(	35,	65	)',
+            '(	36,	64	)',
+            '(	37,	63	)',
+            '(	38,	62	)',
+            '(	39,	61	)',
+            '(	40,	60	)',
+            '(	41,	59	)',
+            '(	42,	58	)',
+            '(	43,	57	)',
+            '(	44,	56	)',
+            '(	45,	55	)',
+            '(	46,	54	)',
+            '(	47,	53	)',
+            '(	48,	52	)',
+            '(	49,	51	)',
+            '(	50,	50	)',
+            '(	51,	49	)',
+            '(	52,	48	)',
+            '(	53,	47	)',
+            '(	54,	46	)',
+            '(	55,	45	)',
+            '(	56,	44	)',
+            '(	57,	43	)',
+            '(	58,	42	)',
+            '(	59,	41	)',
+            '(	60,	40	)',
+            '(	61,	39	)',
+            '(	62,	38	)',
+            '(	63,	37	)',
+            '(	64,	36	)',
+            '(	65,	35	)',
+            '(	66,	34	)',
+            '(	67,	33	)',
+            '(	68,	32	)',
+            '(	69,	31	)',
+            '(	70,	30	)',
+            '(	71,	29	)',
+            '(	72,	28	)',
+            '(	73,	27	)',
+            '(	74,	26	)',
+            '(	75,	25	)',
+            '(	76,	24	)',
+            '(	77,	23	)',
+            '(	78,	22	)',
+            '(	79,	21	)',
+            '(	80,	20	)',
+            '(	81,	19	)',
+            '(	82,	18	)',
+            '(	83,	17	)',
+            '(	84,	16	)',
+            '(	85,	15	)',
+            '(	86,	14	)',
+            '(	87,	13	)',
+            '(	88,	12	)',
+            '(	89,	11	)',
+            '(	90,	10	)',
+            '(	91,	9	)',
+            '(	92,	8	)',
+            '(	93,	7	)',
+            '(	94,	6	)',
+            '(	95,	5	)',
+            '(	96,	4	)',
+            '(	97,	3	)',
+            '(	98,	2	)',
+            '(	99,	1	)']
+  
+      
+  
+      // render the plot using plotly
+      const trace1 = {
+        x: xlabel,
+        y: yValues,
+        type: 'scatter',
+        mode: 'lines+markers',
+        name: '',
+        showlegend: false,
+        hovertemplate: 'If you draw %{x} balls from Urn 1 and Urn 2, <br> you are expected to earn <b>%{y} points</b>.'+ "<extra></extra>",
+        }
+    
+      const layout = {
+        title: 'The Expected Number of Points You Will Earn',
+        titlefont: {
+          family: 'Old Standard TT, serif',
+          size: 20,
+          },
+        xaxis: {
+          title: 'Your decision <br> (# of balls to draw from Urn 1, # of balls to draw from Urn 2)',
+          titlefont: {
+            family: 'Old Standard TT, serif',
+            size: 18,
+            },
+          tickfont: {
+            family: 'Old Standard TT, serif',
+            size: 14,
+            color: 'black',
+            range: [1,99],
+            },
+          tickmode: "array", // If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
+          tickvals: [0, 9, 19, 29, 39, 49, 59, 69, 79, 89, 99],
+          ticktext: ['(1,99)','(10,90)', '(20,80)', '(30,70)', '(40,60)','(50,50)','(60,40)','(70,30)','(80,20)','(90,10)','(99,1)']
+          },
+        yaxis: {
+          title: 'The Expected Number of Points',
+          titlefont: {
+            family: 'Old Standard TT, serif',
+            size: 18,
+            },
+          tickfont: {
+            family: 'Old Standard TT, serif',
+            size: 14,
+            color: 'black',
+            },
+          hoverformat: '.2f',
+          autorange: true, 
+          // range: [0,25],
+          },
+        autosize: true,
+        width: 600,
+        height: 500,
+        margin: {
+          l: 50,
+          r: 50,
+          b: 100,
+          t: 100,
+          pad: 0
+          },   
+      hoverlabel: { bgcolor: "#FFF" },    
+      annotations: [
+      {
+        x: Draw1_Optimal,
+        y: yOptimal,
+        xref: 'x',
+        yref: 'y',
+        text: 'The maximum',
+        showarrow: true,
+        arrowhead: 7,
+        font: {
+          size: 15,
+          color: '#ff0000'
+        },
+        arrowcolor: '#ff0000',
+        ax: 0,
+        ay: -40
+      }
+    ]
+        };
+    
+      const data = [trace1]
+      Plotly.newPlot('plot2', data, layout, {displayModeBar: true, displaylogo: false})
+            
+      $('#reported_mine').html(mine);
+      $('#reported_teammate').html(teammate);
+      $('#RecommendedAction1').html(Draw1_Optimal);
+      $('#RecommendedAction2').html(Draw2_Optimal);
+      $('#ExpectedGreen').html(ExpectedGreen);
+      $('#ExpectedLT').html(ExpectedLT);
+      }
+    
+    catch (err) {
+      console.error(err)
+      alert(err)
+      }
+    }
+  }
+  draw2()
+  </script>
+  
+
+<script>
+	function myFunction() {
+	
+		var slider = document.getElementById("DecisionSlider");
+		var urn1 = document.getElementById("Urn1");
+		var urn2 = document.getElementById("Urn2");
+		urn1.innerHTML = slider.value; // Display the default slider value
+		urn2.innerHTML = 100 - slider.value;
+
+		// Update the current slider value (each time you drag the slider handle)
+		slider.oninput = function() {
+			urn1.innerHTML = this.value;
+			urn2.innerHTML = 100 - this.value;
+			}
+
+		$('#check_DecisionSlider').val("True")
+
+		}
+</script>
+
+{% endblock %}
+
+
+
+<!--------------------------------------------------------------------------->
+{% block styles %}
+
+<style>
+  input[type=radio] {
+    transform: scale(1.5);
+    margin: 12px -10px 0px -30px;
+  }
+</style>
+
+<style>
+p    {font-size: 120%; line-height: 200%;}
+ul    {font-size: 120%; line-height: 200%;}
+</style>
+
+<style>
+
+.myslider{
+	width: 100%;
+	}
+
+.myslider {
+	-webkit-appearance: none;
+	background: #e0e0e0;
+	width: 100%;
+	height: 25px;
+	opacity: 2;
+	}
+
+.myslider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	cursor: pointer;
+	background: #4f5e60  ;
+	width: 15px;
+	height: 25px;
+	}
+
+.myslider:hover {
+	opacity: 1;
+	}
+
+ </style>
+
+<style>
+    .otree-body{
+        max-width: 80%;
+    }
+</style> 
+
+<style>
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 5px 5px;
+  grid-template-areas:
+    "decision_tool history"
+    "decision_tool history"
+    "decision history";
+}
+
+.decision { grid-area: decision; }
+
+.history { grid-area: history; }
+
+.decision_tool { grid-area: decision_tool; }
+
+</style>
+
+{% endblock %}
+
+
+
+
+<!--------------------------------------------------------------------------->
+{% block content %}
+
+<!--------------------------------------------------------------------------->
+<h1 style="text-align: center;"><strong>PART 3 </strong></h1>
+<h3 style="text-align: center;"> Round {{game_round_number}} (out of {{num_game_round}}) </h3>
+<br>
+
+<!--------------------------------------------------------------------------->
+<div class="grid-container" style = "background-color: rgba(190, 190, 190, 0.26); padding: 0px; margin: 0px; width: 100%;">
+
+	<!-- decision tool -->
+<br>
+<div class="decision_tool" style = "width: 100%; border: 2px solid rgb(10, 10, 10); padding: 10px; margin: 10px; font-size: 100%;" >
+
+  <h3 style="text-align: center;"> Simulator </h3>
+  
+  <table class="table borderless" align="center" style="border-spacing: 90; width: 100%; font-size: 100%;">
+    <colgroup>
+    <col width="40%">
+    <col width="40%">
+    <col width="20%">
+    </colgroup>
+      
+    <tr>
+    <td align="center"> Your Guess about <br> # of GREEN balls <b> YOU </b> received </td>
+    <td align="center"> Your Guess about <br> # of GREEN balls <b> YOUR TEAMMATE </b> received </td>
+    <td align="center"> </td>
+    </tr>
+      
+    <tr>
+    <td align="center"> <input type='text' name='guess_mine' id='guess_mine' value='0' /> {{ form.guess_mine.errors }} </td>
+    <td align="center"> <input type='text' name='guess_teammate' id='guess_teammate' value='0' />  {{ form.guess_teammate.errors }} </td>
+    <!-- <td align="center"> <input type="submit" value="Calculate" /> </td> -->
+    <td> <button type="button" onclick="draw2()" >Calculate</button>  </td>
+    </tr>
+      
+  </table>
+  
+  <div id="plot2" align="center"></div> 
+  
+  <br>
+  <p style="padding-left: 10px;"> 
+    Conditional on that you received <strong><span id="reported_mine">  </span></strong> Green balls 
+    and your teammate received <strong><span id="reported_teammate">  </span></strong> Green balls, 
+    the expected number of points is maximized
+    when you draw <strong><span id="RecommendedAction1"> </span></strong> balls from Urn 1 and <strong><span id="RecommendedAction2"> </span></strong> balls from Urn 2.
+    You are expected to earn <strong><span id="ExpectedLT"> </span></strong> points.
+  </p>
+    </div>
+
+    
+	<!-- History -->
+	<div class="history" style = "width: 100%; font-size: 75%; border: 2px solid rgb(10, 10, 10); padding: 0px; margin: 10px; ">
+	
+    <h3 style="text-align: center;"> Round History </h3>
+    <br>
+    <table class="table" style="border-spacing: 90; width: 95%;">
+      <colgroup>
+      <col width="5%">
+      <col width="19%">
+      <col width="19%">
+      <col width="19%">
+      <col width="19%">
+      <col width="19%">
+      <!-- <col width="20%"> -->
+      </colgroup>
+    
+      <tr>
+        <th rowspan="2" style= "vertical-align: middle; text-align: center;" >Round</th>
+        <th colspan="2" style="text-align: center;">Your Guess</th>
+        <th colspan="2" style="text-align: center;">Your Decision</th>
+        <!-- <th rowspan="2" style= "vertical-align: middle; text-align: center;"># of GREEN balls drawn</th> -->
+        <th rowspan="2" style= "vertical-align: middle; text-align: center;">Points You Earned</th>
+      </tr>
+      <tr>
+        <th style= "vertical-align: middle; text-align: center;">Your Guess about # of GREEN balls you received</th>
+        <th style= "vertical-align: middle; text-align: center;">Your Guess about # of GREEN balls you received</th>
+        <th style= "vertical-align: middle; text-align: center;"># of balls drawn<br>from Urn 1</th>
+        <th style= "vertical-align: middle; text-align: center;"># of balls drawn<br>from Urn 2</th>
+      </tr>
+    
+      {% for p in player_in_previous_rounds %}
+      <tr>
+        <td style= "vertical-align: middle;" align = "center">{{ p.round_number }}</td>
+        <td style= "vertical-align: middle;" align = "center">{{ p.guess_mine }}</td>
+        <td style= "vertical-align: middle;" align = "center">{{ p.guess_teammate }}</td>
+        <td style= "vertical-align: middle;" align = "center"> {{ p.draw_urn1}}</td>
+        <td style= "vertical-align: middle;" align = "center"> {{ p.draw_urn2}}</td>
+        <td style= "vertical-align: middle;" align = "center"> {{ p.num_LTs_Awareded}}</td>
+        <!-- <td style= "vertical-align: middle;" align = "center"></td> -->
+        </tr>
+      {% endfor %}
+
+      
+
+    </table>	
+      </div>
+    
+      
+      <!-- Decision -->
+      <div class="decision" style = "width: 100%; border: 2px solid rgb(10, 10, 10); padding: 10px; margin: 10px; font-size: 75%;" >
+    
+    <h3 style="text-align: center;"> Make your decision! </h3>
+    <br>		
+    <table class="table borderless" align="center" style="border-spacing: 90; width: 90%; font-size: 115%;">
+      <colgroup>
+      <col width="20%">
+      <col width="60%">
+      <col width="20%">
+      </colgroup>
+    
+      <tr>
+      <td align="center" style = "vertical-align: middle;"> From Urn 1, draw <br> <strong> <span id="Urn1"> NaN </span> </strong> balls </td>
+      <td align="center" style = "vertical-align: middle;"> 
+        <input type="hidden" name="check_DecisionSlider" id="check_DecisionSlider"> {{ form.check_DecisionSlider.errors }}
+		    <input type="range" min="1" max="99" class = "myslider" id="DecisionSlider" name="draw_urn1" step="1" onclick="myFunction()"> {{ form.draw_urn1.errors }} 
+      </td>
+      <td align="center" style = "vertical-align: middle;"> From Urn 2, draw <br> <strong> <span id="Urn2"> NaN </span> </strong> balls </td>
+      </tr> 
+    
+    </table>
+    
+      </div>		
+    
+    </div>		
+
+
+		
+<!--------------------------------------------------------------------------->
+<p>&nbsp;</p>
+    <div class="row" style="padding-left:95%;">
+        <div class="col-md-2">
+            <button name="btn_submit" value="True" id="some-button" class="btn btn-primary btn-large">
+                    <span style="font-size:12pt">Submit</span>
+            </button>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+

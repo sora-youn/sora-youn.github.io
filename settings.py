@@ -63,16 +63,22 @@ SESSION_CONFIGS = [
         app_sequence=['Part1', 'Part2','Part3_T1','Part4','Part5','Part6','Part7'],
     ),
     dict(
-        name='Full_Sequence_T1_test',
-        display_name="Full_Sequence_T1_test",
-        num_demo_participants=3,
-        app_sequence=['Part1', 'Part2','Part3_T1_test','Part4','Part5','Part6','Part7'],
-    ),
-    dict(
         name='Full_Sequence_T2',
         display_name="Full_Sequence_T2",
         num_demo_participants=3,
         app_sequence=['Part1', 'Part2','Part3_T2','Part4','Part5','Part6','Part7'],
+    ),
+    dict(
+        name='test_T1',
+        display_name="test_T1",
+        num_demo_participants=3,
+        app_sequence=['Part1', 'Part2','Part3_T1_test','Part4','Part5','Part6','Part7'],
+    ),
+    dict(
+        name='test_T2',
+        display_name="test_T1",
+        num_demo_participants=3,
+        app_sequence=['Part1', 'Part2','Part3_T2_test','Part4','Part5','Part6','Part7'],
     ),
 ]
 
