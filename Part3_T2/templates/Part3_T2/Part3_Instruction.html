@@ -1107,8 +1107,42 @@ As an example, let's suppose you are guessing you received 40 Green balls and yo
     </tr>
       
     <tr>
-    <td align="center"> <input type='text' id='guess_mine' value='0' /> </td>
-    <td align="center"> <input type='text' id='guess_teammate' value='0' /> </td>
+      <td align="center">  
+    
+       <select id="guess_mine" name = "guess_mine">
+        <option value="0" selected>--- Select--- </option>  
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+        <option value="60">60</option>
+        <option value="70">70</option>
+        <option value="80">80</option>
+        <option value="90">90</option>
+        <option value="100">100</option>
+
+        </select>  
+    
+      </td> 
+      <td align="center">  
+        <select id="guess_teammate">
+        <!-- <select id="guess_teammate" size="11"> -->
+          <option value="0" selected>--- Select--- </option>  
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+          <option value="40">40</option>
+          <option value="50">50</option>
+          <option value="60">60</option>
+          <option value="70">70</option>
+          <option value="80">80</option>
+          <option value="90">90</option>
+          <option value="100">100</option>
+        </select>  
+      </td> 
+    <!-- <td align="center"> <input type='text' id='guess_mine' value='0' /> </td>
+    <td align="center"> <input type='text' id='guess_teammate' value='0' /> </td> -->
     <!-- <td align="center"> <input type="submit" value="Calculate" /> </td> -->
     <td> <button type="button" onclick="draw2()" >Calculate</button>  </td>
     </tr>
