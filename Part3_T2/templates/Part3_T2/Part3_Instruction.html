@@ -606,9 +606,9 @@ ul    {font-size: 120%; line-height: 200%;}
   <li class="nav-item">
     <a class="nav-link" id="part5-tab" data-toggle="tab" href="#part5" role="tab" aria-controls="part5" onclick="topFunction()"> </a>
   </li>
-  <li class="nav-item">
+  <!-- <li class="nav-item">
     <a class="nav-link" id="part6-tab" data-toggle="tab" href="#part6" role="tab" aria-controls="part6" onclick="topFunction()"> </a>
-  </li>
+  </li> -->
 
 </ul>
 
@@ -684,7 +684,7 @@ Drawing with replacement makes the probabilities of drawing a Green ball (and th
     Furthermore, whenever a ball is drawn from Urn 2, the ball is Green with a {{subcontractor}}/2 = {{urn2_green}} percent chance and Black with the remaining percent chance (100-{{urn2_green}} = {{urn2_black}} percent chance).
   </li>
   <li>These are just examples for your clarification. 
-    The chances you will face in the actual experiment depend on how many Green balls you and your teammate received in Part 1.</li>  
+    The chances you will face in the actual experiment depend on how many Green balls you and your teammate received.</li>  
 </ul>
 
 
@@ -1006,9 +1006,9 @@ Therefore, the higher ranking you placed in, the more green balls there are in <
 
 <p>
   There is the simulator on the top left of the decision-making screen. 
+  To use the simulator,
+  indicate your guesses about the number of Green balls you and your teammate received from the drop-down menus.
   Note that your guesses about the number of Green balls you and your teammate received are set to be zero by default.
-  To revise your guesses, you should enter an integer from 0-100 for each of the guesses 
-  (the minimum and the maximum numbers of Green balls one can receive are 0 and 100). 
   Once you click the "Calculate" button, you will see the corresponding simulation result.
   You may enter different guesses as many times as you wish. 
   Whenever you enter new guesses, you must click the "Calculate" button so that the simulator updates the simulation results accordingly.
@@ -1236,9 +1236,9 @@ As an example, let's suppose you are guessing you received 40 Green balls and yo
 <li> Recall that, out of the 200 balls in Urn 1, the number of Green balls equals the sum of the numbers of Green balls you and your teammate received in Part 1. 
   Out of the 200 balls in Urn 2, {{subcontractor}} balls are Green. </li>
 <br>
-<p style = "font-size: 100%; ">(a) The better you were at the slider task in Part 1, the more Green balls there are in Urn 1. </p>
+<p style = "font-size: 100%; ">(a) The higher ranking you placed in at the slider task, the more green balls there are in Urn 1. </p>
 <div style="padding-left:85%;">{% formfield player.part3_cq1_a label="" %}	</div>
-<p style = "font-size: 100%; ">(b) The better your teammate were at the slider task in Part 1, the more Green there balls are in Urn 2. </p>
+<p style = "font-size: 100%; ">(b) The higher ranking your teammate placed in at the slider task, the more green balls there are in Urn 2. </p>
 <div style="padding-left:85%;">{% formfield player.part3_cq1_b label="" %}	</div>
 
 <br>
