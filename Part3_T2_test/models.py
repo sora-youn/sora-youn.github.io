@@ -16,7 +16,7 @@ import random
 import time
 
 class Constants(BaseConstants):
-    name_in_url = 'part3_T2'
+    name_in_url = 'part3_T2_test'
     players_per_group = None
     num_rounds = 51
     ans_part3_cq1 = [0,1]
