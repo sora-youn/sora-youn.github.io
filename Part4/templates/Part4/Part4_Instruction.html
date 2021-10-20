@@ -89,16 +89,16 @@ $(document).ready(function(){
       type: "column",
       color: "green", 
       dataPoints: [
-          { y: 0,label: "0-10" },
-          { y: 0,label: "11-20" },
-          { y: 0,label: "21-30" },
-          { y: 0,label: "31-40" },
-          { y: 0,label: "41-50" },
-          { y: 0,label: "51-60" },
-          { y: 0,label: "61-70" },
-          { y: 0,label: "71-80" },
-          { y: 0,label: "81-90" },
-          { y: 0,label: "91-100" }
+          { y: 0,label: "10" },
+          { y: 0,label: "20" },
+          { y: 0,label: "30" },
+          { y: 0,label: "40" },
+          { y: 0,label: "50" },
+          { y: 0,label: "60" },
+          { y: 0,label: "70" },
+          { y: 0,label: "80" },
+          { y: 0,label: "90" },
+          { y: 0,label: "100" }
        ]
     }],
     axisY:{
@@ -202,16 +202,16 @@ $(document).ready(function(){
       type: "column",
       color: "green", 
       dataPoints: [
-          { y: 0,label: "0-10" },
-          { y: 0,label: "11-20" },
-          { y: 0,label: "21-30" },
-          { y: 0,label: "31-40" },
-          { y: 0,label: "41-50" },
-          { y: 0,label: "51-60" },
-          { y: 0,label: "61-70" },
-          { y: 0,label: "71-80" },
-          { y: 0,label: "81-90" },
-          { y: 0,label: "91-100" }
+          { y: 0,label: "10" },
+          { y: 0,label: "20" },
+          { y: 0,label: "30" },
+          { y: 0,label: "40" },
+          { y: 0,label: "50" },
+          { y: 0,label: "60" },
+          { y: 0,label: "70" },
+          { y: 0,label: "80" },
+          { y: 0,label: "90" },
+          { y: 0,label: "100" }
        ]
     }],
     axisY:{
@@ -353,7 +353,7 @@ ol    {font-size: 120%; line-height: 200%;}
   <div class="tab-pane show active" id="part1" role="tabpanel" aria-labelledby="part1-tab">
 
 <p>&nbsp;</p>
-<h1 style="text-align: center;"><strong>PART 4 Instructions</strong></h1>
+<h1 style="text-align: center;"><strong>Part 4 Instructions</strong></h1>
 <p style="text-align: center;">Page <strong>1</strong> out of 3</p>
 <p>&nbsp;</p>
 {% if form.errors %}
@@ -364,31 +364,80 @@ ol    {font-size: 120%; line-height: 200%;}
 {% endif %}
 
 
-<p>In Part 4 of the experiment, you are asked to revise two estimates that you submitted in Part 2:</p>
-<p style="text-align: justify; padding-left: 40px;">1. Your estimate concerning the probability that <strong><u>you</u></strong> received a certain number of <span style="color: green;"><strong>Green balls </strong></span> from Part 1.</p>
-<p style="text-align: justify; padding-left: 40px;">2. Your estimate concerning the probability that <strong><u>your teammate</u></strong> received a certain number of <span style="color: green;"><strong>Green balls </strong></span> from Part 1.</p>
+
+
+
+<!-- 
+<ul>
+  <li>
+    If your performance was the highest (#1) among the 10 participants in this session, you receive 100 green balls. 
+  </li>
+  <li>
+    If your performance was the second highest (#2) among the 10 participants in this session, you receive 90 green balls. 
+  </li>
+  <li>
+    If your performance was the third highest (#3) among the 10 participants in this session, you receive 80 green balls. 
+  </li>
+  <li>
+    If your performance was the fourth highest (#4) among the 10 participants in this session, you receive 70 green balls. 
+  </li>
+  <li>
+    If your performance was the fifth highest (#5) among the 10 participants in this session, you receive 60 green balls. 
+  </li>
+  <li>
+    If your performance was the fifth lowest (#6) among the 10 participants in this session, you receive 50 green balls. 
+  </li>
+  <li>
+    If your performance was the fouth lowest (#7) among the 10 participants in this session, you receive 40 green balls. 
+  </li>
+  <li>
+    If your performance was the third lowest (#8) among the 10 participants in this session, you receive 30 green balls. 
+  </li>
+  <li>
+    If your performance was the second lowest (#9) among the 10 participants in this session, you receive 20 green balls. 
+  </li>
+  <li>
+    If your performance was the lowest among (#10) the 10 participants in this session, you receive 10 green balls. 
+  </li>
+</ul> -->
+
+
+
+<!-- 
+<p>
+      <span style="color: green;">For each <span style="text-decoration: underline;"><strong>correctly</strong></span> positioned slider, 
+      you will receive 1 <strong>GREEN</strong> ball.</span> 
+      <span style="color: red;">For every <span style="text-decoration: underline;"><strong>incorrectly</strong></span> positioned slider, 
+      you will receive 1 <strong>RED</strong> ball.</span> 
+      <strong>Therefore, you will receive a total of 100 balls in the end of Part 1, and the numbers of GREEN (and RED) balls you will receive 
+        is determined by how many sliders you correctly positioned at the center</strong>. 
+        You will not learn how many GREEN and RED balls you received until the end of the experiment.
+</p> -->
+
+
+<p>
+  In Part 4 of the experiment, you are asked to revise two estimates that you submitted in Part 2:
+</p>
+<p style="text-align: justify; padding-left: 40px;">1. Your estimate concerning the probability that <strong><u>you</u></strong> received a certain number of <span style="color: green;"><strong>green balls</strong></span>.</p>
+<p style="text-align: justify; padding-left: 40px;">2. Your estimate concerning the probability that <strong><u>your teammate</u></strong> received a certain number of <span style="color: green;"><strong>green balls</strong></span>.</p>
 <br>
 <p>
-  Remember that the better you were at the slider task in Part 1, the more Green balls you have received. 
-  Moreover, the better your teammate was at the slider task in Part 1, the more Green balls your teammate has received. 
-  In other words, the numbers of Green balls you and your teammate received in Part 1 
-  equal the numbers of sliders (out of 100 sliders) you and your teammate correctly positioned, respectively. 
+  Remember that every participant in this session received a different quantity of Green balls based on the relative performance of the slider task in Part 1.
+  A participant who placed in a higher rank recieved more green balls. 
+  e.g., The participant who ranked first, out of the 10 participants in this session, received the highest number of green balls (100 green balls). 
+  The The participant who ranked the last, out of the 10 participants in this session, received the fewest number of green balls (10 green balls).
 </p>
 <br>
 <p>
   By providing each of the estimates, you have a chance to earn 30 Experimental Dollars. 
   Since you are asked to provide two estimates, one concerning yourself and the other concerning your teammate, 
   you will earn 60 Experimental Dollars to the maximum from Part 4. 
+  <!-- <strong>The more accurate your estimate is, the more likely you will earn the 30 points.</strong> -->
+   
 </p> 
-<p>
-  The task is the same as the task you completed in Part 2. 
-  You could review the instructions. Or, you may skip them.
+<p> 
+  The task is the same as the task you completed in Part 2. You could review the instructions. Or, you may skip them.
 </p>
-<!-- <p> 
-  On the next pages, you will be explained how you complete the task and how your payoff will be determined. 
-  If the payoff scheme sounds too intimidating, you may skip the information except that 
-  <strong>the more precise your estimate is, the more likely you will earn the 30 points.</strong> 
-</p> -->
 
 <button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
 
@@ -405,8 +454,8 @@ ol    {font-size: 120%; line-height: 200%;}
 <p style="text-align: center;">Page <strong>2</strong> out of 3</p>
 <p>&nbsp;</p>  
 <p>The screen which we use for asking for your estimates looks like this:</p>
-<p style="text-align:center;"><img src="{% static 'Part2_example1_Aug5.png' %}" alt="Part2 screenshot.png" style="width:60%;" class="center"/></p>
-<p style="text-align:center;"><img src="{% static 'Part2_example2_Aug5.png' %}" alt="Part2 screenshot.png" style="width:60%;" class="center"/></p>
+<p style="text-align:center;"><img src="{% static 'screenshot_Rank1.png' %}" alt="Part2 screenshot.png" style="width:80%;" class="center"/></p>
+<p style="text-align:center;"><img src="{% static 'screenshot_Rank2.png' %}" alt="Part2 screenshot.png" style="width:80%;" class="center"/></p> 
 <!-- <p>
   There are 10 bins in each of Box A (the upper box) and Box B (the bottom box).
   Each bin represents a certain quantity (in steps of 10) of Green balls you (Box A) and your teammate (Box B) received in Part 1. 
@@ -433,7 +482,7 @@ ol    {font-size: 120%; line-height: 200%;}
   To provide an estimate concerning the probability that your teammate received a certain number of Green balls, you are asked to distribute another 100 tokens, by typing an integer ranging from 0 to 100, into the 10 bins in Box B. 
 </p>
 <p>
-  Each bin represents a certain quantity (in steps of 10) of Green balls you (Box A) and your teammate (Box B) received in Part 1. 
+  Each bin represents a certain quantity of Green balls you (Box A) and your teammate (Box B) received in Part 1. 
   Each token represents one percentage point. 
   Therefore, the number of tokens you distribute to each bin in Box A represents your belief about the percent chance that you received a certain quantity of Green balls.
   The number of tokens you distribute to each bin in Box B represents your belief about the percent chance that your teammate received a certain quantity of Green balls.
@@ -442,14 +491,14 @@ ol    {font-size: 120%; line-height: 200%;}
 <p>Here is an example of how it works.</p>
 <ul>
   <li>Suppose you have distributed tokens as shown in the above screenshot.</li>
-  <li>You have placed 50 tokens in each of the &ldquo;11-20&rdquo; bin and the &ldquo;21-30&rdquo; bin, 
+  <li>You have placed 50 tokens in each of the &ldquo;20&rdquo; bin and the &ldquo;30&rdquo; bin, 
     and 0 tokens in all the other bins in Box A.
-    This implies that you assume that with a 50% probability you received between 11 and 20 Green balls
-    and with a 50% probability you received between 21 and 30 Green balls.
+    This implies that you assume that with a 50% probability you received 20 Green balls
+    and with a 50% probability you received between 30 Green balls.
   </li>  
-  <li>You have placed 77 tokens in the &ldquo;71-80&rdquo; bin, 23 tokens in the &ldquo;81-90&rdquo; bin, and 0 tokens in all the other bins in Box B.
-    This implies that with a 77% probability you assume that your teammate received between 71 and 80 Green balls and
-    with a 23% probability you assume that your teammate received between 81 and 90 Green balls.</li>
+  <li>You have placed 77 tokens in the &ldquo;80&rdquo; bin, 23 tokens in the &ldquo;90&rdquo; bin, and 0 tokens in all the other bins in Box B.
+    This implies that with a 77% probability you assume that your teammate received 80 Green balls and
+    with a 23% probability you assume that your teammate received between 90 Green balls.</li>
   <li>This is just an example to illustrate. The chances you have in mind may be completely different.</li>  
 </ul>
 
@@ -473,7 +522,7 @@ Remember that you must distribute a total of 100 tokens into the 10 bins in Box 
   In other words, the last column <i>"# of tokens distributed so far"</i> in each box must be 100 to move on to Part 5.
   If you feel confident about the resulting probability distributions 
   because they are good fits to your estimates concerning the numbers of Green balls you and your teammate received, 
-  please press the &ldquo;Confirm&rdquo; button to continue with Part 5 of the experiment.
+  please press the &ldquo;Confirm&rdquo; button to continue with Part 3 of the experiment.
 </p>
 
 
@@ -497,18 +546,23 @@ Remember that you must distribute a total of 100 tokens into the 10 bins in Box 
     The bottom line is that
     <strong>the more accurate your estimate is, the more likely you will earn a higher payoff.</strong>
   </p>
+  <!-- <ul>
+    <li><strong>The more precise your estimate is, the more likely you will earn the 30 points.</strong> </li>
+    <li>You will receive a higher penalty score and be less likely to earn 30 points 
+    as each of your estimates deviates more from the actual number of Green balls you (or your teammate) received.  </li>
+  </ul>   -->
   <p>&nbsp;</p>  
   <p>
     <strong>How is your payoff determined?</strong>
   </p>
 
-  <p> <i><u>Step 1:</u></i> At the end of Part 2, your penalty score for each of your estimates will be calculated in the following way. 
+  <p> <i><u>Step 1:</u></i> At the end of Part 4, your penalty score for each of your estimates will be calculated in the following way. 
     <u>You will receive a higher penalty score from Box A as your estimate concering yourself deviates more from the actual number of Green balls you received.
     You will receive a higher penalty score from Box B as your estimate concerning your teammate deviates more from the actual number of Green balls your teammate received.  
     </u>
   </p>
   <br>
-  <p style="text-align:center;"><img src="{% static '0930.png' %}" alt="Part2 Further Information.png" style="width:80%;" class="center"/></p>
+  <p style="text-align:center;"><img src="{% static '0930.png' %}" alt="Part2 Further Information.png" style="width:100%;" class="center"/></p>
   <br>
   <p> <u>Step 2:</u> Then, a number X<sup>A</sup> is drawn randomly from the interval [0,20000]. 
     Any number within the interval [0,20000] is equally likely to be selected. 
@@ -519,13 +573,11 @@ Remember that you must distribute a total of 100 tokens into the 10 bins in Box 
     Otherwise, you will earn zero. 
     <u>In other words, the higher penalty score you get, the lower probability it is that you earn 30 Experimental Dollars for each of your estimates.</u>
   </p>
-  <p>&nbsp;</p>  
 
+  <p>&nbsp;</p>    
   <p>
-    To help your understanding, suppose you received 55 Green balls in Part 1. 
-    Instead of informing you of the number of Green balls you received in the experiment, 
-    we ask you to estimate how many Green balls you received by allocating 100 tokens to each of 10 bins in Box A.
-    Notice that, in this example, the bin that contains the actual number of Green balls you received is the <em>bin "51-60"</em>. 
+    To help your understanding, suppose you received 60 Green balls. 
+    Notice that, in this example, the bin that contains the actual number of Green balls you received is the bin <em>"60"</em>. 
   </p>
   <p>
     Consider the following scenarios. 
@@ -533,8 +585,8 @@ Remember that you must distribute a total of 100 tokens into the 10 bins in Box 
   <ul>
     <li> <strong>Scenario 1:</strong> 
       <br>
-      You feel very confident that you received more than (or equal to) 51 but less than (or equal to) 60 Green balls in Part 1. 
-      Therefore, you allocated all the 100 tokens to the “51-60” bin. 
+      You feel very confident that you received 60 Green balls. 
+      Therefore, you allocated all the 100 tokens to the “60” bin. 
       If this is the case, you receive no penalty because your estimate is very accurate.
       You earn 30 Experimental Dollars with certainty (100 percent chance).</li>
   </ul>
@@ -556,16 +608,16 @@ Remember that you must distribute a total of 100 tokens into the 10 bins in Box 
     <thead>
       <tr>
         <th class="tg-6t95"><span style="color:black">Bins</span></th>
-        <th class="tg-6t95"><span style="color:black">0-10</span></th>
-        <th class="tg-6t95"><span style="color:black">11-20</span></th>
-        <th class="tg-6t95"><span style="color:black">21-30</span></th>
-        <th class="tg-6t95"><span style="color:black">31-40</span></th>
-        <th class="tg-6t95"><span style="color:black">41-50</span></th>
-        <th class="tg-6t95"><span style="color:black">51-60</span></th>
-        <th class="tg-6t95"><span style="color:black">61-70</span></th>
-        <th class="tg-6t95"><span style="color:black">71-80</span></th>
-        <th class="tg-6t95"><span style="color:black">81-90</span></th>
-        <th class="tg-6t95"><span style="color:black">91-100</span></th>
+        <th class="tg-6t95"><span style="color:black">10</span></th>
+        <th class="tg-6t95"><span style="color:black">20</span></th>
+        <th class="tg-6t95"><span style="color:black">30</span></th>
+        <th class="tg-6t95"><span style="color:black">40</span></th>
+        <th class="tg-6t95"><span style="color:black">50</span></th>
+        <th class="tg-6t95"><span style="color:black">60</span></th>
+        <th class="tg-6t95"><span style="color:black">70</span></th>
+        <th class="tg-6t95"><span style="color:black">80</span></th>
+        <th class="tg-6t95"><span style="color:black">90</span></th>
+        <th class="tg-6t95"><span style="color:black">100</span></th>
         <th class="tg-6t95" rowspan="3"><span style="color:black">Penalty Score</span></th>
       </tr>
       <tr>
@@ -619,8 +671,8 @@ Remember that you must distribute a total of 100 tokens into the 10 bins in Box 
     <ul>
       <li> <strong>Scenario 2:</strong> 
         <br>
-        You feel very confident that you received more than (or equal to) 41 but less than (or equal to) 50 Green balls in Part 1. 
-        Therefore, you allocated all the 100 tokens to the “41-50” bin. 
+        You feel very confident that you received 50 Green balls in Part 1. 
+        Therefore, you allocated all the 100 tokens to the “50” bin. 
         If this is the case, your penalty score is 20000 (the highest possible penalty score) because your estimate is completely wrong. 
         You have a zero percent chance of earning 30 Experimental Dollars.</li>
     </ul>
@@ -642,16 +694,16 @@ Remember that you must distribute a total of 100 tokens into the 10 bins in Box 
       <thead>
         <tr>
           <th class="tg-6t95"><span style="color:black">Bins</span></th>
-          <th class="tg-6t95"><span style="color:black">0-10</span></th>
-          <th class="tg-6t95"><span style="color:black">11-20</span></th>
-          <th class="tg-6t95"><span style="color:black">21-30</span></th>
-          <th class="tg-6t95"><span style="color:black">31-40</span></th>
-          <th class="tg-6t95"><span style="color:black">41-50</span></th>
-          <th class="tg-6t95"><span style="color:black">51-60</span></th>
-          <th class="tg-6t95"><span style="color:black">61-70</span></th>
-          <th class="tg-6t95"><span style="color:black">71-80</span></th>
-          <th class="tg-6t95"><span style="color:black">81-90</span></th>
-          <th class="tg-6t95"><span style="color:black">91-100</span></th>
+          <th class="tg-6t95"><span style="color:black">10</span></th>
+          <th class="tg-6t95"><span style="color:black">20</span></th>
+          <th class="tg-6t95"><span style="color:black">30</span></th>
+          <th class="tg-6t95"><span style="color:black">40</span></th>
+          <th class="tg-6t95"><span style="color:black">50</span></th>
+          <th class="tg-6t95"><span style="color:black">60</span></th>
+          <th class="tg-6t95"><span style="color:black">70</span></th>
+          <th class="tg-6t95"><span style="color:black">80</span></th>
+          <th class="tg-6t95"><span style="color:black">90</span></th>
+          <th class="tg-6t95"><span style="color:black">100</span></th>
           <th class="tg-6t95" rowspan="3"><span style="color:black">Penalty Score</span></th>
         </tr>
         <tr>
@@ -703,8 +755,8 @@ Remember that you must distribute a total of 100 tokens into the 10 bins in Box 
     <ul>
       <li> <strong>Scenario 3:</strong> 
         <br>
-        You guess that you received 41-50 Green balls with a 50 percent chance, and 51-60 Green balls with a 50 percent chance. 
-        Therefore, you allocated 50 tokens to the “41-50” bin and the rest of 50 tokens to the “51-60” bin. 
+        You guess that you received 50 Green balls with a 50 percent chance, and 60 Green balls with a 50 percent chance. 
+        Therefore, you allocated 50 tokens to the “50” bin and the rest of 50 tokens to the “60” bin. 
         If this is the case, your penalty score is 5000. 
         You earn 30 Experimental Dollars with a 75 percent chance.  
       </li>
@@ -727,16 +779,16 @@ Remember that you must distribute a total of 100 tokens into the 10 bins in Box 
       <thead>
         <tr>
           <th class="tg-6t95"><span style="color:black">Bins</span></th>
-          <th class="tg-6t95"><span style="color:black">0-10</span></th>
-          <th class="tg-6t95"><span style="color:black">11-20</span></th>
-          <th class="tg-6t95"><span style="color:black">21-30</span></th>
-          <th class="tg-6t95"><span style="color:black">31-40</span></th>
-          <th class="tg-6t95"><span style="color:black">41-50</span></th>
-          <th class="tg-6t95"><span style="color:black">51-60</span></th>
-          <th class="tg-6t95"><span style="color:black">61-70</span></th>
-          <th class="tg-6t95"><span style="color:black">71-80</span></th>
-          <th class="tg-6t95"><span style="color:black">81-90</span></th>
-          <th class="tg-6t95"><span style="color:black">91-100</span></th>
+          <th class="tg-6t95"><span style="color:black">10</span></th>
+          <th class="tg-6t95"><span style="color:black">20</span></th>
+          <th class="tg-6t95"><span style="color:black">30</span></th>
+          <th class="tg-6t95"><span style="color:black">40</span></th>
+          <th class="tg-6t95"><span style="color:black">50</span></th>
+          <th class="tg-6t95"><span style="color:black">60</span></th>
+          <th class="tg-6t95"><span style="color:black">70</span></th>
+          <th class="tg-6t95"><span style="color:black">80</span></th>
+          <th class="tg-6t95"><span style="color:black">90</span></th>
+          <th class="tg-6t95"><span style="color:black">100</span></th>
           <th class="tg-6t95" rowspan="3"><span style="color:black">Penalty Score</span></th>
         </tr>
         <tr>
@@ -788,8 +840,8 @@ Remember that you must distribute a total of 100 tokens into the 10 bins in Box 
     <ul>
       <li> <strong>Scenario 4:</strong> 
         <br>
-        You guess that you received 41-50 Green balls with a 30 percent chance, and 51-60 Green balls with a 70 percent chance. 
-        Therefore, you allocated 30 tokens to the “41-50” bin and the rest of 70 tokens to the “51-60” bin. 
+        You guess that you received 50 Green balls with a 30 percent chance, and 60 Green balls with a 70 percent chance. 
+        Therefore, you allocated 30 tokens to the “50” bin and the rest of 70 tokens to the “60” bin. 
         If this is the case, your penalty score is 1800. 
         You earn 30 Experimental Dollars with a 91 percent chance.  
       </li>
@@ -812,16 +864,16 @@ Remember that you must distribute a total of 100 tokens into the 10 bins in Box 
       <thead>
         <tr>
           <th class="tg-6t95"><span style="color:black">Bins</span></th>
-          <th class="tg-6t95"><span style="color:black">0-10</span></th>
-          <th class="tg-6t95"><span style="color:black">11-20</span></th>
-          <th class="tg-6t95"><span style="color:black">21-30</span></th>
-          <th class="tg-6t95"><span style="color:black">31-40</span></th>
-          <th class="tg-6t95"><span style="color:black">41-50</span></th>
-          <th class="tg-6t95"><span style="color:black">51-60</span></th>
-          <th class="tg-6t95"><span style="color:black">61-70</span></th>
-          <th class="tg-6t95"><span style="color:black">71-80</span></th>
-          <th class="tg-6t95"><span style="color:black">81-90</span></th>
-          <th class="tg-6t95"><span style="color:black">91-100</span></th>
+          <th class="tg-6t95"><span style="color:black">10</span></th>
+          <th class="tg-6t95"><span style="color:black">20</span></th>
+          <th class="tg-6t95"><span style="color:black">30</span></th>
+          <th class="tg-6t95"><span style="color:black">40</span></th>
+          <th class="tg-6t95"><span style="color:black">50</span></th>
+          <th class="tg-6t95"><span style="color:black">60</span></th>
+          <th class="tg-6t95"><span style="color:black">70</span></th>
+          <th class="tg-6t95"><span style="color:black">80</span></th>
+          <th class="tg-6t95"><span style="color:black">90</span></th>
+          <th class="tg-6t95"><span style="color:black">100</span></th>
           <th class="tg-6t95" rowspan="3"><span style="color:black">Penalty Score</span></th>
         </tr>
         <tr>
@@ -897,16 +949,16 @@ Remember that you must distribute a total of 100 tokens into the 10 bins in Box 
       <thead>
         <tr>
           <th class="tg-6t95"><span style="color:black">Bins</span></th>
-          <th class="tg-6t95"><span style="color:black">0-10</span></th>
-          <th class="tg-6t95"><span style="color:black">11-20</span></th>
-          <th class="tg-6t95"><span style="color:black">21-30</span></th>
-          <th class="tg-6t95"><span style="color:black">31-40</span></th>
-          <th class="tg-6t95"><span style="color:black">41-50</span></th>
-          <th class="tg-6t95"><span style="color:black">51-60</span></th>
-          <th class="tg-6t95"><span style="color:black">61-70</span></th>
-          <th class="tg-6t95"><span style="color:black">71-80</span></th>
-          <th class="tg-6t95"><span style="color:black">81-90</span></th>
-          <th class="tg-6t95"><span style="color:black">91-100</span></th>
+          <th class="tg-6t95"><span style="color:black">10</span></th>
+          <th class="tg-6t95"><span style="color:black">20</span></th>
+          <th class="tg-6t95"><span style="color:black">30</span></th>
+          <th class="tg-6t95"><span style="color:black">40</span></th>
+          <th class="tg-6t95"><span style="color:black">50</span></th>
+          <th class="tg-6t95"><span style="color:black">60</span></th>
+          <th class="tg-6t95"><span style="color:black">70</span></th>
+          <th class="tg-6t95"><span style="color:black">80</span></th>
+          <th class="tg-6t95"><span style="color:black">90</span></th>
+          <th class="tg-6t95"><span style="color:black">100</span></th>
           <th class="tg-6t95" rowspan="3"><span style="color:black">Penalty Score</span></th>
         </tr>
         <tr>
@@ -971,14 +1023,21 @@ Remember that you must distribute a total of 100 tokens into the 10 bins in Box 
     </strong>
   </p>
   
-  <p>&nbsp;</p>      
-  <p>You can review the instructions by clicking the "Back" button.</p>
+  <p>&nbsp;</p>   
+
+
+
+  <p>You can review the instructions by clicking the "Back" button.  </p>
   <p>Once you get familiar with Part 4 instructions, click the "Next" button.</p>
 
+  <button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 
+  <button class="nexttab btn-primary btn next">Confirm</button>
+  
+  
+</div>  
 
-    <button onclick="topFunction()" type="button" class="prevtab btn-primary btn back">Back</button> 
-    <button class="nexttab btn-primary btn next">Confirm</button>
-  </div>
+
+
 
 </div>
 {% endblock %}

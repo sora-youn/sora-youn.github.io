@@ -4,11 +4,24 @@
 
 <!--------------------------------------------------------------------------->
 {% block scripts %}
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script> -->
+<!-- 
+<script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="Scripts/jquery-2.1.1.min.js"></script> -->
+
 <script src="{% static 'back_button_v3/js/prev_next_button.js' %}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://unpkg.com/mathjs@9.4.4/lib/browser/math.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
 
 <script>
 function draw() {
@@ -630,6 +643,7 @@ ul    {font-size: 120%; line-height: 200%;}
 <p style="text-align: center;">Page <strong>1</strong> out of 4</p>
 <p>&nbsp;</p>
 
+
 <p>
   Part 3 consists of {{num_game_round}} rounds.
 </p>
@@ -641,13 +655,13 @@ ul    {font-size: 120%; line-height: 200%;}
     <li>
     <!-- <strong><em>Urn 1</em></strong> contains 200 balls. -->
     <!-- There are twice as many Green balls as <strong>YOU</strong> received in Part 1 .  -->
-    Out of the 200 balls in <strong><em>Urn 1</em></strong>, there are twice as many Green balls as <strong>YOU</strong> received in Part 1 . 
+    Out of the 200 balls in <strong><em>Urn 1</em></strong>, there are twice as many Green balls as <strong>YOU</strong> received. 
     The rest of the balls are Black.
     </li>
     <li>
     <!-- <em><strong>Urn 2</strong></em> contains 200 balls.
     There are twice as many Green balls as <strong>YOUR TEAMMATE</strong> received in Part 1 .  -->
-    Out of the 200 balls in <strong><em>Urn 2</em></strong>, there are twice as many Green balls as <strong>YOUR TEAMMATE</strong> received in Part 1 . 
+    Out of the 200 balls in <strong><em>Urn 2</em></strong>, there are twice as many Green balls as <strong>YOUR TEAMMATE</strong> received. 
     The rest of the balls are Black.
     </li>
   </ul>
@@ -666,34 +680,51 @@ Drawing with replacement makes the probabilities of drawing a Green ball (and th
 
 <ul>
   <li>
-    Suppose you received 40 Green balls and your teammate received 20 Green balls in Part 1.
+    Suppose you received 40 Green balls and your teammate received 20 Green balls.
     <br>
     This means, whenever a ball is drawn from Urn 1, the ball is Green with a (40*2)/2 = 40 percent chance and Black with the remaining percent chance (100-40 = 60 percent chance).
     Furthermore, whenever a ball is drawn from Urn 2, the ball is Green with a (20*2)/2 = 20 percent chance and Black with the remaining percent chance (100-20 = 80 percent chance).
   </li>
   <li>
-    Suppose you received 50 Green balls and your teammate received 50 Green balls in Part 1.
+    Suppose you received 50 Green balls and your teammate received 50 Green balls.
     <br>
     This means, whenever a ball is drawn from Urn 1, the ball is Green with a (50*2)/2 = 50 percent chance and Black with the remaining percent chance (100-50 = 50 percent chance).
     Furthermore, whenever a ball is drawn from Urn 2, the ball is Green with a (50*2)/2 = 50 percent chance and Black with the remaining percent chance (100-50 = 50 percent chance).
   </li>
   <li>
-    Suppose you received 75 Green balls and your teammate received 80 Green balls in Part 1.
+    Suppose you received 70 Green balls and your teammate received 80 Green balls.
     <br>
-    This means, whenever a ball is drawn from Urn 1, the ball is Green with a (75*2)/2 = 75 percent chance and Black with the remaining percent chance (100-75 = 25 percent chance).
+    This means, whenever a ball is drawn from Urn 1, the ball is Green with a (70*2)/2 = 70 percent chance and Black with the remaining percent chance (100-70 = 30 percent chance).
     Furthermore, whenever a ball is drawn from Urn 2, the ball is Green with a (80*2)/2 = 80 percent chance and Black with the remaining percent chance (100-80 = 20 percent chance).
   </li>
   <li>These are just examples for your clarification. 
-    The chances you will face in the actual experiment depend on how many Green balls you and your teammate received in Part 1.</li>  
+    The chances you will face in the actual experiment depend on how many Green balls you and your teammate received.</li>  
 </ul>
 
 
 <br>
 <p>
-  Remember that you and your teammate received Green balls based on the performance of the slider task in Part 1.  
-  The better <strong>YOU</strong> were at the slider task, the more Green balls you received, and hence the more Green balls there are in <strong>Urn 1</strong>.
-  The better <strong>YOUR TEAMMATE</strong> was at the slider task, the more Green balls your teammate received, and hence the more Green balls there are in <strong>Urn 2</strong>.
+  Remember that every participant in this session received a different quantity of Green balls based on the relative performance of the slider task in Part 1.
+  A participant who placed in a higher rank recieved more green balls. 
+  e.g., The participant who ranked first, out of the 10 participants in this session, received the highest number of green balls (100 green balls). 
+  The The participant who ranked the last, out of the 10 participants in this session, received the fewest number of green balls (10 green balls).
+
+  Therefore, the higher ranking you placed in, the more green balls there are in <strong>Urn 1</strong>.
+  the higher ranking your teammate placed in, the more green balls there are in <strong>Urn 2</strong>.
 </p>
+
+<!-- T2 <p>
+  Remember that every participant in this session received Green balls based on the relative performance of the slider task in Part 1.
+  A participant who placed in a higher rank recieved more green balls. 
+  e.g., The participant who ranked first, out of the 10 participants in this session, received the highest number of green balls (100 green balls). 
+  The The participant who ranked the last, out of the 10 participants in this session, received the fewest number of green balls (10 green balls).
+
+Therefore, the higher ranking you placed in, the more green balls there are in <strong>Urn 1</strong>.
+  the higher ranking your teammate placed in, the more green balls there are in <strong>Urn 1</strong>.
+
+  To be more specific, if the average of you and your teammate's rankings is higher than was higher than your teammate's, there are more green balls in <strong>Urn 1</strong>.
+  If the teammate's ranking was higher than yours, there are more green balls in <strong>Urn 2</strong>.
+</p> -->
 
 
 
@@ -921,7 +952,7 @@ Drawing with replacement makes the probabilities of drawing a Green ball (and th
   <strong>What should you do to make a good decision? </strong>
 </p>
 <p>
-  What should you do to earn as many points as possible and increase the probability of winning the prize of 200 Experimental Dollars?
+  What should you do to earn as many points as possible and increase the probability of winning the prize of {{prize}} Experimental Dollars?
   On one hand, you should draw more balls from the urn that, you believe, contains more Green balls 
   because you will earn more points as you get to draw more Green balls.
   On the other hand, you do not want to draw too many balls from the urn even if you are very confident that it has far more Green balls than the other urn. 
@@ -1052,8 +1083,42 @@ As an example, let's suppose you are guessing you received 40 Green balls and yo
     </tr>
       
     <tr>
-    <td align="center"> <input type='text' id='guess_mine' value='0' /> </td>
-    <td align="center"> <input type='text' id='guess_teammate' value='0' /> </td>
+      <td align="center">  
+    
+       <select id="guess_mine" name = "guess_mine">
+        <option value="0" selected>--- Select--- </option>  
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+        <option value="60">60</option>
+        <option value="70">70</option>
+        <option value="80">80</option>
+        <option value="90">90</option>
+        <option value="100">100</option>
+
+        </select>  
+    
+      </td> 
+      <td align="center">  
+        <select id="guess_teammate">
+        <!-- <select id="guess_teammate" size="11"> -->
+          <option value="0" selected>--- Select--- </option>  
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+          <option value="40">40</option>
+          <option value="50">50</option>
+          <option value="60">60</option>
+          <option value="70">70</option>
+          <option value="80">80</option>
+          <option value="90">90</option>
+          <option value="100">100</option>
+        </select>  
+      </td> 
+    <!-- <td align="center"> <input type='text' id='guess_mine' value='0' /> </td>
+    <td align="center"> <input type='text' id='guess_teammate' value='0' /> </td> -->
     <!-- <td align="center"> <input type="submit" value="Calculate" /> </td> -->
     <td> <button type="button" onclick="draw2()" >Calculate</button>  </td>
     </tr>
@@ -1072,6 +1137,8 @@ As an example, let's suppose you are guessing you received 40 Green balls and yo
   </p>
 
 
+
+  
     </div>
 
     
@@ -1178,8 +1245,8 @@ As an example, let's suppose you are guessing you received 40 Green balls and yo
 <div style = "width: 100%; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 0 auto; font-size: 100%; background-color: rgb(240, 239, 236);" >
 
   <ol>
-<li> Recall that, out of the 200 balls in Urn 1, the number of Green balls equals twice the number of Green balls you received in Part 1. 
-  Out of the 200 balls in Urn 2, the number of Green balls equals twice the number of Green balls your teammate received in Part 1. </li>
+<li> Recall that, out of the 200 balls in Urn 1, the number of Green balls equals twice the number of Green balls you received. 
+  Out of the 200 balls in Urn 2, the number of Green balls equals twice the number of Green balls your teammate received. </li>
 <br>
 <p style = "font-size: 100%; ">(a) The better you were at the slider task in Part 1, the more Green balls there are in Urn 1. </p>
 <div style="padding-left:85%;">{% formfield player.part3_cq1_a label="" %}	</div>
@@ -1203,7 +1270,7 @@ As an example, let's suppose you are guessing you received 40 Green balls and yo
   <div style="padding-left:85%;">{% formfield player.part3_cq4 label="" %}</div> 
 
 <br>
-<li>The more points you earn, the more likely it is that you win the prize of 200 Experimental Dollars. </li>
+<li>The more points you earn, the more likely it is that you win the prize of {{prize}} Experimental Dollars. </li>
 <div style="padding-left:85%;">{% formfield player.part3_cq5 label="" %}</div>
 
   </ol>

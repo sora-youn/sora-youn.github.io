@@ -24,7 +24,7 @@ class Constants(BaseConstants):
     ans_part3_cq3 = 0
     ans_part3_cq4 = 1
     ans_part3_cq5 = 0
-    prize = 200
+    prize = 100
     max_lt = 2500
 
 class Group(BaseGroup):
@@ -71,7 +71,7 @@ class Player(BasePlayer):
         self.draw_urn2 = 100 - self.draw_urn1
 
         ## T1
-        Prob_G_Urn1 = self.participant.vars['productivity']/100
+        Prob_G_Urn1 = self.participant.vars['GreenReceived']/100
         Prob_G_Urn2 = self.participant.vars['fundamental']/100
 
         DrawnBalls_Urn1 = bernoulli.rvs(Prob_G_Urn1, size = self.draw_urn1) # realization of the ball-draw from urn 1

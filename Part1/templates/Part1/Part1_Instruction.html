@@ -76,6 +76,7 @@ ul    {font-size: 120%; line-height: 200%;}
 </div>
 {% endif %}
 
+
 <p>&nbsp;</p>  
 <h1 style="text-align: center;"><strong>PART 1 Instructions</strong></h1>
 <p style="text-align: center;">Page <strong>1</strong> out of 2</p>
@@ -105,7 +106,7 @@ ul    {font-size: 120%; line-height: 200%;}
 
  
   
-
+<!-- 
 
 <br>
 <br>
@@ -121,7 +122,7 @@ ul    {font-size: 120%; line-height: 200%;}
 <p>
   <i><u>Notice that the number of Green balls you will have after Part 1 equals the number of sliders you positioned correctly.</u></i>
   <br>
-  You will not learn how many Green balls you received until the end of the experiment.</p>
+  You will not learn how many Green balls you received until the end of the experiment.</p> -->
 
 
 <button onclick="topFunction()" type="button" class="nexttab btn-primary btn next">Next</button>
@@ -147,10 +148,17 @@ ul    {font-size: 120%; line-height: 200%;}
     <br> -->
     
     <p>
+      Your earning from Part 1 will be determined by the number of sliders that you correctly positioned. 
+      For every slider that you correctly positioned, you will earn {{point_per_correct_slider}} Experimental Dollar.   
+      Therefore, <strong>you will earn more Experimental Dollars as you position more sliders correctly</strong>.
+      Your performance of the slider task will also play an important role in your earnings from the later parts of the experiment.
+    </p>
+
+    <!-- <p>
       For every Green ball you received, you earn {{point_per_correct_slider}} Experimental Dollar.
-      For every black ball you received, you earn nothing. 
+      For every black ball you received, you earn nothing.  
       <strong>Therefore, you could earn more Experimental Dollars as you position more sliders correctly, thereby receiving more Green balls.</strong> 
-      The number of Green balls you have after Part 1 also plays an important role in your payoff from the later parts of the experiment. </p>
+      The number of Green balls you have after Part 1 also plays an important role in your payoff from the later parts of the experiment. </p> -->
     
     <p>
       The remaining time will be shown on the top of the screen. 
@@ -186,13 +194,13 @@ ul    {font-size: 120%; line-height: 200%;}
     <div style = "width: 100%; border: 2px solid rgb(255, 255, 255); padding: 30px; margin: 0 auto; font-size: 100%; background-color: rgb(240, 239, 236);" >
       <ol>
     <li>Your task in Part 1 is to position as many of 100 sliders at the center of the representative scale as possible within 5 minutes.</li> 
-    <div style="padding-left:85%;">{% formfield player.part1_cq1 label="" %}</div>
+    <div style="padding-left:85%;">{% formfield player.part1_cq1 label="" %} </div>
     <br>
-    <li>The number of Green balls you will receive at the end of Part 1 equals the number of sliders that you correctly positioned. </li> 
+    <li>You will earn {{point_per_correct_slider}} Experimental Dollar for every slider that you correctly positioned.</li> 
     <div style="padding-left:85%;">{% formfield player.part1_cq2 label="" %}</div>	
     <br>
-    <li>You earn {{point_per_correct_slider}} Experimental Dollar for every Black ball you received while you earn nothing for every Green ball you received. </li>
-    <div style="padding-left:85%;">{% formfield player.part1_cq3 label="" %}</div>
+    <li>Your performance of the slider task will not affect your earnings from the later parts of the experiment.</li>
+    <div style="padding-left:85%;">{% formfield player.part1_cq3 label="" %} </div>
       </ol>
     </div>
     

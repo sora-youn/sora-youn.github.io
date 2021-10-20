@@ -164,6 +164,7 @@ class Ready(Page):
 class Part2_Begins_Soon(WaitPage):
     after_all_players_arrive = 'set_fundamental'
 
+
 # the coreography of pages
 page_sequence = [
                     Intro,

@@ -5,6 +5,7 @@ from otree.api import (
 
 import numpy as np
 import statistics
+import pandas as pd
 
 author = 'S. Youn'
 
@@ -20,14 +21,13 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
     point_per_correct_slider = 1
-    ans_part1_cq1 = 'True'
+    ans_part1_cq1 = 0
     ans_part1_cq2 = 0
     ans_part1_cq3 = 1
     correct_upper_bound = 51
     correct_lower_bound = 49
 
 class Group(BaseGroup):
-
     ############################ SET THE FUNDAMENTAL ############################
     def set_fundamental(self):
 
@@ -36,38 +36,51 @@ class Group(BaseGroup):
 
         for p in all_players:
             fundamental_list = [p.productivity for p in all_players]
+        print(fundamental_list)
+
+
+        d = {'Player':all_players,'Productivity':fundamental_list}
+        df = pd.DataFrame.from_dict(d)
+        sorted_df = df.sort_values(by=['Productivity'], ascending=True).reset_index(drop=True).reset_index()
+        print(d)
+        print(sorted_df)
 
         for p in all_players:
-            p.participant.vars['fundamental'] = statistics.median_high(fundamental_list)
+            p.participant.vars['GreenReceived'] = (sorted_df[sorted_df['Player'] == p].index.values+ 1)*10
 
-            ##
-            if p.participant.vars['fundamental'] <=10:
-                p.participant.vars['bin_index_teammate'] = 0
-            elif p.participant.vars['fundamental']>10 and p.participant.vars['fundamental']<=20:
-                p.participant.vars['bin_index_teammate'] = 1
-            elif p.participant.vars['fundamental']>20 and p.participant.vars['fundamental']<=30:
-                p.participant.vars['bin_index_teammate'] = 2
-            elif p.participant.vars['fundamental']>30 and p.participant.vars['fundamental']<=40:
-                p.participant.vars['bin_index_teammate'] = 3
-            elif p.participant.vars['fundamental']>40 and p.participant.vars['fundamental']<=50:
-                p.participant.vars['bin_index_teammate'] = 4
-            elif p.participant.vars['fundamental']>50 and p.participant.vars['fundamental']<=60:
-                p.participant.vars['bin_index_teammate'] = 5
-            elif p.participant.vars['fundamental']>60 and p.participant.vars['fundamental']<=70:
-                p.participant.vars['bin_index_teammate'] = 6
-            elif p.participant.vars['fundamental']>70 and p.participant.vars['fundamental']<=80:
-                p.participant.vars['bin_index_teammate'] = 7
-            elif p.participant.vars['fundamental']>80 and p.participant.vars['fundamental']<=90:
-                p.participant.vars['bin_index_teammate'] = 8
-            elif p.participant.vars['fundamental']>90 and p.participant.vars['fundamental']<=100:
-                p.participant.vars['bin_index_teammate'] = 9
-        
+        for p in all_players:
+
+            if p.participant.vars['GreenReceived'] ==10:
+                p.participant.vars['bin_index_mine'] = 0
+            elif p.participant.vars['GreenReceived'] ==20:
+                p.participant.vars['bin_index_mine'] = 1
+            elif p.participant.vars['GreenReceived'] ==30:
+                p.participant.vars['bin_index_mine'] = 2
+            elif p.participant.vars['GreenReceived'] ==40:
+                p.participant.vars['bin_index_mine'] = 3
+            elif p.participant.vars['GreenReceived'] ==50:
+                p.participant.vars['bin_index_mine'] = 4
+            elif p.participant.vars['GreenReceived'] ==60:
+                p.participant.vars['bin_index_mine'] = 5
+            elif p.participant.vars['GreenReceived'] ==70:
+                p.participant.vars['bin_index_mine'] = 6
+            elif p.participant.vars['GreenReceived'] ==80:
+                p.participant.vars['bin_index_mine'] = 7
+            elif p.participant.vars['GreenReceived'] ==90:
+                p.participant.vars['bin_index_mine'] = 8
+            elif p.participant.vars['GreenReceived'] ==100:
+                p.participant.vars['bin_index_mine'] = 9       
+
+            p.participant.vars['fundamental'] = 50
+            p.participant.vars['bin_index_teammate'] = 4
+    
+
 
 class Subsession(BaseSubsession):
     pass
 
 class Player(BasePlayer):
-    part1_cq1 = models.StringField(widget=widgets.RadioSelectHorizontal(),choices=['True', 'False'])
+    part1_cq1 = models.PositiveIntegerField(choices=[[0, 'True'],[1, 'False']],widget=widgets.RadioSelectHorizontal)
     part1_cq2 = models.PositiveIntegerField(choices=[[0, 'True'],[1, 'False']],widget=widgets.RadioSelectHorizontal)
     part1_cq3 = models.PositiveIntegerField(choices=[[0, 'True'],[1, 'False']],widget=widgets.RadioSelectHorizontal)
 
@@ -185,6 +198,8 @@ class Player(BasePlayer):
     def part1_cq3_error_message(self, value):
         if value != Constants.ans_part1_cq3 :
             return 'Your answer to this question is wrong'
+
+
 
     ############################ SET PAYOFFS ############################ 
     def set_payoff(self):
@@ -305,34 +320,10 @@ class Player(BasePlayer):
             else : 
                 self.participant.vars['productivity'] = self.participant.vars['productivity'] + 0
 
-        self.productivity = self.participant.vars['productivity']
-        
+        self.productivity = self.participant.vars['productivity']   
+
         ## payoff from Part 1 = the number of correctly positioned sliders * point_per_correct_slider
         self.payoff = self.participant.vars['productivity'] * Constants.point_per_correct_slider
-        ##
-        if self.participant.vars['productivity'] <=10:
-            self.participant.vars['bin_index_mine'] = 0
-        elif self.participant.vars['productivity']>10 and self.participant.vars['productivity']<=20:
-            self.participant.vars['bin_index_mine'] = 1
-        elif self.participant.vars['productivity']>20 and self.participant.vars['productivity']<=30:
-            self.participant.vars['bin_index_mine'] = 2
-        elif self.participant.vars['productivity']>30 and self.participant.vars['productivity']<=40:
-            self.participant.vars['bin_index_mine'] = 3
-        elif self.participant.vars['productivity']>40 and self.participant.vars['productivity']<=50:
-            self.participant.vars['bin_index_mine'] = 4
-        elif self.participant.vars['productivity']>50 and self.participant.vars['productivity']<=60:
-            self.participant.vars['bin_index_mine'] = 5
-        elif self.participant.vars['productivity']>60 and self.participant.vars['productivity']<=70:
-            self.participant.vars['bin_index_mine'] = 6
-        elif self.participant.vars['productivity']>70 and self.participant.vars['productivity']<=80:
-            self.participant.vars['bin_index_mine'] = 7
-        elif self.participant.vars['productivity']>80 and self.participant.vars['productivity']<=90:
-            self.participant.vars['bin_index_mine'] = 8
-        elif self.participant.vars['productivity']>90 and self.participant.vars['productivity']<=100:
-            self.participant.vars['bin_index_mine'] = 9
+ 
 
-        
-    
-
-   
-
+     

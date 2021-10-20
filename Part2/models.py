@@ -80,8 +80,8 @@ class Player(BasePlayer):
     bin9_teammate = models.IntegerField(min=0, max=100)
     bin10_teammate = models.IntegerField(min=0, max=100)
 
+    GreenReceived = models.FloatField()
     fundamental = models.FloatField()
-
     
     ############################ ATTENTION CHECK ############################ 
     def part2_cq1_error_message(self, value):
@@ -175,7 +175,8 @@ class Player(BasePlayer):
 
     ######################################################################### 
     def set_payoff(self):
-        
+
+        self.GreenReceived = self.participant.vars['GreenReceived']
         self.fundamental = self.participant.vars['fundamental']
 
         ##
