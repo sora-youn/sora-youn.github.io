@@ -162,7 +162,7 @@ class Ready(Page):
     pass
 
 class Part2_Begins_Soon(WaitPage):
-    after_all_players_arrive = 'set_fundamental'
+    after_all_players_arrive = 'set_performance'
 
 
 # the coreography of pages

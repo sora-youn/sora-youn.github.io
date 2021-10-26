@@ -2,6 +2,9 @@ from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
 from .models import Constants
 
+class Part2_Begins_Soon(WaitPage):
+    after_all_players_arrive = 'set_fundamental'
+
 class Part2_Instruction(Page):
     form_model = 'player'
     form_fields = [
@@ -32,6 +35,8 @@ class Part2_Instruction(Page):
     def error_message(self, values):
         if values['part2_cq2_bin1_mine'] + values['part2_cq2_bin2_mine'] + values['part2_cq2_bin3_mine'] + values['part2_cq2_bin4_mine'] + values['part2_cq2_bin5_mine'] + values['part2_cq2_bin6_mine'] + values['part2_cq2_bin7_mine'] + values['part2_cq2_bin8_mine'] + values['part2_cq2_bin9_mine'] + values['part2_cq2_bin10_mine'] != 100 or values['part2_cq2_bin1_teammate'] + values['part2_cq2_bin2_teammate'] + values['part2_cq2_bin3_teammate'] + values['part2_cq2_bin4_teammate'] + values['part2_cq2_bin5_teammate'] + values['part2_cq2_bin6_teammate'] + values['part2_cq2_bin7_teammate'] + values['part2_cq2_bin8_teammate'] + values['part2_cq2_bin9_teammate'] + values['part2_cq2_bin10_teammate'] != 100  :
             return 'You must distribute exactly 100 tokens for each estimate.' 
+
+    after_all_players_arrive = 'set_fundamental'
 
 class Part2_Task(Page):
 # forms to retrieve individual information
@@ -68,7 +73,7 @@ class Part2_Task(Page):
 
 
 # the coreography of pages
-page_sequence = [
+page_sequence = [   Part2_Begins_Soon,
                     Part2_Instruction,
                     Part2_Task
 ]

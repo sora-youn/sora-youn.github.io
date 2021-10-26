@@ -5,49 +5,49 @@ SESSION_CONFIGS = [
     dict(
         name='Part1',
         display_name="Part1",
-        num_demo_participants=3,
+        num_demo_participants=4,
         app_sequence=['Part1'],
     ),
     dict(
         name='Part2',
         display_name="Part2",
-        num_demo_participants=3,
+        num_demo_participants=4,
         app_sequence=['Part2'],
     ),
     dict(
         name='Part3_T1',
         display_name="Part3_T1",
-        num_demo_participants=3,
+        num_demo_participants=4,
         app_sequence=['Part3_T1'],
     ),
     dict(
         name='Part3_T2',
         display_name="Part3_T2",
-        num_demo_participants=3,
+        num_demo_participants=4,
         app_sequence=['Part3_T2'],
     ),
     dict(
         name='Part4',
         display_name="Part4",
-        num_demo_participants=3,
+        num_demo_participants=4,
         app_sequence=['Part4'],
     ),
     dict(
         name='Part5',
         display_name="Part5",
-        num_demo_participants=3,
+        num_demo_participants=4,
         app_sequence=['Part5'],
     ),
     dict(
         name='Part6',
         display_name="Part6",
-        num_demo_participants=3,
+        num_demo_participants=4,
         app_sequence=['Part6'],
     ),
     dict(
         name='Part7',
         display_name="Part7",
-        num_demo_participants=3,
+        num_demo_participants=4,
         app_sequence=['Part7'],
     ),
      dict(
@@ -59,13 +59,13 @@ SESSION_CONFIGS = [
     dict(
         name='Full_Sequence_T1',
         display_name="Full_Sequence_T1",
-        num_demo_participants=3,
+        num_demo_participants=4,
         app_sequence=['Part1', 'Part2','Part3_T1','Part4','Part5','Part6','Part7'],
     ),
     dict(
         name='Full_Sequence_T2',
         display_name="Full_Sequence_T2",
-        num_demo_participants=3,
+        num_demo_participants=4,
         app_sequence=['Part1', 'Part2','Part3_T2','Part4','Part5','Part6','Part7'],
     ),
     # dict(

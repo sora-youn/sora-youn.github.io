@@ -17,7 +17,7 @@ import time
 
 class Constants(BaseConstants):
     name_in_url = 'part2'
-    players_per_group = None
+    players_per_group = 2
     num_rounds = 1
     ans_part2_cq1 = 0
     ans_part2_cq2_mine = [0,0,0,0,0,100,0,0,0,0]
@@ -26,10 +26,25 @@ class Constants(BaseConstants):
     prize = 30
     
 class Subsession(BaseSubsession):
-    pass
+    def creating_session(self):
+        self.group_randomly(fixed_id_in_group=True)
 
+        print(self.get_group_matrix())
+    
 class Group(BaseGroup):
-    pass
+
+    def set_fundamental(self):
+
+        player1 = self.get_player_by_id(1)
+        player2 = self.get_player_by_id(2)
+
+        player1.participant.vars['fundamental'] = player2.participant.vars['GreenReceived']
+        player1.participant.vars['bin_index_teammate'] = player2.participant.vars['bin_index_mine']
+
+        player2.participant.vars['fundamental'] = player1.participant.vars['GreenReceived']
+        player2.participant.vars['bin_index_teammate'] = player1.participant.vars['bin_index_mine']
+
+
 
 class Player(BasePlayer):
     part2_cq1 = models.PositiveIntegerField(choices=[[0, 'True'],[1, 'False']],widget=widgets.RadioSelectHorizontal)

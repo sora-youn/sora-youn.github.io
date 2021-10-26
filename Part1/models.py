@@ -27,19 +27,23 @@ class Constants(BaseConstants):
     correct_upper_bound = 51
     correct_lower_bound = 49
 
+class Subsession(BaseSubsession):
+    pass
+
 class Group(BaseGroup):
-    ############################ SET THE FUNDAMENTAL ############################
-    def set_fundamental(self):
+
+    ############################ Assign Green Balls ############################
+    def set_performance(self):
 
         all_players = self.get_players()
         print(all_players)
 
         for p in all_players:
-            fundamental_list = [p.productivity for p in all_players]
-        print(fundamental_list)
+            performance_list = [p.productivity for p in all_players]
+        print(performance_list)
 
 
-        d = {'Player':all_players,'Productivity':fundamental_list}
+        d = {'Player':all_players,'Productivity':performance_list}
         df = pd.DataFrame.from_dict(d)
         sorted_df = df.sort_values(by=['Productivity'], ascending=True).reset_index(drop=True).reset_index()
         print(d)
@@ -70,16 +74,10 @@ class Group(BaseGroup):
                 p.participant.vars['bin_index_mine'] = 8
             elif p.participant.vars['GreenReceived'] ==100:
                 p.participant.vars['bin_index_mine'] = 9       
-
-            p.participant.vars['fundamental'] = 50
-            p.participant.vars['bin_index_teammate'] = 4
-    
-
-
-class Subsession(BaseSubsession):
-    pass
+          
 
 class Player(BasePlayer):
+
     part1_cq1 = models.PositiveIntegerField(choices=[[0, 'True'],[1, 'False']],widget=widgets.RadioSelectHorizontal)
     part1_cq2 = models.PositiveIntegerField(choices=[[0, 'True'],[1, 'False']],widget=widgets.RadioSelectHorizontal)
     part1_cq3 = models.PositiveIntegerField(choices=[[0, 'True'],[1, 'False']],widget=widgets.RadioSelectHorizontal)
