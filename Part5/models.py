@@ -18,10 +18,10 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
     # these are the lottery payoffs, f1 and f2 refer to lottery A and f3 and f4 to lottery B
-    f1 = 200
-    f2 = 160
-    f3 = 385
-    f4 = 10
+    f1 = 20
+    f2 = 16
+    f3 = 38.5
+    f4 = 1
 
 class Group(BaseGroup):
     pass

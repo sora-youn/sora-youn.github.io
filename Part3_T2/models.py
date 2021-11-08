@@ -24,7 +24,7 @@ class Constants(BaseConstants):
     ans_part3_cq3 = 0
     ans_part3_cq4 = 1
     ans_part3_cq5 = 0
-    prize = 100
+    prize = 500
     subcontractor = 100
     max_lt = 2500
 

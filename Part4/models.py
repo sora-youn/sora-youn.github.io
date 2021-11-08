@@ -18,7 +18,7 @@ class Constants(BaseConstants):
     name_in_url = 'part4'
     players_per_group = None
     num_rounds = 1
-    prize = 30
+    prize = 100
 
 class Group(BaseGroup):
     pass

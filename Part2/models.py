@@ -23,7 +23,7 @@ class Constants(BaseConstants):
     ans_part2_cq2_mine = [0,0,0,0,0,100,0,0,0,0]
     ans_part2_cq2_teammate = [0,0,0,50,50,0,0,0,0,0]
     ans_part2_cq3 = 0
-    prize = 30
+    prize = 100
     
 class Subsession(BaseSubsession):
     def creating_session(self):
