@@ -9,6 +9,12 @@ class Part4_Instruction(Page):
         else:
             return self.participant.vars["fail"]
 
+    def vars_for_template(self):
+        return dict(
+            prize  = Constants.prize, 
+            max_prize = Constants.prize*2,
+        )   
+
 class Part4_Task(Page):
 # forms to retrieve individual information
     form_model = 'player'
@@ -33,13 +39,7 @@ class Part4_Task(Page):
         'bin8_teammate',
         'bin9_teammate',
         'bin10_teammate'
-    ]
-
-    def vars_for_template(self):
-        return dict(
-            prize  = Constants.prize, 
-            max_prize = Constants.prize*2,
-        )      
+    ]   
         
     def error_message(self, values):
         if values['bin1_mine'] + values['bin2_mine'] + values['bin3_mine'] + values['bin4_mine'] + values['bin5_mine'] + values['bin6_mine'] + values['bin7_mine'] + values['bin8_mine'] + values['bin9_mine'] + values['bin10_mine'] != 100 or values['bin1_teammate'] + values['bin2_teammate'] + values['bin3_teammate'] + values['bin4_teammate'] + values['bin5_teammate'] + values['bin6_teammate'] + values['bin7_teammate'] + values['bin8_teammate'] + values['bin9_teammate'] + values['bin10_teammate'] != 100  :
