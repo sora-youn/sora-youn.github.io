@@ -133,9 +133,6 @@ class Part1_Task(Page):
     
     timeout_seconds = 300   
 
-    def before_next_page(self):
-        self.player.set_payoff()
-
     def vars_for_template(self):
         return dict(
             correct_upper_bound = Constants.correct_upper_bound,
