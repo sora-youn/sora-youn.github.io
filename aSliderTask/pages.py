@@ -140,7 +140,7 @@ class Part1_Task(Page):
         )       
 
 class MyWaitPage(WaitPage):
-    after_all_players_arrive = 'set_payoff'
+    after_all_players_arrive = 'set_payoff_s'
 
 # the coreography of pages
 page_sequence = [   
