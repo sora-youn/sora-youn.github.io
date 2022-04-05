@@ -1,0 +1,563 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+<!--------------------------------------------------------------------------->
+{% block scripts %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'canvasjs-3/canvasjs.min.js' %}"></script>
+
+
+<!-----------------Summation function------------------------>
+<script>
+	
+$(document).ready(function(){
+
+//iterate through each textboxes and add keyup
+//handler to trigger sum event
+$(".txt").each(function() {
+
+	$(this).keyup(function(){
+		calculateSum();
+	});
+});
+
+});
+
+function calculateSum() {
+
+var sum = 0;
+//iterate through each textboxes and add the values
+$(".txt").each(function() {
+
+	//add only if the value is number
+	if(!isNaN(this.value) && this.value.length!=0) {
+		sum += parseFloat(this.value);
+	}
+
+});
+
+var r_sum = 100-sum;
+//.toFixed() method will roundoff the final sum to 0 decimal places
+$("#sum").html(sum.toFixed(0));
+$("#r_sum").html(r_sum.toFixed(0));
+}
+
+
+$(document).ready(function(){
+
+//iterate through each textboxes and add keyup
+//handler to trigger sum event
+$(".txt2").each(function() {
+
+	$(this).keyup(function(){
+		calculateSum2();
+	});
+});
+
+});
+
+function calculateSum2() {
+
+var sum2 = 0;
+//iterate through each textboxes and add the values 
+$(".txt2").each(function() {
+
+	//add only if the value is number
+	if(!isNaN(this.value) && this.value.length!=0) {
+		sum2 += parseFloat(this.value);
+	}
+
+});
+var r_sum2 = 100-sum2;
+//.toFixed() method will roundoff the final sum to 2 decimal places
+$("#sum2").html(sum2.toFixed(0));
+$("#r_sum2").html(r_sum2.toFixed(0));
+}
+
+</script>
+
+<!-----------------Chart function 1 ------------------------>
+<script>
+
+$(document).ready(function(){
+
+var chart = new CanvasJS.Chart("chartContainer_mine", {
+	theme: "theme2",//theme1  
+  title: {
+    text: "",
+    fontSize: 15,
+  },
+  backgroundColor: "#FFFFF0",
+  data: [{
+    type: "column",
+    color: "green", 
+    dataPoints: [
+    		{ y: 0,label: "10" },
+      	{ y: 0,label: "20" },
+      	{ y: 0,label: "30" },
+        { y: 0,label: "40" },
+        { y: 0,label: "50" },
+        { y: 0,label: "60" },
+        { y: 0,label: "70" },
+        { y: 0,label: "80" },
+        { y: 0,label: "90" },
+        { y: 0,label: "100" }
+   	]
+	}],
+  axisY:{
+      title: "Percent Chance (%)",
+      minimum: 0,
+      maximum: 100
+     },
+  axisX:{
+    title: "# of green balls",
+    },
+});
+
+chart.render();
+
+$("#dataSeries1").keyup( function(e) {
+	var bin1 = document.getElementById("dataSeries1").value;
+  console.log(typeof a)
+  chart.data[0].dataPoints[0].y = parseInt(bin1);
+  chart.render();
+});
+
+$("#dataSeries2").keyup( function(e) {
+	var bin1 = document.getElementById("dataSeries2").value;
+  console.log(typeof a)
+  chart.data[0].dataPoints[1].y = parseInt(bin1);
+  chart.render();
+});
+
+$("#dataSeries3").keyup( function(e) {
+	var bin1 = document.getElementById("dataSeries3").value;
+  console.log(typeof a)
+  chart.data[0].dataPoints[2].y = parseInt(bin1);
+  chart.render();
+});
+
+$("#dataSeries4").keyup( function(e) {
+	var bin1 = document.getElementById("dataSeries4").value;
+  console.log(typeof a)
+  chart.data[0].dataPoints[3].y = parseInt(bin1);
+  chart.render();
+});
+
+$("#dataSeries5").keyup( function(e) {
+	var bin1 = document.getElementById("dataSeries5").value;
+  console.log(typeof a)
+  chart.data[0].dataPoints[4].y = parseInt(bin1);
+  chart.render();
+});
+
+$("#dataSeries6").keyup( function(e) {
+	var bin1 = document.getElementById("dataSeries6").value;
+  console.log(typeof a)
+  chart.data[0].dataPoints[5].y = parseInt(bin1);
+  chart.render();
+});
+
+$("#dataSeries7").keyup( function(e) {
+	var bin1 = document.getElementById("dataSeries7").value;
+  console.log(typeof a)
+  chart.data[0].dataPoints[6].y = parseInt(bin1);
+  chart.render();
+});
+
+$("#dataSeries8").keyup( function(e) {
+	var bin1 = document.getElementById("dataSeries8").value;
+  console.log(typeof a)
+  chart.data[0].dataPoints[7].y = parseInt(bin1);
+  chart.render();
+});
+
+$("#dataSeries9").keyup( function(e) {
+	var bin1 = document.getElementById("dataSeries9").value;
+  console.log(typeof a)
+  chart.data[0].dataPoints[8].y = parseInt(bin1);
+  chart.render();
+});
+
+$("#dataSeries10").keyup( function(e) {
+	var bin1 = document.getElementById("dataSeries10").value;
+  console.log(typeof a)
+  chart.data[0].dataPoints[9].y = parseInt(bin1);
+  chart.render();
+});
+
+});
+
+
+</script>
+
+
+<!-----------------Chart function 2 ------------------------>
+<script>
+
+  $(document).ready(function(){
+  
+  var chart = new CanvasJS.Chart("chartContainer_teammate", {
+    theme: "theme2",//theme1  
+    title: {
+      text: ""
+    },
+    backgroundColor: "#F0FFF0",
+    data: [{
+      type: "column",
+      color: "green", 
+      dataPoints: [
+          { y: 0,label: "10" },
+          { y: 0,label: "20" },
+          { y: 0,label: "30" },
+          { y: 0,label: "40" },
+          { y: 0,label: "50" },
+          { y: 0,label: "60" },
+          { y: 0,label: "70" },
+          { y: 0,label: "80" },
+          { y: 0,label: "90" },
+          { y: 0,label: "100" }
+       ]
+    }],
+    axisY:{
+      title: "Percent Chance (%)",
+        minimum: 0,
+        maximum: 100
+       },
+    axisX:{
+      title: "# of green balls",
+      },
+  });
+  
+  chart.render();
+  
+  $("#dataSeries11").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries11").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[0].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries12").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries12").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[1].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries13").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries13").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[2].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries14").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries14").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[3].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries15").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries15").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[4].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries16").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries16").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[5].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries17").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries17").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[6].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries18").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries18").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[7].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries19").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries19").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[8].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  $("#dataSeries20").keyup( function(e) {
+    var bin1 = document.getElementById("dataSeries20").value;
+    console.log(typeof a)
+    chart.data[0].dataPoints[9].y = parseInt(bin1);
+    chart.render();
+  });
+  
+  });
+  
+  
+  </script>
+
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block styles %}
+
+<link href="{% static 'back_button_v3/css/custom.css' %}" rel="stylesheet">
+
+<style>
+  input[type=radio] {
+    transform: scale(1.5);
+    margin: 12px -10px 0px -30px;
+  }
+</style>
+
+<style>
+  p    {font-size: 120%; line-height: 200%;}
+  ul    {font-size: 120%; line-height: 200%;}
+  </style>
+  
+
+<style>
+  .otree-body{
+      max-width: 60%;
+  }
+</style> 
+
+<style>
+  .layout {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  }
+.grow1 { flex-grow: 1; }
+</style>
+
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block content %}
+
+<!--------------------------------------------------------------------------->
+<h1 style="text-align: center;"><strong> Part 2</strong></h1>
+<br>
+
+<section style = "background-color: #FFFFF0">
+<br>
+<h3 style="text-align: center;"><strong>Panel A</strong></h1>
+<p style="text-align: center;"><strong>What is the percent chance that YOU received a certain number of green balls?</strong></p> 
+<section class="layout">
+  <div class="grow1" style="width: 50%;">
+        <table class="table borderless" style="text-align: center;">
+        <thead>
+          <tr>
+            <th class="tg-0lax"># of green balls</th>
+            <th class="tg-0lax">The percent chance (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0lax">10</td>
+            <td class="tg-0lax"><input class="txt" size="4" type="text" id="dataSeries1" name="bin1_mine"/>{{ form.bin1_mine.errors }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">20</td>
+            <td class="tg-0lax"><input class="txt" size="4" type="text" id="dataSeries2" name="bin2_mine"/>{{ form.bin2_mine.errors }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">30</td>
+            <td class="tg-0lax"><input class="txt" size="4" type="text" id="dataSeries3" name="bin3_mine"/>{{ form.bin3_mine.errors }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">40</td>
+            <td class="tg-0lax"><input class="txt" size="4" type="text" id="dataSeries4" name="bin4_mine"/>{{ form.bin4_mine.errors }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">50</td>
+            <td class="tg-0lax"><input class="txt" size="4" type="text" id="dataSeries5" name="bin5_mine"/>{{ form.bin5_mine.errors }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">60</td>
+            <td class="tg-0lax"><input class="txt" size="4" type="text" id="dataSeries6" name="bin6_mine"/>{{ form.bin6_mine.errors }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">70</td>
+            <td class="tg-0lax"><input class="txt" size="4" type="text" id="dataSeries7" name="bin7_mine"/>{{ form.bin7_mine.errors }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">80</td>
+            <td class="tg-0lax"><input class="txt" size="4" type="text" id="dataSeries8" name="bin8_mine"/>{{ form.bin8_mine.errors }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">90</td>
+            <td class="tg-0lax"><input class="txt" size="4" type="text" id="dataSeries9" name="bin9_mine"/>{{ form.bin9_mine.errors }}</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">100</td>
+            <td class="tg-0lax"><input class="txt" size="4" type="text" id="dataSeries10" name="bin10_mine"/>{{ form.bin10_mine.errors }}</td>
+          </tr>
+        </tbody>
+        </table>          
+  </div>
+
+  <div class="grow1" style="width: 50%;">
+    <p>&nbsp;</p>
+    <figure>
+      <div id="chartContainer_mine" style="height: 360px; width: 100%;"></div> 
+    </figure>    
+
+    <br>
+    <br>
+
+    <table style="text-align: right;">
+      <tr>
+      <td >
+          <strong> Percentage points already distributed: </strong>
+      </td>
+      <td > 
+        &emsp; <span id="sum">     0</span> 
+         
+      </td>
+      <tr>
+        <td>
+         <strong> Percentage points you still need to distribute: </strong>
+        </td>
+        <td>
+          &emsp; <span id="r_sum">   0</span>           
+        </td>
+        </tr>
+     
+      </table>
+  </div>
+</section>
+</section>
+
+
+<p>&nbsp;</p>
+
+<section style = "background-color: #F0FFF0">
+  <br>
+  <h3 style="text-align: center;"><strong>Panel B</strong></h1>
+  <p style="text-align: center;"><strong>What is the percent chance that YOUR TEAMMATE received a certain number of green balls?</strong></p> 
+  <section class="layout">
+    <div class="grow1" style="width: 50%;">
+          <table class="table borderless" style="text-align: center;">
+          <thead>
+            <tr>
+              <th class="tg-0lax"># of green balls</th>
+              <th class="tg-0lax">The percent chance (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tg-0lax">10</td>
+              <td class="tg-0lax"><input class="txt2" size="4" type="text" id="dataSeries11" name="bin1_teammate"/>{{ form.bin1_teammate.errors }}</td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">20</td>
+              <td class="tg-0lax"><input class="txt2" size="4" type="text" id="dataSeries12" name="bin2_teammate"/>{{ form.bin2_teammate.errors }}</td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">30</td>
+              <td class="tg-0lax"><input class="txt2" size="4" type="text" id="dataSeries13" name="bin3_teammate"/>{{ form.bin3_teammate.errors }}</td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">40</td>
+              <td class="tg-0lax"><input class="txt2" size="4" type="text" id="dataSeries14" name="bin4_teammate"/>{{ form.bin4_teammate.errors }}</td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">50</td>
+              <td class="tg-0lax"><input class="txt2" size="4" type="text" id="dataSeries15" name="bin5_teammate"/>{{ form.bin5_teammate.errors }}</td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">60</td>
+              <td class="tg-0lax"><input class="txt2" size="4" type="text" id="dataSeries16" name="bin6_teammate"/>{{ form.bin6_teammate.errors }}</td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">70</td>
+              <td class="tg-0lax"><input class="txt2" size="4" type="text" id="dataSeries17" name="bin7_teammate"/>{{ form.bin7_teammate.errors }}</td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">80</td>
+              <td class="tg-0lax"><input class="txt2" size="4" type="text" id="dataSeries18" name="bin8_teammate"/>{{ form.bin8_teammate.errors }}</td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">90</td>
+              <td class="tg-0lax"><input class="txt2" size="4" type="text" id="dataSeries19" name="bin9_teammate"/>{{ form.bin9_teammate.errors }}</td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">100</td>
+              <td class="tg-0lax"><input class="txt2" size="4" type="text" id="dataSeries20" name="bin10_teammate"/>{{ form.bin10_teammate.errors }}</td>
+            </tr>
+          </tbody>
+          </table>          
+    </div>
+  
+    <div class="grow1" style="width: 50%;">
+      <p>&nbsp;</p>
+      <figure>
+        <div id="chartContainer_teammate" style="height: 360px; width: 100%;"></div> 
+      </figure>    
+  
+      <br>
+      <br>
+  
+      <table style="text-align: right;">
+        <tr>
+        <td >
+            <strong> Percentage points already distributed: </strong>
+        </td>
+        <td > 
+          &emsp; <span id="sum2">     0</span> 
+           
+        </td>
+        <tr>
+          <td>
+           <strong> Percentage points you still need to distribute: </strong>
+          </td>
+          <td>
+            &emsp; <span id="r_sum2">   0</span>           
+          </td>
+          </tr>
+       
+        </table>
+    </div>
+  </section>
+  </section>
+
+
+
+
+
+  
+
+
+<!--------------------------------------------------------------------------->
+<p>&nbsp;</p>
+    <div class="row" style="padding-left:95%;">
+        <div class="col-md-2">
+            <button name="btn_submit" value="True" class="btn btn-primary btn-large">
+                    <span style="font-size:12pt">Confirm</span>
+            </button>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+
+
+

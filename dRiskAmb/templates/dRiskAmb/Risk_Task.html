@@ -1,0 +1,220 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+<!--------------------------------------------------------------------------->
+{% block scripts %}
+<script>
+
+$(".select").click(function() {
+
+  var index = $(this).index(".select");
+
+  $(".A").removeClass('red');
+  $(".B").removeClass('red');
+
+  for (m=0;m<index;m++) {
+  $(".A").eq(m).addClass('red');
+  } 
+
+  for (m=index;m<11;m++) {
+  $(".B").eq(m).addClass('red');
+  } 
+
+});
+
+</script>
+
+
+
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block styles %}
+<style>
+  input[type=radio] {
+       transform: scale(1.5);
+       margin: 12px -10px 0px -30px;
+     }
+</style>
+
+<style>
+p    {font-size: 120%; line-height: 200%;}
+ul    {font-size: 120%; line-height: 200%;}
+</style>
+
+<style>
+  .otree-body{
+      max-width: 80%;
+  }
+</style> 
+
+<style>
+  .otree-form-errors {
+    visibility: hidden;
+    display: none;
+}
+</style>
+
+<style>
+td {
+  width: 100px;
+  height: 70px;
+}
+td.red {
+  background-color:rgb(240, 239, 236);
+}  
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+
+<h1 style="text-align: center;"><strong>PART 3 - Task 1</strong></h1>
+<br>
+<p>
+  You are facing 11 separate decisions numbering 1 through 11.
+  Each of these decisions is a choice between “Option A” or “Option B”. 
+</p>
+<p>
+  In each of the 11 decisions, Option A pays either <i>{{f1}} points</i> or <i>{{f2}} points</i>.
+  Option B, on the other hand, pays either <i>{{f3}} points</i> or <i>{{f4}} points</i>.
+  The only difference between the 11 decisions is the chances of earning the higher payoff for each option.
+</p> 
+<p>
+  To choose an Option for each decision, you will make one choice in the “Switch” column. 
+  This choice indicates that you would like to switch from Option A to Option B. 
+  For each decision before your choice, Option A will be used for payment. 
+  For each decision after your choice, including the decision where the choice was made, Option B will be used.
+</p>
+
+<p>One of these decisions would be randomly selected to determine your payoffs.</p> 
+
+<br>
+
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">Make one choice in the “Switch” column.</h4>
+</div>
+{% endif %}
+
+
+
+<table class="table" style = "font-size: 110%;">
+  <colgroup>
+    <col width="10%">
+    <col width="40%">
+    <col width="10%">
+    <col width="40%">
+    </colgroup>
+
+  <thead>
+    <tr>
+      <td scope="col" style="text-align:center">#</td>
+      <td scope="col" style="text-align:center">A</td>
+      <td scope="col" style="text-align:center">Switch </td>
+      <td scope="col" style="text-align:center">B</td>
+    </tr>
+  </thead>
+  <tbody>
+<!-- Row 0 -->
+  <tr>
+    <td scope="row" style = "vertical-align: middle; text-align:center">1</td>
+    <td class="A" align="center"> 0/10 of <i>{{f1}} points</i>, <br> 10/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold" align="center"><input class="select" type="radio" name="risk" value="0"/></td>
+    <td class="B" align="center"> 0/10 of <i>{{f3}} points</i>, <br> 10/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 1 -->
+  <tr>
+    <td scope="row" style = "vertical-align: middle; text-align:center">2</td>
+    <td class="A" align="center"> 1/10 of <i>{{f1}} points</i>, <br> 9/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold" align="center"><input class="select" type="radio" name="risk" value="1"/></td>
+    <td class="B" align="center"> 1/10 of <i>{{f3}} points</i>, <br> 9/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 2 -->
+  <tr>
+    <td scope="row" style = "vertical-align: middle; text-align:center">3</td>
+    <td class="A" align="center"> 2/10 of <i>{{f1}} points</i>, <br> 8/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold" align="center"><input class="select" type="radio" name="risk" value="2"/></td>
+    <td class="B" align="center"> 2/10 of <i>{{f3}} points</i>, <br> 8/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 3 -->
+  <tr>
+    <td scope="row" style = "vertical-align: middle; text-align:center">4</td>
+    <td class="A" align="center"> 3/10 of <i>{{f1}} points</i>, <br> 7/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold" align="center"><input class="select" type="radio" name="risk" value="3"/></td>
+    <td class="B" align="center"> 3/10 of <i>{{f3}} points</i>, <br> 7/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 4 -->
+  <tr>
+    <td scope="row" style = "vertical-align: middle; text-align:center">5</td>
+    <td class="A" align="center"> 4/10 of <i>{{f1}} points</i>, <br> 6/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold" align="center"><input class="select" type="radio" name="risk" value="4"/></td>
+    <td class="B" align="center"> 4/10 of <i>{{f3}} points</i>, <br> 6/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 5 -->
+  <tr>
+    <td scope="row" style = "vertical-align: middle; text-align:center">6</td>
+    <td class="A" align="center"> 5/10 of <i>{{f1}} points</i>, <br> 5/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold" align="center"><input class="select" type="radio" name="risk" value="5"/></td>
+    <td class="B" align="center"> 5/10 of <i>{{f3}} points</i>, <br> 5/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 6 -->
+  <tr>
+    <td scope="row" style = "vertical-align: middle; text-align:center">7</td>
+    <td class="A" align="center"> 6/10 of <i>{{f1}} points</i>, <br> 4/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold" align="center"><input class="select" type="radio" name="risk" value="6"/></td>
+    <td class="B" align="center"> 6/10 of <i>{{f3}} points</i>, <br> 4/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 7 -->
+  <tr>
+    <td scope="row" style = "vertical-align: middle; text-align:center">8</td>
+    <td class="A" align="center"> 7/10 of <i>{{f1}} points</i>, <br> 3/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold" align="center"><input class="select" type="radio" name="risk" value="7"/></td>
+    <td class="B" align="center"> 7/10 of <i>{{f3}} points</i>, <br> 3/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 8 -->
+  <tr>
+    <td scope="row" style = "vertical-align: middle; text-align:center">9</td>
+    <td class="A" align="center"> 8/10 of <i>{{f1}} points</i>, <br> 2/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold" align="center"><input class="select" type="radio" name="risk" value="8"/></td>
+    <td class="B" align="center"> 8/10 of <i>{{f3}} points</i>, <br> 2/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 9 -->
+  <tr>
+    <td scope="row" style = "vertical-align: middle; text-align:center">10</td>
+    <td class="A" align="center"> 9/10 of <i>{{f1}} points</i>, <br> 1/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold" align="center"><input class="select" type="radio" name="risk" value="9"/></td>
+    <td class="B" align="center"> 9/10 of <i>{{f3}} points</i>, <br> 1/10 of <i>{{f4}} points</i> </td>
+  </tr>
+<!-- Row 10 -->
+  <tr>
+    <td scope="row" style = "vertical-align: middle; text-align:center">11</td>
+    <td class="A" align="center"> 10/10 of <i>{{f1}} points</i>, <br> 0/10 of <i>{{f2}} points</i> </td>
+    <td style="font-weight: bold" align="center"><input class="select" type="radio" name="risk" value="10"/></td>
+    <td class="B" align="center"> 10/10 of <i>{{f3}} points</i>, <br> 0/10 of <i>{{f4}} points</i> </td>
+  </tr>
+
+</tbody>
+</table>
+
+
+
+
+
+
+<!--------------------------------------------------------------------------->
+<p>&nbsp;</p>
+    <div class="row" style="padding-left:95%;">
+        <div class="col-md-2">
+            <button name="btn_submit" value="True" class="btn btn-primary btn-large">
+                    <span style="font-size:12pt">Confirm</span>
+            </button>
+        </div>
+    </div>
+
+
+
+
+{% endblock %} 

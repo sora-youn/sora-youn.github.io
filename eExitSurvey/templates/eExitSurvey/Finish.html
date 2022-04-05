@@ -1,0 +1,43 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+   
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{% static 'back_button_v3/js/prev_next_button.js' %}"></script>
+
+{% endblock %}
+
+
+{% block styles %}
+
+<link href="{% static 'back_button_v3/css/custom.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+
+{% block content %}
+
+<p>&nbsp;</p>
+<h1 style="text-align: center;"><strong> This is the end of the experiment. </strong></h1>
+<p>&nbsp;</p>
+<p style="text-align: center;">
+    Thank you for your participation.
+</p>
+
+<p style="text-align: center;">
+    Your total earning from the experiment is {{ final_payout }}. 
+    You will receive your payment via Paypal or Venmo within 24 hours.
+</p>
+
+<p style="text-align: center;">
+    Please wait patiently while others finish. Once everyone is done, we will allow you to leave.    
+</p>
+
+{% endblock %}
+
+
+

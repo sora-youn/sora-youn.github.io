@@ -1,0 +1,74 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block styles %}
+<style>
+	input[type=radio] {
+		 transform: scale(1.5);
+		 margin: 12px -10px 0px -30px;
+	   }
+  </style>
+  
+  <style>
+  p    {font-size: 120%; line-height: 200%;}
+  ul    {font-size: 120%; line-height: 200%;}
+  ol    {font-size: 120%; line-height: 200%;}
+  </style>
+  
+  <style>
+	.otree-body{
+		max-width: 80%;
+	}
+  </style> 
+{% endblock %}
+
+
+{% block content %}
+<h1 style="text-align: center;"><strong>Exit Survey</strong></h1>
+<br>
+<p>&nbsp;</p>
+
+<div style = "width: 80%; margin: 0 auto; font-size: 100%;">
+
+<ol>  
+<li>What sex were you assigned at birth, such as on an original birth certificate?</li>
+<div>{% formfield player.sex label="" %}</div>
+
+<br>
+<li>What is your age?</li>
+<div>{% formfield player.age label="" %}</div>
+
+<br>
+<li>Do you study a STEM (Science, Technology, Engineering, and Mathematics) major?</li>
+<div>{% formfield player.major label="" %}</div>
+
+<br>
+<li>How difficult was the Part 1 slider task?</li>
+<div>{% formfield player.part1 label="" %}</div>
+
+<br>
+<li>What strategies did you use to get higher points from Part 2?</li>
+<div>{% formfield player.advice label="" %}</div>
+
+<br>
+<li>What comments do you have about the experiment?</li>
+{% formfield player.comment label="" %}
+</div>
+
+
+</ol>
+
+<!--------------------------------------------------------------------------->
+<p>&nbsp;</p>
+    <div class="row" style="padding-left:95%;">
+        <div class="col-md-2">
+            <button name="btn_submit" value="True" class="btn btn-primary btn-large">
+                    <span style="font-size:12pt">Finish</span>
+            </button>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,283 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block styles %}
+<style>
+  input[type=radio] {
+    transform: scale(1.5);
+    margin: 12px -10px 0px -30px;
+  }
+</style>
+
+<style>
+p    {font-size: 120%; line-height: 200%;}
+ul    {font-size: 120%; line-height: 200%;}
+</style>
+
+<style>
+  .otree-body{
+      max-width: 80%;
+  }
+</style> 
+
+{% endblock %}
+
+{% block content %}
+
+<h1 style="text-align: center;"><strong>PART 1</strong></h1>
+
+<br>
+<!-- <p align = "justify"> 
+	Position each of the 100 sliders in the center of the respective scale.
+  <br>Initially, each slider is at the very left end of the scale (position 0) 
+  and can be moved on the scale with the help of the mouse, maximally to the very right end of the scale (position 100). 
+  A slider will count as correctly positioned at the center if you have positioned it between positions {{correct_lower_bound}} and {{correct_upper_bound}}
+  (so either exactly at the middle position 50 or very nearby position 50).
+</p>
+<br> -->
+
+<div style = "width: 100%; margin: 0 auto;">		
+		 <table class="table borderless" align="center" style="border-spacing: 90; width: 100%;">
+	 		<colgroup>
+				<col width="20%">
+				<col width="20%">
+				<col width="20%">
+				<col width="20%">
+				<col width="20%">
+			</colgroup>
+	
+			<tr>
+				<td align="center" colspan="5" style = "background-color: rgb(240, 239, 236)"><strong>Sliders 1-10</strong></td>
+			</tr>
+
+			<tr>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider1"></td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider2"></td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider3"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%"  name="slider4"></td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%"  name="slider5"></td>
+			</tr>
+			<tr>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider6"></td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider7"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider8"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider9"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider10"></td>
+			</tr>
+
+			<tr>
+				<td align="center" colspan="5"> </td>
+			</tr>
+			<tr>
+				<td align="center" colspan="5" style = "background-color: rgb(240, 239, 236)"><strong>Sliders 11-20</strong></td>
+			</tr>
+
+			<tr>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider11"></td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider12"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider13"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider14"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider15"></td>
+			</tr>
+			<tr>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider16"></td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider17"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider18"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider19"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider20"></td>
+			</tr>
+
+			<tr>
+				<td align="center" colspan="5"> </td>
+			</tr>
+			<tr>
+				<td align="center" colspan="5" style = "background-color: rgb(240, 239, 236)"><strong>Sliders 21-30</strong></td>
+			</tr>
+
+			<tr>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider21"></td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider22"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider23"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider24"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider25"></td>
+			</tr>
+			<tr>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider26"></td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider27"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider28"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider29"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider30"></td>
+			</tr>
+
+			<tr>
+				<td align="center" colspan="5"> </td>
+			</tr>
+			<tr>
+				<td align="center" colspan="5" style = "background-color: rgb(240, 239, 236)"><strong>Sliders 31-40</strong></td>
+			</tr>
+
+			<tr>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider31"></td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider32"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider33"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider34"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider35"></td>
+			</tr>
+			<tr>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider36"></td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider37"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider38"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider39"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider40"></td>
+			</tr>
+
+			<tr>
+				<td align="center" colspan="5"> </td>
+			</tr>
+			<tr>
+				<td align="center" colspan="5" style = "background-color: rgb(240, 239, 236)"><strong>Sliders 41-50</strong></td>
+			</tr>
+
+			<tr>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider41"></td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider42"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider43"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider44"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider45"></td>
+			</tr>
+			<tr>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider46"></td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider47"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider48"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider49"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider50"></td>
+			</tr>
+
+			<tr>
+				<td align="center" colspan="5"> </td>
+			</tr>
+			<tr>
+				<td align="center" colspan="5" style = "background-color: rgb(240, 239, 236)"><strong>Sliders 51-60</strong></td>
+			</tr>
+
+			<tr>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider51"></td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider52"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider53"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider54"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider55"></td>
+			</tr>
+			<tr>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider56"></td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider57"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider58"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider59"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider60"></td>
+			</tr>
+
+			<tr>
+				<td align="center" colspan="5"> </td>
+			</tr>
+			<tr>
+				<td align="center" colspan="5" style = "background-color: rgb(240, 239, 236)"><strong>Sliders 61-70</strong></td>
+			</tr>
+
+			<tr>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider61"></td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider62"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider63"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider64"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider65"></td>
+			</tr>
+			<tr>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider66"></td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider67"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider68"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider69"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider70"></td>
+			</tr>
+
+			<tr>
+				<td align="center" colspan="5"> </td>
+			</tr>
+			<tr>
+				<td align="center" colspan="5" style = "background-color: rgb(240, 239, 236)"><strong>Sliders 71-80</strong></td>
+			</tr>
+
+			<tr>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider71"></td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider72"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider73"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider74"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider75"></td>
+			</tr>
+			<tr>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider76"></td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider77"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider78"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider79"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style=width:90%" name="slider80"></td>
+			</tr>
+
+			<tr>
+				<td align="center" colspan="5"> </td>
+			</tr>
+			<tr>
+				<td align="center" colspan="5" style = "background-color: rgb(240, 239, 236)"><strong>Sliders 81-90</strong></td>
+			</tr>
+
+			<tr>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider81"></td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider82"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider83"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider84"></td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider85"></td>
+			</tr>
+			<tr>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider86"></td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider87"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider88"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider89"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider90"></td>
+			</tr>
+
+			<tr>
+				<td align="center" colspan="5"> </td>
+			</tr>
+			<tr>
+				<td align="center" colspan="5" style = "background-color: rgb(240, 239, 236)"><strong>Sliders 91-100</strong></td>
+			</tr>
+
+			<tr>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider91"></td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider92"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider93"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider94"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:95%" name="slider95"></td>
+			</tr>
+			<tr>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider96"></td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider97"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider98"> </td>
+				<td align="left"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider99"> </td>
+				<td align="right"><input type="range" min="0" max="100" value="0" step=".1" style="width:90%" name="slider100"></td>
+			</tr>
+		 </table>
+</div>	
+
+
+<!--------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------->
+ <!-- <p>&nbsp;</p>
+    <div class="row" style="padding-left:95%;">
+        <div class="col-md-2">
+            <button name="btn_submit" value="True" class="btn btn-primary btn-large">
+                    <span style="font-size:12pt">Submit</span>
+            </button>
+        </div>
+    </div>  -->
+
+
+{{ form.slider1.errors }}
+
+{% endblock %}

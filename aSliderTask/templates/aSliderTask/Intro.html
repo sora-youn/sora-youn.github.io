@@ -1,0 +1,107 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+<!--------------------------------------------------------------------------->
+{% block scripts %}
+<script src="https://unpkg.com/mathjs@9.4.4/lib/browser/math.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+const lowerBound = 100, upperBound = 300, mean = 50;
+
+const normalY = (x, mean, stdDev) => Math.exp((-0.5) * Math.pow((x - mean) / stdDev, 2));
+
+const getMean = (lowerBound, upperBound) => (upperBound + lowerBound) / 2;
+
+// distance between mean and each bound of a 95% confidence interval 
+// is 2 stdDeviation, so distance between the bounds is 4
+const getStdDeviation = (lowerBound, upperBound) => (upperBound - lowerBound) / 4;
+
+
+
+const generatePoints = (lowerBound, upperBound) => {
+  let stdDev = getStdDeviation(lowerBound, upperBound); 
+  let min = lowerBound - 2 * stdDev;
+  let max = upperBound + 2 * stdDev;
+  let unit = (max - min) / 100;
+  return _.range(min, max, unit);
+}
+
+/* let mean = getMean(lowerBound, upperBound); */
+let stdDev = getStdDeviation(lowerBound, upperBound);
+let points = generatePoints(lowerBound, upperBound);
+
+
+let seriesData = points.map(x => ({ x, y: normalY(x, mean, stdDev)}));
+
+Highcharts.chart('container', {
+    chart: {
+        type: 'area'
+    },
+    series: [{
+        data: seriesData,
+    }],
+});
+
+</script>
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block styles %}
+
+<link href="{% static 'back_button_v3/css/custom.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<style>
+  input[type=radio] {
+    transform: scale(1.5);
+    margin: 12px -10px 0px -30px;
+  }
+</style>
+
+<style>
+p    {font-size: 120%; line-height: 200%;}
+ul    {font-size: 120%; line-height: 200%;}
+ol    {font-size: 120%; line-height: 200%;}
+</style>
+
+<style>
+  .otree-body{
+      max-width: 80%;
+  }
+</style> 
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block content %}
+
+
+<p>&nbsp;</p>
+<h1 style="text-align: center;"><strong>Part 1 </strong></h1>
+<p>&nbsp;</p>
+<p style="text-align: center;">
+  You will find the instructions on the desk. 
+</p>
+
+
+
+
+<!-- -----------------------------------------------------------------------
+<p>&nbsp;</p>
+    <div class="row" style="padding-left:95%;">
+        <div class="col-md-2">
+            <button name="btn_submit" value="True" class="btn btn-primary btn-large">
+                    <span style="font-size:12pt">Next</span>
+            </button>
+        </div>
+    </div> -->
+
+
+{% endblock %}
+
+
+

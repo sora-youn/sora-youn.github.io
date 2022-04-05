@@ -3,83 +3,37 @@ from os import environ
 
 SESSION_CONFIGS = [
     dict(
-        name='Part1',
-        display_name="Part1",
+        name='Slider_I_5',
+        display_name="Slider_I_5",
         num_demo_participants=4,
-        app_sequence=['Part1'],
+        app_sequence=['aSliderTask', 'bDrawTrueState', 'cWorkAllocationTask', 'dRiskAmb', 'eExitSurvey'],
+        simple = True,
+        identifiable = True,
     ),
     dict(
-        name='Part2',
-        display_name="Part2",
+        name='Slider_I_100',
+        display_name="Slider_I_100",
         num_demo_participants=4,
-        app_sequence=['Part2'],
+        app_sequence=['aSliderTask', 'bDrawTrueState', 'cWorkAllocationTask', 'dRiskAmb', 'eExitSurvey'],
+        simple = False,
+        identifiable = True,
     ),
     dict(
-        name='Part3_T1',
-        display_name="Part3_T1",
+        name='Slider_N_5',
+        display_name="Slider_N_5",
         num_demo_participants=4,
-        app_sequence=['Part3_T1'],
+        app_sequence=['aSliderTask', 'bDrawTrueState', 'cWorkAllocationTask', 'dRiskAmb', 'eExitSurvey'],
+        simple = True,
+        identifiable = False,
     ),
     dict(
-        name='Part3_T2',
-        display_name="Part3_T2",
+        name='Slider_N_100',
+        display_name="Slider_N_100",
         num_demo_participants=4,
-        app_sequence=['Part3_T2'],
-    ),
-    dict(
-        name='Part4',
-        display_name="Part4",
-        num_demo_participants=4,
-        app_sequence=['Part4'],
-    ),
-    dict(
-        name='Part5',
-        display_name="Part5",
-        num_demo_participants=4,
-        app_sequence=['Part5'],
-    ),
-    dict(
-        name='Part6',
-        display_name="Part6",
-        num_demo_participants=4,
-        app_sequence=['Part6'],
-    ),
-    dict(
-        name='Part7',
-        display_name="Part7",
-        num_demo_participants=4,
-        app_sequence=['Part7'],
-    ),
-     dict(
-        name='RiskAmbiguity',
-        display_name="RiskAmbiguity",
-        num_demo_participants=1,
-        app_sequence=['Part5','Part6'],
-    ),
-    dict(
-        name='Full_Sequence_T1',
-        display_name="Full_Sequence_T1",
-        num_demo_participants=4,
-        app_sequence=['Part1', 'Part2','Part3_T1','Part4','Part5','Part6','Part7'],
-    ),
-    dict(
-        name='Full_Sequence_T2',
-        display_name="Full_Sequence_T2",
-        num_demo_participants=4,
-        app_sequence=['Part1', 'Part2','Part3_T2','Part4','Part5','Part6','Part7'],
-    ),
-    # dict(
-    #     name='test_T1',
-    #     display_name="test_T1",
-    #     num_demo_participants=3,
-    #     app_sequence=['Part1', 'Part2','Part3_T1_test','Part4','Part5','Part6','Part7'],
-    # ),
-    # dict(
-    #     name='test_T2',
-    #     display_name="test_T2",
-    #     num_demo_participants=3,
-    #     app_sequence=['Part1', 'Part2','Part3_T2_test','Part4','Part5','Part6','Part7'],
-    # ),
+        app_sequence=['aSliderTask', 'bDrawTrueState', 'cWorkAllocationTask', 'dRiskAmb', 'eExitSurvey'],
+        simple = False,
+        identifiable = False,
+    ),   
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
@@ -88,7 +42,7 @@ SESSION_CONFIGS = [
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=0.02, participation_fee=5.00, doc=""
+    real_world_currency_per_point=0.02, participation_fee=10.00, doc=""
 )
 
 # ISO-639 code

@@ -1,0 +1,64 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+   
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{% static 'back_button_v3/js/prev_next_button.js' %}"></script>
+
+{% endblock %}
+
+
+<!--------------------------------------------------------------------------->
+{% block styles %}
+
+<link href="{% static 'back_button_v3/css/custom.css' %}" rel="stylesheet">
+
+<style>
+  input[type=radio] {
+    transform: scale(1.5);
+    margin: 12px -10px 0px -30px;
+  }
+</style>
+
+<style>
+p    {font-size: 120%; line-height: 200%;}
+ul    {font-size: 120%; line-height: 200%;}
+</style>
+
+<style>
+  .otree-body{
+      max-width: 80%;
+  }
+</style> 
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<p>&nbsp;</p>
+<h1 style="text-align: center;"><strong> Part 2 </strong></h1>
+<p>&nbsp;</p>
+<p style="text-align: center;">
+  We are distributing the instructions.
+</p>
+
+<!--------------------------------------------------------------------------->
+<!-- <p>&nbsp;</p>
+    <div class="row" style="padding-left:50%;">
+        <div class="col-md-2">
+            <button name="btn_submit" value="True" class="btn btn-primary btn-large">
+                    <span style="font-size:12pt">Start</span>
+            </button>
+        </div>
+    </div> -->
+
+{% endblock %}
+
+
+
