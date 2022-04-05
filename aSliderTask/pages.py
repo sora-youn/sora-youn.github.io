@@ -146,4 +146,5 @@ class MyWaitPage(WaitPage):
 page_sequence = [   
                     Intro,
                     Part1_Task,
+                    MyWaitPage,
                 ]
