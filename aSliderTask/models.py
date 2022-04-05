@@ -6,7 +6,6 @@ from otree.api import (
 import numpy as np
 import statistics
 import pandas as pd
-import matplotlib.pyplot as plt
 import math
 
 author = 'S. Youn'
