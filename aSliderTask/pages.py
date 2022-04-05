@@ -139,12 +139,11 @@ class Part1_Task(Page):
             correct_lower_bound = Constants.correct_lower_bound
         )       
 
-class MyWaitPage(WaitPage):
-    after_all_players_arrive = 'set_payoff_s'
+    def before_next_page(self):
+        self.player.set_payoff()
 
 # the coreography of pages
 page_sequence = [   
                     Intro,
                     Part1_Task,
-                    MyWaitPage,
                 ]

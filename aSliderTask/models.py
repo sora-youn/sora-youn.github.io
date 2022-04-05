@@ -39,10 +39,6 @@ class Subsession(BaseSubsession):
             else:
                 p.StateSpace = Constants.ComplexSpace
 
-    def set_payoff_s(self):
-        for p in self.get_players():
-            p.set_payoff()
-
 class Group(BaseGroup):
     pass
 
