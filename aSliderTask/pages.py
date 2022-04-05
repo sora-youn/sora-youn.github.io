@@ -142,6 +142,8 @@ class Part1_Task(Page):
             correct_lower_bound = Constants.correct_lower_bound
         )       
 
+class MyWaitPage(WaitPage):
+    after_all_players_arrive = 'set_payoff'
 
 # the coreography of pages
 page_sequence = [   
