@@ -142,9 +142,12 @@ class Part1_Task(Page):
     def before_next_page(self):
         self.player.set_payoff()
 
+class next(Page):
+    pass
 
 # the coreography of pages
 page_sequence = [   
                     Intro,
                     Part1_Task,
+                    next
                 ]
