@@ -537,7 +537,7 @@ class Player(BasePlayer):
                 self.participant.vars['my_prod']  = 70    
 
             else :
-                self.participant.vars['roundup_pct']  = 90    
+                self.participant.vars['my_prod']  = 90    
 
         # state space = {1,2,3,...,98,99,100}
         else : 
