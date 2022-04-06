@@ -40,9 +40,23 @@ class Group(BaseGroup):
         player2.participant.vars['teammate_prod'] = player1.participant.vars['my_prod']
 
 class Player(BasePlayer):
-    pass
-
     
+    my_prod = models.FloatField()
+    teammate_prod = models.FloatField()
+
+    def set_payoff(self):
+        
+        self.my_prod = self.participant.vars['my_prod']
+        self.teammate_prod = self.participant.vars['teammate_prod']
+
+
+
+
+# def set_payoffs(group):
+#     p1 = group.get_player_by_id(1)
+#     p2 = group.get_player_by_id(2)
+#     p1.payoff = C.ENDOWMENT - group.sent_amount + group.sent_back_amount
+#     p2.payoff = group.sent_amount * C.MULTIPLICATION_FACTOR - group.sent_back_amount
 
 
         
