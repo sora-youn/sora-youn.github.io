@@ -9,6 +9,7 @@ class PaperInstructions(Page):
         if self.round_number == 1:
             return True
 
+
 class Part3_Task(Page):
     form_model = 'player'
     form_fields = [
@@ -51,6 +52,7 @@ class Part3_Result(Page):
             num_game_round = Constants.num_rounds,
             points = self.player.points,
         )
+
 
 # the coreography of pages
 page_sequence = [
