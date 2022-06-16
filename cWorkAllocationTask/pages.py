@@ -10,7 +10,7 @@ class PaperInstructions(Page):
             return True
 
 
-class Part3_Task(Page):
+class Part2_Task(Page):
     form_model = 'player'
     form_fields = [
         'guess_mine',
@@ -42,7 +42,7 @@ class Part3_Task(Page):
         return self.round_number <= Constants.num_rounds 
 
 
-class Part3_Result(Page):
+class Part2_Result(Page):
     def vars_for_template(self):
         return dict(
             player_in_previous_rounds = self.player.in_previous_rounds(),
@@ -57,7 +57,7 @@ class Part3_Result(Page):
 # the coreography of pages
 page_sequence = [
                     PaperInstructions,
-                    Part3_Task,
-                    Part3_Result,
+                    Part2_Task,
+                    Part2_Result,
 
 ]    

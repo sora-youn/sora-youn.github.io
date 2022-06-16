@@ -3,34 +3,10 @@ from os import environ
 
 SESSION_CONFIGS = [
     dict(
-        name='Slider_I_5',
-        display_name="Slider_I_5",
+        name='CFXd',
+        display_name="CFXd",
         num_demo_participants=4,
-        app_sequence=['aSliderTask', 'bDrawTrueState', 'cWorkAllocationTask', 'dRiskAmb', 'eExitSurvey'],
-        simple = True,
-        identifiable = True,
-    ),
-    dict(
-        name='Slider_I_100',
-        display_name="Slider_I_100",
-        num_demo_participants=4,
-        app_sequence=['aSliderTask', 'bDrawTrueState', 'cWorkAllocationTask', 'dRiskAmb', 'eExitSurvey'],
-        simple = False,
-        identifiable = True,
-    ),
-    dict(
-        name='Slider_N_5',
-        display_name="Slider_N_5",
-        num_demo_participants=4,
-        app_sequence=['aSliderTask', 'bDrawTrueState', 'cWorkAllocationTask', 'dRiskAmb', 'eExitSurvey'],
-        simple = True,
-        identifiable = False,
-    ),
-    dict(
-        name='Slider_N_100',
-        display_name="Slider_N_100",
-        num_demo_participants=4,
-        app_sequence=['aSliderTask', 'bDrawTrueState', 'cWorkAllocationTask', 'dRiskAmb', 'eExitSurvey'],
+        app_sequence=['dRiskAmb', 'eExitSurvey'],
         simple = False,
         identifiable = False,
     ),   
